@@ -1,0 +1,38 @@
+.side-menu-page {
+  background: $dark;
+  width: 256px;
+  height: 100vh;
+
+  .ps {
+    height: 100%;
+  }
+
+  .side-logo {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+      width: 160px;
+    }
+  }
+
+  .el-menu {
+    margin-bottom: 30px;
+    border-right: 0;
+
+    .el-menu-item {
+      height: 44px;
+      line-height: 44px;
+    }
+
+    .line {
+      display: block;
+      margin: 15px auto;
+      width: 208px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.301);
+    }
+  }
+}

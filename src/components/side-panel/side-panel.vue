@@ -1,0 +1,26 @@
+<template>
+  <div class="side-menu-page">
+    <perfect-scrollbar>
+      <div class="side-logo">
+        <img class="logo" src="@/assets/icons/logo.svg" />
+      </div>
+      <el-menu
+        default-active="2"
+        background-color="#292B33"
+        text-color="#919398"
+        active-text-color="#fff"
+      >
+        <div v-for="(element, id) in navMenu" :key="id">
+          <el-menu-item :disabled="element.disabled">
+            <i :class="element.icon"></i>
+            <span>{{ element.title }}</span>
+          </el-menu-item>
+          <div v-if="element.line" class="line"></div>
+        </div>
+      </el-menu>
+    </perfect-scrollbar>
+  </div>
+</template>
+
+<style lang="scss" src="./side-panel.scss"></style>
+<script src="./side-panel.js"></script>
