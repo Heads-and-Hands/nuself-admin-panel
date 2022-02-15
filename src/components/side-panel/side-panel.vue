@@ -17,6 +17,10 @@
           </el-menu-item>
           <div v-if="element.line" class="line"></div>
         </div>
+        <el-menu-item class="profile">
+          <i class="el-icon-user-solid"></i>
+          <span>Иван Иванов</span>
+        </el-menu-item>
       </el-menu>
     </perfect-scrollbar>
   </div>

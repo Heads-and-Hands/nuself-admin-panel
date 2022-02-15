@@ -135,14 +135,6 @@ export default {
           line: false,
           disabled: false,
         },
-        // отдельная иконка профиля
-        // {
-        //   title: "",
-        //   icon: "el-icon-user",
-        //   path: "",
-        //   line: false,
-        //   disabled: false,
-        // },
       ]
     }
   }
