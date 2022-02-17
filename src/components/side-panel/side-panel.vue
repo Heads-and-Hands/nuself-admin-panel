@@ -4,17 +4,14 @@
       <div class="side-logo">
         <img class="logo" src="@/assets/icons/logo.svg" />
       </div>
-      <el-menu
-        default-active="2"
-        background-color="#292B33"
-        text-color="#919398"
-        active-text-color="#fff"
-      >
+      <el-menu background-color="#292B33">
         <div v-for="(element, id) in navMenu" :key="id">
-          <el-menu-item :disabled="element.disabled">
-            <i :class="element.icon"></i>
-            <span>{{ element.title }}</span>
-          </el-menu-item>
+          <router-link :to="`/${element.path}`">
+            <el-menu-item :disabled="element.disabled">
+              <i :class="element.icon"></i>
+              <span>{{ element.title }}</span>
+            </el-menu-item>
+          </router-link>
           <div v-if="element.line" class="line"></div>
         </div>
         <el-menu-item class="profile">

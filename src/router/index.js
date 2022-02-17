@@ -4,6 +4,7 @@ import Auth from '../pages/auth/index.vue'
 import Dashboard from '../pages/index/index.vue'
 
 import Products from '../pages/index/products/index.vue'
+import Brands from '../pages/index/brands/index.vue'
 // import store from '../store/index'
 
 Vue.use(VueRouter)
@@ -30,6 +31,11 @@ const routes = [
         path: 'products',
         component: Products,
         name: 'products',
+      },
+      {
+        path: 'brands',
+        component: Brands,
+        name: 'brands',
       },
     ]
   }

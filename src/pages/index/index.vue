@@ -1,12 +1,19 @@
 <template>
   <div class="dashboard-page">
-    <side-panel />
+    <side-panel class="side-panel" />
+    <router-view class="main-view" />
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .dashboard-page {
+  display: flex;
   height: 100%;
+
+  .main-view {
+    height: 100%;
+    width: calc(100% - 256px);
+  }
 }
 </style>
 

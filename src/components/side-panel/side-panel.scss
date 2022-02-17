@@ -5,39 +5,59 @@
 
   .ps {
     height: 100%;
-  }
 
-  .side-logo {
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .side-logo {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    .logo {
-      width: 160px;
+      .logo {
+        width: 160px;
+      }
     }
-  }
 
-  .el-menu {
-    margin-bottom: 30px;
-    border-right: 0;
-
-    .profile {
-      margin-top: 30px;
+    .el-menu {
       margin-bottom: 30px;
-    }
+      border-right: 0;
 
-    .el-menu-item {
-      height: 44px;
-      line-height: 44px;
-    }
+      .profile {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        color: $gray;
+      }
 
-    .line {
-      display: block;
-      margin: 15px auto;
-      width: 208px;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.301);
+      a {
+        text-decoration: none;
+        outline: none;
+
+        i,
+        span {
+          color: $gray;
+        }
+
+        .el-menu-item {
+          height: 44px;
+          line-height: 44px;
+        }
+
+        &.router-link-active {
+          color: $white;
+
+          i,
+          span {
+            color: $white;
+          }
+        }
+      }
+
+      .line {
+        display: block;
+        margin: 15px auto;
+        width: 208px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.301);
+      }
     }
   }
 }
