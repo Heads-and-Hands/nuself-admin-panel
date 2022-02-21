@@ -11,6 +11,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.2",
+    "element-ui-el-table-draggable": "^1.2.10",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "vee-validate": "^2.2.15",
