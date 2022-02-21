@@ -29,6 +29,19 @@ body {
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
+  color: #292B33;
+
+  &-second {
+    margin: 0 48px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: #292B33;
+  }
 }
 
 .content-header {

@@ -12,9 +12,9 @@ export default {
         {
           title: "Каталог",
           icon: "el-icon-reading",
-          path: "",
+          path: "catalog",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Брэнды",
