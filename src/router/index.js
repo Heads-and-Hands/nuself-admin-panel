@@ -4,6 +4,7 @@ import Auth from '../pages/auth/index.vue'
 import Dashboard from '../pages/index/index.vue'
 
 import Products from '../pages/index/products/index.vue'
+import Catalog from '../pages/index/catalog/index.vue'
 import Brands from '../pages/index/brands/index.vue'
 // import store from '../store/index'
 
@@ -31,6 +32,11 @@ const routes = [
         path: 'products',
         component: Products,
         name: 'products',
+      },
+      {
+        path: 'catalog',
+        component: Catalog,
+        name: 'catalog',
       },
       {
         path: 'brands',
