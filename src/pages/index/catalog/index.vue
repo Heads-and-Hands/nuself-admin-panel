@@ -7,50 +7,48 @@
       </div>
       <div class="page-content">
         <div class="content">
-          <el-table-draggable class="grabbable" handle=".handle">
-            <el-table
-                :data="customTableData"
-                style="width: 100%"
-                row-key="id"
-                :indent="0"
-                :row-class-name="tableRowClassName"
-                :tree-props="{children: 'subcategory'}"
+          <el-table
+              :data="customTableData"
+              style="width: 100%"
+              row-key="id"
+              :indent="0"
+              :row-class-name="tableRowClassName"
+              :tree-props="{children: 'subcategory'}"
+          >
+            <el-table-column
+                type="selection"
+                width="55">
+            </el-table-column>
+            <el-table-column
+                v-for="(column) in tableList"
+                :label="column.title"
             >
-              <el-table-column
-                  type="selection"
-                  width="55">
-              </el-table-column>
-              <el-table-column
-                  v-for="(column) in tableList"
-                  :label="column.title"
-              >
-                <template slot-scope="scope">
-                  <template v-if="column.reference === 'image' && !!scope.row.image">
-                    <img :src="scope.row.image" class="image">
+              <template slot-scope="scope">
+                <template v-if="column.reference === 'image' && !!scope.row.image">
+                  <img :src="scope.row.image" class="image">
+                </template>
+                <template v-else-if="column.reference === 'status'">
+                    <el-tag type="success">{{ scope.row[column.reference]}}</el-tag>
                   </template>
-                  <template v-else-if="column.reference === 'status'">
-                      <el-tag type="success">{{ scope.row[column.reference]}}</el-tag>
-                    </template>
-                  <span v-else>{{scope.row[column.reference]}}</span>
-                </template>
-              </el-table-column>
-              <el-table-column fixed="right" label="Operations" width="200" >
-                <template slot="header" slot-scope="scope" >
-                  <div style="text-align: right; padding-right: 40px">
-                    <el-button
-                        icon="el-icon-plus"
-                        circle
-                        style="background-color: #292B33; color: white"></el-button>
-                  </div>
-                </template>
-                <template slot-scope="scope">
-                  <el-button icon="el-icon-sort" class="handle" circle></el-button>
-                  <el-button icon="el-icon-right" circle></el-button>
-                  <el-button type="danger" icon="el-icon-delete" circle></el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </el-table-draggable>
+                <span v-else>{{scope.row[column.reference]}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column fixed="right" label="Operations" width="200" >
+              <template slot="header" slot-scope="scope" >
+                <div style="text-align: right; padding-right: 40px">
+                  <el-button
+                      icon="el-icon-plus"
+                      circle
+                      style="background-color: #292B33; color: white"></el-button>
+                </div>
+              </template>
+              <template slot-scope="scope">
+                <el-button icon="el-icon-sort" circle @click="open"></el-button>
+                <el-button icon="el-icon-right" circle></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle></el-button>
+              </template>
+            </el-table-column>
+          </el-table>
         </div>
       </div>
     </section>
@@ -77,8 +75,8 @@
                 :label="column.title"
             >
               <template slot-scope="scope">
-                <template v-if="column.reference === 'image' && getFirstId.has(scope.row.id)">
-                  <img :src="customTableData[getFirstId.get((scope.row.id))].image" class="image">
+                <template v-if="column.reference === 'image' && scope.row.image">
+                  <img :src="scope.row.image" class="image">
                 </template>
                 <template v-else-if="column.reference === 'status'">
                   <el-tag type="success">{{ scope.row[column.reference]}}</el-tag>
@@ -86,7 +84,7 @@
                 <span v-else>{{scope.row[column.reference]}}</span>
               </template>
             </el-table-column>
-            <el-table-column fixed="right" label="Operations" width="149" >
+            <el-table-column fixed="right" label="Operations" width="200" >
               <template slot="header" slot-scope="scope" >
                 <div style="text-align: right; padding-right: 40px">
                   <el-button
@@ -98,6 +96,7 @@
               <template slot-scope="scope">
                 <el-button icon="el-icon-sort" circle></el-button>
                 <el-button icon="el-icon-right" circle></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle></el-button>
               </template>
             </el-table-column>
           </el-table>

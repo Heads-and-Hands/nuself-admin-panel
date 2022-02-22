@@ -1,5 +1,3 @@
-import ElTableDraggable from "element-ui-el-table-draggable";
-
 export default {
     data() {
         return {
@@ -115,27 +113,26 @@ export default {
             ]
         }
     },
-    components: {
-        ElTableDraggable,
-    },
-    computed: {
-        getFirstId() {
-            console.log(this.customTableData.map(elem => elem.id))
-            const IDMAP = new Map();
-            this.customTableData.forEach((elem,index) => IDMAP.set(elem.id,index))
-            console.log(IDMAP)
-            return IDMAP
-        },
-    },
     methods: {
-        tableRowClassName({row, rowIndex}) {
-            if (!this.getFirstId.has(row.id)) {
+        tableRowClassName({row}) {
+            if (!row.image) {
                 return 'warning-row'
             }
+        },
+        open() {
+            this.$prompt('Переместить на позицию',  {
+                confirmButtonText: 'Переместить',
+                inputPattern: /^[0-9]+$/,
+                customClass: 'position-modal',
+                cancelButtonClass: 'cancel',
+                confirmButtonClass: 'true',
+                center: true
+            }).then(({ value }) => {
+                this.$message({
+                    type: 'success',
+                    message: 'Your position is:' + value
+                });
+            })
         }
-        // olol(index) {
-        //    console.log('boolean', !!this.getFirstId.find(elem => elem === this.customTableData[index].id))
-        //     return !!this.getFirstId.find(elem => elem === this.customTableData[index].id)
-        // }
     }
 }
