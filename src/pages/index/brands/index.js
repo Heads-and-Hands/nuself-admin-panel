@@ -13,39 +13,75 @@ export default {
         value: 'inactive',
         label: 'Не активный'
       }],
+      tableColumns: [{
+        title: "ID",
+        reference: "id"
+      },
+      {
+        title: "Фото",
+        reference: "image"
+      },
+      {
+        title: "Название",
+        reference: "name"
+      },
+      {
+        title: "Статус",
+        reference: "status"
+      },
+      {
+        title: "Описание",
+        reference: "description"
+      }],
       tableData: [{
-        date: '2016-05-03',
+        id: '2016',
+        image: 'California',
         name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
-        tag: 'Home'
+        status: 'Los Angeles',
+        description: 'No. 189, Grove St, Los Angeles',
       }, {
-        date: '2016-05-02',
+        id: '2016',
+        image: 'California',
         name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
-        tag: 'Office'
+        status: 'Los Angeles',
+        description: 'No. 189, Grove St, Los Angeles',
       }, {
-        date: '2016-05-04',
+        id: '2016',
+        image: 'California',
         name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
-        tag: 'Home'
+        status: 'Los Angeles',
+        description: 'No. 189, Grove St, Los Angeles',
       }, {
-        date: '2016-05-01',
+        id: '2016',
+        image: 'California',
         name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
-        tag: 'Office'
-      }]
+        status: 'Los Angeles',
+        description: 'No. 189, Grove St, Los Angeles',
+      }, {
+        id: '2016',
+        image: 'California',
+        name: 'Tom',
+        status: 'Los Angeles',
+        description: 'No. 189, Grove St, Los Angeles',
+      }, {
+        id: '2016',
+        image: 'California',
+        name: 'Tom',
+        status: 'Los Angeles',
+        description: 'No. 189, Grove St, Los Angeles',
+      }, {
+        id: '2016',
+        image: 'California',
+        name: 'Tom',
+        status: 'Los Angeles',
+        description: 'No. 189, Grove St, Los Angeles',
+      }, {
+        id: '2016',
+        image: 'California',
+        name: 'Tom',
+        status: 'Los Angeles',
+        description: 'No. 189, Grove St, Los Angeles',
+      },]
     }
   }
 }

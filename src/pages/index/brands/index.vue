@@ -20,18 +20,13 @@
       </div>
       <div class="content">
         <el-table :data="tableData" style="width: 100%">
-          <el-table-column prop="date" label="Date" width="150">
-          </el-table-column>
-          <el-table-column prop="name" label="Name" width="120">
-          </el-table-column>
-          <el-table-column prop="state" label="State" width="120">
-          </el-table-column>
-          <el-table-column prop="city" label="City" width="120">
-          </el-table-column>
-          <el-table-column prop="address" label="Address" width="300">
-          </el-table-column>
-          <el-table-column prop="zip" label="Zip" width="120">
-          </el-table-column>
+          <el-table-column
+            v-for="(column, id) in tableColumns"
+            :key="id"
+            :prop="column.reference"
+            :label="column.title"
+            :min-width="id === 0 ? '100' : '200'"
+          />
           <el-table-column fixed="right" label="Operations" width="120">
             <el-button type="text" size="small">Edit</el-button>
           </el-table-column>
