@@ -43,9 +43,9 @@
                 </div>
               </template>
               <template slot-scope="scope">
-                <el-button icon="el-icon-sort" circle @click="open"></el-button>
+                <el-button icon="el-icon-sort" circle @click="movePosition"></el-button>
                 <el-button icon="el-icon-right" circle></el-button>
-                <el-button type="danger" icon="el-icon-delete" circle></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle @click="deleteCategory()"></el-button>
               </template>
             </el-table-column>
           </el-table>

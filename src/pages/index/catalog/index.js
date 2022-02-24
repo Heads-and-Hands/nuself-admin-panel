@@ -119,18 +119,32 @@ export default {
                 return 'warning-row'
             }
         },
-        open() {
+        movePosition() {
             this.$prompt('Переместить на позицию',  {
                 confirmButtonText: 'Переместить',
                 inputPattern: /^[0-9]+$/,
                 customClass: 'position-modal',
                 cancelButtonClass: 'cancel',
-                confirmButtonClass: 'true',
+                confirmButtonClass: 'confirm',
                 center: true
             }).then(({ value }) => {
                 this.$message({
                     type: 'success',
                     message: 'Your position is:' + value
+                });
+            })
+        },
+        deleteCategory() {
+            this.$confirm( 'Вы уверены, что хотите удалить выбранные категории?', 'Удалить категорию?',  {
+                confirmButtonText: 'Удалить',
+                cancelButtonText: 'Отмена',
+                customClass: 'delete-modal',
+                cancelButtonClass: 'button',
+                confirmButtonClass: 'button',
+            }).then(({ value }) => {
+                this.$message({
+                    type: 'success',
+                    message: 'Your delete' + value
                 });
             })
         }
