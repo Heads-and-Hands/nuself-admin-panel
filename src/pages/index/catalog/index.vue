@@ -1,6 +1,6 @@
 <template>
   <div class="catalog-page">
-    <div class="page-header">Каталог</div>
+    <div class="head-32-s page-header">Каталог</div>
     <section>
       <div class="page-header-second">
         Кастомные категории <span class="limit"> {{customTableData.length}}</span>
@@ -20,7 +20,8 @@
                 width="55">
             </el-table-column>
             <el-table-column
-                v-for="(column) in tableList"
+                v-for="(column, index) in tableList"
+                :key="index"
                 :label="column.title"
             >
               <template slot-scope="scope">
@@ -44,7 +45,7 @@
               </template>
               <template slot-scope="scope">
                 <el-button icon="el-icon-sort" circle @click="movePosition"></el-button>
-                <el-button icon="el-icon-right" circle></el-button>
+                <el-button icon="el-icon-right" circle @click="openCategory(1)"></el-button>
                 <el-button type="danger" icon="el-icon-delete" circle @click="deleteCategory()"></el-button>
               </template>
             </el-table-column>
@@ -71,7 +72,8 @@
                 width="55">
             </el-table-column>
             <el-table-column
-                v-for="(column) in tableList"
+                v-for="(column, index) in tableList"
+                :key="index"
                 :label="column.title"
             >
               <template slot-scope="scope">
@@ -94,9 +96,9 @@
                 </div>
               </template>
               <template slot-scope="scope">
-                <el-button icon="el-icon-sort" circle></el-button>
-                <el-button icon="el-icon-right" circle></el-button>
-                <el-button type="danger" icon="el-icon-delete" circle></el-button>
+                <el-button icon="el-icon-sort" circle @click="movePosition"></el-button>
+                <el-button icon="el-icon-right" circle @click="openCategory(1)"></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle @click="deleteCategory()"></el-button>
               </template>
             </el-table-column>
           </el-table>

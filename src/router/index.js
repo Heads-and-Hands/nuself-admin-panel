@@ -5,6 +5,7 @@ import Dashboard from '../pages/index/index.vue'
 
 import Products from '../pages/index/products/index.vue'
 import Catalog from '../pages/index/catalog/index.vue'
+import Category from '../pages/index/catalog/_category/index.vue'
 import Brands from '../pages/index/brands/index.vue'
 // import store from '../store/index'
 
@@ -37,6 +38,16 @@ const routes = [
         path: 'catalog',
         component: Catalog,
         name: 'catalog',
+      },
+      {
+        path: `catalog/category`,
+        component: Category,
+        name: 'category',
+      },
+      {
+        path: `catalog/category/:id`,
+        component: Category,
+        props: true
       },
       {
         path: 'brands',

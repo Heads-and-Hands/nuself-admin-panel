@@ -1,0 +1,134 @@
+.category-page {
+  background-color: #F6F6F6;
+  overflow-y: auto;
+  .el-icon-back {
+    margin-right: 20px;
+  }
+
+  .main {
+    background-color: #FFFFFF;
+    height: 574px;
+    width: 812px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    margin-bottom: 48px;
+    box-shadow: 0px 4px 12px rgba(40, 43, 52, 0.07);
+    padding: 40px 48px 48px;
+
+    .title {
+      margin-bottom: 40px;
+    }
+
+    .sub-title {
+      color: #919398;
+      margin-bottom: 8px;
+    }
+
+    .data-container {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      .name,
+      .id {
+        margin-right: 24px;
+      }
+      .name {
+        width: 222px;
+      }
+      .id {
+        width: 188px;
+      }
+      .status {
+        width: 106px;
+        margin-right: 16px;
+
+        .status-tag {
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
+    .data-image {
+      .head-18-s {
+        margin-bottom: 24px;
+      }
+
+      img {
+        border: 1px solid #DDDFE5;
+        box-sizing: border-box;
+        border-radius: 4px;
+        height: 250px;
+        width: 716px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .product {
+    background-color: #FFFFFF;
+    width: 812px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(40, 43, 52, 0.07);
+    padding: 40px 48px 48px;
+    margin-bottom: 48px;
+
+    .title {
+      margin-bottom: 18px;
+    }
+
+    .image {
+      height: 57px;
+      width: 44px;
+      border-radius: 4px;
+      object-fit: contain;
+    }
+
+    .color-circle {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .el-table .cell {
+      text-align: center;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-wrap: normal;
+      word-break: normal;
+      padding-left: 16px;
+      padding-right: 16px;
+
+      .color {
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+
+    .el-table td:first-child,
+    .el-table td:last-child,
+    .el-table th:last-child {
+      .cell {
+        padding: 0;
+      }
+    }
+
+    .el-table td:last-child {
+      .cell {
+        text-align: right;
+      }
+    }
+
+    .order {
+      color: #919398;
+      margin-right: 8px;
+    }
+  }
+}

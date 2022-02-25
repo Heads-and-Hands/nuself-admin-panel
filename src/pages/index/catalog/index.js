@@ -119,6 +119,9 @@ export default {
                 return 'warning-row'
             }
         },
+        openCategory(id) {
+            this.$router.push({ path: `catalog/category/${id}` });
+        },
         movePosition() {
             this.$prompt('Переместить на позицию',  {
                 confirmButtonText: 'Переместить',
