@@ -3,7 +3,7 @@ import { EventBus } from './event-bus'
 
 const Http = axios.create({
   withCredentials: false,
-  baseURL: '/api/admin/',
+  baseURL: '/api/v1/admin/',
   headers: {
     'Content-Type': 'application/json',
   },

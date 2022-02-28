@@ -1,18 +1,14 @@
 module.exports = {
   lintOnSave: false,
-  // devServer: {
-  //   proxy: {
-  //     '^/api': {
-  //       target: 'https://api.sm-events.handh.ru',
-  //       changeOrigin: true,
-  //       pathRewrite: { '^/api': '' },
-  //     },
-  //     '^/images': {
-  //       target: 'https://api.sm-events.handh.ru',
-  //       changeOrigin: true,
-  //     },
-  //   },
-  // },
+  devServer: {
+    proxy: {
+      '^/api/v1/admin/': {
+        target: 'https://nuself.hnh-dev.ru ',
+        changeOrigin: true,
+        pathRewrite: { '^/api': '' },
+      },
+    },
+  },
   css: {
     loaderOptions: {
       sass: {

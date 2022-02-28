@@ -1,8 +1,10 @@
 .brands-page {
-
   .content {
-    .el-table {
-      // width: calc(100% - 96px) !important;
+    .image {
+      border-radius: 4px;
+      height: 44px;
+      width: 127px;
+      object-fit: cover;
     }
   }
 }

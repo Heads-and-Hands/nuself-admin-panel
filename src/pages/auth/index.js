@@ -2,8 +2,8 @@ export default {
   data() {
     return {
       form: {
-        login: '',
-        password: '',
+        login: 'superadmin',
+        password: 'bankai',
       },
       loading: false,
       rules: {
@@ -15,5 +15,18 @@ export default {
         ],
       },
     }
-  }
+  },
+  methods: {
+    login() {
+      this.loading = true
+
+      this.$store.dispatch('user/auth', this.form).then(() => {
+        this.$router.push('/')
+      }).catch(e => {
+        this.$utils.addServerErrors(e, this.errors)
+      }).finally(() => {
+        this.loading = false
+      })
+    }
+  },
 }
