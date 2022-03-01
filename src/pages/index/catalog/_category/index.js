@@ -1,3 +1,5 @@
+import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
+
 export default {
     data() {
         return {
@@ -115,7 +117,15 @@ export default {
 
                 }
             },
+            dialogImageUrl: '',
+            dialogVisible: false,
+            disabled: false,
+            imageUrl: '',
+            isCustom: false
         }
+    },
+    components: {
+        rightSideBar
     },
     methods: {
         movePosition() {
@@ -162,6 +172,15 @@ export default {
         },
         goToBack() {
             this.$router.push({ path: `/catalog` });
-        }
+        },
+        beforeAvatarUpload(file) {
+          console.log('file',file)
+            this.handleAvatarSuccess(file)
+            return true;
+        },
+        handleAvatarSuccess(file) {
+            console.log('file', file)
+            this.imageUrl = URL.createObjectURL(file);
+        },
     }
 }

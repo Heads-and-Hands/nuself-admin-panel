@@ -110,7 +110,34 @@ export default {
                         }
                     ]
                 },
-            ]
+            ],
+            selectList: [{
+                value: 'Option1',
+                label: 'Option1'
+            }, {
+                value: 'Option2',
+                label: 'Option2'
+            }, {
+                value: 'Option3',
+                label: 'Option3'
+            }, {
+                value: 'Option4',
+                label: 'Option4'
+            }, {
+                value: 'Option5',
+                label: 'Option5'
+            }, {
+                value: 'Option6',
+                label: 'Option6'
+            }, {
+                value: 'Option7',
+                label: 'Option7'
+            }, {
+                value: 'Option8',
+                label: 'Option8'
+            }],
+            selectValue: '',
+            searchValue: ''
         }
     },
     methods: {
@@ -119,8 +146,8 @@ export default {
                 return 'warning-row'
             }
         },
-        openCategory(id) {
-            this.$router.push({ path: `catalog/category/${id}` });
+        openCategory(id, isCustom) {
+            this.$router.push({ path: `catalog/category/${id}`, isCustom});
         },
         movePosition() {
             this.$prompt('Переместить на позицию',  {

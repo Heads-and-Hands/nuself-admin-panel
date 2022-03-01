@@ -13,7 +13,6 @@
               row-key="id"
               :indent="0"
               :row-class-name="tableRowClassName"
-              :tree-props="{children: 'subcategory'}"
           >
             <el-table-column
                 type="selection"
@@ -45,7 +44,7 @@
               </template>
               <template slot-scope="scope">
                 <el-button icon="el-icon-sort" circle @click="movePosition"></el-button>
-                <el-button icon="el-icon-right" circle @click="openCategory(1)"></el-button>
+                <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id, true)"></el-button>
                 <el-button type="danger" icon="el-icon-delete" circle @click="deleteCategory()"></el-button>
               </template>
             </el-table-column>
@@ -56,6 +55,27 @@
     <section>
       <div class="page-header-second">
         Стандартные категории <span class="limit"> {{customTableData.length}}</span>
+      </div>
+      <div class="filter">
+        <el-input
+            placeholder="Поиск"
+            v-model="searchValue">
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-select
+            v-model="selectValue"
+            placeholder="Статус"
+            popper-class="select"
+            size="large"
+            clearable
+            popper-append-to-body>
+          <el-option
+              v-for="item in selectList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+          </el-option>
+        </el-select>
       </div>
       <div class="page-content">
         <div class="content">
@@ -86,19 +106,18 @@
                 <span v-else>{{scope.row[column.reference]}}</span>
               </template>
             </el-table-column>
-            <el-table-column fixed="right" label="Operations" width="200" >
-              <template slot="header" slot-scope="scope" >
-                <div style="text-align: right; padding-right: 40px">
-                  <el-button
-                      icon="el-icon-plus"
-                      circle
-                      style="background-color: #292B33; color: white"></el-button>
-                </div>
-              </template>
+            <el-table-column fixed="right" label="" width="149" >
+<!--              <template slot="header" slot-scope="scope" >-->
+<!--                <div style="text-align: right; padding-right: 40px">-->
+<!--                  <el-button-->
+<!--                      icon="el-icon-plus"-->
+<!--                      circle-->
+<!--                      style="background-color: #292B33; color: white"></el-button>-->
+<!--                </div>-->
+<!--              </template>-->
               <template slot-scope="scope">
                 <el-button icon="el-icon-sort" circle @click="movePosition"></el-button>
-                <el-button icon="el-icon-right" circle @click="openCategory(1)"></el-button>
-                <el-button type="danger" icon="el-icon-delete" circle @click="deleteCategory()"></el-button>
+                <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id, false)"></el-button>
               </template>
             </el-table-column>
           </el-table>
