@@ -47,7 +47,7 @@ export default {
                             id: '161',
                             image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
                             article: '1RJ431',
-                            brand: 'Lauren Ralpher Laurensellllllllljdbjhsdbvc dh',
+                            brand: 'Lauren Ralpher Laurensers Definitive',
                             color: {
                                 id: 1,
                                 title: 'синий',
@@ -118,7 +118,7 @@ export default {
                 }
             },
             dialogImageUrl: '',
-            dialogVisible: false,
+            dialogStatusVisible: false,
             tableSize: [{
                 id: 1,
                 image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
@@ -137,6 +137,7 @@ export default {
                     id: 'goods'
                 }
             ],
+            changeStatus: ''
         }
     },
     components: {

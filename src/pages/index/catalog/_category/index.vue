@@ -40,7 +40,9 @@
               <el-button
                   icon="el-icon-edit"
                   circle
-                  style="background-color: #292B33; color: white"></el-button>
+                  style="background-color: #292B33; color: white"
+                  @click="dialogStatusVisible = true"
+              ></el-button>
             </div>
           </div>
           <div class="data-image">
@@ -220,7 +222,26 @@
           :list="navList"
           @scrollToBlock="scrollToBlock"></right-side-bar>
     </div>
-
+    <el-button type="text" @click="dialogStatusVisible = true">click to open the Dialog</el-button>
+    <el-dialog
+        title="Изменить статусы"
+        :visible.sync="dialogStatusVisible"
+        width="551px"
+        custom-class="change-status-modal"
+    >
+        <span class="subtitle body-14-reg">Выберите статус, который вы хотите истановить для выбранной категории</span>
+        <div class="radio-container">
+          <el-radio v-model="changeStatus" label="1" border>
+            <el-tag type="success" class="body-14-reg">Показывать</el-tag>
+          </el-radio>
+          <el-radio v-model="changeStatus" label="2" border>
+            <el-tag type="warning" class="body-14-reg">Не показывать</el-tag>
+          </el-radio>
+        </div>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="dialogStatusVisible = false">Применить</el-button>
+        </span>
+    </el-dialog>
   </div>
 </template>
 
