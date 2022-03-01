@@ -119,6 +119,11 @@ export default {
             },
             dialogImageUrl: '',
             dialogVisible: false,
+            tableSize: [{
+                id: 1,
+                image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
+                name: 'Таблица размеров'
+            }],
             disabled: false,
             imageUrl: '',
             isCustom: false,

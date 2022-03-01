@@ -64,6 +64,48 @@
               <span class="body-12-reg">Загрузить фото (файлы jpeg, png не больше 10 МБ. Разрешение 276px x 376px.)</span>
             </el-upload>
           </div>
+          <div class="data-size">
+            <div class="head-18-s">
+              Размерная таблица по умолчанию
+            </div>
+            <el-table
+                :data="tableSize"
+                style="width: 716px; margin-top: 16px">
+              <el-table-column
+                  prop="id"
+                  label="ID"
+                  width="44">
+              </el-table-column>
+              <el-table-column
+                  prop="image"
+                  label="Фото"
+                  width="85">
+                <template slot-scope="scope">
+                    <img :src="scope.row.image" class="image">
+                </template>
+              </el-table-column>
+              <el-table-column
+                  prop="name"
+                  label="Название">
+              </el-table-column>
+              <el-table-column
+                  width="40"
+                  fixed="right">
+                <template slot="header" slot-scope="scope" >
+                  <div style="text-align: right">
+                    <el-button
+                        icon="el-icon-edit"
+                        circle
+                        style="background-color: #292B33; color: white"
+                    ></el-button>
+                  </div>
+                </template>
+                <template slot-scope="scope">
+                  <el-button icon="el-icon-right" circle></el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
         </section>
         <section class="product" ref="goods">
           <div class="head-24-s title">

@@ -15,7 +15,7 @@
 
   .main {
     background-color: #FFFFFF;
-    height: 574px;
+    min-height: 574px;
     width: 812px;
     box-sizing: border-box;
     border-radius: 12px;
@@ -71,6 +71,25 @@
         height: 250px;
         width: 716px;
         object-fit: cover;
+      }
+    }
+
+    .data-size {
+      margin-top: 48px;
+      .el-table td:first-child,
+      .el-table td:last-child,
+      .el-table th:first-child,
+      .el-table th:last-child {
+        .cell {
+          padding: 0;
+        }
+      }
+
+      .image {
+        height: 53px;
+        width: 44px;
+        border-radius: 4px;
+        object-fit: contain;
       }
     }
   }
