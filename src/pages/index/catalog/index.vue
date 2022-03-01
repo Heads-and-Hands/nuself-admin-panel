@@ -42,21 +42,26 @@
                 label="Статус"
             >
               <template slot-scope="scope">
-                <el-tag type="success" class="body-14-reg">{{ scope.row.status}}</el-tag>
+                <el-tag
+                    :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
+                    class="body-14-reg status-tag"
+                >{{ scope.row.status}}</el-tag>
               </template>
             </el-table-column>
             <el-table-column fixed="right" label="Operations" width="200" >
               <template slot="header" slot-scope="scope" >
-                <div style="text-align: right; padding-right: 40px">
-                  <el-button
-                      icon="el-icon-plus"
-                      circle
-                      style="background-color: #292B33; color: white"></el-button>
-                </div>
+                <el-button
+                    icon="el-icon-plus"
+                    circle
+                    style="background-color: #292B33; color: white"
+                    @click="openCategory('new-category')"
+                    position-modal
+                ></el-button>
               </template>
               <template slot-scope="scope">
+                <span class="count">{{scope.row.count}}</span>
                 <el-button icon="el-icon-sort" circle @click="movePosition"></el-button>
-                <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id, true)"></el-button>
+                <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id)"></el-button>
                 <el-button type="danger" icon="el-icon-delete" circle @click="deleteCategory()"></el-button>
               </template>
             </el-table-column>
@@ -92,7 +97,7 @@
       <div class="page-content">
         <div class="content">
           <el-table
-              :data="customTableData"
+              :data="standartTableData"
               style="width: 100%"
               row-key="id"
               :indent="0"
@@ -127,13 +132,17 @@
                 label="Статус"
             >
               <template slot-scope="scope">
-                <el-tag type="success" class="body-14-reg">{{ scope.row.status}}</el-tag>
+                <el-tag
+                    :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
+                    class="body-14-reg status-tag"
+                >{{ scope.row.status}}</el-tag>
               </template>
             </el-table-column>
             <el-table-column fixed="right" label="" width="149" >
               <template slot-scope="scope">
+                <span class="count">{{scope.row.count}}</span>
                 <el-button icon="el-icon-sort" circle @click="movePosition"></el-button>
-                <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id, false)"></el-button>
+                <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id)"></el-button>
               </template>
             </el-table-column>
           </el-table>

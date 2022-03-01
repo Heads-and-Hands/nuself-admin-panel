@@ -1,7 +1,9 @@
 <template>
   <div class="category-page">
     <div class="page-header">
-      <i class="el-icon-back" @click="goToBack"></i>{{categoryData.common.name}}</div>
+      <i class="el-icon-back" @click="goToBack"></i>
+      {{categoryData.common.name}}
+    </div>
     <div class="category-page-container">
       <div class="left-container content">
         <section class="main" ref="main">
@@ -16,7 +18,7 @@
                   v-model="categoryData.common.name"
                   :value="categoryData.common.name"
                   clearable
-                  :disabled="isCustom">
+                  :disabled="!isCustom">
               </el-input>
             </div>
             <div class="id">
@@ -32,9 +34,9 @@
             <div class="status">
               <div class="body-14-reg sub-title">Статус</div>
               <el-tag
-                  type="success"
-                  class="status-tag"
-              >{{ categoryData.common.status }}</el-tag>
+                :type="categoryData.common.status === 'Показывать' ? 'success' : 'warning'"
+                class="body-14-reg status-tag"
+              >{{ categoryData.common.status}}</el-tag>
             </div>
             <div>
               <el-button
@@ -45,7 +47,7 @@
               ></el-button>
             </div>
           </div>
-          <div class="data-image">
+          <div v-if="categoryData.common.image" class="data-image">
             <div class="head-18-s">
               Обложка
             </div>
@@ -167,36 +169,12 @@
                     label="Статус"
                     width="126">
                   <template slot-scope="scope">
-                    <el-tag type="success" class="body-14-reg">{{ scope.row.status}}</el-tag>
+                    <el-tag
+                        :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
+                        class="body-14-reg status-tag"
+                    >{{ scope.row.status }}</el-tag>
                   </template>
                 </el-table-column>
-<!--                <el-table-column-->
-<!--                    v-for="(column, index) in categoryData.products.column"-->
-<!--                    :key="index"-->
-<!--                    :label="column.title"-->
-<!--                    :width="returnStyle(column)"-->
-<!--                    header-cell-class-name="body-14-s"-->
-<!--                    cell-class-name="body-14-reg"-->
-<!--                >-->
-<!--                  <template slot-scope="scope">-->
-<!--                    <template v-if="column.reference === 'image' && scope.row.image">-->
-<!--                      <img :src="scope.row.image" class="image">-->
-<!--                    </template>-->
-<!--                    <template v-else-if="column.reference === 'status'">-->
-<!--                      <el-tag type="success" class="body-14-reg">{{ scope.row[column.reference]}}</el-tag>-->
-<!--                    </template>-->
-<!--                    <template v-else-if="column.reference === 'color'">-->
-<!--                    <span class="body-14-reg color">-->
-<!--                      <span class="color-circle" :style="`background-color: ${scope.row[column.reference].color}`"></span>-->
-<!--                      {{ scope.row[column.reference].title}}-->
-<!--                    </span>-->
-<!--                    </template>-->
-<!--                    <template v-else-if="column.reference === 'id'">-->
-<!--                      <span class="body-14-reg id">{{scope.row[column.reference]}}</span>-->
-<!--                    </template>-->
-<!--                    <span v-else class="body-14-reg">{{scope.row[column.reference]}}</span>-->
-<!--                  </template>-->
-<!--                </el-table-column>-->
                 <el-table-column fixed="right" label="Operations">
                   <template slot="header" slot-scope="scope" >
                     <div style="text-align: right">
@@ -213,6 +191,12 @@
                   </template>
                 </el-table-column>
               </el-table>
+              <el-pagination
+                  class="pagination"
+                  background
+                  layout="prev, pager, next"
+                  :total="25">
+              </el-pagination>
             </div>
           </div>
           <el-button v-else class="btn-to-product">Перейти к товарам</el-button>
@@ -222,7 +206,7 @@
           :list="navList"
           @scrollToBlock="scrollToBlock"></right-side-bar>
     </div>
-    <el-button type="text" @click="dialogStatusVisible = true">click to open the Dialog</el-button>
+
     <el-dialog
         title="Изменить статусы"
         :visible.sync="dialogStatusVisible"
@@ -242,6 +226,7 @@
           <el-button type="primary" @click="dialogStatusVisible = false">Применить</el-button>
         </span>
     </el-dialog>
+    <saveNotification v-show="isSaveChange" />
   </div>
 </template>
 

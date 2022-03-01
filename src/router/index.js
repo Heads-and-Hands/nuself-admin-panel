@@ -47,6 +47,7 @@ const routes = [
       {
         path: `catalog/category/:id`,
         component: Category,
+        name: 'category',
         props: true
       },
       {

@@ -1,9 +1,10 @@
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
+import saveNotification from "@/components/save-notification/save-notification.vue"
 
 export default {
     data() {
         return {
-            categoryData: {
+            categoryDataApi: {
                 common: {
                     id: '1R1469',
                     name: 'Категория мемных котов',
@@ -16,32 +17,6 @@ export default {
                         limit: 50,
                         total: 10050
                     },
-                    column: [
-                        {
-                            title: 'ID',
-                            reference: 'id'
-                        },
-                        {
-                            title: 'Фото',
-                            reference: 'image'
-                        },
-                        {
-                            title: 'Артикул',
-                            reference: 'article'
-                        },
-                        {
-                            title: 'Бренд',
-                            reference: 'brand'
-                        },
-                        {
-                            title: 'Цвет',
-                            reference: 'color'
-                        },
-                        {
-                            title: 'Статус',
-                            reference: 'status'
-                        },
-                    ],
                     list: [
                         {
                             id: '161',
@@ -54,7 +29,7 @@ export default {
                                 color: '#0000ff',
                                 image: ''
                             },
-                            status: 'Показывать',
+                            status: 'Не показывать',
                             order: 1
                         },
                         {
@@ -114,19 +89,29 @@ export default {
                             order: 5
                         },
                     ]
-
                 }
             },
-            dialogImageUrl: '',
-            dialogStatusVisible: false,
+            newCategoryData: {
+                common: {
+                    id: '',
+                    name: 'Новая категория',
+                    status: 'Показывать',
+                    image: '',
+                },
+                products: {
+                    meta: {
+                        offset: 0,
+                        limit: 50,
+                        total: 10050
+                    },
+                    list: []
+                }
+            },
             tableSize: [{
                 id: 1,
                 image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
                 name: 'Таблица размеров'
             }],
-            disabled: false,
-            imageUrl: '',
-            isCustom: true,
             navList: [
                 {
                     title: 'Основное',
@@ -137,11 +122,23 @@ export default {
                     id: 'goods'
                 }
             ],
-            changeStatus: ''
+            imageUrl: '',
+            changeStatus: '',
+            dialogStatusVisible: false,
+            isCustom: true,
+            isSaveChange: false,
         }
     },
     components: {
-        rightSideBar
+        rightSideBar,
+        saveNotification
+    },
+    computed: {
+        categoryData() {
+            if (this.$route.params.id === 'new-category') {
+                return this.newCategoryData
+            } else return this.categoryDataApi
+        },
     },
     methods: {
         deleteCategory() {

@@ -1,68 +1,27 @@
 export default {
     data() {
         return {
-            tableList: [
-                {
-                    title: 'ID',
-                    reference: 'id'
-                },
-                {
-                    title: 'Фото',
-                    reference: 'image'
-                },
-                {
-                    title: 'Название',
-                    reference: 'name'
-                },
-                {
-                    title: 'Статус',
-                    reference: 'status'
-                },
-            ],
             customTableData: [
                 {
                     id: '671',
                     image: 'https://pbs.twimg.com/media/DGuIzoRWsAAZnoD.jpg',
                     name: 'Распродажа',
                     status: 'Показывать',
-                    subcategory: [
-                        {
-                            id: '11',
-                            name: 'Платья',
-                            status: 'Показывать',
-                        }
-                    ]
+                    count: 1,
                 },
                 {
                     id: '2',
                     image: 'https://medialeaks.ru/wp-content/uploads/2021/09/cute-cat-japan-coronavirus-vaccine-side-effect-pfizer-moderns-reaction-photo-top-600x448.jpg',
                     name: 'Распродажа',
                     status: 'Показывать',
-                    subcategory: [
-                        {
-                            id: '21',
-                            name: 'Платья',
-                            status: 'Показывать',
-                        },
-                        {
-                            id: '22',
-                            name: 'Платья',
-                            status: 'Показывать',
-                        }
-                    ]
+                    count: 2,
                 },
                 {
                     id: '3',
                     image: 'https://images.glavred.info/2019_08/1564737970-1817.jpg?r=215867',
                     name: 'Распродажа',
-                    status: 'Показывать',
-                    subcategory: [
-                        {
-                            id: '31',
-                            name: 'Платья',
-                            status: 'Показывать',
-                        }
-                    ]
+                    status: 'Не показывать',
+                    count: 3,
                 },
             ],
             standartTableData: [
@@ -71,6 +30,7 @@ export default {
                     image: 'https://pbs.twimg.com/media/DGuIzoRWsAAZnoD.jpg',
                     name: 'Распродажа',
                     status: 'Показывать',
+                    count: 4,
                     subcategory: [
                         {
                             id: '11',
@@ -84,6 +44,7 @@ export default {
                     image: 'https://medialeaks.ru/wp-content/uploads/2021/09/cute-cat-japan-coronavirus-vaccine-side-effect-pfizer-moderns-reaction-photo-top-600x448.jpg',
                     name: 'Распродажа',
                     status: 'Показывать',
+                    count: 5,
                     subcategory: [
                         {
                             id: '21',
@@ -98,10 +59,11 @@ export default {
                     ]
                 },
                 {
-                    id: '3',
+                    id: '56',
                     image: 'https://images.glavred.info/2019_08/1564737970-1817.jpg?r=215867',
                     name: 'Распродажа',
                     status: 'Показывать',
+                    count: 6,
                     subcategory: [
                         {
                             id: '31',
@@ -147,8 +109,8 @@ export default {
             }
             return 'body-14-reg'
         },
-        openCategory(id, isCustom) {
-            this.$router.push({ path: `catalog/category/${id}`, isCustom});
+        openCategory(id) {
+            this.$router.push({ path: `catalog/category/${id}`});
         },
         movePosition() {
             this.$prompt('Переместить на позицию',  {
