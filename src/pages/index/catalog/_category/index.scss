@@ -4,6 +4,9 @@
 
   &-container {
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: visible;
   }
 
   .el-icon-back {

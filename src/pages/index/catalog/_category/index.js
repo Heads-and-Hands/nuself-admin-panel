@@ -121,7 +121,17 @@ export default {
             dialogVisible: false,
             disabled: false,
             imageUrl: '',
-            isCustom: false
+            isCustom: false,
+            navList: [
+                {
+                    title: 'Основное',
+                    id: 'main'
+                },
+                {
+                    title: 'Товары',
+                    id: 'goods'
+                }
+            ],
         }
     },
     components: {
@@ -182,5 +192,12 @@ export default {
             console.log('file', file)
             this.imageUrl = URL.createObjectURL(file);
         },
+        scrollToBlock(item){
+            let parent = document.querySelector('.main-view');
+            let element = this.$refs[item];
+            let top = element.offsetTop - 10;
+            parent.scrollTo({top, behavior: "smooth"});
+        }
     }
+
 }

@@ -1,6 +1,30 @@
 .right-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  width: 228px;
+
   ul {
     list-style: none;
+  }
+
+  .item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+
+    &:hover {
+      .text {
+        font-weight: 600;
+      }
+
+      .index {
+          background-color: #000000 !important;
+          color: #FFFFFF !important;
+      }
+    }
   }
   .index {
     width: 24px;
@@ -8,6 +32,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 0!important;
+    margin-right: 8px;
+    padding: 0;
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: none;
+
+
+  }
+
+  .select {
+    font-weight: 600;
+
+    .index {
+      background-color: #000000 !important;
+      color: #FFFFFF !important;
+    }
   }
 }

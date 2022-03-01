@@ -4,7 +4,7 @@
       <i class="el-icon-back" @click="goToBack"></i>{{categoryData.common.name}}</div>
     <div class="category-page-container">
       <div class="left-container content">
-        <section class="main">
+        <section class="main" ref="main">
           <div class="head-24-s title">
             Основное
           </div>
@@ -65,7 +65,7 @@
             </el-upload>
           </div>
         </section>
-        <section class="product">
+        <section class="product" ref="goods">
           <div class="head-24-s title">
             Товары <span class="limit"> 42</span>
           </div>
@@ -128,7 +128,9 @@
           <el-button v-else class="btn-to-product">Перейти к товарам</el-button>
         </section>
       </div>
-      <right-side-bar></right-side-bar>
+      <right-side-bar
+          :list="navList"
+          @scrollToBlock="scrollToBlock"></right-side-bar>
     </div>
   </div>
 </template>
