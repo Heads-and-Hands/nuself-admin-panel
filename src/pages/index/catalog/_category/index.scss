@@ -127,7 +127,6 @@
     }
 
     .el-table .cell {
-      text-align: center;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
@@ -145,6 +144,7 @@
 
     .el-table td:first-child,
     .el-table td:last-child,
+    .el-table th:first-child,
     .el-table th:last-child {
       .cell {
         padding: 0;
@@ -155,11 +155,6 @@
       .cell {
         text-align: right;
       }
-    }
-
-    .order {
-      color: #919398;
-      margin-right: 8px;
     }
 
     .btn-to-product {

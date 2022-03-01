@@ -143,8 +143,9 @@ export default {
     methods: {
         tableRowClassName({row}) {
             if (!row.image) {
-                return 'warning-row'
+                return 'warning-row body-14-reg'
             }
+            return 'body-14-reg'
         },
         openCategory(id, isCustom) {
             this.$router.push({ path: `catalog/category/${id}`, isCustom});

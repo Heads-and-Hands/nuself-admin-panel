@@ -126,7 +126,7 @@ export default {
             }],
             disabled: false,
             imageUrl: '',
-            isCustom: false,
+            isCustom: true,
             navList: [
                 {
                     title: 'Основное',
@@ -143,21 +143,6 @@ export default {
         rightSideBar
     },
     methods: {
-        movePosition() {
-            this.$prompt('Переместить на позицию',  {
-                confirmButtonText: 'Переместить',
-                inputPattern: /^[0-9]+$/,
-                customClass: 'position-modal',
-                cancelButtonClass: 'cancel',
-                confirmButtonClass: 'confirm',
-                center: true
-            }).then(({ value }) => {
-                this.$message({
-                    type: 'success',
-                    message: 'Your position is:' + value
-                });
-            })
-        },
         deleteCategory() {
             this.$confirm( 'Вы уверены, что хотите удалить выбранные категории?', 'Удалить категорию?',  {
                 confirmButtonText: 'Удалить',
@@ -172,29 +157,14 @@ export default {
                 });
             })
         },
-        returnStyle(elem) {
-            if (elem.reference === 'id') return 41
-            if (elem.reference === 'image') return 76
-            if (elem.reference === 'article') return 80
-            if (elem.reference === 'brand') return 106
-            if (elem.reference === 'color') return 104
-            if (elem.reference === 'status') return 126
-        },
-        tableRowClassName({row}) {
-            if (!row.image) {
-                return 'warning-row'
-            }
-        },
         goToBack() {
             this.$router.push({ path: `/catalog` });
         },
-        beforeAvatarUpload(file) {
-          console.log('file',file)
-            this.handleAvatarSuccess(file)
+        beforeImageUpload(file) {
+            this.addImage(file)
             return true;
         },
-        handleAvatarSuccess(file) {
-            console.log('file', file)
+        addImage(file) {
             this.imageUrl = URL.createObjectURL(file);
         },
         scrollToBlock(item){
@@ -202,7 +172,7 @@ export default {
             let element = this.$refs[item];
             let top = element.offsetTop - 10;
             parent.scrollTo({top, behavior: "smooth"});
-        }
+        },
     }
 
 }

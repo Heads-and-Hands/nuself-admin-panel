@@ -57,8 +57,8 @@
                 list-type="picture-card"
                 class="upload-image"
                 :limit="1"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload"
+                :on-success="addImage"
+                :before-upload="beforeImageUpload"
             >
               <i slot="default" class="body-12-reg el-icon-camera"></i>
               <span class="body-12-reg">Загрузить фото (файлы jpeg, png не больше 10 МБ. Разрешение 276px x 376px.)</span>
@@ -118,36 +118,84 @@
                   style="width: 100%"
                   row-key="id"
                   :indent="0"
-                  :row-class-name="tableRowClassName"
+                  row-class-name="body-14-reg"
               >
                 <el-table-column
-                    v-for="(column, index) in categoryData.products.column"
-                    :key="index"
-                    :label="column.title"
-                    :width="returnStyle(column)"
-                    header-cell-class-name="body-14-s"
-                    cell-class-name="body-14-reg"
-                >
+                    prop="id"
+                    label="ID"
+                    width="44">
+                </el-table-column>
+                <el-table-column
+                    prop="image"
+                    label="Фото"
+                    width="76">
                   <template slot-scope="scope">
-                    <template v-if="column.reference === 'image' && scope.row.image">
-                      <img :src="scope.row.image" class="image">
-                    </template>
-                    <template v-else-if="column.reference === 'status'">
-                      <el-tag type="success" class="body-14-reg">{{ scope.row[column.reference]}}</el-tag>
-                    </template>
-                    <template v-else-if="column.reference === 'color'">
-                    <span class="body-14-reg color">
-                      <span class="color-circle" :style="`background-color: ${scope.row[column.reference].color}`"></span>
-                      {{ scope.row[column.reference].title}}
-                    </span>
-                    </template>
-                    <template v-else-if="column.reference === 'id'">
-                      <span class="body-14-reg id">{{scope.row[column.reference]}}</span>
-                    </template>
-                    <span v-else class="body-14-reg">{{scope.row[column.reference]}}</span>
+                    <img :src="scope.row.image" class="image">
                   </template>
                 </el-table-column>
-                <el-table-column fixed="right" label="Operations" width="183" >
+                <el-table-column
+                    prop="article"
+                    label="Артикул"
+                    width="80">
+                </el-table-column>
+                <el-table-column
+                    prop="brand"
+                    label="Бренд"
+                    width="183"
+                    >
+                  <template slot-scope="scope">
+                    <span class="brand">
+                      {{ scope.row.brand}}
+                    </span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                    prop="color"
+                    label="Цвет"
+                    width="104">
+                  <template slot-scope="scope">
+                    <span class="body-14-reg color">
+                      <span class="color-circle" :style="`background-color: ${scope.row.color.color}`"></span>
+                      {{ scope.row.color.title}}
+                    </span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                    prop="status"
+                    label="Статус"
+                    width="126">
+                  <template slot-scope="scope">
+                    <el-tag type="success" class="body-14-reg">{{ scope.row.status}}</el-tag>
+                  </template>
+                </el-table-column>
+<!--                <el-table-column-->
+<!--                    v-for="(column, index) in categoryData.products.column"-->
+<!--                    :key="index"-->
+<!--                    :label="column.title"-->
+<!--                    :width="returnStyle(column)"-->
+<!--                    header-cell-class-name="body-14-s"-->
+<!--                    cell-class-name="body-14-reg"-->
+<!--                >-->
+<!--                  <template slot-scope="scope">-->
+<!--                    <template v-if="column.reference === 'image' && scope.row.image">-->
+<!--                      <img :src="scope.row.image" class="image">-->
+<!--                    </template>-->
+<!--                    <template v-else-if="column.reference === 'status'">-->
+<!--                      <el-tag type="success" class="body-14-reg">{{ scope.row[column.reference]}}</el-tag>-->
+<!--                    </template>-->
+<!--                    <template v-else-if="column.reference === 'color'">-->
+<!--                    <span class="body-14-reg color">-->
+<!--                      <span class="color-circle" :style="`background-color: ${scope.row[column.reference].color}`"></span>-->
+<!--                      {{ scope.row[column.reference].title}}-->
+<!--                    </span>-->
+<!--                    </template>-->
+<!--                    <template v-else-if="column.reference === 'id'">-->
+<!--                      <span class="body-14-reg id">{{scope.row[column.reference]}}</span>-->
+<!--                    </template>-->
+<!--                    <span v-else class="body-14-reg">{{scope.row[column.reference]}}</span>-->
+<!--                  </template>-->
+<!--                </el-table-column>-->
+                <el-table-column fixed="right" label="Operations">
                   <template slot="header" slot-scope="scope" >
                     <div style="text-align: right">
                       <el-button
@@ -158,8 +206,6 @@
                     </div>
                   </template>
                   <template slot-scope="scope">
-                    <span class="body-14-s order">{{scope.row.order}}</span>
-                    <el-button icon="el-icon-sort" circle @click="movePosition"></el-button>
                     <el-button icon="el-icon-right" circle></el-button>
                     <el-button type="danger" icon="el-icon-close" @click="deleteCategory" circle plain></el-button>
                   </template>
@@ -174,6 +220,7 @@
           :list="navList"
           @scrollToBlock="scrollToBlock"></right-side-bar>
     </div>
+
   </div>
 </template>
 

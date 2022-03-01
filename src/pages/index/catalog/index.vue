@@ -19,18 +19,30 @@
                 width="55">
             </el-table-column>
             <el-table-column
-                v-for="(column, index) in tableList"
-                :key="index"
-                :label="column.title"
+                prop="id"
+                label="ID"
+                width="79">
+            </el-table-column>
+            <el-table-column
+                prop="image"
+                label="Фото"
+                width="159">
+              <template slot-scope="scope">
+                <img v-if="!!scope.row.image" :src="scope.row.image" class="image">
+              </template>
+            </el-table-column>
+            <el-table-column
+                prop="name"
+                label="Название"
+                width="275"
+            >
+            </el-table-column>
+            <el-table-column
+                prop="status"
+                label="Статус"
             >
               <template slot-scope="scope">
-                <template v-if="column.reference === 'image' && !!scope.row.image">
-                  <img :src="scope.row.image" class="image">
-                </template>
-                <template v-else-if="column.reference === 'status'">
-                    <el-tag type="success">{{ scope.row[column.reference]}}</el-tag>
-                  </template>
-                <span v-else>{{scope.row[column.reference]}}</span>
+                <el-tag type="success" class="body-14-reg">{{ scope.row.status}}</el-tag>
               </template>
             </el-table-column>
             <el-table-column fixed="right" label="Operations" width="200" >
@@ -92,29 +104,33 @@
                 width="55">
             </el-table-column>
             <el-table-column
-                v-for="(column, index) in tableList"
-                :key="index"
-                :label="column.title"
+                prop="id"
+                label="ID"
+                width="79">
+            </el-table-column>
+            <el-table-column
+                prop="image"
+                label="Фото"
+                width="159">
+              <template slot-scope="scope">
+                <img v-if="!!scope.row.image" :src="scope.row.image" class="image">
+              </template>
+            </el-table-column>
+            <el-table-column
+                prop="name"
+                label="Название"
+                width="275"
+            >
+            </el-table-column>
+            <el-table-column
+                prop="status"
+                label="Статус"
             >
               <template slot-scope="scope">
-                <template v-if="column.reference === 'image' && scope.row.image">
-                  <img :src="scope.row.image" class="image">
-                </template>
-                <template v-else-if="column.reference === 'status'">
-                  <el-tag type="success">{{ scope.row[column.reference]}}</el-tag>
-                </template>
-                <span v-else>{{scope.row[column.reference]}}</span>
+                <el-tag type="success" class="body-14-reg">{{ scope.row.status}}</el-tag>
               </template>
             </el-table-column>
             <el-table-column fixed="right" label="" width="149" >
-<!--              <template slot="header" slot-scope="scope" >-->
-<!--                <div style="text-align: right; padding-right: 40px">-->
-<!--                  <el-button-->
-<!--                      icon="el-icon-plus"-->
-<!--                      circle-->
-<!--                      style="background-color: #292B33; color: white"></el-button>-->
-<!--                </div>-->
-<!--              </template>-->
               <template slot-scope="scope">
                 <el-button icon="el-icon-sort" circle @click="movePosition"></el-button>
                 <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id, false)"></el-button>
