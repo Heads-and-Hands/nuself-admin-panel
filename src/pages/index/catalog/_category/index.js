@@ -142,7 +142,7 @@ export default {
     },
     methods: {
         deleteCategory() {
-            this.$confirm( 'Вы уверены, что хотите удалить выбранные категории?', 'Удалить категорию?',  {
+            this.$confirm( 'Вы уверены, что хотите удалить выбранный товар?', 'Удалить товар?',  {
                 confirmButtonText: 'Удалить',
                 cancelButtonText: 'Отмена',
                 customClass: 'delete-modal',
