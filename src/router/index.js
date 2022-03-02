@@ -7,6 +7,8 @@ import Products from '../pages/index/products/index.vue'
 import Catalog from '../pages/index/catalog/index.vue'
 import Category from '../pages/index/catalog/_category/index.vue'
 import Brands from '../pages/index/brands/index.vue'
+import Colors from '../pages/index/colors/index.vue'
+import Color from '../pages/index/colors/_color/index.vue'
 // import store from '../store/index'
 
 Vue.use(VueRouter)
@@ -54,6 +56,22 @@ const routes = [
         path: 'brands',
         component: Brands,
         name: 'brands',
+      },
+      {
+        path: 'colors',
+        component: Colors,
+        name: 'colors',
+      },
+      {
+        path: `colors/color`,
+        component: Color,
+        name: 'color',
+      },
+      {
+        path: `colors/color/:id`,
+        component: Color,
+        name: 'color',
+        props: true
       },
     ]
   }

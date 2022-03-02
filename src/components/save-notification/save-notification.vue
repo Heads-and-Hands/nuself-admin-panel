@@ -2,7 +2,7 @@
   <div class="save-notification">
     <div class="body-14-reg text"><el-badge is-dot class="item" />Есть несохраненные изменения</div>
     <div>
-      <el-button class="remove">Сбросить изменения</el-button>
+      <el-button class="remove" @click="$emit('clearAll')">Сбросить изменения</el-button>
       <el-button class="save">Сохранить изменения</el-button>
     </div>
   </div>
@@ -21,6 +21,7 @@ export default {
   width: calc(100% - 256px);
   position: fixed;
   bottom: 0;
+  left: 256px;
   background: #FFFFFF;
   box-shadow: 0px -4px 12px rgba(40, 43, 52, 0.07);
   display: flex;

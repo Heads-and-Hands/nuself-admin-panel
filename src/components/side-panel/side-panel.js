@@ -26,9 +26,9 @@ export default {
         {
           title: "Цвета",
           icon: "el-icon-brush",
-          path: "",
+          path: "colors",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Таблицы размеров",
