@@ -1,10 +1,12 @@
 @import './normalize.css';
 @import './elements-io/theme/elements-theme.css';
+@import './text.scss';
 
 html,
 body {
   font-family: 'SF Pro Text', sans-serif;
-  font-weight: 400;
+  letter-spacing: 0em;
+  font-weight: 600;
   font-style: normal;
   font-size: 14px;
   font-stretch: normal;
@@ -26,7 +28,7 @@ body {
   margin: 0 48px;
   display: flex;
   align-items: center;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 32px;
   line-height: 36px;
   color: #292B33;
@@ -37,7 +39,7 @@ body {
     display: flex;
     align-items: center;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 24px;
     line-height: 32px;
     color: #292B33;
