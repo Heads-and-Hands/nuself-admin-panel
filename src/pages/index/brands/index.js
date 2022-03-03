@@ -1,4 +1,10 @@
+import MixinList from '@/mixins/tableList'
+
 export default {
+  name: "brands",
+  mixins: [
+    MixinList
+  ],
   data() {
     return {
       searchParams: {
@@ -82,5 +88,8 @@ export default {
         description: 'No. 189, Grove St, Los Angeles',
       },]
     }
-  }
+  },
+  created() {
+    
+  },
 }

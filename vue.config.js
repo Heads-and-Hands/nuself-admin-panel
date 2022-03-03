@@ -3,9 +3,7 @@ module.exports = {
   devServer: {
     proxy: {
       '^/api/v1/admin/': {
-        target: 'https://nuself.hnh-dev.ru ',
-        changeOrigin: true,
-        pathRewrite: { '^/api': '' },
+        target: 'https://nuself.hnh-dev.ru',
       },
     },
   },

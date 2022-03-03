@@ -20,10 +20,9 @@ export default ({
   },
   actions: {
     auth({ dispatch }, data) {
-      return Http.post('login', data).then(data => {
+      return Http.post('login', data).then(({ data }) => {
         localStorage.setItem('token', data.token)
-        localStorage.setItem('userId', data.id)
-        return dispatch('init')
+        localStorage.setItem('refreshToken', data.refreshToken)
       })
     },
   },
