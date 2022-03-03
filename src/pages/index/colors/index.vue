@@ -1,14 +1,10 @@
 <template>
   <div class="colors-page">
-    <div class="head-32-s title">Цвета <span class="limit">{{ colorsData.length }}</span></div>
+    <div class="head-32-s title">Цвета <span class="limit">{{ colorsData.length || 0 }}</span></div>
     <section>
       <el-table
           :data="colorsData"
           style="width: 100%">
-        <el-table-column
-            type="selection"
-            width="46">
-        </el-table-column>
         <el-table-column
             prop="id"
             label="ID"
@@ -32,6 +28,12 @@
         </el-table-column>
       </el-table>
     </section>
+    <el-pagination
+        style="text-align: right; margin-top: 32px"
+        background
+        layout="prev, pager, next"
+        :total="100">
+    </el-pagination>
   </div>
 </template>
 

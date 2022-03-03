@@ -33,9 +33,9 @@ export default {
         {
           title: "Таблицы размеров",
           icon: "el-icon-crop",
-          path: "",
+          path: "sizes",
           line: true,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Заказы",
