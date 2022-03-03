@@ -30,6 +30,7 @@ export default {
         },
         clearAll() {
             this.customImage = this.color.color
+            this.isSaveChange = false
         }
     },
 }
