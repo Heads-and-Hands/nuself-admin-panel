@@ -226,7 +226,7 @@
           <el-button type="primary" @click="dialogStatusVisible = false">Применить</el-button>
         </span>
     </el-dialog>
-    <saveNotification v-show="isSaveChange" />
+    <save-notification v-show="isSaveChange" />
   </div>
 </template>
 

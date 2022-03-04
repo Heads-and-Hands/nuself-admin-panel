@@ -1,0 +1,33 @@
+.select-table-modal {
+  border-radius: 8px;
+
+  .el-dialog__body {
+    padding: 12px 48px 90px;
+  }
+
+  .el-table {
+    width: 100%;
+    font-weight: 400;
+  }
+
+  .title {
+    color: #292B33;
+    margin-bottom: 24px;
+  }
+
+  .image {
+    height: 53px;
+    width: 44px;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+
+  .save-notification {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    .text {
+      color: #FFC061;
+    }
+  }
+}

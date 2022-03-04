@@ -99,7 +99,9 @@ export default {
                 label: 'Option8'
             }],
             selectValue: '',
-            searchValue: ''
+            searchValue: '',
+            showPopupPosition: false,
+            changePosition: ''
         }
     },
     methods: {
@@ -111,21 +113,6 @@ export default {
         },
         openCategory(id) {
             this.$router.push({ path: `catalog/category/${id}`});
-        },
-        movePosition() {
-            this.$prompt('Переместить на позицию',  {
-                confirmButtonText: 'Переместить',
-                inputPattern: /^[0-9]+$/,
-                customClass: 'position-modal',
-                cancelButtonClass: 'cancel',
-                confirmButtonClass: 'confirm',
-                center: true
-            }).then(({ value }) => {
-                this.$message({
-                    type: 'success',
-                    message: 'Your position is:' + value
-                });
-            })
         },
         deleteCategory() {
             this.$confirm( 'Вы уверены, что хотите удалить выбранные категории?', 'Удалить категорию?',  {

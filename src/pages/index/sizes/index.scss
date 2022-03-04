@@ -1,0 +1,22 @@
+.sizes-page {
+  padding: 48px;
+  box-sizing: border-box;
+
+  .limit {
+    color: #C1C4CB;
+  }
+
+  .data-size {
+    margin-top: 48px;
+    .el-table td {
+      font-weight: 400;
+    }
+
+    .image {
+      height: 53px;
+      width: 44px;
+      border-radius: 4px;
+      object-fit: contain;
+    }
+  }
+}
