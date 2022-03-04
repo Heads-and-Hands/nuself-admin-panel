@@ -1,16 +1,44 @@
 <template>
-  <div class="save-notification">
-    <div class="body-14-reg text"><el-badge is-dot class="item" />Есть несохраненные изменения</div>
+  <div class="save-notification body-14-reg">
+    <div v-if="type === 'default' || type === 'all'" class="text"><el-badge is-dot class="item" />Есть несохраненные изменения</div>
+    <div v-else class="text">{{text}}<i class="el-icon-close close" @click="$emit('clearAll')"></i></div>
     <div>
-      <el-button class="remove">Сбросить изменения</el-button>
-      <el-button class="save">Сохранить изменения</el-button>
+      <el-button
+          v-if="type === 'delete' || type === 'all'"
+          class="delete"
+          icon="el-icon-delete"
+          type="danger"
+          plain
+      >
+        Удалить
+      </el-button>
+      <el-button
+          v-if="type === 'save'"
+          class="save"
+      >
+        Сохранить
+      </el-button>
+      <template v-if="type === 'default' || type === 'all'">
+        <el-button class="cancel-change" @click="$emit('clearAll')">Сбросить изменения</el-button>
+        <el-button class="save-change">Сохранить изменения</el-button>
+      </template>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "save-notification"
+  name: "save-notification",
+  props: {
+    type: {
+      type: String,
+      default: 'default'
+    },
+    text: {
+      type: String,
+      default: 'Есть несохраненные изменения'
+    }
+  }
 }
 </script>
 
@@ -21,6 +49,7 @@ export default {
   width: calc(100% - 256px);
   position: fixed;
   bottom: 0;
+  left: 256px;
   background: #FFFFFF;
   box-shadow: 0px -4px 12px rgba(40, 43, 52, 0.07);
   display: flex;
@@ -33,14 +62,22 @@ export default {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    color: #292B33;
     
     .item {
       margin-top: 12px;
       margin-right: 12px;
     }
+
+    .close {
+      cursor: pointer;
+      margin-top: 2px;
+      margin-left: 10px;
+      color: #C1C4CB;
+    }
   }
 
-  .save {
+  .save-change, .save {
     background-color: #292B33 !important;
     color: #FFFFFF;
   }

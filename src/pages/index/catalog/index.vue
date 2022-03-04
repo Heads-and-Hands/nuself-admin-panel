@@ -50,23 +50,10 @@
                 ></el-button>
               </template>
               <template slot-scope="scope">
-                <span class="count">{{ scope.row.count }}</span>
-                <el-button
-                  icon="el-icon-sort"
-                  circle
-                  @click="movePosition"
-                ></el-button>
-                <el-button
-                  icon="el-icon-right"
-                  circle
-                  @click="openCategory(scope.row.id)"
-                ></el-button>
-                <el-button
-                  type="danger"
-                  icon="el-icon-delete"
-                  circle
-                  @click="deleteCategory()"
-                ></el-button>
+                <span class="count">{{scope.row.count}}</span>
+                <el-button icon="el-icon-sort" circle @click="showPopupPosition = true"></el-button>
+                <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id)"></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle @click="deleteCategory()"></el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -135,21 +122,31 @@
             </el-table-column>
             <el-table-column fixed="right" label="" width="149">
               <template slot-scope="scope">
-                <span class="count">{{ scope.row.count }}</span>
-                <el-button
-                  icon="el-icon-sort"
-                  circle
-                  @click="movePosition"
-                ></el-button>
-                <el-button
-                  icon="el-icon-right"
-                  circle
-                  @click="openCategory(scope.row.id)"
-                ></el-button>
+                <span class="count">{{scope.row.count}}</span>
+                <el-button icon="el-icon-sort" circle @click="showPopupPosition = true"></el-button>
+                <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id)"></el-button>
               </template>
             </el-table-column>
           </el-table>
         </div>
+        <el-dialog
+            :visible.sync="showPopupPosition"
+            width="411px"
+            custom-class="change-position-modal"
+        >
+          <div class="container">
+            <span class="title head-24-s">Переместить на позицию</span>
+            <el-input
+                type="text"
+                placeholder="Please input"
+                v-model="changePosition"
+            > <span class="category-count" slot="suffix">{{`/${standartTableData.length}`}}</span>
+            </el-input>
+            <div slot="footer" class="dialog-footer">
+              <el-button type="primary" @click="dialogStatusVisible = false" style="width: 314px; margin-top: 24px" >Переместить</el-button>
+            </div>
+          </div>
+        </el-dialog>
       </div>
     </section>
   </div>

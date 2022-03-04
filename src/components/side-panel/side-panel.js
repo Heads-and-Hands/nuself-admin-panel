@@ -26,16 +26,16 @@ export default {
         {
           title: "Цвета",
           icon: "el-icon-brush",
-          path: "",
+          path: "colors",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Таблицы размеров",
           icon: "el-icon-crop",
-          path: "",
+          path: "sizes",
           line: true,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Заказы",
