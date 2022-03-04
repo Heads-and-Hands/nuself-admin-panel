@@ -1,6 +1,6 @@
 <template>
   <div class="save-notification body-14-reg">
-    <div v-if="type === 'save' || type === 'all'" class="text"><el-badge is-dot class="item" />Есть несохраненные изменения</div>
+    <div v-if="type === 'default' || type === 'all'" class="text"><el-badge is-dot class="item" />Есть несохраненные изменения</div>
     <div v-else class="text">{{text}}<i class="el-icon-close close" @click="$emit('clearAll')"></i></div>
     <div>
       <el-button
@@ -12,9 +12,15 @@
       >
         Удалить
       </el-button>
-      <template v-if="type === 'save' || type === 'all'">
-        <el-button class="cancel-save" @click="$emit('clearAll')">Сбросить изменения</el-button>
-        <el-button class="save">Сохранить изменения</el-button>
+      <el-button
+          v-if="type === 'save'"
+          class="save"
+      >
+        Сохранить
+      </el-button>
+      <template v-if="type === 'default' || type === 'all'">
+        <el-button class="cancel-change" @click="$emit('clearAll')">Сбросить изменения</el-button>
+        <el-button class="save-change">Сохранить изменения</el-button>
       </template>
     </div>
   </div>
@@ -26,7 +32,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'save'
+      default: 'default'
     },
     text: {
       type: String,
@@ -71,7 +77,7 @@ export default {
     }
   }
 
-  .save {
+  .save-change, .save {
     background-color: #292B33 !important;
     color: #FFFFFF;
   }

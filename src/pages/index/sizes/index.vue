@@ -39,6 +39,7 @@
                     icon="el-icon-plus"
                     circle
                     style="background-color: #292B33; color: white"
+                    @click="dialogTablesVisible = true"
                 ></el-button>
               </div>
             </template>
@@ -56,7 +57,12 @@
         layout="prev, pager, next"
         :total="100">
     </el-pagination>
-    <saveNotification v-show="listRemoveTable.length" type="delete" :text="`Выбрано ${listRemoveTable.length} таблицы`" @clearAll="toggleSelection()" />
+    <save-notification
+        v-show="listRemoveTable.length"
+        type="delete"
+        :text="textNotification"
+        @clearAll="toggleSelection()" />
+    <table-size-modal v-if="dialogTablesVisible" @closed="dialogTablesVisible = false"></table-size-modal>
   </div>
 </template>
 
