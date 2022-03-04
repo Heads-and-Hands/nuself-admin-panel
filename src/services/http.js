@@ -14,7 +14,7 @@ Http.interceptors.request.use(config => {
   const token = localStorage.getItem('token')
 
   if (token) {
-    config.headers.Authorization = `Bearer ${encodeURI(token)}`
+    config.headers.Authorization = `${encodeURI(token)}`
   }
 
   return config

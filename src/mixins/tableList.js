@@ -14,9 +14,9 @@ export default {
   },
   methods: {
     getList() {
-      this.loading = true
-      const action = `${this.entity.name}/search`;
-      this.$store.dispatch(action, meta).then(data => {
+      this.loading = true;
+      const action = `${this.$route.name}/getList`;
+      this.$store.dispatch(action, this.meta).then(data => {
         this.total = data.total;
         this.list = data.data;
       }).finally(() => {
