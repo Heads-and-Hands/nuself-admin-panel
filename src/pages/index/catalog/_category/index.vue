@@ -204,7 +204,7 @@
       </div>
       <right-side-bar
           :list="navList"
-          @scrollToBlock="scrollToBlock"></right-side-bar>
+          @scrollToBlock="scrollToBlock"/>
     </div>
 
     <el-dialog

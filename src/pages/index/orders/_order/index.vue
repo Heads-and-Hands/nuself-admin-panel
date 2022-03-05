@@ -1,15 +1,310 @@
 <template>
   <div class="order-page">
-    <div class="page-title head-32-s">
+    <div class="order-title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
       Цвет
     </div>
-    <section class="color-container">
-      <div class="head-24-s title">
-        Основное
+    <div class="order-page-container">
+      <div class="left-container">
+        <section class="order-container common" ref="common">
+          <div class="head-24-s title">
+            Основное
+          </div>
+          <div class="main-item body-14-reg">
+            <div class="container-inputs">
+              <el-col class="info">
+                <div class="sub-title">Номер заказа</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.common.id"
+                    disabled
+                ></el-input>
+              </el-col>
+              <el-col class="info">
+                <div class="sub-title">Дата и время создания </div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.common.creationDate"
+                    disabled
+                ></el-input>
+              </el-col>
+              <el-col class="status">
+                <div class="sub-title">Статус заказа</div>
+                <el-tag
+                    :type="orderData.common.orderStatus === 'Доставлен' ? 'success' : 'warning'"
+                    class="body-14-reg status-tag"
+                >{{ orderData.common.orderStatus }}</el-tag>
+              </el-col>
+            </div>
+            <div class="container-inputs">
+              <el-col class="info">
+                <div class="sub-title">Способ оплаты</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.common.paymentType"
+                    disabled
+                ></el-input>
+              </el-col>
+              <el-col class="info">
+                <div class="sub-title">Дата и время оплаты</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.common.paymentDate"
+                    disabled
+                ></el-input>
+              </el-col>
+              <el-col class="status">
+                <div class="sub-title">Статус оплаты</div>
+                <el-tag
+                    :type="orderData.common.paymentStatus === 'Оплачен' ? 'success' : 'warning'"
+                    class="body-14-reg status-tag"
+                >{{ orderData.common.paymentStatus }}</el-tag>
+              </el-col>
+            </div>
+            <div class="container-inputs">
+              <el-col class="textarea">
+                <div class="sub-title">Комментарий клиента</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.common.comment"
+                    type="textarea"
+                    disabled
+                ></el-input>
+              </el-col>
+            </div>
+          </div>
+        </section>
+        <section class="order-container delivery" ref="delivery">
+          <div class="head-24-s title">
+            Доставка
+          </div>
+          <div class="delivery-item body-14-reg">
+            <div class="container-inputs full">
+              <el-col>
+                <div class="sub-title">Способ доставки</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.delivery.deliveryType"
+                    disabled
+                ></el-input>
+              </el-col>
+            </div>
+            <div class="container-inputs part">
+              <el-col>
+                <div class="sub-title">Трек номер</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.delivery.trackNumber"
+                    disabled
+                ></el-input>
+              </el-col>
+              <el-col>
+                <div class="sub-title">Дата и время доставки</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.delivery.date"
+                    disabled
+                ></el-input>
+              </el-col>
+            </div>
+            <div class="container-inputs part">
+              <el-col>
+                <div class="sub-title">Имя получателя</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.delivery.receiverName"
+                    disabled
+                ></el-input>
+              </el-col>
+              <el-col>
+                <div class="sub-title">Телефон получателя</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.delivery.receiverPhone"
+                    disabled
+                ></el-input>
+              </el-col>
+            </div>
+            <div class="container-inputs full">
+              <el-col>
+                <div class="sub-title">Адрес доставки</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.delivery.address"
+                    disabled
+                ></el-input>
+              </el-col>
+            </div>
+          </div>
+        </section>
+        <section class="order-container customer" ref="customer">
+          <div class="head-24-s title">
+            Клиент
+          </div>
+          <div class="customer-item body-14-reg">
+            <el-table
+                :data="customerTable"
+                style="width: 100%">
+              <el-table-column
+                  prop="id"
+                  label="ID"
+                  width="50">
+              </el-table-column>
+              <el-table-column
+                  prop="name"
+                  label="ФИО клиента"
+                  width="181">
+              </el-table-column>
+              <el-table-column
+                  prop="status"
+                  label="Статус"
+                  width="103">
+                <template slot-scope="scope">
+                  <el-tag
+                      :type="scope.row.status === 'Активен' ? 'success' : 'warning'"
+                      class="body-14-reg status-tag"
+                  >{{ scope.row.status}}</el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column
+                  prop="phone"
+                  label="Телефон"
+                  width="149">
+              </el-table-column>
+              <el-table-column
+                  prop="email"
+                  label="E-mail"
+                  width="177">
+              </el-table-column>
+              <el-table-column
+                  width="56">
+                <template slot-scope="scope">
+                  <el-button icon="el-icon-right" circle></el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </section>
+        <section class="order-container promocodes" ref="promocodes">
+          <div class="head-24-s title">
+            Промокоды
+          </div>
+          <div class="promocodes-item body-14-reg">
+            <el-table
+                :data="promoTable"
+                style="width: 100%">
+              <el-table-column
+                  prop="id"
+                  label="ID"
+                  width="41">
+              </el-table-column>
+              <el-table-column
+                  prop="name"
+                  label="Название"
+                  width="181">
+              </el-table-column>
+              <el-table-column
+                  prop="sale"
+                  label="Величина"
+                  width="72">
+              </el-table-column>
+              <el-table-column
+                  prop="status"
+                  label="Статус"
+                  width="103">
+                <template slot-scope="scope">
+                  <el-tag
+                      :type="scope.row.status === 'Активен' ? 'success' : 'warning'"
+                      class="body-14-reg status-tag"
+                  >{{ scope.row.status}}</el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column
+                  prop="validity"
+                  label="Срок действия"
+                  width="104">
+              </el-table-column>
+              <el-table-column
+                  prop="type"
+                  label="Тип"
+                  width="159">
+              </el-table-column>
+              <el-table-column
+                  width="56">
+                <template slot-scope="scope">
+                  <el-button icon="el-icon-right" circle></el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </section>
+        <section class="order-container products" ref="products">
+          <div class="head-24-s title">
+            Товары и сумма
+          </div>
+          <div class="products-item body-14-reg">
+            <el-table
+                :data="orderData.products.list"
+                style="width: 100%">
+              <el-table-column
+                  prop="id"
+                  label="ID"
+                  width="41">
+              </el-table-column>
+              <el-table-column
+                  prop="image"
+                  label="Фото"
+                  width="76">
+                <template slot-scope="scope">
+                  <img :src="scope.row.image" class="image">
+                </template>
+              </el-table-column>
+              <el-table-column
+                  prop="name"
+                  label="Название"
+              >
+              </el-table-column>
+              <el-table-column
+                  prop="size"
+                  label="Размер"
+                  width="73">
+              </el-table-column>
+              <el-table-column
+                  prop="count"
+                  label="Кол-во"
+                  width="116">
+              </el-table-column>
+              <el-table-column
+                  prop="sale"
+                  label="Скидка"
+                  width="95">
+              </el-table-column>
+              <el-table-column
+                  prop="price"
+                  label="Цена"
+                  width="92">
+                <template slot-scope="scope">
+                 <span>{{scope.row.price + ' ₽'}}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                  width="56">
+                <template slot-scope="scope">
+                  <el-button icon="el-icon-right" circle></el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+            <div class="sum body-14-s">
+              <span class="text">Итого</span>
+              <span class="num">{{sumOrder + ' ₽'}}</span>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
-    <save-notification v-show="isSaveChange" @clearAll="clearAll()" />
+      <right-side-bar
+          :list="navList"
+          @scrollToBlock="scrollToBlock"/>
+    </div>
   </div>
 </template>
 

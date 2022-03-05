@@ -24,7 +24,7 @@
         <el-table-column
             prop="customer"
             label="ФИ клиента"
-            width="192">
+        >
         </el-table-column>
         <el-table-column
             prop="orderStatus"
