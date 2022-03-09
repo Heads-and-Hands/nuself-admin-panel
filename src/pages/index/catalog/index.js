@@ -1,7 +1,8 @@
+
 export default {
     data() {
         return {
-            customTableData: [
+            customTableData2: [
                 {
                     id: '671',
                     image: 'https://pbs.twimg.com/media/DGuIzoRWsAAZnoD.jpg',
@@ -73,36 +74,19 @@ export default {
                     ]
                 },
             ],
-            selectList: [{
-                value: 'Option1',
-                label: 'Option1'
-            }, {
-                value: 'Option2',
-                label: 'Option2'
-            }, {
-                value: 'Option3',
-                label: 'Option3'
-            }, {
-                value: 'Option4',
-                label: 'Option4'
-            }, {
-                value: 'Option5',
-                label: 'Option5'
-            }, {
-                value: 'Option6',
-                label: 'Option6'
-            }, {
-                value: 'Option7',
-                label: 'Option7'
-            }, {
-                value: 'Option8',
-                label: 'Option8'
-            }],
-            selectValue: '',
-            searchValue: '',
             showPopupPosition: false,
-            changePosition: ''
+            changePosition: '',
+            standardTableData: [],
+            customTableData: [],
+            meta: {
+                offset: 0,
+                limit: 30,
+            }
         }
+    },
+    created() {
+        this.getStandardTableData()
+        this.getCustomTableData()
     },
     methods: {
         tableRowClassName({row}) {
@@ -127,6 +111,14 @@ export default {
                     message: 'Your delete' + value
                 });
             })
+        },
+        async getCustomTableData() {
+            this.standardTableData = await this.$store.dispatch('catalog/getCustom', this.meta).then((data) => data.list)
+            console.log('standardTableData',  this.customTableData);
+        },
+        async getStandardTableData() {
+            this.standardTableData = await this.$store.dispatch('catalog/getStandard', this.meta).then((data) => data.list)
+            console.log('standardTableData',  this.standardTableData);
         }
     }
 }

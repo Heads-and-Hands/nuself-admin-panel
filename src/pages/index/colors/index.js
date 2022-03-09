@@ -1,3 +1,5 @@
+import MixinList from '@/mixins/tableList'
+
 export default {
     data() {
         return {
@@ -41,6 +43,9 @@ export default {
             ]
         }
     },
+    mixins: [
+        MixinList
+    ],
     methods: {
         openColorPage(id) {
             this.$router.push({ path: `colors/color/${id}`});
