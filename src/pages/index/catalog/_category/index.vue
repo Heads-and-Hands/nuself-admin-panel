@@ -2,7 +2,7 @@
   <div class="category-page">
     <div class="page-header">
       <i class="el-icon-back" @click="goToBack"></i>
-      {{categoryData.common.name}}
+      {{category.common.name}}
     </div>
     <div class="category-page-container">
       <div class="left-container content">
@@ -15,8 +15,8 @@
               <div class="body-14-reg sub-title">Название категории</div>
               <el-input
                   placeholder="Please input"
-                  v-model="categoryData.common.name"
-                  :value="categoryData.common.name"
+                  v-model="category.common.name"
+                  :value="category.common.name"
                   clearable
                   :disabled="!isCustom">
               </el-input>
@@ -24,8 +24,8 @@
             <div class="id">
               <div class="body-14-reg sub-title">ID</div>
               <el-input
-                  v-model="categoryData.common.id"
-                  :value="categoryData.common.id"
+                  v-model="category.common.id"
+                  :value="category.common.id"
                   clearable
                   disabled
               >
@@ -34,9 +34,9 @@
             <div class="status">
               <div class="body-14-reg sub-title">Статус</div>
               <el-tag
-                :type="categoryData.common.status === 'Показывать' ? 'success' : 'warning'"
+                :type="category.common.status === 'Показывать' ? 'success' : 'warning'"
                 class="body-14-reg status-tag"
-              >{{ categoryData.common.status}}</el-tag>
+              >{{ category.common.status}}</el-tag>
             </div>
             <div>
               <el-button
@@ -47,7 +47,7 @@
               ></el-button>
             </div>
           </div>
-          <div v-if="categoryData.common.image" class="data-image">
+          <div v-if="category.common.image" class="data-image">
             <div class="head-18-s">
               Обложка
             </div>
@@ -118,7 +118,7 @@
           <div class="page-content" v-if="isCustom">
             <div>
               <el-table
-                  :data="categoryData.products.list"
+                  :data="category.products.list"
                   style="width: 100%"
                   row-key="id"
                   :indent="0"

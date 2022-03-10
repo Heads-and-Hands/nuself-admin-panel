@@ -1,7 +1,7 @@
 <template>
   <div class="catalog-page">
     <div class="head-32-s page-header">Каталог</div>
-    <section>
+    <section  v-if="customTableData.length">
       <div class="page-header-second">
         Кастомные категории
         <span class="limit"> {{ customTableData.length }}</span>
@@ -60,36 +60,15 @@
         </div>
       </div>
     </section>
-    <section>
+    <section  v-if="standardTableData.length">
       <div class="page-header-second">
         Стандартные категории
-        <span class="limit"> {{ customTableData.length }}</span>
-      </div>
-      <div class="filter">
-        <el-input placeholder="Поиск" v-model="searchValue">
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
-        <el-select
-          v-model="selectValue"
-          placeholder="Статус"
-          popper-class="select"
-          size="large"
-          clearable
-          popper-append-to-body
-        >
-          <el-option
-            v-for="item in selectList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
-        </el-select>
+        <span class="limit"> {{ standardTableData.length }}</span>
       </div>
       <div class="page-content">
         <div class="content">
           <el-table
-            :data="standartTableData"
+            :data="standardTableData"
             style="width: 100%"
             row-key="id"
             :indent="0"
@@ -140,7 +119,7 @@
                 type="text"
                 placeholder="Please input"
                 v-model="changePosition"
-            > <span class="category-count" slot="suffix">{{`/${standartTableData.length}`}}</span>
+            > <span class="category-count" slot="suffix">{{`/${standardTableData.length}`}}</span>
             </el-input>
             <div slot="footer" class="dialog-footer">
               <el-button type="primary" @click="dialogStatusVisible = false" style="width: 314px; margin-top: 24px" >Переместить</el-button>

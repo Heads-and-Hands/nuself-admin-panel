@@ -127,14 +127,18 @@ export default {
             dialogStatusVisible: false,
             isCustom: true,
             isSaveChange: false,
+            categoryData: {}
         }
+    },
+    created() {
+        this.getCategoriesData()
     },
     components: {
         rightSideBar,
         saveNotification
     },
     computed: {
-        categoryData() {
+        category() {
             if (this.$route.params.id === 'new-category') {
                 return this.newCategoryData
             } else return this.categoryDataApi
@@ -171,6 +175,10 @@ export default {
             let top = element.offsetTop - 10;
             parent.scrollTo({top, behavior: "smooth"});
         },
+        async getCategoriesData() {
+            this.categoryData = await this.$store.dispatch('catalog/getCategoriesData', Number(this.$route.params.id))
+                .then((data) => data.list)
+        }
     }
 
 }
