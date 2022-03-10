@@ -215,10 +215,10 @@
     >
         <span class="subtitle body-14-reg">Выберите статус, который вы хотите истановить для выбранной категории</span>
         <div class="radio-container">
-          <el-radio v-model="changeStatus" label="1" border>
+          <el-radio v-model="changeStatus" label="Показывать" border>
             <el-tag type="success" class="body-14-reg">Показывать</el-tag>
           </el-radio>
-          <el-radio v-model="changeStatus" label="2" border>
+          <el-radio v-model="changeStatus" label="Не показывать" border>
             <el-tag type="warning" class="body-14-reg">Не показывать</el-tag>
           </el-radio>
         </div>

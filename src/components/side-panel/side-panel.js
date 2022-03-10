@@ -47,9 +47,9 @@ export default {
         {
           title: "Клиенты",
           icon: "el-icon-tickets",
-          path: "",
+          path: "clients",
           line: true,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Баннеры",

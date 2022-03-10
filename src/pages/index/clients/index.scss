@@ -1,0 +1,38 @@
+.clients-page {
+  padding: 48px;
+  box-sizing: border-box;
+
+  .el-table {
+    th .cell {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+  }
+
+  table {
+    font-weight: 400;
+
+    th {
+      color: #919398;
+    }
+
+    tr {
+      height: 84px;
+    }
+  }
+
+  .title {
+    margin-bottom: 48px;
+  }
+
+  .limit {
+    color: #CACACA;
+  }
+
+  .input-search {
+    width: 100%;
+    max-width: 760px;
+    margin-bottom: 24px;
+  }
+}
