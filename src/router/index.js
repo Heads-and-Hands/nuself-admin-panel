@@ -11,6 +11,8 @@ import Colors from '../pages/index/colors/index.vue'
 import Color from '../pages/index/colors/_color/index.vue'
 import Sizes from '../pages/index/sizes/index.vue'
 import Size from '../pages/index/sizes/_size/index.vue'
+import Orders from '../pages/index/orders/index.vue'
+import Order from '../pages/index/orders/_order/index.vue'
 // import store from '../store/index'
 
 Vue.use(VueRouter)
@@ -88,6 +90,22 @@ const routes = [
       {
         path: `sizes/size/:id`,
         component: Size,
+        name: 'sizes',
+        props: true
+      },
+      {
+        path: 'orders',
+        component: Orders,
+        name: 'sizes',
+      },
+      {
+        path: `orders/order`,
+        component: Order,
+        name: 'size',
+      },
+      {
+        path: `orders/order/:id`,
+        component: Order,
         name: 'sizes',
         props: true
       },

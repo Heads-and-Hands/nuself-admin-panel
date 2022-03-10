@@ -40,9 +40,9 @@ export default {
         {
           title: "Заказы",
           icon: "el-icon-shopping-cart-2",
-          path: "",
+          path: "orders",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Клиенты",
