@@ -15,6 +15,9 @@ import Orders from '../pages/index/orders/index.vue'
 import Order from '../pages/index/orders/_order/index.vue'
 import Clients from '../pages/index/clients/index.vue'
 import Client from '../pages/index/clients/_client/index.vue'
+import Banners from '../pages/index/banners/index.vue'
+import Banner from '../pages/index/banners/_banner/index.vue'
+
 // import store from '../store/index'
 
 Vue.use(VueRouter)
@@ -125,6 +128,22 @@ const routes = [
         path: `clients/client/:id`,
         component: Client,
         name: 'client',
+        props: true
+      },
+      {
+        path: 'banners',
+        component: Banners,
+        name: 'banners',
+      },
+      {
+        path: `banners/banner`,
+        component: Banner,
+        name: 'banners',
+      },
+      {
+        path: `banners/banner/:id`,
+        component: Banner,
+        name: 'banners',
         props: true
       },
     ]

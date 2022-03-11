@@ -54,9 +54,9 @@ export default {
         {
           title: "Баннеры",
           icon: "el-icon-files",
-          path: "",
+          path: "banners",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Сторис",
