@@ -38,13 +38,25 @@
     }
 
     .data-image-banner {
-
       .upload-image {
         display: flex;
         flex-wrap: wrap;
       }
+
       .image-container {
         position: relative;
+        height: 250px;
+        width: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+
+        img {
+          width: 100%;
+          height: 250px;
+          object-fit: cover;
+          border-radius: 6px;
+        }
+
         .delete-image {
           width: 18px;
           height: 18px;
@@ -65,21 +77,73 @@
         }
       }
 
-      .upload-image .el-upload {
-        height: 250px;
-        border: 1px solid #DDDFE5;
-        border-radius: 4px;
-        font-weight: 500;
-        color: #919398;
+      .image-uploader {
+        margin-top: 24px;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        span {
-          line-height: 40px;
+        justify-content: space-between;
+
+        .horizontal {
+          width: 522px !important;
+          margin-right: 24px;
+        }
+
+        .vertical {
+          width: 170px;
+        }
+
+        .upload-image .el-upload {
+          width: 100%;
+          height: 250px;
+          border: 1px solid #DDDFE5;
+          border-radius: 4px;
+          font-weight: 500;
+          color: #919398;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          span {
+            line-height: 40px;
+          }
         }
       }
     }
+  }
 
+
+  .el-table td {
+    .cell {
+      padding-right: 16px;
+      padding-left: 16px;
+      word-break: keep-all;
+    }
+  }
+
+  .el-table th {
+    .cell {
+      padding-right: 16px;
+      padding-left: 16px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .el-table td:first-child,
+  .el-table td:last-child,
+  .el-table th:first-child,
+  .el-table th:last-child {
+    .cell {
+      padding: 0;
+    }
+  }
+
+  .el-input.is-disabled .el-input__inner,
+  .el-textarea.is-disabled .el-textarea__inner {
+    color: #292B33;
   }
 }
+
+
+

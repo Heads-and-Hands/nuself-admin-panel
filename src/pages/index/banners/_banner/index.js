@@ -1,3 +1,5 @@
+import saveNotification from "@/components/save-notification/save-notification.vue"
+
 export default {
     data() {
         return {
@@ -10,22 +12,24 @@ export default {
                 gallery: [
                     {
                         id: '1234',
-                        imagePath: 'https://anews.com/upload/post/2020/11/01/121377232/gallery/tn/286964460.jpg',
+                        imagePath: 'https://static.ngs.ru/news/99/preview/b62c41190a514b3428cb96498d0c3acc0b2ef73e_599_399_c.jpg',
                         order: 1
                     },
                     {
                         id: '1234',
-                        imagePath: 'https://anews.com/upload/post/2020/11/01/121377232/gallery/tn/286964460.jpg',
+                        imagePath: 'https://4tololo.ru/sites/default/files/field/image/catman-1_0.jpg',
                         order: 2
                     },
                 ],
-                compilation: {
-                    id: '163',
-                    name: 'Длинное название подборки',
-                    previewType: 'Карусель',
-                    status: 'Показывать',
-                    description: '',
-                }
+                compilation: [
+                    {
+                        id: '163',
+                        name: 'Длинное название подборки',
+                        previewType: 'Карусель',
+                        status: 'Показывать',
+                        description: '',
+                    },
+                ]
             },
             selectType: [
                 {
@@ -47,17 +51,40 @@ export default {
                 }
             ],
             dialogStatusVisible: false,
-            imageUrl: [],
+            isSaveChange: false,
+            imageUrl: '',
+            imageUrl2: ''
         }
+    },
+    created() {
+        this.imageUrl = this.data.gallery[0].imagePath
+        this.imageUrl2 = this.data.gallery[1].imagePath
     },
     computed: {
         changeStatus() {
             return this.data.status
-        }
+        },
+    },
+    components: {
+        saveNotification
     },
     methods: {
         goToBack() {
             this.$router.push({ path: `/banners` });
+        },
+        beforeImageUpload(file) {
+            this.addImage(file)
+            return true;
+        },
+        beforeImageUploadTwo(file) {
+            this.addImageTwo(file)
+            return true;
+        },
+        addImage(file) {
+            this.imageUrl = URL.createObjectURL(file);
+        },
+        addImageTwo(file) {
+            this.imageUrl2 = URL.createObjectURL(file);
         },
     }
 }
