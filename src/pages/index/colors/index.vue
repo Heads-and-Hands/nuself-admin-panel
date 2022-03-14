@@ -1,5 +1,5 @@
 <template>
-  <div class="colors-page">
+  <div class="colors-page table-page">
     <div class="head-32-s title">Цвета <span class="limit">{{ colorsData.length || 0 }}</span></div>
     <section>
       <el-table

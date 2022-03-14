@@ -1,12 +1,12 @@
 <template>
-  <div class="order-page">
+  <div class="order-page separate-page">
     <div class="order-title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
       Цвет
     </div>
-    <div class="order-page-container">
+    <div class="separate-page-container">
       <div class="left-container">
-        <section class="order-container common" ref="common">
+        <section class="page-container common" ref="common">
           <div class="head-24-s title">
             Основное
           </div>
@@ -74,7 +74,7 @@
             </div>
           </div>
         </section>
-        <section class="order-container delivery" ref="delivery">
+        <section class="page-container delivery" ref="delivery">
           <div class="head-24-s title">
             Доставка
           </div>
@@ -137,7 +137,7 @@
             </div>
           </div>
         </section>
-        <section class="order-container customer" ref="customer">
+        <section class="page-container customer" ref="customer">
           <div class="head-24-s title">
             Клиент
           </div>
@@ -185,7 +185,7 @@
             </el-table>
           </div>
         </section>
-        <section class="order-container promocodes" ref="promocodes">
+        <section class="page-container promocodes" ref="promocodes">
           <div class="head-24-s title">
             Промокоды
           </div>
@@ -238,7 +238,7 @@
             </el-table>
           </div>
         </section>
-        <section class="order-container products" ref="products">
+        <section class="page-container products" ref="products">
           <div class="head-24-s title">
             Товары и сумма
           </div>

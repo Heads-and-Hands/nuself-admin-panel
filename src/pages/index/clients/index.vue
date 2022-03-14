@@ -1,5 +1,5 @@
 <template>
-  <div class="clients-page">
+  <div class="clients-page table-page">
     <div class="head-32-s title">Клиенты <span class="limit">{{ clientsData.length || 0 }}</span></div>
     <el-input
         placeholder="Поиск"

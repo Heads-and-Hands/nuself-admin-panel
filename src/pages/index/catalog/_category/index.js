@@ -10,6 +10,7 @@ export default {
                     name: 'Категория мемных котов',
                     status: 'Показывать',
                     image: 'https://mr-mem.ru/images/memes/mem-s-kotom-za-stolom.jpg',
+                    isCustom: false
                 },
                 products: {
                     meta: {
@@ -125,7 +126,6 @@ export default {
             imageUrl: '',
             changeStatus: '',
             dialogStatusVisible: false,
-            isCustom: true,
             isSaveChange: false,
             categoryData: {}
         }

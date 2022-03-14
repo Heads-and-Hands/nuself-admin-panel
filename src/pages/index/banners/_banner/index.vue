@@ -1,16 +1,16 @@
 <template>
-  <div class="category-page">
-    <div class="page-header">
+  <div class="banner-page separate-page">
+    <div class="banner-title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
       {{data.title}}
     </div>
-    <div class="category-page-container">
-      <div class="left-container content">
-        <section class="main" ref="main">
+    <div class="separate-page-container">
+      <div class="left-container">
+        <section class="main page-container" ref="main">
           <div class="head-24-s title">
             Основное
           </div>
-          <div class="data-container">
+          <div class="container-common">
             <div class="main-item body-14-reg">
               <div class="container-inputs">
                 <el-col>
@@ -73,7 +73,7 @@
               <div class="container-inputs">
                 <div class="data-image-banner">
                   <div class="head-18-s">
-                    Обложка
+                    Обложки
                   </div>
                   <div class="image-uploader">
                     <div class="horizontal">

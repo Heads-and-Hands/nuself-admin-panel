@@ -18,7 +18,7 @@
                   v-model="category.common.name"
                   :value="category.common.name"
                   clearable
-                  :disabled="!isCustom">
+                  :disabled="!category.common.isCustom">
               </el-input>
             </div>
             <div class="id">
@@ -68,7 +68,7 @@
               <span class="body-12-reg">Загрузить фото (файлы jpeg, png не больше 10 МБ. Разрешение 276px x 376px.)</span>
             </el-upload>
           </div>
-          <div class="data-size">
+          <div class="data-table">
             <div class="head-18-s">
               Размерная таблица по умолчанию
             </div>
@@ -115,7 +115,7 @@
           <div class="head-24-s title">
             Товары <span class="limit"> 42</span>
           </div>
-          <div class="page-content" v-if="isCustom">
+          <div class="page-content" v-if="category.common.isCustom">
             <div>
               <el-table
                   :data="category.products.list"

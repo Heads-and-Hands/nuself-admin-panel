@@ -17,6 +17,9 @@ import Clients from '../pages/index/clients/index.vue'
 import Client from '../pages/index/clients/_client/index.vue'
 import Banners from '../pages/index/banners/index.vue'
 import Banner from '../pages/index/banners/_banner/index.vue'
+import Compilations from '../pages/index/compilations/index.vue'
+import Compilation from '../pages/index/compilations/_compilation/index.vue'
+
 
 // import store from '../store/index'
 
@@ -144,6 +147,17 @@ const routes = [
         path: `banners/banner/:id`,
         component: Banner,
         name: 'banners',
+        props: true
+      },
+      {
+        path: 'compilations',
+        component: Compilations,
+        name: 'compilations',
+      },
+      {
+        path: `compilations/compilation/:id`,
+        component: Compilation,
+        name: 'compilations',
         props: true
       },
     ]

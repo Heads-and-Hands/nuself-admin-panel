@@ -1,8 +1,8 @@
 <template>
-  <div class="sizes-page">
+  <div class="sizes-page table-page">
     <div class="head-32-s title">Таблицы размеров <span class="limit">{{ tableSize.length || 0 }}</span></div>
     <section>
-      <div class="data-size">
+      <div class="data-table">
         <el-table
             :data="tableSize"
             ref="listRemoveTable"

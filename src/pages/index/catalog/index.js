@@ -81,7 +81,8 @@ export default {
             meta: {
                 offset: 0,
                 limit: 30,
-            }
+            },
+            arrayIndexCategory: []
         }
     },
     created() {
@@ -90,7 +91,7 @@ export default {
     },
     methods: {
         tableRowClassName({row}) {
-            if (!row.image) {
+            if (!this.arrayIndexCategory.includes(row.id)) {
                 return 'warning-row body-14-reg'
             }
             return 'body-14-reg'
@@ -117,7 +118,10 @@ export default {
             console.log('standardTableData',  this.customTableData);
         },
         async getStandardTableData() {
-            this.standardTableData = await this.$store.dispatch('catalog/getStandard', this.meta).then((data) => data.list)
+            this.standardTableData = await this.$store.dispatch('catalog/getStandard', this.meta).then((data) => {
+                this.arrayIndexCategory = data.list.map(elem => elem.id)
+                return data.list
+            })
             console.log('standardTableData',  this.standardTableData);
         }
     }

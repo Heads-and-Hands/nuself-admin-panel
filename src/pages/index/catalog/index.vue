@@ -1,8 +1,8 @@
 <template>
-  <div class="catalog-page">
-    <div class="head-32-s page-header">Каталог</div>
+  <div class="catalog-page table-page">
+    <div class="head-32-s title">Каталог</div>
     <section  v-if="customTableData.length">
-      <div class="page-header-second">
+      <div class="head-24-s">
         Кастомные категории
         <span class="limit"> {{ customTableData.length }}</span>
       </div>
@@ -61,53 +61,51 @@
       </div>
     </section>
     <section  v-if="standardTableData.length">
-      <div class="page-header-second">
+      <div class="head-24-s">
         Стандартные категории
         <span class="limit"> {{ standardTableData.length }}</span>
       </div>
       <div class="page-content">
-        <div class="content">
-          <el-table
-            :data="standardTableData"
-            style="width: 100%"
-            row-key="id"
-            :indent="0"
-            :row-class-name="tableRowClassName"
-            :tree-props="{ children: 'subcategory' }"
-          >
-            <el-table-column type="selection" width="55"> </el-table-column>
-            <el-table-column prop="id" label="ID" width="79"> </el-table-column>
-            <el-table-column prop="image" label="Фото" width="159">
-              <template slot-scope="scope">
-                <img
-                  v-if="!!scope.row.image"
-                  :src="scope.row.image"
-                  class="image"
-                />
-              </template>
-            </el-table-column>
-            <el-table-column prop="name" label="Название" width="275">
-            </el-table-column>
-            <el-table-column prop="status" label="Статус">
-              <template slot-scope="scope">
-                <el-tag
-                  :type="
-                    scope.row.status === 'Показывать' ? 'success' : 'warning'
-                  "
-                  class="body-14-reg status-tag"
-                  >{{ scope.row.status }}</el-tag
-                >
-              </template>
-            </el-table-column>
-            <el-table-column fixed="right" label="" width="149">
-              <template slot-scope="scope">
-                <span class="count">{{scope.row.count}}</span>
-                <el-button icon="el-icon-sort" circle @click="showPopupPosition = true"></el-button>
-                <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id)"></el-button>
-              </template>
-            </el-table-column>
-          </el-table>
-        </div>
+        <el-table
+          :data="standardTableData"
+          style="width: 100%"
+          row-key="id"
+          :indent="0"
+          :row-class-name="tableRowClassName"
+          :tree-props="{ children: 'subcategory' }"
+        >
+          <el-table-column type="selection" width="55"> </el-table-column>
+          <el-table-column prop="id" label="ID" width="79"> </el-table-column>
+          <el-table-column prop="image" label="Фото" width="159">
+            <template slot-scope="scope">
+              <img
+                v-if="!!scope.row.image"
+                :src="scope.row.image"
+                class="image"
+              />
+            </template>
+          </el-table-column>
+          <el-table-column prop="name" label="Название" width="275">
+          </el-table-column>
+          <el-table-column prop="status" label="Статус">
+            <template slot-scope="scope">
+              <el-tag
+                :type="
+                  scope.row.status === 'Показывать' ? 'success' : 'warning'
+                "
+                class="body-14-reg status-tag"
+                >{{ scope.row.status }}</el-tag
+              >
+            </template>
+          </el-table-column>
+          <el-table-column fixed="right" label="" width="149">
+            <template slot-scope="scope">
+              <span class="count">{{scope.row.count}}</span>
+              <el-button icon="el-icon-sort" circle @click="showPopupPosition = true"></el-button>
+              <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id)"></el-button>
+            </template>
+          </el-table-column>
+        </el-table>
         <el-dialog
             :visible.sync="showPopupPosition"
             width="411px"

@@ -68,9 +68,9 @@ export default {
         {
           title: "Подборки",
           icon: "el-icon-shopping-bag-1",
-          path: "",
+          path: "compilations",
           line: true,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Рубрики",
