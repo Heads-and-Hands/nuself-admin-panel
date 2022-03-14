@@ -1,0 +1,40 @@
+.orders-page {
+  padding: 48px;
+  box-sizing: border-box;
+
+  table {
+    font-weight: 400;
+
+    th {
+      color: #919398;
+    }
+
+    tr {
+      height: 84px;
+    }
+  }
+
+  .title {
+    margin-bottom: 48px;
+  }
+
+  .limit {
+    color: #CACACA;
+  }
+
+  .row-color {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    .item {
+      margin-right: 8px;
+    }
+
+    .item .el-badge__content.is-dot {
+      margin-top: 18px;
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
