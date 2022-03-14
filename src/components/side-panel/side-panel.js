@@ -47,16 +47,16 @@ export default {
         {
           title: "Клиенты",
           icon: "el-icon-tickets",
-          path: "",
+          path: "clients",
           line: true,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Баннеры",
           icon: "el-icon-files",
-          path: "",
+          path: "banners",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Сторис",

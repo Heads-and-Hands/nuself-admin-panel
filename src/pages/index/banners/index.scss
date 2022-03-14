@@ -1,0 +1,22 @@
+.banners-page {
+  padding: 48px;
+  box-sizing: border-box;
+
+  .limit {
+    color: #C1C4CB;
+  }
+
+  .data-size {
+    margin-top: 48px;
+    .el-table td {
+      font-weight: 400;
+    }
+
+    .image {
+      border-radius: 4px;
+      object-fit: cover;
+      height: 57px;
+      width: 138px;
+    }
+  }
+}

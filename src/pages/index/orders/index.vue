@@ -1,5 +1,5 @@
 <template>
-  <div class="colors-page">
+  <div class="orders-page">
     <div class="head-32-s title">Заказы <span class="limit">{{ ordersData.length || 0 }}</span></div>
     <section>
       <el-table
@@ -24,6 +24,7 @@
         <el-table-column
             prop="customer"
             label="ФИ клиента"
+
         >
         </el-table-column>
         <el-table-column
