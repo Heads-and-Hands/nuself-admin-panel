@@ -95,7 +95,7 @@
               <el-table-column
                   width="40"
                   fixed="right">
-                <template slot="header" slot-scope="scope" >
+                <template slot="header">
                   <div style="text-align: right">
                     <el-button
                         icon="el-icon-edit"
@@ -176,7 +176,7 @@
                   </template>
                 </el-table-column>
                 <el-table-column fixed="right" label="Operations">
-                  <template slot="header" slot-scope="scope" >
+                  <template slot="header">
                     <div style="text-align: right">
                       <el-button
                           icon="el-icon-edit"

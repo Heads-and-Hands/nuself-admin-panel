@@ -208,7 +208,7 @@
               </el-table-column>
               <el-table-column
                   width="72">
-                <template slot-scope="scope">
+                <template>
                   <el-button icon="el-icon-right" circle></el-button>
                 </template>
               </el-table-column>

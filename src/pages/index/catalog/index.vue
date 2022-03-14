@@ -40,7 +40,7 @@
               </template>
             </el-table-column>
             <el-table-column fixed="right" label="Operations" width="200">
-              <template slot="header" slot-scope="scope">
+              <template slot="header">
                 <el-button
                   icon="el-icon-plus"
                   circle

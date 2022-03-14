@@ -131,7 +131,7 @@
               </el-table-column>
               <el-table-column
                   width="40">
-                <template slot="header" slot-scope="scope" >
+                <template slot="header">
                   <div style="text-align: right">
                     <el-button
                         icon="el-icon-edit"
@@ -140,7 +140,7 @@
                     ></el-button>
                   </div>
                 </template>
-                <template slot-scope="scope">
+                <template>
                   <el-button icon="el-icon-right" circle></el-button>
                 </template>
               </el-table-column>

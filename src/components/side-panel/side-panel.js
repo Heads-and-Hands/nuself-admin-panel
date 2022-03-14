@@ -75,9 +75,9 @@ export default {
         {
           title: "Рубрики",
           icon: "el-icon-collection-tag",
-          path: "",
+          path: "rubrics",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Материалы",
