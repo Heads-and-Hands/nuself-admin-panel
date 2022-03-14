@@ -1,0 +1,32 @@
+.products-page {
+  .content {
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .image {
+      border-radius: 4px;
+      height: 57px;
+      width: 44px;
+      object-fit: cover;
+    }
+
+    .row-color {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .item {
+        margin-right: 8px;
+      }
+
+      .item .el-badge__content.is-dot {
+        margin-top: 18px;
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}

@@ -1,7 +1,9 @@
 <template>
   <div class="dashboard-page">
     <side-panel class="side-panel" />
-    <router-view class="main-view" />
+    <perfect-scrollbar class="main-ps">
+      <router-view class="main-view" />
+    </perfect-scrollbar>
   </div>
 </template>
 
@@ -10,7 +12,7 @@
   display: flex;
   height: 100%;
 
-  .main-view {
+  .main-ps {
     height: 100%;
     width: calc(100% - 256px);
   }

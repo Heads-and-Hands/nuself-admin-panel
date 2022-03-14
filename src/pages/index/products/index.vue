@@ -1,5 +1,5 @@
 <template>
-  <div class="product-page">
+  <div class="products-page">
     <div class="page-header">Товары</div>
     <div class="page-content">
       <div class="content-header">
@@ -26,12 +26,10 @@
             :key="id"
             :prop="column.reference"
             :label="column.title"
-            :min-width="id === 0 ? '100' : '200'"
+            :min-width="column.width"
           >
             <template slot-scope="scope">
-              <template
-                v-if="column.reference === 'image' && !!scope.row.image"
-              >
+              <template v-if="column.reference === 'image' && !!scope.row.image">
                 <img :src="scope.row.image" class="image" />
               </template>
               <template v-else-if="column.reference === 'status'">
@@ -39,11 +37,19 @@
                   scope.row[column.reference]
                 }}</el-tag>
               </template>
-              <span v-else>{{ scope.row[column.reference] }}</span>
+              <template v-else-if="column.reference === 'color'">
+                <div class="row-color">
+                  <el-badge is-dot class="item" />
+                  <span>color</span>
+                </div>
+              </template>
+              <template v-else>
+                <span>{{ scope.row[column.reference] }}</span>
+              </template>
             </template>
           </el-table-column>
           <el-table-column fixed="right" width="80">
-            <el-button icon="el-icon-right" circle></el-button>
+            <el-button icon="el-icon-right" slot-scope="scope" circle @click="openPage(`/products/product/${scope.row.id}`)"></el-button>
           </el-table-column>
         </el-table>
       </div>

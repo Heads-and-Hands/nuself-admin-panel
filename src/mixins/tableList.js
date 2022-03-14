@@ -23,5 +23,8 @@ export default {
         this.loading = false;
       })
     },
+    openPage(path) {
+      this.$router.push({ path: `${path}` });
+    },
   },
 }
