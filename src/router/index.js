@@ -20,7 +20,7 @@ import Banner from '../pages/index/banners/_banner/index.vue'
 import Compilations from '../pages/index/compilations/index.vue'
 import Compilation from '../pages/index/compilations/_compilation/index.vue'
 import Rubrics from '../pages/index/rubrics/index.vue'
-import Rubric from '../pages/index/rubrics/rubric/index.vue'
+import Rubric from '../pages/index/rubrics/_rubric/index.vue'
 
 
 // import store from '../store/index'
