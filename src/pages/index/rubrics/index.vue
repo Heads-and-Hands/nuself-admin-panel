@@ -4,7 +4,7 @@
     <section>
       <el-table
           :data="rubricsData"
-          ref="ordersTable"
+          ref="rubricsTable"
           @selection-change="handleSelectionChange"
           style="width: 100%">
         <el-table-column
@@ -57,6 +57,29 @@
         </el-table-column>
       </el-table>
     </section>
+    <el-dialog
+        :visible.sync="showPopupPosition"
+        width="411px"
+        custom-class="change-position-modal"
+    >
+      <div class="container">
+        <span class="title head-24-s">Переместить на позицию</span>
+        <el-input
+            type="text"
+            placeholder="Please input"
+            v-model="changePosition"
+        > <span class="category-count" slot="suffix">{{`/${rubricsData.length}`}}</span>
+        </el-input>
+        <div slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="dialogStatusVisible = false" style="width: 314px; margin-top: 24px" >Переместить</el-button>
+        </div>
+      </div>
+    </el-dialog>
+    <save-notification
+        v-show="listRemoveRubrics.length"
+        type="delete"
+        :text="textNotification"
+        @clearAll="toggleSelection()" />
     <el-pagination
         style="text-align: right; margin-top: 32px"
         background

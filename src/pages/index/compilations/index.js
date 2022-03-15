@@ -39,7 +39,7 @@ export default {
 
             ],
             dialogTablesVisible: false,
-            listRemoveBanner: [],
+            listRemoveCompilations: [],
             searchValue: ''
         }
     },
@@ -48,8 +48,8 @@ export default {
     },
     computed: {
         textNotification() {
-            let text = this.listRemoveBanner.length === 1? 'Выбрана' : 'Выбрано'
-            text = text + ` ${this.listRemoveBanner.length} ${this.ending(this.listRemoveBanner.length, 'подбор')}`
+            let text = this.listRemoveCompilations.length === 1? 'Выбрана' : 'Выбрано'
+            text = text + ` ${this.listRemoveCompilations.length} ${this.ending(this.listRemoveCompilations.length, 'подбор')}`
             return text
         }
     },
@@ -72,10 +72,10 @@ export default {
             this.$router.push({ path: `compilations/compilation/${id}`});
         },
         toggleSelection() {
-            this.$refs.listRemoveBanner.clearSelection();
+            this.$refs.listRemoveCompilations.clearSelection();
         },
         handleSelectionChange(val) {
-            this.listRemoveBanner = val;
+            this.listRemoveCompilations = val;
         },
         ending(value, str){
             let ending = str;

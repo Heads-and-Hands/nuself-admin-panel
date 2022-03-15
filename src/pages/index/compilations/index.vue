@@ -71,7 +71,7 @@
       </div>
     </section>
     <save-notification
-        v-show="listRemoveBanner.length"
+        v-show="ordersTable.length"
         type="delete"
         :text="textNotification"
         @clearAll="toggleSelection()" />

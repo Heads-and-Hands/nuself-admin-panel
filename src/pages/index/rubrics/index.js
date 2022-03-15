@@ -1,3 +1,5 @@
+import saveNotification from "@/components/save-notification/save-notification.vue"
+
 export default {
     data() {
         return {
@@ -35,16 +37,27 @@ export default {
                     count: '3',
                 },
             ],
-            ordersTable: [],
-            showPopupPosition: false
+            listRemoveRubrics: [],
+            showPopupPosition: false,
+            changePosition: null
         }
+    },
+    computed: {
+        textNotification() {
+            let text = this.listRemoveRubrics.length === 1? 'Выбрана' : 'Выбрано'
+            text = text + ` ${this.listRemoveRubrics.length} ${this.ending(this.listRemoveRubrics.length, 'рубрик')}`
+            return text
+        }
+    },
+    components: {
+        saveNotification
     },
     methods: {
         openRubricsPage(id) {
             this.$router.push({ path: `rubrics/rubric/${id}`});
         },
         handleSelectionChange(val) {
-            this.ordersTable = val;
+            this.listRemoveRubrics = val;
         },
         deleteRubrics() {
             this.$confirm( 'Вы уверены, что хотите удалить выбранную рубрику?', 'Удалить рубрику?',  {
@@ -59,6 +72,29 @@ export default {
                     message: 'Your delete' + value
                 });
             })
+        },
+        toggleSelection() {
+            this.$refs.listRemoveRubrics.clearSelection();
+        },
+        ending(value, str){
+            let ending = str;
+            switch (true) {
+                case value > 10 &&
+                value < 20:
+                    ending += "";
+                    break;
+                case value === 1:
+                    ending += "а";
+                    break;
+                case value > 1 &&
+                value < 5:
+                    ending += "и";
+                    break;
+                default:
+                    ending += "";
+                    break;
+            }
+            return ending;
         },
     }
 }
