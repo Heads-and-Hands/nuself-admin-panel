@@ -91,14 +91,6 @@ export default {
     created() {
         this.changeStatus = this.orderData.common.status
     },
-    computed: {
-        customerTable() {
-            return [JSON.parse(JSON.stringify(this.orderData.customer))]
-        },
-        promoTable() {
-            return [JSON.parse(JSON.stringify(this.orderData.promocodes))]
-        },
-    },
     components: {
         rightSideBar,
         saveNotification

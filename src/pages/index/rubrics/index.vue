@@ -27,9 +27,9 @@
             width="126">
           <template slot-scope="scope">
             <el-tag
-                :type="scope.row.orderStatus === 'Доставлен' ? 'success' : 'warning'"
+                :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
                 class="body-14-reg status-tag"
-            >{{ scope.row.orderStatus }}</el-tag>
+            >{{ scope.row.status }}</el-tag>
           </template>
         </el-table-column>
         <el-table-column
@@ -49,7 +49,7 @@
             </div>
           </template>
           <template slot-scope="scope">
-            <span>1</span>
+            <span class="order-num"> {{ scope.row.count }} </span>
             <el-button icon="el-icon-sort" circle @click="showPopupPosition = true"></el-button>
             <el-button icon="el-icon-right" circle @click="openRubricsPage(scope.row.id)"></el-button>
             <el-button type="danger" icon="el-icon-delete" circle @click="deleteRubrics()"></el-button>

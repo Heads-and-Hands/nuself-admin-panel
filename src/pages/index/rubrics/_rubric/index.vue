@@ -1,14 +1,149 @@
 <template>
-
-
+  <div class="rubric-page separate-page">
+    <div class="title head-32-s">
+      <i class="el-icon-back" @click="goToBack"></i>
+      Название рубрики
+    </div>
+    <div class="separate-page-container">
+      <div class="left-container">
+        <section class="page-container common" ref="common">
+          <div class="head-24-s title">
+            Основное
+          </div>
+          <div class="main-item body-14-reg">
+            <div class="container-inputs">
+              <el-col style="min-width: 469px">
+                <div class="sub-title">ID</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.common.id"
+                    disabled
+                ></el-input>
+              </el-col>
+              <el-col class="status">
+                <div class="sub-title">Статус</div>
+                <div class="status-container">
+                  <el-tag
+                      :type="orderData.common.status === 'Показывать' ? 'success' : 'warning'"
+                      class="body-14-reg status-tag"
+                  >{{ orderData.common.status }}</el-tag>
+                  <div>
+                    <el-button
+                        icon="el-icon-edit"
+                        circle
+                        style="background-color: #292B33; color: white"
+                        @click="dialogStatusVisible = true"
+                    ></el-button>
+                  </div>
+                </div>
+              </el-col>
+            </div>
+            <div class="container-inputs">
+              <el-col class="info">
+                <div class="sub-title">Название</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.common.name"
+                ></el-input>
+              </el-col>
+            </div>
+            <div class="container-inputs">
+              <el-col class="textarea">
+                <div class="sub-title">Описание для сотрудников</div>
+                <el-input
+                    class="inline-input"
+                    v-model="orderData.common.descriptions"
+                    type="textarea"
+                ></el-input>
+              </el-col>
+            </div>
+          </div>
+          <div class="main-item">
+            <span class="subtitle head-18-s">Подборки между материалами <span class="limit">4</span></span>
+            <div class="body-14-reg">
+              <el-table
+                :data="orderData.common.compilations"
+                style="width: 100%">
+              <el-table-column
+                  prop="id"
+                  label="ID"
+                  width="41">
+              </el-table-column>
+              <el-table-column
+                  prop="name"
+                  label="Название"
+                  width="280"
+              >
+              </el-table-column>
+              <el-table-column
+                  prop="previewType"
+                  label="Вид превью"
+                  width="136"
+              >
+              </el-table-column>
+              <el-table-column
+                  prop="status"
+                  label="Статус"
+                  width="203">
+                <template slot-scope="scope">
+                  <el-tag
+                      :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
+                      class="body-14-reg status-tag"
+                  >{{ scope.row.status }}</el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column
+                  width="40">
+                <template slot="header">
+                  <div style="text-align: right">
+                    <el-button
+                        icon="el-icon-edit"
+                        circle
+                        style="background-color: #292B33; color: white"
+                    ></el-button>
+                  </div>
+                </template>
+                <template>
+                  <el-button icon="el-icon-right" circle></el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+            </div>
+          </div>
+        </section>
+        <section class="page-container materials" ref="products">
+          <div class="head-24-s title">
+            Материалы  <span class="limit">{{ orderData.content }}</span>
+          </div>
+          <el-button>Перейти к материалам</el-button>
+        </section>
+      </div>
+      <el-dialog
+          title="Изменить статусы"
+          :visible.sync="dialogStatusVisible"
+          width="551px"
+          custom-class="change-status-modal"
+      >
+        <span class="subtitle body-14-reg">Выберите статус, который вы хотите истановить для выбранной категории</span>
+        <div class="radio-container">
+          <el-radio v-model="changeStatus" label="Показывать" border>
+            <el-tag type="success" class="body-14-reg">Показывать</el-tag>
+          </el-radio>
+          <el-radio v-model="changeStatus" label="Не показывать" border>
+            <el-tag type="warning" class="body-14-reg">Не показывать</el-tag>
+          </el-radio>
+        </div>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="dialogStatusVisible = false">Применить</el-button>
+        </span>
+      </el-dialog>
+      <save-notification v-show="isSaveChange" />
+      <right-side-bar
+          :list="navList"
+          @scrollToBlock="scrollToBlock"/>
+    </div>
+  </div>
 </template>
 
-<script>
-export default {
-  name: "index"
-}
-</script>
-
-<style scoped>
-
-</style>
+<style lang="scss" src="./index.scss"></style>
+<script src="./index.js"></script>
