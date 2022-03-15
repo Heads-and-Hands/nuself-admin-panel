@@ -92,6 +92,7 @@ export default {
                     ]
                 }
             },
+            data: {},
             newCategoryData: {
                 common: {
                     id: '',
@@ -123,14 +124,13 @@ export default {
                     id: 'goods'
                 }
             ],
-            imageUrl: '',
             changeStatus: '',
             dialogStatusVisible: false,
-            isSaveChange: false,
             categoryData: {}
         }
     },
     created() {
+        this.data = JSON.parse(JSON.stringify(this.categoryDataApi))
         this.getCategoriesData()
     },
     components: {
@@ -141,10 +141,19 @@ export default {
         category() {
             if (this.$route.params.id === 'new-category') {
                 return this.newCategoryData
-            } else return this.categoryDataApi
+            } else return this.data
         },
+        isChange() {
+            return JSON.stringify(this.data) !== JSON.stringify(this.categoryDataApi)
+        }
     },
     methods: {
+        async getCategoriesData() {
+            this.categoryData = await this.$store.dispatch('catalog/getCategoriesData', Number(this.$route.params.id))
+                .then((data) => {
+                    return data.list
+                })
+        },
         deleteCategory() {
             this.$confirm( 'Вы уверены, что хотите удалить выбранный товар?', 'Удалить товар?',  {
                 confirmButtonText: 'Удалить',
@@ -167,7 +176,7 @@ export default {
             return true;
         },
         addImage(file) {
-            this.imageUrl = URL.createObjectURL(file);
+            this.data.common.image = URL.createObjectURL(file);
         },
         scrollToBlock(item){
             let parent = document.querySelector('.main-view');
@@ -175,10 +184,13 @@ export default {
             let top = element.offsetTop - 10;
             parent.scrollTo({top, behavior: "smooth"});
         },
-        async getCategoriesData() {
-            this.categoryData = await this.$store.dispatch('catalog/getCategoriesData', Number(this.$route.params.id))
-                .then((data) => data.list)
-        }
+        clear() {
+            this.data = JSON.parse(JSON.stringify(this.categoryDataApi))
+        },
+        save() {
+            console.log('save')
+            this.clear()
+        },
     }
 
 }

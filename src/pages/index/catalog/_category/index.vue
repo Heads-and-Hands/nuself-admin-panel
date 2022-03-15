@@ -47,13 +47,13 @@
               ></el-button>
             </div>
           </div>
-          <div v-if="category.common.image" class="data-image">
+          <div class="data-image">
             <div class="head-18-s">
               Обложка
             </div>
-            <div v-if="imageUrl" class="image-container">
-              <img class="image" :src="imageUrl">
-              <el-button type="danger" circle class="delete-image" size="mini" @click="imageUrl = ''">&#215;</el-button>
+            <div v-if="category.common.image" class="image-container">
+              <img class="image" :src="category.common.image">
+              <el-button type="danger" circle class="delete-image" size="mini" @click="category.common.image = ''">&#215;</el-button>
             </div>
             <el-upload
                 v-else
@@ -215,10 +215,10 @@
     >
         <span class="subtitle body-14-reg">Выберите статус, который вы хотите истановить для выбранной категории</span>
         <div class="radio-container">
-          <el-radio v-model="changeStatus" label="Показывать" border>
+          <el-radio v-model="category.common.status" label="Показывать" border>
             <el-tag type="success" class="body-14-reg">Показывать</el-tag>
           </el-radio>
-          <el-radio v-model="changeStatus" label="Не показывать" border>
+          <el-radio v-model="category.common.status" label="Не показывать" border>
             <el-tag type="warning" class="body-14-reg">Не показывать</el-tag>
           </el-radio>
         </div>
@@ -226,7 +226,7 @@
           <el-button type="primary" @click="dialogStatusVisible = false">Применить</el-button>
         </span>
     </el-dialog>
-    <save-notification v-show="isSaveChange" />
+    <save-notification v-if="isChange" change @save="save" @clear="clear"/>
   </div>
 </template>
 

@@ -10,9 +10,11 @@
         <div class="content">
           <el-table
             :data="customTableData"
+            ref="listRemoveTable"
             style="width: 100%"
             row-key="id"
             :indent="0"
+            @selection-change="handleSelectionChange"
             :row-class-name="tableRowClassName"
           >
             <el-table-column type="selection" width="55"> </el-table-column>
@@ -71,7 +73,9 @@
           style="width: 100%"
           row-key="id"
           :indent="0"
+          ref="listRemoveTable"
           :row-class-name="tableRowClassName"
+          @selection-change="handleSelectionChange"
           :tree-props="{ children: 'subcategory' }"
         >
           <el-table-column type="selection" width="55"> </el-table-column>
@@ -126,6 +130,13 @@
         </el-dialog>
       </div>
     </section>
+    <save-notification
+        v-show="listRemoveCatalog.length"
+        status
+        :text="textNotification"
+        @clear="clear"
+        @change="change"
+    />
   </div>
 </template>
 
