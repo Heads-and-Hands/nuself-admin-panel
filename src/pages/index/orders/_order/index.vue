@@ -2,7 +2,7 @@
   <div class="order-page separate-page">
     <div class="order-title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
-      Цвет
+      Заказ
     </div>
     <div class="separate-page-container">
       <div class="left-container">

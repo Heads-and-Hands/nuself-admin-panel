@@ -3,7 +3,7 @@ import saveNotification from "@/components/save-notification/save-notification.v
 export default {
     data() {
         return {
-            data: {
+            tableBanner: {
                 id: '1R1469',
                 title: 'Заголовок баннера',
                 status: 'Показывать',
@@ -31,6 +31,7 @@ export default {
                     },
                 ]
             },
+            data: {},
             selectType: [
                 {
                     value: 'C товарами'
@@ -57,6 +58,7 @@ export default {
         }
     },
     created() {
+        this.data = JSON.parse(JSON.stringify(this.tableBanner))
         this.imageUrl = this.data.gallery[0].imagePath
         this.imageUrl2 = this.data.gallery[1].imagePath
     },
@@ -64,6 +66,9 @@ export default {
         changeStatus() {
             return this.data.status
         },
+        isChange() {
+            return JSON.stringify(this.data) !== JSON.stringify(this.tableBanner)
+        }
     },
     components: {
         saveNotification
@@ -85,6 +90,17 @@ export default {
         },
         addImageTwo(file) {
             this.imageUrl2 = URL.createObjectURL(file);
+        },
+        clear() {
+            this.data = JSON.parse(JSON.stringify(this.tableBanner))
+        },
+        remove() {
+            console.log('remove')
+            this.clear()
+        },
+        save() {
+            console.log('save')
+            this.clear()
         },
     }
 }

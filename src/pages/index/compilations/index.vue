@@ -71,10 +71,14 @@
       </div>
     </section>
     <save-notification
-        v-show="ordersTable.length"
-        type="delete"
+        v-show="listRemoveCompilations.length"
+        remove
+        status
         :text="textNotification"
-        @clearAll="toggleSelection()" />
+        @clear="clear"
+        @remove="remove"
+        @change="change"
+    />
     <el-pagination
         style="text-align: right; margin-top: 32px"
         background

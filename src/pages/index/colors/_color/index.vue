@@ -42,7 +42,7 @@
         </div>
       </el-col>
     </section>
-    <save-notification v-show="isSaveChange" @clearAll="clearAll()" />
+    <save-notification v-show="isSaveChange" @clear="clearAll()" change @save="save"/>
   </div>
 </template>
 

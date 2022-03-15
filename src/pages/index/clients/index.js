@@ -1,3 +1,5 @@
+import saveNotification from "@/components/save-notification/save-notification.vue"
+
 export default ({
     data() {
         return {
@@ -27,12 +29,46 @@ export default ({
                     city: '21.08.2021, 16:58'
                 },
             ],
-            searchValue: ''
+            searchValue: '',
+            listRemoveClient: []
         }
     },
+    computed: {
+        textNotification() {
+            let text = this.listRemoveClient.length === 1? 'Выбран' : 'Выбрано'
+            text = text + ` ${this.listRemoveClient.length} ${this.ending(this.listRemoveClient.length, 'клиент')}`
+            return text
+        }
+    },
+    components: {
+        saveNotification
+    },
     methods: {
-        openClientPage(id) {
-            this.$router.push({ path: `clients/client/${id}`});
+        openClientsPage(id) {
+            this.$router.push({ path: `banners/banner/${id}`});
+        },
+        handleSelectionChange(val) {
+            this.listRemoveClient = val;
+        },
+        ending(value, str){
+            let ending = str;
+            switch (true) {
+                case value > 10 &&
+                value < 20:
+                    ending += "ов";
+                    break;
+                case value === 1:
+                    ending += "";
+                    break;
+                case value > 1 &&
+                value < 5:
+                    ending += "а";
+                    break;
+                default:
+                    ending += "ов";
+                    break;
+            }
+            return ending;
         },
     }
 })

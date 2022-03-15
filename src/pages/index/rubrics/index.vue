@@ -37,7 +37,7 @@
             label="Описание для сотрудников">
         </el-table-column>
         <el-table-column
-            width="200">
+            width="192">
           <template slot="header">
             <div style="text-align: right">
               <el-button
@@ -77,9 +77,13 @@
     </el-dialog>
     <save-notification
         v-show="listRemoveRubrics.length"
-        type="delete"
+        remove
+        status
         :text="textNotification"
-        @clearAll="toggleSelection()" />
+        @clear="clear"
+        @remove="remove"
+        @change="change"
+    />
     <el-pagination
         style="text-align: right; margin-top: 32px"
         background

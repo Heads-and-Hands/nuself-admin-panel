@@ -55,9 +55,6 @@ export default {
         openBannerPage(id) {
             this.$router.push({ path: `banners/banner/${id}`});
         },
-        toggleSelection() {
-            this.$refs.listRemoveBanner.clearSelection();
-        },
         handleSelectionChange(val) {
             this.listRemoveBanner = val;
         },
@@ -81,5 +78,16 @@ export default {
             }
             return ending;
         },
+        remove() {
+            console.log('remove')
+            this.clear()
+        },
+        clear() {
+            this.$refs.listRemoveTable.clearSelection();
+        },
+        change() {
+            console.log('change status')
+            this.clear()
+        }
     }
 }

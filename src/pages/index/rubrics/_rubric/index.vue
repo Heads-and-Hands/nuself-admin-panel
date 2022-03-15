@@ -16,7 +16,7 @@
                 <div class="sub-title">ID</div>
                 <el-input
                     class="inline-input"
-                    v-model="orderData.common.id"
+                    v-model="data.common.id"
                     disabled
                 ></el-input>
               </el-col>
@@ -24,9 +24,9 @@
                 <div class="sub-title">Статус</div>
                 <div class="status-container">
                   <el-tag
-                      :type="orderData.common.status === 'Показывать' ? 'success' : 'warning'"
+                      :type="data.common.status === 'Показывать' ? 'success' : 'warning'"
                       class="body-14-reg status-tag"
-                  >{{ orderData.common.status }}</el-tag>
+                  >{{ data.common.status }}</el-tag>
                   <div>
                     <el-button
                         icon="el-icon-edit"
@@ -43,7 +43,7 @@
                 <div class="sub-title">Название</div>
                 <el-input
                     class="inline-input"
-                    v-model="orderData.common.name"
+                    v-model="data.common.name"
                 ></el-input>
               </el-col>
             </div>
@@ -52,7 +52,7 @@
                 <div class="sub-title">Описание для сотрудников</div>
                 <el-input
                     class="inline-input"
-                    v-model="orderData.common.descriptions"
+                    v-model="data.common.descriptions"
                     type="textarea"
                 ></el-input>
               </el-col>
@@ -62,7 +62,7 @@
             <span class="subtitle head-18-s">Подборки между материалами <span class="limit">4</span></span>
             <div class="body-14-reg">
               <el-table
-                :data="orderData.common.compilations"
+                :data="data.common.compilations"
                 style="width: 100%">
               <el-table-column
                   prop="id"
@@ -113,7 +113,7 @@
         </section>
         <section class="page-container materials" ref="products">
           <div class="head-24-s title">
-            Материалы  <span class="limit">{{ orderData.content }}</span>
+            Материалы  <span class="limit">{{ data.content }}</span>
           </div>
           <el-button>Перейти к материалам</el-button>
         </section>
@@ -137,7 +137,7 @@
           <el-button type="primary" @click="dialogStatusVisible = false">Применить</el-button>
         </span>
       </el-dialog>
-      <save-notification v-show="isSaveChange" />
+      <save-notification remove :change="isChange" @remove="remove" @save="save" @clear="clear"/>
       <right-side-bar
           :list="navList"
           @scrollToBlock="scrollToBlock"/>

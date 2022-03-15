@@ -97,5 +97,16 @@ export default {
             }
             return ending;
         },
+        remove() {
+            console.log('remove')
+            this.clear()
+        },
+        clear() {
+            this.$refs.listRemoveTable.clearSelection();
+        },
+        change() {
+            console.log('change status')
+            this.clear()
+        }
     }
 }

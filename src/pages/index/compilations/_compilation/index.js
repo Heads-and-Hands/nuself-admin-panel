@@ -4,7 +4,7 @@ import saveNotification from "@/components/save-notification/save-notification.v
 export default {
     data() {
         return {
-            orderData: {
+            complData: {
                 common: {
                     id: '1R1469',
                     name: 'Название подборки',
@@ -65,6 +65,7 @@ export default {
                     ]
                 }
             },
+            data: {},
             selectType: [
                 {
                     value: 'Карусель'
@@ -83,13 +84,18 @@ export default {
                     id: 'products'
                 },
             ],
-            isSaveChange: false,
             dialogStatusVisible: false,
             changeStatus: ''
         }
     },
     created() {
-        this.changeStatus = this.orderData.common.status
+        this.data = JSON.parse(JSON.stringify(this.complData))
+        this.changeStatus = this.data.common.status
+    },
+    computed: {
+        isSaveChange() {
+            return JSON.stringify(this.data) !== JSON.stringify(this.complData)
+        }
     },
     components: {
         rightSideBar,
@@ -104,6 +110,16 @@ export default {
             let element = this.$refs[item];
             let top = element.offsetTop - 10;
             parent.scrollTo({top, behavior: "smooth"});
+        },
+        remove() {
+            console.log('remove')
+            this.clear()
+        },
+        save() {
+            console.log('save')
+        },
+        clear() {
+            this.data = JSON.parse(JSON.stringify(this.complData))
         }
     }
 }

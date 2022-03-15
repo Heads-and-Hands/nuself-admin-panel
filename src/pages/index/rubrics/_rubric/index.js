@@ -4,7 +4,7 @@ import saveNotification from "@/components/save-notification/save-notification.v
 export default {
     data() {
         return {
-            orderData: {
+            rubricData: {
                 common: {
                     id: '1R1469',
                     name: 'Название подборки',
@@ -39,6 +39,7 @@ export default {
                 },
                 content: 43
             },
+            data: {},
             navList: [
                 {
                     title: 'Основное',
@@ -55,7 +56,13 @@ export default {
         }
     },
     created() {
-        this.changeStatus = this.orderData.common.status
+        this.data = JSON.parse(JSON.stringify(this.rubricData))
+        this.changeStatus = this.rubricData.common.status
+    },
+    computed: {
+        isChange() {
+            return JSON.stringify(this.data) !== JSON.stringify(this.rubricData)
+        }
     },
     components: {
         rightSideBar,
@@ -70,6 +77,17 @@ export default {
             let element = this.$refs[item];
             let top = element.offsetTop - 10;
             parent.scrollTo({top, behavior: "smooth"});
-        }
+        },
+        clear() {
+            this.data = JSON.parse(JSON.stringify(this.rubricData))
+        },
+        remove() {
+            console.log('remove')
+            this.clear()
+        },
+        save() {
+            console.log('save')
+            this.clear()
+        },
     }
 }

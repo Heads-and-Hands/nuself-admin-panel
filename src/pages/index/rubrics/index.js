@@ -96,5 +96,16 @@ export default {
             }
             return ending;
         },
+        remove() {
+            console.log('remove')
+            this.clear()
+        },
+        clear() {
+            this.$refs.rubricsTable.clearSelection();
+        },
+        change() {
+            console.log('change status')
+            this.clear()
+        }
     }
 }

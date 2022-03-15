@@ -10,7 +10,8 @@
     <section>
       <el-table
           :data="clientsData"
-          ref="ordersTable"
+          ref="clientsTable"
+          @selection-change="handleSelectionChange"
           style="width: 100%">
         <el-table-column
             type="selection"
@@ -55,12 +56,17 @@
         <el-table-column
             width="72">
           <template slot-scope="scope">
-            <el-button icon="el-icon-right" circle @click="openClientPage(scope.row.id)"
+            <el-button icon="el-icon-right" circle @click="openClientsPage(scope.row.id)"
             ></el-button>
           </template>
         </el-table-column>
       </el-table>
     </section>
+    <save-notification
+        v-show="listRemoveClient.length"
+        status
+        :text="textNotification"
+    />
     <el-pagination
         style="text-align: right; margin-top: 32px"
         background

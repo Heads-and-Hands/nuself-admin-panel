@@ -200,7 +200,7 @@
           <el-button type="primary" @click="dialogStatusVisible = false">Применить</el-button>
         </span>
     </el-dialog>
-    <save-notification v-show="isSaveChange" />
+    <save-notification remove :change="isChange" @remove="remove" @save="save" @clear="clear"/>
   </div>
 </template>
 
