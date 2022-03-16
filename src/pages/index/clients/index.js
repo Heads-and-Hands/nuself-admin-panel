@@ -1,4 +1,5 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
+import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 
 export default ({
     data() {
@@ -30,7 +31,8 @@ export default ({
                 },
             ],
             searchValue: '',
-            listRemoveClient: []
+            listRemoveClient: [],
+            dialogStatusVisible: false
         }
     },
     computed: {
@@ -41,11 +43,12 @@ export default ({
         }
     },
     components: {
+        toggleStatus,
         saveNotification
     },
     methods: {
         openClientsPage(id) {
-            this.$router.push({ path: `banners/banner/${id}`});
+            this.$router.push({ path: `clients/client/${id}`});
         },
         handleSelectionChange(val) {
             this.listRemoveClient = val;
@@ -70,5 +73,21 @@ export default ({
             }
             return ending;
         },
+        clear() {
+            this.$refs.clientsTable.clearSelection();
+        },
+        change() {
+            console.log('change status')
+            this.dialogStatusVisible = true
+        },
+        changeStatus() {
+            console.log('change status method')
+            this.clear()
+            this.dialogStatusVisible = false
+        },
+        closeToggleStatus() {
+            this.clear()
+            this.dialogStatusVisible = false
+        }
     }
 })

@@ -16,6 +16,10 @@
         justify-content: center;
       }
 
+      .el-tag.el-tag--warning {
+        width: 108px;
+      }
+
       .container-inputs {
         display: flex;
         &:not(:last-child) {

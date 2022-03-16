@@ -62,10 +62,20 @@
         </el-table-column>
       </el-table>
     </section>
+    <toggle-status
+        :dialogVisible="dialogStatusVisible"
+        type="active"
+        status="Активен"
+        text="выбранных клиентов"
+        @close="closeToggleStatus"
+        @change-status="changeStatus"
+    />
     <save-notification
         v-show="listRemoveClient.length"
         status
         :text="textNotification"
+        @clear="clear"
+        @change="change"
     />
     <el-pagination
         style="text-align: right; margin-top: 32px"

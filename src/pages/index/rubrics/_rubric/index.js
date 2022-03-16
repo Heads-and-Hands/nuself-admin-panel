@@ -1,5 +1,6 @@
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 import saveNotification from "@/components/save-notification/save-notification.vue"
+import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 
 export default {
     data() {
@@ -52,12 +53,10 @@ export default {
             ],
             isSaveChange: true,
             dialogStatusVisible: false,
-            changeStatus: ''
         }
     },
     created() {
         this.data = JSON.parse(JSON.stringify(this.rubricData))
-        this.changeStatus = this.rubricData.common.status
     },
     computed: {
         isChange() {
@@ -66,6 +65,7 @@ export default {
     },
     components: {
         rightSideBar,
+        toggleStatus,
         saveNotification
     },
     methods: {
@@ -89,5 +89,11 @@ export default {
             console.log('save')
             this.clear()
         },
+        changeStatus(status) {
+            if (status) {
+                this.data.common.status = status
+            }
+            this.dialogStatusVisible = false
+        }
     }
 }

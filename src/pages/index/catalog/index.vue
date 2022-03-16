@@ -130,6 +130,13 @@
         </el-dialog>
       </div>
     </section>
+    <toggle-status
+        :dialogVisible="dialogStatusVisible"
+        status="Показывать"
+        text="выбранных категорий"
+        @close="closeToggleStatus"
+        @change-status="changeStatus"
+    />
     <save-notification
         v-show="listRemoveCatalog.length"
         status

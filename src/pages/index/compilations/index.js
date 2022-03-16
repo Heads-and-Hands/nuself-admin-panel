@@ -1,4 +1,5 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
+import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 
 export default {
     data() {
@@ -40,10 +41,12 @@ export default {
             ],
             dialogTablesVisible: false,
             listRemoveCompilations: [],
-            searchValue: ''
+            searchValue: '',
+            dialogStatusVisible: false
         }
     },
     components: {
+        toggleStatus,
         saveNotification
     },
     computed: {
@@ -106,7 +109,16 @@ export default {
         },
         change() {
             console.log('change status')
+            this.dialogStatusVisible = true
+        },
+        changeStatus() {
+            console.log('change status method')
             this.clear()
+            this.dialogStatusVisible = false
+        },
+        closeToggleStatus() {
+            this.clear()
+            this.dialogStatusVisible = false
         }
     }
 }
