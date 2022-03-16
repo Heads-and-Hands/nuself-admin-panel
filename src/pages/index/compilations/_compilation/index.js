@@ -1,5 +1,6 @@
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 import saveNotification from "@/components/save-notification/save-notification.vue"
+import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 
 export default {
     data() {
@@ -85,12 +86,10 @@ export default {
                 },
             ],
             dialogStatusVisible: false,
-            changeStatus: ''
         }
     },
     created() {
         this.data = JSON.parse(JSON.stringify(this.complData))
-        this.changeStatus = this.data.common.status
     },
     computed: {
         isSaveChange() {
@@ -99,7 +98,8 @@ export default {
     },
     components: {
         rightSideBar,
-        saveNotification
+        saveNotification,
+        toggleStatus
     },
     methods: {
         goToBack() {
@@ -120,6 +120,12 @@ export default {
         },
         clear() {
             this.data = JSON.parse(JSON.stringify(this.complData))
+        },
+        changeStatus(status) {
+            if (status) {
+                this.data.common.status = status
+            }
+            this.dialogStatusVisible = false
         }
     }
 }

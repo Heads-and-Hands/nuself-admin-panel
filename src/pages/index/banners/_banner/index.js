@@ -1,4 +1,5 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
+import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 
 export default {
     data() {
@@ -63,15 +64,13 @@ export default {
         this.imageUrl2 = this.data.gallery[1].imagePath
     },
     computed: {
-        changeStatus() {
-            return this.data.status
-        },
         isChange() {
             return JSON.stringify(this.data) !== JSON.stringify(this.tableBanner)
         }
     },
     components: {
-        saveNotification
+        saveNotification,
+        toggleStatus
     },
     methods: {
         goToBack() {
@@ -90,6 +89,12 @@ export default {
         },
         addImageTwo(file) {
             this.imageUrl2 = URL.createObjectURL(file);
+        },
+        changeStatus(status) {
+            if (status) {
+                this.data.status = status
+            }
+            this.dialogStatusVisible = false
         },
         clear() {
             this.data = JSON.parse(JSON.stringify(this.tableBanner))

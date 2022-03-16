@@ -1,4 +1,5 @@
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
+import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 
 export default {
     data() {
@@ -72,14 +73,11 @@ export default {
                 },
             ],
             dialogStatusVisible: false,
-            changeStatus: ''
         }
     },
-    created() {
-        this.changeStatus = this.clientData.common.status
-    },
     components: {
-        rightSideBar
+        rightSideBar,
+        toggleStatus
     },
     methods: {
         goToBack() {
@@ -90,6 +88,12 @@ export default {
             let element = this.$refs[item];
             let top = element.offsetTop - 10;
             parent.scrollTo({top, behavior: "smooth"});
+        },
+        changeStatus(status) {
+            if (status) {
+                this.clientData.common.status = status
+            }
+            this.dialogStatusVisible = false
         }
     }
 }

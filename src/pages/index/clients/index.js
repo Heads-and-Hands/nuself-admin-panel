@@ -45,7 +45,7 @@ export default ({
     },
     methods: {
         openClientsPage(id) {
-            this.$router.push({ path: `banners/banner/${id}`});
+            this.$router.push({ path: `clients/client/${id}`});
         },
         handleSelectionChange(val) {
             this.listRemoveClient = val;

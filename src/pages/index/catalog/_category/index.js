@@ -1,5 +1,6 @@
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 import saveNotification from "@/components/save-notification/save-notification.vue"
+import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 
 export default {
     data() {
@@ -124,7 +125,6 @@ export default {
                     id: 'goods'
                 }
             ],
-            changeStatus: '',
             dialogStatusVisible: false,
             categoryData: {}
         }
@@ -135,7 +135,8 @@ export default {
     },
     components: {
         rightSideBar,
-        saveNotification
+        saveNotification,
+        toggleStatus
     },
     computed: {
         category() {
@@ -191,6 +192,12 @@ export default {
             console.log('save')
             this.clear()
         },
+        changeStatus(status) {
+            if (status) {
+                this.data.common.status = status
+            }
+            this.dialogStatusVisible = false
+        }
     }
 
 }

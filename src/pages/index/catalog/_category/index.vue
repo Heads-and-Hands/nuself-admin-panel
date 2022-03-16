@@ -110,6 +110,7 @@
               </el-table-column>
             </el-table>
           </div>
+          {{dialogStatusVisible}}
         </section>
         <section class="product" ref="goods">
           <div class="head-24-s title">
@@ -206,26 +207,13 @@
           :list="navList"
           @scrollToBlock="scrollToBlock"/>
     </div>
-
-    <el-dialog
-        title="Изменить статусы"
-        :visible.sync="dialogStatusVisible"
-        width="551px"
-        custom-class="change-status-modal"
-    >
-        <span class="subtitle body-14-reg">Выберите статус, который вы хотите истановить для выбранной категории</span>
-        <div class="radio-container">
-          <el-radio v-model="category.common.status" label="Показывать" border>
-            <el-tag type="success" class="body-14-reg">Показывать</el-tag>
-          </el-radio>
-          <el-radio v-model="category.common.status" label="Не показывать" border>
-            <el-tag type="warning" class="body-14-reg">Не показывать</el-tag>
-          </el-radio>
-        </div>
-        <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="dialogStatusVisible = false">Применить</el-button>
-        </span>
-    </el-dialog>
+    <toggle-status
+        :dialogVisible="dialogStatusVisible"
+        :status="category.common.status"
+        text="выбранной категории"
+        @close="dialogStatusVisible = false"
+        @change-status="changeStatus"
+    />
     <save-notification v-if="isChange" change @save="save" @clear="clear"/>
   </div>
 </template>
