@@ -1,12 +1,12 @@
 <template>
-  <div class="client-page">
+  <div class="client-page separate-page">
     <div class="head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
       Клиент
     </div>
-    <div class="order-page-container">
+    <div class="separate-page-container">
       <div class="left-container">
-        <section class="order-container common" ref="common">
+        <section class="page-container common" ref="common">
           <div class="head-24-s title">
             Основное
           </div>
@@ -82,7 +82,7 @@
             </div>
           </div>
         </section>
-        <section class="order-container address" ref="address">
+        <section class="page-container address" ref="address">
           <div class="head-24-s title">
             Адреса клиента <span class="limit">{{clientData.address.length}}</span>
           </div>
@@ -163,7 +163,7 @@
             </div>
           </div>
         </section>
-        <section class="order-container orders" ref="orders">
+        <section class="page-container orders" ref="orders">
           <div class="head-24-s title">
             Заказы <span class="limit">{{clientData.orders.list.length}}</span>
           </div>
@@ -208,7 +208,7 @@
               </el-table-column>
               <el-table-column
                   width="72">
-                <template slot-scope="scope">
+                <template>
                   <el-button icon="el-icon-right" circle></el-button>
                 </template>
               </el-table-column>

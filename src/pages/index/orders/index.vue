@@ -1,5 +1,5 @@
 <template>
-  <div class="orders-page">
+  <div class="orders-page table-page">
     <div class="head-32-s title">Заказы <span class="limit">{{ ordersData.length || 0 }}</span></div>
     <section>
       <el-table

@@ -1,10 +1,10 @@
 <template>
-  <div class="color-page">
+  <div class="separate-page color-page">
     <div class="page-title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
       Цвет
     </div>
-    <section class="color-container">
+    <section class="page-container color-container">
       <div class="head-24-s title">
         Основное
       </div>
@@ -42,7 +42,7 @@
         </div>
       </el-col>
     </section>
-    <save-notification v-show="isSaveChange" @clearAll="clearAll()" />
+    <save-notification v-show="isSaveChange" @clear="clearAll()" change @save="save"/>
   </div>
 </template>
 

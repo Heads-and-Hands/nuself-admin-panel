@@ -18,6 +18,11 @@ import Clients from '../pages/index/clients/index.vue'
 import Client from '../pages/index/clients/_client/index.vue'
 import Banners from '../pages/index/banners/index.vue'
 import Banner from '../pages/index/banners/_banner/index.vue'
+import Compilations from '../pages/index/compilations/index.vue'
+import Compilation from '../pages/index/compilations/_compilation/index.vue'
+import Rubrics from '../pages/index/rubrics/index.vue'
+import Rubric from '../pages/index/rubrics/_rubric/index.vue'
+
 
 // import store from '../store/index'
 
@@ -78,11 +83,6 @@ const routes = [
         name: 'colors',
       },
       {
-        path: `colors/color`,
-        component: Color,
-        name: 'color',
-      },
-      {
         path: `colors/color/:id`,
         component: Color,
         name: 'color',
@@ -92,11 +92,6 @@ const routes = [
         path: 'sizes',
         component: Sizes,
         name: 'sizes',
-      },
-      {
-        path: `sizes/size`,
-        component: Size,
-        name: 'size',
       },
       {
         path: `sizes/size/:id`,
@@ -110,11 +105,6 @@ const routes = [
         name: 'orders',
       },
       {
-        path: `orders/order`,
-        component: Order,
-        name: 'order',
-      },
-      {
         path: `orders/order/:id`,
         component: Order,
         name: 'order',
@@ -124,11 +114,6 @@ const routes = [
         path: 'clients',
         component: Clients,
         name: 'clients',
-      },
-      {
-        path: `clients/client`,
-        component: Client,
-        name: 'client',
       },
       {
         path: `clients/client/:id`,
@@ -142,14 +127,31 @@ const routes = [
         name: 'banners',
       },
       {
-        path: `banners/banner`,
-        component: Banner,
-        name: 'banners',
-      },
-      {
         path: `banners/banner/:id`,
         component: Banner,
-        name: 'banners',
+        name: 'banner',
+        props: true
+      },
+      {
+        path: 'compilations',
+        component: Compilations,
+        name: 'compilations',
+      },
+      {
+        path: `compilations/compilation/:id`,
+        component: Compilation,
+        name: 'compilation',
+        props: true
+      },
+      {
+        path: 'rubrics',
+        component: Rubrics,
+        name: 'rubrics',
+      },
+      {
+        path: `rubrics/rubric/:id`,
+        component: Rubric,
+        name: 'rubric',
         props: true
       },
     ]

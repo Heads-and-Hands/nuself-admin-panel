@@ -32,18 +32,6 @@ body {
   font-size: 32px;
   line-height: 36px;
   color: #292B33;
-
-  &-second {
-    margin: 0 48px;
-    height: 96px;
-    display: flex;
-    align-items: center;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 32px;
-    color: #292B33;
-  }
 }
 
 .content-header {
@@ -64,4 +52,102 @@ body {
 
 .content {
   margin: 0 48px;
+}
+
+.limit {
+  color: #C1C4CB;
+}
+
+.table-page {
+  padding: 48px;
+  box-sizing: border-box;
+
+  .title {
+    margin-bottom: 48px;
+  }
+
+  .data-table {
+    margin-top: 48px;
+    .el-table td {
+      font-weight: 400;
+    }
+  }
+
+  .el-table {
+    font-weight: 400;
+    th .cell {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    th {
+      color: #919398;
+    }
+
+    tr {
+      height: 84px;
+    }
+  }
+
+  .el-table .cell {
+    padding-left: 16px;
+    padding-right: 16px;
+    overflow: hidden;
+    word-wrap: normal;
+    word-break: normal;
+
+    .color {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .brand {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-wrap: normal;
+      word-break: normal;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.separate-page {
+  background-color: #F6F6F6;
+  overflow-y: auto;
+  padding: 48px 46px;
+  box-sizing: border-box;
+
+  .el-icon-back {
+    margin-right: 20px;
+  }
+
+  .sub-title {
+    color: #919398;
+    margin-bottom: 8px;
+  }
+
+  .page-container {
+    width: 812px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 12px rgba(40, 43, 52, 0.07);
+    border-radius: 12px;
+    padding: 40px 48px;
+    box-sizing: border-box;
+    margin-bottom: 48px;
+  }
+
+  &-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: visible;
+    margin-top: 48px;
+
+    .left-container {
+      margin-right: 48px;
+    }
+  }
 }

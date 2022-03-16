@@ -31,6 +31,10 @@ export default {
         clearAll() {
             this.customImage = this.color.color
             this.isSaveChange = false
+        },
+        save() {
+            console.log('save')
+            this.isSaveChange = false
         }
     },
 }

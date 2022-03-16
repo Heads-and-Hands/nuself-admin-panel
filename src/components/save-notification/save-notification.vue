@@ -1,26 +1,36 @@
 <template>
   <div class="save-notification body-14-reg">
-    <div v-if="type === 'default' || type === 'all'" class="text"><el-badge is-dot class="item" />Есть несохраненные изменения</div>
-    <div v-else class="text">{{text}}<i class="el-icon-close close" @click="$emit('clearAll')"></i></div>
+    <div v-if="change" class="text"><el-badge is-dot class="item" />Есть несохраненные изменения</div>
+    <div v-if="text" class="text">{{text}}<i class="el-icon-close close" @click="$emit('clear')"></i></div>
+    <div v-else></div>
     <div>
       <el-button
-          v-if="type === 'delete' || type === 'all'"
+          v-if="remove"
           class="delete"
           icon="el-icon-delete"
           type="danger"
+          @click="$emit('remove')"
           plain
       >
         Удалить
       </el-button>
       <el-button
-          v-if="type === 'save'"
-          class="save"
+          v-if="save"
+          class="btn-black"
       >
         Сохранить
       </el-button>
-      <template v-if="type === 'default' || type === 'all'">
-        <el-button class="cancel-change" @click="$emit('clearAll')">Сбросить изменения</el-button>
-        <el-button class="save-change">Сохранить изменения</el-button>
+      <el-button
+          v-if="status"
+          class="btn-black"
+          @click="$emit('change')"
+          plain
+      >
+        Изменить статусы
+      </el-button>
+      <template v-if="change">
+        <el-button class="cancel-change" @click="$emit('clear')">Сбросить изменения</el-button>
+        <el-button class="btn-black" @click="$emit('save')">Сохранить изменения</el-button>
       </template>
     </div>
   </div>
@@ -30,13 +40,25 @@
 export default {
   name: "save-notification",
   props: {
-    type: {
-      type: String,
-      default: 'default'
+    remove: {
+      type: Boolean,
+      default: false
+    },
+    change: {
+      type: Boolean,
+      default: false
+    },
+    save: {
+      type: Boolean,
+      default: false
+    },
+    status: {
+      type: Boolean,
+      default: false
     },
     text: {
       type: String,
-      default: 'Есть несохраненные изменения'
+      default: ''
     }
   }
 }
@@ -77,9 +99,16 @@ export default {
     }
   }
 
-  .save-change, .save {
+  .btn-black {
     background-color: #292B33 !important;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
+    &:hover {
+      background-color: #34363D !important;
+      color: #FFFFFF;
+    }
+    &:active {
+      background-color: #000000 !important;
+    }
   }
 }
 </style>

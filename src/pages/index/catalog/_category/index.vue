@@ -18,7 +18,7 @@
                   v-model="category.common.name"
                   :value="category.common.name"
                   clearable
-                  :disabled="!isCustom">
+                  :disabled="!category.common.isCustom">
               </el-input>
             </div>
             <div class="id">
@@ -47,13 +47,13 @@
               ></el-button>
             </div>
           </div>
-          <div v-if="category.common.image" class="data-image">
+          <div class="data-image">
             <div class="head-18-s">
               Обложка
             </div>
-            <div v-if="imageUrl" class="image-container">
-              <img class="image" :src="imageUrl">
-              <el-button type="danger" circle class="delete-image" size="mini" @click="imageUrl = ''">&#215;</el-button>
+            <div v-if="category.common.image" class="image-container">
+              <img class="image" :src="category.common.image">
+              <el-button type="danger" circle class="delete-image" size="mini" @click="category.common.image = ''">&#215;</el-button>
             </div>
             <el-upload
                 v-else
@@ -68,7 +68,7 @@
               <span class="body-12-reg">Загрузить фото (файлы jpeg, png не больше 10 МБ. Разрешение 276px x 376px.)</span>
             </el-upload>
           </div>
-          <div class="data-size">
+          <div class="data-table">
             <div class="head-18-s">
               Размерная таблица по умолчанию
             </div>
@@ -95,7 +95,7 @@
               <el-table-column
                   width="40"
                   fixed="right">
-                <template slot="header" slot-scope="scope" >
+                <template slot="header">
                   <div style="text-align: right">
                     <el-button
                         icon="el-icon-edit"
@@ -115,7 +115,7 @@
           <div class="head-24-s title">
             Товары <span class="limit"> 42</span>
           </div>
-          <div class="page-content" v-if="isCustom">
+          <div class="page-content" v-if="category.common.isCustom">
             <div>
               <el-table
                   :data="category.products.list"
@@ -176,7 +176,7 @@
                   </template>
                 </el-table-column>
                 <el-table-column fixed="right" label="Operations">
-                  <template slot="header" slot-scope="scope" >
+                  <template slot="header">
                     <div style="text-align: right">
                       <el-button
                           icon="el-icon-edit"
@@ -215,10 +215,10 @@
     >
         <span class="subtitle body-14-reg">Выберите статус, который вы хотите истановить для выбранной категории</span>
         <div class="radio-container">
-          <el-radio v-model="changeStatus" label="Показывать" border>
+          <el-radio v-model="category.common.status" label="Показывать" border>
             <el-tag type="success" class="body-14-reg">Показывать</el-tag>
           </el-radio>
-          <el-radio v-model="changeStatus" label="Не показывать" border>
+          <el-radio v-model="category.common.status" label="Не показывать" border>
             <el-tag type="warning" class="body-14-reg">Не показывать</el-tag>
           </el-radio>
         </div>
@@ -226,7 +226,7 @@
           <el-button type="primary" @click="dialogStatusVisible = false">Применить</el-button>
         </span>
     </el-dialog>
-    <save-notification v-show="isSaveChange" />
+    <save-notification v-if="isChange" change @save="save" @clear="clear"/>
   </div>
 </template>
 

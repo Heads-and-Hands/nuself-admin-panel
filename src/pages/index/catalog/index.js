@@ -1,3 +1,4 @@
+import saveNotification from "@/components/save-notification/save-notification.vue"
 
 export default {
     data() {
@@ -81,16 +82,28 @@ export default {
             meta: {
                 offset: 0,
                 limit: 30,
-            }
+            },
+            arrayIndexCategory: [],
+            listRemoveCatalog: [],
         }
     },
     created() {
         this.getStandardTableData()
         this.getCustomTableData()
     },
+    components: {
+        saveNotification
+    },
+    computed: {
+        textNotification() {
+            let text = this.listRemoveCatalog.length === 1? 'Выбрана' : 'Выбрано'
+            text = text + ` ${this.listRemoveCatalog.length} ${this.ending(this.listRemoveCatalog.length, 'категор')}`
+            return text
+        }
+    },
     methods: {
         tableRowClassName({row}) {
-            if (!row.image) {
+            if (!this.arrayIndexCategory.includes(row.id)) {
                 return 'warning-row body-14-reg'
             }
             return 'body-14-reg'
@@ -117,8 +130,41 @@ export default {
             console.log('standardTableData',  this.customTableData);
         },
         async getStandardTableData() {
-            this.standardTableData = await this.$store.dispatch('catalog/getStandard', this.meta).then((data) => data.list)
+            this.standardTableData = await this.$store.dispatch('catalog/getStandard', this.meta).then((data) => {
+                this.arrayIndexCategory = data.list.map(elem => elem.id)
+                return data.list
+            })
             console.log('standardTableData',  this.standardTableData);
+        },
+        ending(value, str){
+            let ending = str;
+            switch (true) {
+                case value > 10 &&
+                value < 20:
+                    ending += "ий";
+                    break;
+                case value === 1:
+                    ending += "ия";
+                    break;
+                case value > 1 &&
+                value < 5:
+                    ending += "ии";
+                    break;
+                default:
+                    ending += "ий";
+                    break;
+            }
+            return ending;
+        },
+        handleSelectionChange(val) {
+            this.listRemoveCatalog = val;
+        },
+        clear() {
+            this.$refs.listRemoveTable.clearSelection();
+        },
+        change() {
+            console.log('change status')
+            this.clear()
         }
     }
 }

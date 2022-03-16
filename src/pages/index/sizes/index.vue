@@ -1,8 +1,8 @@
 <template>
-  <div class="sizes-page">
+  <div class="sizes-page table-page">
     <div class="head-32-s title">Таблицы размеров <span class="limit">{{ tableSize.length || 0 }}</span></div>
     <section>
-      <div class="data-size">
+      <div class="data-table">
         <el-table
             :data="tableSize"
             ref="listRemoveTable"
@@ -33,7 +33,7 @@
           <el-table-column
               width="110"
               fixed="right">
-            <template slot="header" slot-scope="scope" >
+            <template slot="header">
               <div style="text-align: right">
                 <el-button
                     icon="el-icon-plus"

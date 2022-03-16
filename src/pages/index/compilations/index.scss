@@ -1,11 +1,12 @@
-.clients-page {
-  .title {
-    margin-bottom: 48px;
-  }
-
+.compilations-page {
   .input-search {
     width: 100%;
     max-width: 760px;
     margin-bottom: 24px;
   }
+
+  .data-table {
+    margin-top: 0 !important;
+  }
 }
+

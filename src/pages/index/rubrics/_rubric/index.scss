@@ -1,0 +1,121 @@
+.rubric-page {
+  .common {
+    .main-item {
+      margin-top: 28px;
+
+      .subtitle {
+        display: inline-block;
+        margin-bottom: 24px;
+      }
+
+      .el-tag {
+        height: 40px;
+        width: 98px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container-inputs {
+        display: flex;
+        &:not(:last-child) {
+          margin-bottom: 24px;
+        }
+        .el-col:not(:last-child) {
+          margin-right: 24px;
+        }
+
+        .status {
+          .el-tag.el-tag--success {
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+          }
+
+          .status-container {
+            display: flex;
+            .status-tag {
+              margin-right: 16px;
+            }
+          }
+        }
+
+        .el-textarea .el-textarea__inner {
+          height: 80px;
+        }
+
+        textarea {
+          resize: none;
+        }
+
+        .el-select {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .image {
+    height: 57px;
+    width: 44px;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+
+
+  .el-table td:first-child,
+  .el-table td:last-child,
+  .el-table th:first-child,
+  .el-table th:last-child {
+    .cell {
+      padding: 0;
+    }
+  }
+
+  .el-table .cell {
+    padding-left: 16px;
+    padding-right: 16px;
+    overflow: hidden;
+    word-wrap: normal;
+    word-break: normal;
+
+    .color {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .brand {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-wrap: normal;
+      word-break: normal;
+      text-overflow: ellipsis;
+    }
+  }
+
+
+  .color {
+    display: inline-flex;
+    align-items: center;
+    .color-circle {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+  }
+}
+
+.materials {
+  .title {
+    margin-bottom: 40px;
+  }
+
+  .el-button {
+    background: #292B33;
+    color: #FFFFFF;
+  }
+}
