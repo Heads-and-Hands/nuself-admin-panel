@@ -72,6 +72,13 @@
         </el-table>
       </div>
     </section>
+    <toggle-status
+        :dialogVisible="dialogStatusVisible"
+        status="Показывать"
+        text="выбранных баннеров"
+        @close="closeToggleStatus"
+        @change-status="changeStatus"
+    />
     <save-notification
         v-show="listRemoveBanner.length"
         remove

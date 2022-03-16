@@ -151,7 +151,7 @@
       <toggle-status
           :dialogVisible="dialogStatusVisible"
           :status="data.common.status"
-          text="выбранной категории"
+          text="выбранной подборки"
           @close="dialogStatusVisible = false"
           @change-status="changeStatus"
       />

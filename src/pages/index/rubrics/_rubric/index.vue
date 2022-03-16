@@ -121,7 +121,7 @@
       <toggle-status
           :dialogVisible="dialogStatusVisible"
           :status="data.common.status"
-          text="выбранной категории"
+          text="выбранной рубрики"
           @close="dialogStatusVisible = false"
           @change-status="changeStatus"
       />

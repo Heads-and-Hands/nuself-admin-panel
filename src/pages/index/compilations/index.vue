@@ -70,6 +70,13 @@
         </el-table>
       </div>
     </section>
+    <toggle-status
+        :dialogVisible="dialogStatusVisible"
+        status="Показывать"
+        text="выбранных категорий"
+        @close="closeToggleStatus"
+        @change-status="changeStatus"
+    />
     <save-notification
         v-show="listRemoveCompilations.length"
         remove
