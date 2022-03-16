@@ -1,5 +1,6 @@
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 import saveNotification from "@/components/save-notification/save-notification.vue"
+import tableProducts from "@/components/table-products/table-products.vue"
 
 export default {
     data() {
@@ -99,6 +100,7 @@ export default {
     },
     components: {
         rightSideBar,
+        tableProducts,
         saveNotification
     },
     methods: {
