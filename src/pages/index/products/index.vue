@@ -29,7 +29,9 @@
             :min-width="column.width"
           >
             <template slot-scope="scope">
-              <template v-if="column.reference === 'image' && !!scope.row.image">
+              <template
+                v-if="column.reference === 'image' && !!scope.row.image"
+              >
                 <img :src="scope.row.image" class="image" />
               </template>
               <template v-else-if="column.reference === 'status'">
@@ -49,11 +51,23 @@
             </template>
           </el-table-column>
           <el-table-column fixed="right" width="80">
-            <el-button icon="el-icon-right" slot-scope="scope" circle @click="openPage(`/products/product/${scope.row.id}`)"></el-button>
+            <el-button
+              icon="el-icon-right"
+              slot-scope="scope"
+              circle
+              @click="openPage(`/products/product/${scope.row.id}`)"
+            ></el-button>
           </el-table-column>
         </el-table>
       </div>
     </div>
+    <el-pagination
+      style="text-align: right; margin-top: 32px"
+      background
+      layout="prev, pager, next"
+      :total="100"
+    >
+    </el-pagination>
   </div>
 </template>
 
