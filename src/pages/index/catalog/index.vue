@@ -105,31 +105,22 @@
           <el-table-column fixed="right" label="" width="149">
             <template slot-scope="scope">
               <span class="count">{{scope.row.count}}</span>
-              <el-button icon="el-icon-sort" circle @click="showPopupPosition = true"></el-button>
+              <el-button icon="el-icon-sort" circle @click="openPositionModal(scope.row)"></el-button>
               <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id)"></el-button>
             </template>
           </el-table-column>
         </el-table>
-        <el-dialog
-            :visible.sync="showPopupPosition"
-            width="411px"
-            custom-class="change-position-modal"
-        >
-          <div class="container">
-            <span class="title head-24-s">Переместить на позицию</span>
-            <el-input
-                type="text"
-                placeholder="Please input"
-                v-model="changePosition"
-            > <span class="category-count" slot="suffix">{{`/${standardTableData.length}`}}</span>
-            </el-input>
-            <div slot="footer" class="dialog-footer">
-              <el-button type="primary" @click="dialogStatusVisible = false" style="width: 314px; margin-top: 24px" >Переместить</el-button>
-            </div>
-          </div>
-        </el-dialog>
+        <change-position-modal
+            v-if="showPopupPosition"
+            :showPopupPosition="showPopupPosition"
+            :total="standardTableData.length"
+            :position="moveCategory.count"
+            @move="move"
+            @close="closeChangePosition"
+        />
       </div>
     </section>
+
     <toggle-status
         :dialogVisible="dialogStatusVisible"
         status="Показывать"
