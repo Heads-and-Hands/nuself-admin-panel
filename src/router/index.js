@@ -22,6 +22,8 @@ import Compilations from '../pages/index/compilations/index.vue'
 import Compilation from '../pages/index/compilations/_compilation/index.vue'
 import Rubrics from '../pages/index/rubrics/index.vue'
 import Rubric from '../pages/index/rubrics/_rubric/index.vue'
+import Contents from '../pages/index/contents/index.vue'
+import Content from '../pages/index/contents/_content/index.vue'
 
 
 // import store from '../store/index'
@@ -152,6 +154,17 @@ const routes = [
         path: `rubrics/rubric/:id`,
         component: Rubric,
         name: 'rubric',
+        props: true
+      },
+      {
+        path: 'contents',
+        component: Contents,
+        name: 'contents',
+      },
+      {
+        path: `contents/content/:id`,
+        component: Content,
+        name: 'content',
         props: true
       },
     ]

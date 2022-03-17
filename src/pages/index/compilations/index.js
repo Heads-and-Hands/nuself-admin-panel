@@ -57,7 +57,7 @@ export default {
         }
     },
     methods: {
-        deleteBanner() {
+        deleteCompilation() {
             this.$confirm( 'Вы уверены, что хотите удалить выбранную подборку?', 'Удалить подборку?',  {
                 confirmButtonText: 'Удалить',
                 cancelButtonText: 'Отмена',

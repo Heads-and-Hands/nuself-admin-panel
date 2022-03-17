@@ -55,7 +55,7 @@
         style="text-align: right; margin-top: 32px"
         background
         layout="prev, pager, next"
-        :total="100">
+        :total="10">
     </el-pagination>
     <save-notification
         v-show="listRemoveTable.length"

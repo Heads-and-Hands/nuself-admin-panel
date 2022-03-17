@@ -95,7 +95,7 @@
         style="text-align: right; margin-top: 32px"
         background
         layout="prev, pager, next"
-        :total="100">
+        :total="10">
     </el-pagination>
   </div>
 </template>

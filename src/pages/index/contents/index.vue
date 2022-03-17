@@ -1,16 +1,10 @@
 <template>
-  <div class="compilations-page table-page">
-    <div class="head-32-s title">Подборки <span class="limit">{{ tableCompilations.length || 0 }}</span></div>
-    <el-input
-        placeholder="Поиск"
-        class="input-search"
-        prefix-icon="el-icon-search"
-        v-model="searchValue">
-    </el-input>
+  <div class="contents-page table-page">
+    <div class="head-32-s title">Материалы <span class="limit">{{ tableMaterials.length || 0 }}</span></div>
     <section>
       <div class="data-table">
         <el-table
-            :data="tableCompilations"
+            :data="tableMaterials"
             ref="listRemoveTable"
             style="width: 100%"
             @selection-change="handleSelectionChange"
@@ -25,19 +19,31 @@
               width="65">
           </el-table-column>
           <el-table-column
-              prop="name"
-              label="Название"
-              width="257">
+              prop="image"
+              label="Фото"
+              width="76">
+            <template slot-scope="scope">
+              <img :src="scope.row.image" class="image">
+            </template>
           </el-table-column>
           <el-table-column
-              prop="previewType"
-              label="Вид превью"
-              width="118">
+              prop="type"
+              label="Тип"
+              width="100">
+          </el-table-column>
+          <el-table-column
+              prop="name"
+              label="Название"
+              width="220">
+          </el-table-column>
+          <el-table-column
+              prop="rubric"
+              label="Рубрика">
           </el-table-column>
           <el-table-column
               prop="status"
               label="Статус"
-              width="126">
+              width="130">
             <template slot-scope="scope">
               <el-tag
                   :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
@@ -46,8 +52,8 @@
             </template>
           </el-table-column>
           <el-table-column
-              prop="description"
-              label="Описание для сотрудников">
+              prop="date"
+              label="Дата публикации">
           </el-table-column>
           <el-table-column
               width="123"
@@ -63,8 +69,8 @@
               </div>
             </template>
             <template slot-scope="scope">
-              <el-button icon="el-icon-right" circle @click="openCompilationPage(scope.row.id)"></el-button>
-              <el-button icon="el-icon-delete" type="danger" circle @click="deleteCompilation"></el-button>
+              <el-button icon="el-icon-right" circle @click="openContentPage(scope.row.id)"></el-button>
+              <el-button icon="el-icon-delete" type="danger" circle @click="deleteContent"></el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -78,7 +84,7 @@
         @change-status="changeStatus"
     />
     <save-notification
-        v-show="listRemoveCompilations.length"
+        v-show="listRemoveContent.length"
         remove
         status
         :text="textNotification"
