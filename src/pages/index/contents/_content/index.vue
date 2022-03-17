@@ -6,7 +6,7 @@
     </div>
     <div class="separate-page-container">
       <div class="left-container">
-        <section class="main page-container" ref="main">
+        <section class="main page-container" ref="common">
           <div class="head-24-s title">
             Основное
           </div>
@@ -16,7 +16,6 @@
                 <el-col>
                   <div class="sub-title">ID</div>
                   <el-input
-                      class="inline-input"
                       v-model="data.id"
                       disabled
                   ></el-input>
@@ -65,11 +64,44 @@
                 <el-col>
                   <div class="sub-title">Заголовок</div>
                   <el-input
-                      class="inline-input"
                       v-model="data.title"
                   ></el-input>
                 </el-col>
               </div>
+              <template v-if="data.type === 'Событие'">
+                <div class="container-inputs">
+                  <el-col>
+                    <div class="sub-title">Дата</div>
+                    <el-date-picker
+                        v-model="data.forEvent.date"
+                        type="datetime"
+                        prefix-icon="el-icon-date"
+                    >
+                    </el-date-picker>
+                  </el-col>
+                  <el-col>
+                    <div class="sub-title">Место</div>
+                    <el-input
+                        v-model="data.forEvent.place"
+                    ></el-input>
+                  </el-col>
+                </div>
+                <div class="container-inputs">
+                  <el-col>
+                    <div class="sub-title">Ссылка на покупку</div>
+                    <el-input
+                        v-model="data.forEvent.link"
+                    ></el-input>
+                  </el-col>
+                </div>
+              </template>
+              <template v-if="data.type === 'Видео'">
+                <div class="container-inputs">
+                  <el-input
+                      v-model="data.forVideo"
+                  ></el-input>
+                </div>
+              </template>
               <div class="container-inputs">
                 <div class="data-image-content">
                   <div class="head-18-s">
@@ -118,7 +150,7 @@
             </div>
           </div>
         </section>
-        <section class="page-container">
+        <section v-if="data.type !== 'Видео'" class="page-container" ref="article">
           <div class="head-24-s title">
             {{data.type}}
           </div>
@@ -131,7 +163,7 @@
                   circle
               ></el-button>
               <el-col v-if="item.type === 'annotation'" class="textarea">
-                <div class="sub-title">Аннотация</div>
+                <div class="sub-header head-18-s">Аннотация</div>
                 <el-input
                     class="inline-input body-14-s"
                     v-model="item.value"
@@ -154,13 +186,19 @@
                 </el-image>
               </el-col>
               <el-col v-if="item.type === 'carousel'">
-                <div class="sub-title">Карусель товаров</div>
-
-
+                <div class="sub-header head-18-s">Карусель товаров  <span class="limit"> 3</span></div>
+                тут таблица товаров
               </el-col>
               <el-col v-if="item.type === 'video'">
+                <div class="sub-header head-18-s">Видео</div>
+                <el-input
+
+                    v-model="item.value"
+                ></el-input>
               </el-col>
               <el-col v-if="item.type === 'tile'">
+                <div class="sub-header head-18-s">Плитка товаров <span class="limit"> 3</span></div>
+                и тут таблица товаров
               </el-col>
               <el-button
                   class="btn-plus"
@@ -171,9 +209,26 @@
             </div>
           </div>
         </section>
-      </div>
-    </div>
+        <template v-if="data.type == 'Статья'">
+          <section class="page-container" ref="products">
+            <div class="head-24-s title">
+              Товары из статьи <span class="limit"> 4</span>
 
+            </div>
+            И здесь тоже таблица товаров
+          </section>
+          <section class="page-container"ref="similar">
+            <div class="head-24-s title">
+              Похожие статьи <span class="limit"> 3</span>
+            </div>
+            И тут таблица товаров
+          </section>
+        </template>
+      </div>
+      <right-side-bar
+          :list="navList"
+          @scrollToBlock="scrollToBlock"/>
+    </div>
     <toggle-status
         :dialogVisible="dialogStatusVisible"
         :status="data.status"

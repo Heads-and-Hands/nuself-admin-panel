@@ -1,12 +1,13 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 
 export default {
     data() {
         return {
             tableContent: {
                 id: '1R1469',
-                title: 'Название статьи',
+                title: 'Название',
                 status: 'Показывать',
                 type: 'Статья',
                 rubric: 'Люди',
@@ -50,15 +51,32 @@ export default {
                     },
                     {
                         type: 'video',
-                        value: ''
+                        value: 'https://youtu.be/xA-ayM5I4Jw'
                     },
                     {
                         type: 'tile',
                         value: ''
                     },
+                    {
+                        type: 'text',
+                        value: 'Контур четче, кожа более упругая, отеков след простыл — так выглядит стандартный ' +
+                            'набор восторженных отзывов о микротоковой терапии. Рассказываем, что из этого правда и ' +
+                            'почему ближайшее время микротоки точно будут одной из самых популярных домашних' +
+                            ' бьюти-процедур. \n' +
+                            'Начнем с того, что сама технология изобретена давно — к этой физиотерапевтической' +
+                            ' процедуре прибегали еще советские специалисты. А современные косметологи нередко ' +
+                            'используют микротоковую терапию в комплексе с другими процедурами вроде чистки или ' +
+                            'массажа. Но стать частью домашней бьюти-рутины микротокам было суждено только сейчас.'
+                    },
                 ],
                 goods: [],
-                similary: []
+                similary: [],
+                forVideo: 'https://youtu.be/JqN5hM_iRo4?t=144',
+                forEvent: {
+                    date: 'Tue Mar 29 2022 00:03:00 GMT+0300',
+                    place: 'г. Москва, ул. Ленина, 16',
+                    link: 'https://youtu.be/aZeh6idYc1Y'
+                },
             },
             data: {},
             selectType: [
@@ -69,7 +87,7 @@ export default {
                     value: 'Видео'
                 },
                 {
-                    value: 'События'
+                    value: 'Событие'
                 }
             ],
             selectRubric: [
@@ -78,6 +96,24 @@ export default {
                 },
                 {
                     value: 'Нелюди'
+                },
+            ],
+            navList: [
+                {
+                    title: 'Основное',
+                    id: 'common'
+                },
+                {
+                    title: 'Статья',
+                    id: 'article'
+                },
+                {
+                    title: 'Товары из статьи',
+                    id: 'products'
+                },
+                {
+                    title: 'Похожие из статьи',
+                    id: 'similar'
                 },
             ],
             dialogStatusVisible: false,
@@ -97,12 +133,19 @@ export default {
         }
     },
     components: {
+        rightSideBar,
         saveNotification,
         toggleStatus
     },
     methods: {
         goToBack() {
             this.$router.push({ path: `/contents` });
+        },
+        scrollToBlock(item){
+            let parent = document.querySelector('.main-view');
+            let element = this.$refs[item];
+            let top = element.offsetTop - 10;
+            parent.scrollTo({top, behavior: "smooth"});
         },
         beforeImageUpload(file) {
             this.addImage(file)

@@ -5,15 +5,20 @@ export default {
         }
     },
     props: {
-        list: Array
+        list: {
+            type: Array,
+            default: []
+        }
     },
     mounted() {
         this.selectItem = this.list[0].id
     },
     methods: {
         scrollMeTo(row) {
-            this.selectItem = row.id
-            this.$emit('scrollToBlock', this.selectItem)
+            if (row) {
+                this.selectItem = row.id
+                this.$emit('scrollToBlock', this.selectItem)
+            }
         }
         // В родителе ключ через ref
         // Пример метода в родителе

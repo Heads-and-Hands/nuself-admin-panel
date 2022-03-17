@@ -109,6 +109,10 @@
         }
       }
     }
+
+    .el-date-editor.el-input {
+      width: 100%;
+    }
   }
 
   .el-table {
@@ -159,7 +163,9 @@
         display: block;
         margin: 0 auto;
       }
-
+      .sub-header {
+        margin-bottom: 24px;
+      }
       .btn-delete {
         display: block;
         margin: 0 0 24px auto;

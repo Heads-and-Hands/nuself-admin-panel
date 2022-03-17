@@ -110,7 +110,6 @@
               </el-table-column>
             </el-table>
           </div>
-          {{dialogStatusVisible}}
         </section>
         <section class="product" ref="goods">
           <div class="head-24-s title">

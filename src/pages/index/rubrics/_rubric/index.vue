@@ -15,7 +15,6 @@
               <el-col style="min-width: 469px">
                 <div class="sub-title">ID</div>
                 <el-input
-                    class="inline-input"
                     v-model="data.common.id"
                     disabled
                 ></el-input>
@@ -42,7 +41,6 @@
               <el-col class="info">
                 <div class="sub-title">Название</div>
                 <el-input
-                    class="inline-input"
                     v-model="data.common.name"
                 ></el-input>
               </el-col>
@@ -51,7 +49,6 @@
               <el-col class="textarea">
                 <div class="sub-title">Описание для сотрудников</div>
                 <el-input
-                    class="inline-input"
                     v-model="data.common.descriptions"
                     type="textarea"
                 ></el-input>
