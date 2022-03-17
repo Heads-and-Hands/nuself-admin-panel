@@ -1,8 +1,8 @@
 <template>
   <div class="dashboard-page">
     <side-panel class="side-panel" />
-    <perfect-scrollbar class="main-ps">
-      <router-view class="main-view" />
+    <perfect-scrollbar ref="scrollbar" class="main-ps">
+      <router-view class="main-view" @scrollTo="scrollTo($event)" />
     </perfect-scrollbar>
   </div>
 </template>
@@ -21,9 +21,18 @@
 
 <script>
 import SidePanel from "@/components/side-panel/side-panel.vue";
+
 export default {
   components: {
     SidePanel,
   },
+  mounted() {
+  },
+  methods: {
+    scrollTo(position) {
+      console.log(position);
+      console.log(this.$refs.scrollbar.ps)
+    }
+  }
 };
 </script>

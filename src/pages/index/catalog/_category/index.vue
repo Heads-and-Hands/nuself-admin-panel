@@ -104,7 +104,7 @@
                     ></el-button>
                   </div>
                 </template>
-                <template slot-scope="scope">
+                <template>
                   <el-button icon="el-icon-right" circle></el-button>
                 </template>
               </el-table-column>
@@ -186,7 +186,7 @@
                       ></el-button>
                     </div>
                   </template>
-                  <template slot-scope="scope">
+                  <template>
                     <el-button icon="el-icon-right" circle></el-button>
                     <el-button type="danger" icon="el-icon-close" @click="deleteCategory" circle plain></el-button>
                   </template>
@@ -205,7 +205,7 @@
       </div>
       <right-side-bar
           :list="navList"
-          @scrollToBlock="scrollToBlock"/>
+          @scrollToBlock="scrollToBlock($event)"/>
     </div>
     <toggle-status
         :dialogVisible="dialogStatusVisible"
