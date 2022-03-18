@@ -115,23 +115,28 @@ export default {
                 image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
                 name: 'Таблица размеров'
             }],
-            navList: [
-                {
-                    title: 'Основное',
-                    id: 'main'
-                },
-                {
-                    title: 'Товары',
-                    id: 'goods'
-                }
-            ],
+            navList: [],
             dialogStatusVisible: false,
-            categoryData: {}
+            categoryData: {},
         }
     },
     created() {
         this.data = JSON.parse(JSON.stringify(this.categoryDataApi))
         this.getCategoriesData()
+    },
+    mounted() {
+        this.navList = [
+            {
+                title: 'Основное',
+                id: 'main',
+                template: this.$refs.main
+            },
+            {
+                title: 'Товары',
+                id: 'goods',
+                template: this.$refs.goods
+            }
+        ]
     },
     components: {
         rightSideBar,
@@ -180,10 +185,10 @@ export default {
             this.data.common.image = URL.createObjectURL(file);
         },
         scrollToBlock(item){
-            let parent = document.querySelector('.main-view');
-            let element = this.$refs[item];
-            let top = element.offsetTop - 10;
-            parent.scrollTo({top, behavior: "smooth"});
+            // let parent = document.querySelector('.main-view');
+            // let element = this.$refs[item];
+            // let top = element.offsetTop - 10;
+            // parent.scrollTo({top, behavior: "smooth"});
         },
         clear() {
             this.data = JSON.parse(JSON.stringify(this.categoryDataApi))

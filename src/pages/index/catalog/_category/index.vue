@@ -205,6 +205,7 @@
       </div>
       <right-side-bar
           :list="navList"
+          v-if="navList.length"
           @scrollToBlock="scrollToBlock($event)"/>
     </div>
     <toggle-status
