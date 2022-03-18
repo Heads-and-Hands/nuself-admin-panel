@@ -1,9 +1,7 @@
 <template>
   <div class="dashboard-page">
     <side-panel class="side-panel" />
-    <perfect-scrollbar ref="scrollbar" class="main-ps">
-      <router-view class="main-view" @scrollTo="scrollTo($event)" />
-    </perfect-scrollbar>
+    <router-view class="main-view" />
   </div>
 </template>
 
@@ -12,9 +10,9 @@
   display: flex;
   height: 100%;
 
-  .main-ps {
-    height: 100%;
-    width: calc(100% - 256px);
+  .main-view {
+    width: 100%;
+    margin-left: 256px;
   }
 }
 </style>
@@ -26,13 +24,5 @@ export default {
   components: {
     SidePanel,
   },
-  mounted() {
-  },
-  methods: {
-    scrollTo(position) {
-      console.log(position);
-      console.log(this.$refs.scrollbar.ps)
-    }
-  }
 };
 </script>

@@ -180,11 +180,10 @@ export default {
             this.data.common.image = URL.createObjectURL(file);
         },
         scrollToBlock(item){
-            // let parent = document.querySelector('.main-view');
+            let parent = document.querySelector('.main-view');
             let element = this.$refs[item];
             let top = element.offsetTop - 10;
-            // parent.scrollTo({top, behavior: "smooth"});
-            this.$emit('scrollTo', top)
+            parent.scrollTo({top, behavior: "smooth"});
         },
         clear() {
             this.data = JSON.parse(JSON.stringify(this.categoryDataApi))
