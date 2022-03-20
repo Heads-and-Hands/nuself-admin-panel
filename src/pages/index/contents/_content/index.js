@@ -1,5 +1,6 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import selectBlockModal from "@/components/modals/select-block-modal/select-block-modal.vue"
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 
 export default {
@@ -116,10 +117,35 @@ export default {
                     id: 'similar'
                 },
             ],
+            articleList: [
+                {
+                    title: 'Текстовый блок',
+                    type: 'text',
+                },
+                {
+                    title: 'Карусель товаров',
+                    type: 'carousel',
+                },
+                {
+                    title: 'Плитка товаров',
+                    type: 'tile'
+                },
+                {
+                    title: 'Фото',
+                    type: 'image'
+                },
+                {
+                    title: 'Видео',
+                    type: 'video'
+                },
+            ],
             dialogStatusVisible: false,
+            dialogArticleVisible: false,
             isSaveChange: false,
             imageUrl: '',
-            imageUrl2: ''
+            imageUrl2: '',
+            newBlockCount: 0,
+            newBlockImageCount: 0
         }
     },
     created() {
@@ -135,6 +161,7 @@ export default {
     components: {
         rightSideBar,
         saveNotification,
+        selectBlockModal,
         toggleStatus
     },
     methods: {
@@ -147,25 +174,43 @@ export default {
             let top = element.offsetTop - 10;
             parent.scrollTo({top, behavior: "smooth"});
         },
-        beforeImageUpload(file) {
-            this.addImage(file)
+        beforeImageUpload(file, str) {
+            this.imageUrl = URL.createObjectURL(file);
             return true;
         },
         beforeImageUploadTwo(file) {
-            this.addImageTwo(file)
+            this.imageUrl2 = URL.createObjectURL(file);
             return true;
         },
-        addImage(file) {
-            this.imageUrl = URL.createObjectURL(file);
+        addPhoto(index) {
+            this.newBlockImageCount = index
         },
-        addImageTwo(file) {
-            this.imageUrl2 = URL.createObjectURL(file);
+        addImageBlock(file) {
+            let id = this.newBlockImageCount
+            this.data.article[this.newBlockImageCount].value = URL.createObjectURL(file);
+            return true;
         },
         changeStatus(status) {
             if (status) {
                 this.data.status = status
             }
             this.dialogStatusVisible = false
+        },
+        openSelectBlockModal(id) {
+            this.dialogArticleVisible = true
+            this.newBlockCount = id + 1
+        },
+        createNewBlock(block) {
+            let newBlock = {
+                type: block,
+            }
+            if (block === 'carousel' || block === 'tile') {
+                newBlock.value = []
+            } else {
+                newBlock.value = ''
+            }
+            this.data.article.splice(this.newBlockCount, 0, newBlock);
+            this.dialogArticleVisible = false
         },
         clear() {
             this.data = JSON.parse(JSON.stringify(this.tableContent))

@@ -119,7 +119,6 @@
                           list-type="picture-card"
                           class="upload-image"
                           :limit="1"
-                          :on-success="addImage"
                           :before-upload="beforeImageUpload"
                       >
                         <i slot="default" class="body-12-reg el-icon-camera"></i>
@@ -137,7 +136,6 @@
                           list-type="picture-card"
                           class="upload-image"
                           :limit="1"
-                          :on-success="addImageTwo"
                           :before-upload="beforeImageUploadTwo"
                       >
                         <i slot="default" class="body-12-reg el-icon-camera"></i>
@@ -180,10 +178,23 @@
               </el-col>
               <el-col v-if="item.type === 'image'">
                 <el-image
+                    v-if="item.value"
                     :src="item.value"
                     fit="cover"
                     :preview-src-list="[item.value]">
                 </el-image>
+                <el-upload
+                    v-else
+                    action="#"
+                    list-type="picture-card"
+                    class="upload-image"
+                    :limit="1"
+                    @click.native="addPhoto(index)"
+                    :before-upload="addImageBlock"
+                >
+                  <i slot="default" class="body-12-reg el-icon-camera"></i>
+                  <span class="body-12-reg">Загрузить фото (файлы jpeg, png не больше 10 МБ. Разрешение 276px x 376px.)</span>
+                </el-upload>
               </el-col>
               <el-col v-if="item.type === 'carousel'">
                 <div class="sub-header head-18-s">Карусель товаров  <span class="limit"> 3</span></div>
@@ -205,6 +216,7 @@
                   icon="el-icon-plus"
                   circle
                   style="background-color: #292B33; color: white"
+                  @click="openSelectBlockModal(index)"
               ></el-button>
             </div>
           </div>
@@ -229,6 +241,13 @@
           :list="navList"
           @scrollToBlock="scrollToBlock"/>
     </div>
+    <select-block-modal
+        v-if="dialogArticleVisible"
+        :dialogVisible="dialogArticleVisible"
+        :content="articleList"
+        @close="dialogArticleVisible = false"
+        @create-new-block="createNewBlock"
+     />
     <toggle-status
         :dialogVisible="dialogStatusVisible"
         :status="data.status"
