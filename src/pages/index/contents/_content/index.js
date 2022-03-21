@@ -99,24 +99,6 @@ export default {
                     value: 'Нелюди'
                 },
             ],
-            navList: [
-                {
-                    title: 'Основное',
-                    id: 'common'
-                },
-                {
-                    title: 'Статья',
-                    id: 'article'
-                },
-                {
-                    title: 'Товары из статьи',
-                    id: 'products'
-                },
-                {
-                    title: 'Похожие из статьи',
-                    id: 'similar'
-                },
-            ],
             articleList: [
                 {
                     title: 'Текстовый блок',
@@ -156,7 +138,42 @@ export default {
     computed: {
         isChange() {
             return JSON.stringify(this.data) !== JSON.stringify(this.tableContent)
+        },
+        navList() {
+            if (this.data.type === "Статья") {
+                return [
+                    {
+                        title: 'Основное',
+                        id: 'common'
+                    },
+                    {
+                        title: 'Статья',
+                        id: 'article'
+                    },
+                    {
+                        title: 'Товары из статьи',
+                        id: 'products'
+                    },
+                    {
+                        title: 'Похожие из статьи',
+                        id: 'similar'
+                    },
+                ]
+            }
+            else if (this.data.type === "Событие") {
+                return [
+                    {
+                        title: 'Основное',
+                        id: 'common'
+                    },
+                    {
+                        title: 'Описание',
+                        id: 'article'
+                    },
+                ]
+            } else return []
         }
+
     },
     components: {
         rightSideBar,

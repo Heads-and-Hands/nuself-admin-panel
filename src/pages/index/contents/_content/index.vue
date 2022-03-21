@@ -150,7 +150,7 @@
         </section>
         <section v-if="data.type !== 'Видео'" class="page-container" ref="article">
           <div class="head-24-s title">
-            {{data.type}}
+            {{data.type === 'Статья'? data.type : 'Описание'}}
           </div>
           <div class="container-article">
             <div v-for="(item, index) in data.article" :key="index" class="content-block" :class="item.type">
@@ -238,6 +238,7 @@
         </template>
       </div>
       <right-side-bar
+          v-if="navList.length"
           :list="navList"
           @scrollToBlock="scrollToBlock"/>
     </div>
