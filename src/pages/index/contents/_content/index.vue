@@ -229,7 +229,7 @@
             </div>
             И здесь тоже таблица товаров
           </section>
-          <section class="page-container"ref="similar">
+          <section class="page-container" ref="similar">
             <div class="head-24-s title">
               Похожие статьи <span class="limit"> 3</span>
             </div>
@@ -237,10 +237,8 @@
           </section>
         </template>
       </div>
-      <right-side-bar
-          v-if="navList.length"
-          :list="navList"
-          @scrollToBlock="scrollToBlock"/>
+      <right-side-bar v-if="navList.length" :list="navList"
+      />
     </div>
     <select-block-modal
         v-if="dialogArticleVisible"

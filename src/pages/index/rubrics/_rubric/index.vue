@@ -123,9 +123,7 @@
           @change-status="changeStatus"
       />
       <save-notification remove :change="isChange" @remove="remove" @save="save" @clear="clear"/>
-      <right-side-bar
-          :list="navList"
-          @scrollToBlock="scrollToBlock"/>
+      <right-side-bar v-if="navList.length" :list="navList"/>
     </div>
   </div>
 </template>

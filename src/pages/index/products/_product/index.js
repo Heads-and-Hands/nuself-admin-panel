@@ -169,12 +169,6 @@ export default {
         addImage(file) {
             this.imageUrl = URL.createObjectURL(file);
         },
-        scrollToBlock(item){
-            let parent = document.querySelector('.main-view');
-            let element = this.$refs[item];
-            let top = element.offsetTop - 10;
-            parent.scrollTo({top, behavior: "smooth"});
-        },
         async getCategoriesData() {
             this.categoryData = await this.$store.dispatch('catalog/getCategoriesData', Number(this.$route.params.id))
                 .then((data) => data.list)

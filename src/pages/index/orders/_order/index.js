@@ -85,6 +85,35 @@ export default {
             isSaveChange: false
         }
     },
+    mounted() {
+        this.navList = [
+            {
+                title: 'Основное',
+                id: 'common',
+                template: this.$refs.common,
+            },
+            {
+                title: 'Доставка',
+                id: 'delivery',
+                template: this.$refs.delivery,
+            },
+            {
+                title: 'Клиент',
+                id: 'customer',
+                template: this.$refs.customer,
+            },
+            {
+                title: 'Промокод',
+                id: 'promocodes',
+                template: this.$refs.promocodes,
+            },
+            {
+                title: 'Товары и сумма',
+                id: 'products',
+                template: this.$refs.products,
+            },
+        ]
+    },
     computed: {
         customerTable() {
             return [JSON.parse(JSON.stringify(this.orderData.customer))]
@@ -107,11 +136,5 @@ export default {
         goToBack() {
             this.$router.push({ path: `/orders` });
         },
-        scrollToBlock(item){
-            let parent = document.querySelector('.main-view');
-            let element = this.$refs[item];
-            let top = element.offsetTop - 10;
-            parent.scrollTo({top, behavior: "smooth"});
-        }
     }
 }

@@ -127,8 +127,49 @@ export default {
             imageUrl: '',
             imageUrl2: '',
             newBlockCount: 0,
-            newBlockImageCount: 0
+            newBlockImageCount: 0,
+            navList: [],
         }
+    },
+    mounted() {
+        if (this.data.type === "Статья") {
+            this.navList = [
+                {
+                    title: 'Основное',
+                    id: 'common',
+                    template: this.$refs.common
+                },
+                {
+                    title: 'Статья',
+                    id: 'article',
+                    template: this.$refs.article
+                },
+                {
+                    title: 'Товары из статьи',
+                    id: 'products',
+                    template: this.$refs.products
+                },
+                {
+                    title: 'Похожие из статьи',
+                    id: 'similar',
+                    template: this.$refs.similar
+                },
+            ]
+        }
+        else if (this.data.type === "Событие") {
+            this.navList = [
+                {
+                    title: 'Основное',
+                    id: 'common',
+                    template: this.$refs.common
+                },
+                {
+                    title: 'Описание',
+                    id: 'article',
+                    template: this.$refs.article
+                },
+            ]
+        } else { this.navList = [] }
     },
     created() {
         this.data = JSON.parse(JSON.stringify(this.tableContent))
@@ -139,41 +180,51 @@ export default {
         isChange() {
             return JSON.stringify(this.data) !== JSON.stringify(this.tableContent)
         },
-        navList() {
-            if (this.data.type === "Статья") {
-                return [
+        isType() {
+            return this.data.type
+        }
+    },
+    watch: {
+        isType(newValue) {
+            if (newValue === "Статья") {
+                this.navList = [
                     {
                         title: 'Основное',
-                        id: 'common'
+                        id: 'common',
+                        template: this.$refs.common
                     },
                     {
                         title: 'Статья',
-                        id: 'article'
+                        id: 'article',
+                        template: this.$refs.article
                     },
                     {
                         title: 'Товары из статьи',
-                        id: 'products'
+                        id: 'products',
+                        template: this.$refs.products
                     },
                     {
                         title: 'Похожие из статьи',
-                        id: 'similar'
+                        id: 'similar',
+                        template: this.$refs.similar
                     },
                 ]
             }
-            else if (this.data.type === "Событие") {
-                return [
+            else if (newValue === "Событие") {
+                this.navList = [
                     {
                         title: 'Основное',
-                        id: 'common'
+                        id: 'common',
+                        template: this.$refs.common
                     },
                     {
                         title: 'Описание',
-                        id: 'article'
+                        id: 'article',
+                        template: this.$refs.article
                     },
                 ]
-            } else return []
+            } else { this.navList = [] }
         }
-
     },
     components: {
         rightSideBar,
@@ -184,12 +235,6 @@ export default {
     methods: {
         goToBack() {
             this.$router.push({ path: `/contents` });
-        },
-        scrollToBlock(item){
-            let parent = document.querySelector('.main-view');
-            let element = this.$refs[item];
-            let top = element.offsetTop - 10;
-            parent.scrollTo({top, behavior: "smooth"});
         },
         beforeImageUpload(file, str) {
             this.imageUrl = URL.createObjectURL(file);

@@ -195,7 +195,7 @@
           <el-button v-else class="btn-to-product">Перейти к товарам</el-button>
         </section>
       </div>
-      <right-side-bar :list="navList" v-if="navList.length" />
+      <right-side-bar v-if="navList.length" :list="navList"  />
     </div>
     <toggle-status
       :dialogVisible="dialogStatusVisible"
