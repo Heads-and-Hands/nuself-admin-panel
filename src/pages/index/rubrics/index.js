@@ -1,5 +1,6 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import changePositionModal from "@/components/modals/change-position-modal/change-position-modal.vue"
 
 export default {
     data() {
@@ -41,7 +42,8 @@ export default {
             listRemoveRubrics: [],
             showPopupPosition: false,
             changePosition: null,
-            dialogStatusVisible: false
+            dialogStatusVisible: false,
+            moveCategory: {}
         }
     },
     computed: {
@@ -53,7 +55,8 @@ export default {
     },
     components: {
         toggleStatus,
-        saveNotification
+        saveNotification,
+        changePositionModal
     },
     methods: {
         openRubricsPage(id) {
@@ -118,6 +121,19 @@ export default {
         closeToggleStatus() {
             this.clear()
             this.dialogStatusVisible = false
+        },
+        move(elem) {
+            console.log('id: '+ this.moveCategory.id, 'new position: ' + elem)
+            this.closeChangePosition()
+        },
+        openPositionModal(elem) {
+            console.log('elem', elem)
+            this.moveCategory = elem
+            this.showPopupPosition = true
+        },
+        closeChangePosition() {
+            this.showPopupPosition = false
+            this.moveCategory = {}
         }
     }
 }
