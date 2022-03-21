@@ -1,5 +1,6 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import changePositionModal from "@/components/modals/change-position-modal/change-position-modal.vue"
 
 export default {
     data() {
@@ -33,7 +34,7 @@ export default {
                     image: 'https://pbs.twimg.com/media/DGuIzoRWsAAZnoD.jpg',
                     name: 'Распродажа',
                     status: 'Показывать',
-                    count: 4,
+                    count: '4',
                     subcategory: [
                         {
                             id: '11',
@@ -47,7 +48,7 @@ export default {
                     image: 'https://medialeaks.ru/wp-content/uploads/2021/09/cute-cat-japan-coronavirus-vaccine-side-effect-pfizer-moderns-reaction-photo-top-600x448.jpg',
                     name: 'Распродажа',
                     status: 'Показывать',
-                    count: 5,
+                    count: '5',
                     subcategory: [
                         {
                             id: '21',
@@ -66,7 +67,7 @@ export default {
                     image: 'https://images.glavred.info/2019_08/1564737970-1817.jpg?r=215867',
                     name: 'Распродажа',
                     status: 'Показывать',
-                    count: 6,
+                    count: '6',
                     subcategory: [
                         {
                             id: '31',
@@ -77,7 +78,7 @@ export default {
                 },
             ],
             showPopupPosition: false,
-            changePosition: '',
+            moveCategory: {},
             standardTableData: [],
             customTableData: [],
             meta: {
@@ -95,7 +96,8 @@ export default {
     },
     components: {
         saveNotification,
-        toggleStatus
+        toggleStatus,
+        changePositionModal
     },
     computed: {
         textNotification() {
@@ -177,6 +179,18 @@ export default {
         closeToggleStatus() {
             this.clear()
             this.dialogStatusVisible = false
+        },
+        move(elem) {
+            console.log('id: '+ this.moveCategory.id, 'new position: ' + elem)
+            this.closeChangePosition()
+        },
+        openPositionModal(elem) {
+            this.showPopupPosition = true
+            this.moveCategory = elem
+        },
+        closeChangePosition() {
+            this.showPopupPosition = false
+            this.moveCategory = {}
         }
     }
 }

@@ -41,19 +41,24 @@ export default {
                 content: 43
             },
             data: {},
-            navList: [
-                {
-                    title: 'Основное',
-                    id: 'common'
-                },
-                {
-                    title: 'Материалы',
-                    id: 'products'
-                },
-            ],
+            navList: [],
             isSaveChange: true,
             dialogStatusVisible: false,
         }
+    },
+    mounted() {
+        this.navList = [
+            {
+                title: 'Основное',
+                id: 'common',
+                template: this.$refs.common
+            },
+            {
+                title: 'Товары',
+                id: 'products',
+                template: this.$refs.products
+            }
+        ]
     },
     created() {
         this.data = JSON.parse(JSON.stringify(this.rubricData))
@@ -71,12 +76,6 @@ export default {
     methods: {
         goToBack() {
             this.$router.push({ path: `/rubrics` });
-        },
-        scrollToBlock(item){
-            let parent = document.querySelector('.main-view');
-            let element = this.$refs[item];
-            let top = element.offsetTop - 10;
-            parent.scrollTo({top, behavior: "smooth"});
         },
         clear() {
             this.data = JSON.parse(JSON.stringify(this.rubricData))

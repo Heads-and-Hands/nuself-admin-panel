@@ -75,18 +75,23 @@ export default {
                     value: 'Плитка'
                 }
             ],
-            navList: [
-                {
-                    title: 'Основное',
-                    id: 'common'
-                },
-                {
-                    title: 'Товары',
-                    id: 'products'
-                },
-            ],
+            navList: [],
             dialogStatusVisible: false,
         }
+    },
+    mounted() {
+        this.navList = [
+            {
+                title: 'Основное',
+                id: 'common',
+                template: this.$refs.common
+            },
+            {
+                title: 'Товары',
+                id: 'products',
+                template: this.$refs.products
+            }
+        ]
     },
     created() {
         this.data = JSON.parse(JSON.stringify(this.complData))
@@ -104,12 +109,6 @@ export default {
     methods: {
         goToBack() {
             this.$router.push({ path: `/compilations` });
-        },
-        scrollToBlock(item){
-            let parent = document.querySelector('.main-view');
-            let element = this.$refs[item];
-            let top = element.offsetTop - 10;
-            parent.scrollTo({top, behavior: "smooth"});
         },
         remove() {
             console.log('remove')

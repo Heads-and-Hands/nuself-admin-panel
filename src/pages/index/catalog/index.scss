@@ -71,42 +71,42 @@
   }
 }
 
-.position-modal {
-  width: 411px !important;
-  height: 248px;
-  border-radius: 8px !important;
-  box-sizing: border-box;
-
-  .el-message-box__content {
-    padding: 0 48px !important;
-
-    .el-message-box__container {
-      text-align: left;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 32px;
-      color: #292B33;
-    }
-
-    .el-message-box__input {
-      padding-top: 24px;
-      padding-bottom: 4px;
-    }
-  }
-
-  .el-message-box__btns {
-    padding: 0;
-
-    button {
-      margin: 0 !important;
-    }
-  }
-
-  input {
-    width: 314px !important;
-  }
-}
+//.position-modal {
+//  width: 411px !important;
+//  height: 248px;
+//  border-radius: 8px !important;
+//  box-sizing: border-box;
+//
+//  .el-message-box__content {
+//    padding: 0 48px !important;
+//
+//    .el-message-box__container {
+//      text-align: left;
+//      font-style: normal;
+//      font-weight: 600;
+//      font-size: 24px;
+//      line-height: 32px;
+//      color: #292B33;
+//    }
+//
+//    .el-message-box__input {
+//      padding-top: 24px;
+//      padding-bottom: 4px;
+//    }
+//  }
+//
+//  .el-message-box__btns {
+//    padding: 0;
+//
+//    button {
+//      margin: 0 !important;
+//    }
+//  }
+//
+//  input {
+//    width: 314px !important;
+//  }
+//}
 
 .delete-modal {
   width: 551px !important;

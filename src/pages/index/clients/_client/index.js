@@ -83,12 +83,6 @@ export default {
         goToBack() {
             this.$router.push({ path: `/clients` });
         },
-        scrollToBlock(item){
-            let parent = document.querySelector('.main-view');
-            let element = this.$refs[item];
-            let top = element.offsetTop - 10;
-            parent.scrollTo({top, behavior: "smooth"});
-        },
         changeStatus(status) {
             if (status) {
                 this.clientData.common.status = status

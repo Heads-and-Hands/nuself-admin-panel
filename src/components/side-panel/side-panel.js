@@ -82,9 +82,9 @@ export default {
         {
           title: "Материалы",
           icon: "el-icon-coin",
-          path: "",
+          path: "contents",
           line: true,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Скидки",

@@ -20,7 +20,7 @@ export default ({
             })
         },
         getStandard({ commit }, params) {
-            let url = `category/list`;
+            let url = `category/search`;
             const urlParams = [];
 
             Object.keys(params).forEach((key) => {
@@ -31,7 +31,7 @@ export default ({
                 url = url + "?" + urlParams.join("&");
             }
 
-            return Http.post('category/list', params).then(({ data }) => {
+            return Http.post('category/search', params).then(({ data }) => {
                 return data
             })
         },
