@@ -1,9 +1,7 @@
 <template>
   <div class="dashboard-page">
     <side-panel class="side-panel" />
-    <perfect-scrollbar class="main-ps">
-      <router-view class="main-view" />
-    </perfect-scrollbar>
+    <router-view class="main-view" />
   </div>
 </template>
 
@@ -12,15 +10,16 @@
   display: flex;
   height: 100%;
 
-  .main-ps {
-    height: 100%;
-    width: calc(100% - 256px);
+  .main-view {
+    width: 100%;
+    margin-left: 256px;
   }
 }
 </style>
 
 <script>
 import SidePanel from "@/components/side-panel/side-panel.vue";
+
 export default {
   components: {
     SidePanel,

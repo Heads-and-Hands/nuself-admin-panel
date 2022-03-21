@@ -5,28 +5,18 @@ export default {
         }
     },
     props: {
-        list: {
-            type: Array,
-            default: []
-        }
+        list: Array
     },
     mounted() {
-        this.selectItem = this.list[0].id
+        this.selectItem = this.list[0].id;
     },
     methods: {
         scrollMeTo(row) {
-            if (row) {
-                this.selectItem = row.id
-                this.$emit('scrollToBlock', this.selectItem)
-            }
+            this.selectItem = row.id;
+            let parent = document.querySelector('.main-view');
+            let element = row.template;
+            let top = element.offsetTop - 10;
+            parent.scrollTo({top, behavior: "smooth"});
         }
-        // В родителе ключ через ref
-        // Пример метода в родителе
-        // scrollToBlock(item){
-        //     let parent = document.querySelector('.main-view');
-        //     let element = this.$refs[item];
-        //     let top = element.offsetTop - 10;
-        //     parent.scrollTo({top, behavior: "smooth"});
-        // }
     }
 }
