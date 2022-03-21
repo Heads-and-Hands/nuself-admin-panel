@@ -32,7 +32,4 @@ export default {
       tableData: []
     }
   },
-  created() {
-    console.log(this.$store.getters['products/list']);
-  },
 }

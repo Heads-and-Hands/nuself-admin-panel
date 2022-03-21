@@ -4,24 +4,26 @@ export default ({
   namespaced: true,
   state: {
     products: null,
-    meta: null,
+    product: null,
   },
   getters: {
     list(state) {
       return state.products;
     },
-    meta(state) {
-      return state.meta;
+    info(state) {
+      return state.product;
     }
   },
   mutations: {
     setProducts(state, data) {
       state.products = data.list;
-      state.meta = data.meta;
+    },
+    setProduct(state, data) {
+      state.product = data;
     },
   },
   actions: {
-    getList({ commit }, params) {
+    async getList({ commit }, params) {
       let url = `products/search`;
       const urlParams = [];
 
@@ -33,10 +35,12 @@ export default ({
         url = url + "?" + urlParams.join("&");
       }
 
-      return Http.post('products/search', params).then(({ data }) => {
-        console.log(data);
-        commit('setProducts', data);
-      })
+      let { data } = await Http.post('products/search', params);
+      commit("setProducts", data);
     },
+    async getInfo({ commit }, id) {
+      let { data } = await Http.get(`/products/${id}`);
+      commit("setProduct", data);
+    }
   },
 })

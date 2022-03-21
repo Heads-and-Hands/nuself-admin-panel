@@ -19,7 +19,7 @@
         </el-select>
       </div>
       <div class="content">
-        <el-table :data="$store.getters['products/list']" style="width: 100%">
+        <el-table :data="list" style="width: 100%">
           <el-table-column type="selection" width="55"></el-table-column>
           <el-table-column
             v-for="(column, id) in tableColumns"

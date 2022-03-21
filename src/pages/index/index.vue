@@ -11,7 +11,7 @@
   height: 100%;
 
   .main-view {
-    width: 100%;
+    width: calc(100% - 256px);
     margin-left: 256px;
   }
 }
