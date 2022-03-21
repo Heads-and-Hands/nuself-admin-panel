@@ -107,7 +107,6 @@
               </el-table-column>
             </el-table>
           </div>
-          {{ dialogStatusVisible }}
         </section>
         <section class="product" ref="goods">
           <div class="head-24-s title">
@@ -196,7 +195,7 @@
           <el-button v-else class="btn-to-product">Перейти к товарам</el-button>
         </section>
       </div>
-      <right-side-bar :list="navList" v-if="navList.length" />
+      <right-side-bar v-if="navList.length" :list="navList"  />
     </div>
     <toggle-status
       :dialogVisible="dialogStatusVisible"

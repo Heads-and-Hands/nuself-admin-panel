@@ -15,7 +15,6 @@
               <el-col class="info">
                 <div class="sub-title">Номер заказа</div>
                 <el-input
-                    class="inline-input"
                     v-model="orderData.common.id"
                     disabled
                 ></el-input>
@@ -23,7 +22,6 @@
               <el-col class="info">
                 <div class="sub-title">Дата и время создания </div>
                 <el-input
-                    class="inline-input"
                     v-model="orderData.common.creationDate"
                     disabled
                 ></el-input>
@@ -40,7 +38,6 @@
               <el-col class="info">
                 <div class="sub-title">Способ оплаты</div>
                 <el-input
-                    class="inline-input"
                     v-model="orderData.common.paymentType"
                     disabled
                 ></el-input>
@@ -48,7 +45,6 @@
               <el-col class="info">
                 <div class="sub-title">Дата и время оплаты</div>
                 <el-input
-                    class="inline-input"
                     v-model="orderData.common.paymentDate"
                     disabled
                 ></el-input>
@@ -65,7 +61,6 @@
               <el-col class="textarea">
                 <div class="sub-title">Комментарий клиента</div>
                 <el-input
-                    class="inline-input"
                     v-model="orderData.common.comment"
                     type="textarea"
                     disabled
@@ -83,7 +78,6 @@
               <el-col>
                 <div class="sub-title">Способ доставки</div>
                 <el-input
-                    class="inline-input"
                     v-model="orderData.delivery.deliveryType"
                     disabled
                 ></el-input>
@@ -93,7 +87,6 @@
               <el-col>
                 <div class="sub-title">Трек номер</div>
                 <el-input
-                    class="inline-input"
                     v-model="orderData.delivery.trackNumber"
                     disabled
                 ></el-input>
@@ -101,7 +94,6 @@
               <el-col>
                 <div class="sub-title">Дата и время доставки</div>
                 <el-input
-                    class="inline-input"
                     v-model="orderData.delivery.date"
                     disabled
                 ></el-input>
@@ -111,7 +103,6 @@
               <el-col>
                 <div class="sub-title">Имя получателя</div>
                 <el-input
-                    class="inline-input"
                     v-model="orderData.delivery.receiverName"
                     disabled
                 ></el-input>
@@ -119,7 +110,6 @@
               <el-col>
                 <div class="sub-title">Телефон получателя</div>
                 <el-input
-                    class="inline-input"
                     v-model="orderData.delivery.receiverPhone"
                     disabled
                 ></el-input>
@@ -129,7 +119,6 @@
               <el-col>
                 <div class="sub-title">Адрес доставки</div>
                 <el-input
-                    class="inline-input"
                     v-model="orderData.delivery.address"
                     disabled
                 ></el-input>
@@ -301,9 +290,7 @@
           </div>
         </section>
       </div>
-      <right-side-bar
-          :list="navList"
-          @scrollToBlock="scrollToBlock"/>
+      <right-side-bar v-if="navList.length" :list="navList"/>
     </div>
   </div>
 </template>

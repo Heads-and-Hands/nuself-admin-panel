@@ -148,18 +148,16 @@
           </div>
         </section>
       </div>
-      <toggle-status
-          :dialogVisible="dialogStatusVisible"
-          :status="data.common.status"
-          text="выбранной подборки"
-          @close="dialogStatusVisible = false"
-          @change-status="changeStatus"
-      />
-      <save-notification v-show="isSaveChange" remove change @remove="remove" @save="save" @clear="clear"/>
-      <right-side-bar
-          :list="navList"
-          @scrollToBlock="scrollToBlock"/>
+      <right-side-bar v-if="navList.length" :list="navList"/>
     </div>
+    <toggle-status
+        :dialogVisible="dialogStatusVisible"
+        :status="data.common.status"
+        text="выбранной подборки"
+        @close="dialogStatusVisible = false"
+        @change-status="changeStatus"
+    />
+    <save-notification v-show="isSaveChange" remove change @remove="remove" @save="save" @clear="clear"/>
   </div>
 </template>
 

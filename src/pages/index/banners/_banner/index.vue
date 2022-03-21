@@ -16,7 +16,6 @@
                 <el-col>
                   <div class="sub-title">ID</div>
                   <el-input
-                      class="inline-input"
                       v-model="data.id"
                       disabled
                   ></el-input>
@@ -41,7 +40,6 @@
                 <el-col>
                   <div class="sub-title">Заголовок</div>
                   <el-input
-                      class="inline-input"
                       v-model="data.title"
                   ></el-input>
                 </el-col>

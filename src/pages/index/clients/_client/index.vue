@@ -15,7 +15,6 @@
               <el-col>
                 <div class="sub-title">Имя</div>
                 <el-input
-                    class="inline-input"
                     v-model="clientData.common.name"
                     disabled
                 ></el-input>
@@ -23,7 +22,6 @@
               <el-col>
                 <div class="sub-title">Фамилия</div>
                 <el-input
-                    class="inline-input"
                     v-model="clientData.common.surname"
                     disabled
                 ></el-input>
@@ -33,7 +31,6 @@
               <el-col>
                 <div class="sub-title">Дата рождения</div>
                 <el-input
-                    class="inline-input"
                     v-model="clientData.common.birthday"
                     disabled
                 ></el-input>
@@ -41,7 +38,6 @@
               <el-col>
                 <div class="sub-title">Дата последнего входа</div>
                 <el-input
-                    class="inline-input"
                     v-model="clientData.common.lastLogin"
                     disabled
                 ></el-input>
@@ -66,7 +62,6 @@
               <el-col>
                 <div class="sub-title">Телефон</div>
                 <el-input
-                    class="inline-input"
                     v-model="clientData.common.phone"
                     disabled
                 ></el-input>
@@ -74,7 +69,6 @@
               <el-col>
                 <div class="sub-title">E-mail</div>
                 <el-input
-                    class="inline-input"
                     v-model="clientData.common.email"
                     disabled
                 ></el-input>
@@ -92,7 +86,6 @@
               <el-col>
                 <div class="sub-title">Город</div>
                 <el-input
-                    class="inline-input"
                     v-model="address.city"
                     disabled
                 ></el-input>
@@ -100,7 +93,6 @@
               <el-col>
                 <div class="sub-title">Улица</div>
                 <el-input
-                    class="inline-input"
                     v-model="address.street"
                     disabled
                 ></el-input>
@@ -110,7 +102,6 @@
               <el-col>
                 <div class="sub-title">Дом, корпус</div>
                 <el-input
-                    class="inline-input"
                     v-model="address.house"
                     disabled
                 ></el-input>
@@ -118,7 +109,6 @@
               <el-col>
                 <div class="sub-title">Квартира / офис</div>
                 <el-input
-                    class="inline-input"
                     v-model="address.flat"
                     disabled
                 ></el-input>
@@ -128,7 +118,6 @@
               <el-col>
                 <div class="sub-title">Подъезд</div>
                 <el-input
-                    class="inline-input"
                     v-model="address.porch"
                     disabled
                 ></el-input>
@@ -136,7 +125,6 @@
               <el-col>
                 <div class="sub-title">Этаж</div>
                 <el-input
-                    class="inline-input"
                     v-model="address.floor"
                     disabled
                 ></el-input>
@@ -144,7 +132,6 @@
               <el-col>
                 <div class="sub-title">Домофон</div>
                 <el-input
-                    class="inline-input"
                     v-model="address.intercom"
                     disabled
                 ></el-input>
@@ -154,7 +141,6 @@
               <el-col class="textarea">
                 <div class="sub-title">Комментарий к адресу</div>
                 <el-input
-                    class="inline-input"
                     v-model="address.comment"
                     type="textarea"
                     disabled
@@ -216,9 +202,7 @@
           </div>
         </section>
       </div>
-      <right-side-bar
-          :list="navList"
-          @scrollToBlock="scrollToBlock"/>
+      <right-side-bar v-if="navList.length" :list="navList"/>
     </div>
 
     <toggle-status
