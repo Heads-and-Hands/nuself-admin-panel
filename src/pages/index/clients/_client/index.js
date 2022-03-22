@@ -1,7 +1,11 @@
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinInfo from '@/mixins/infoPage'
 
 export default {
+    mixins: [
+        MixinInfo
+    ],
     data() {
         return {
             clientData: {
@@ -85,7 +89,7 @@ export default {
         },
         changeStatus(status) {
             if (status) {
-                this.clientData.common.status = status
+                this.list.common.status = status
             }
             this.dialogStatusVisible = false
         }

@@ -6,6 +6,7 @@ import brands from './brands';
 import colors from './colors';
 import banners from './banners';
 import catalog from './catalog';
+import clients from './clients';
 import products from './products';
 
 Vue.use(Vuex)
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     brands,
     colors,
     orders,
+    clients,
     banners,
     catalog,
     products,

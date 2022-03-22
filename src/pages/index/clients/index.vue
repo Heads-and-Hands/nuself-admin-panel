@@ -1,6 +1,6 @@
 <template>
   <div class="clients-page table-page">
-    <div class="head-32-s title">Клиенты <span class="limit">{{ clientsData.length || 0 }}</span></div>
+    <div class="head-32-s title">Клиенты <span class="limit">{{ list.length || 0 }}</span></div>
     <el-input
         placeholder="Поиск"
         class="input-search"
@@ -9,7 +9,7 @@
     </el-input>
     <section>
       <el-table
-          :data="clientsData"
+          :data="list"
           ref="clientsTable"
           @selection-change="handleSelectionChange"
           style="width: 100%">
@@ -56,7 +56,7 @@
         <el-table-column
             width="72">
           <template slot-scope="scope">
-            <el-button icon="el-icon-right" circle @click="openClientsPage(scope.row.id)"
+            <el-button icon="el-icon-right" circle @click="openPage(`clients/client/${scope.row.id}`)"
             ></el-button>
           </template>
         </el-table-column>
