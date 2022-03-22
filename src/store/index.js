@@ -8,6 +8,7 @@ import banners from './banners';
 import catalog from './catalog';
 import clients from './clients';
 import products from './products';
+import compilations from './compilations';
 
 Vue.use(Vuex)
 
@@ -21,5 +22,6 @@ export default new Vuex.Store({
     banners,
     catalog,
     products,
+    compilations
   },
 })
