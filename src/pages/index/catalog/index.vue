@@ -1,21 +1,20 @@
 <template>
   <div class="catalog-page table-page">
     <div class="head-32-s title">Каталог</div>
-    <section  v-if="customTableData.length">
+    <section v-if="listCustom.length">
       <div class="head-24-s">
         Кастомные категории
-        <span class="limit"> {{ customTableData.length }}</span>
+        <span class="limit"> {{ listCustom.length }}</span>
       </div>
       <div class="page-content">
-        <div class="content">
-          <el-table
-            :data="customTableData"
+        <el-table
+            :data="listCustom"
             ref="listRemoveTable"
             style="width: 100%"
             row-key="id"
             :indent="0"
             @selection-change="handleSelectionChange"
-            :row-class-name="tableRowClassName"
+            row-class-name="body-14-reg"
           >
             <el-table-column type="selection" width="55"> </el-table-column>
             <el-table-column prop="id" label="ID" width="79"> </el-table-column>
@@ -47,34 +46,33 @@
                   icon="el-icon-plus"
                   circle
                   style="background-color: #292b33; color: white"
-                  @click="openCategory('new-category')"
+                  @click="openPage('/catalog/category/new-category')"
                   position-modal
                 ></el-button>
               </template>
               <template slot-scope="scope">
                 <span class="count">{{scope.row.count}}</span>
                 <el-button icon="el-icon-sort" circle @click="showPopupPosition = true"></el-button>
-                <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id)"></el-button>
+                <el-button icon="el-icon-right" circle @click="openPage(`/catalog/category/${scope.row.id}`)"></el-button>
                 <el-button type="danger" icon="el-icon-delete" circle @click="deleteCategory()"></el-button>
               </template>
             </el-table-column>
           </el-table>
-        </div>
       </div>
     </section>
-    <section  v-if="standardTableData.length">
+    <section  v-if="list.length">
       <div class="head-24-s">
         Стандартные категории
-        <span class="limit"> {{ standardTableData.length }}</span>
+        <span class="limit"> {{ list.length }}</span>
       </div>
       <div class="page-content">
         <el-table
-          :data="standardTableData"
+          :data="list"
           style="width: 100%"
           row-key="id"
           :indent="0"
           ref="listRemoveTable"
-          :row-class-name="tableRowClassName"
+          row-class-name="body-14-reg"
           @selection-change="handleSelectionChange"
           :tree-props="{ children: 'subcategory' }"
         >
@@ -106,14 +104,14 @@
             <template slot-scope="scope">
               <span class="count">{{scope.row.count}}</span>
               <el-button icon="el-icon-sort" circle @click="openPositionModal(scope.row)"></el-button>
-              <el-button icon="el-icon-right" circle @click="openCategory(scope.row.id)"></el-button>
+              <el-button icon="el-icon-right" circle @click="openPage(`/catalog/category/${scope.row.id}`)"></el-button>
             </template>
           </el-table-column>
         </el-table>
         <change-position-modal
             v-if="showPopupPosition"
             :showPopupPosition="showPopupPosition"
-            :total="standardTableData.length"
+            :total="list.length"
             :position="moveCategory.count"
             @move="move"
             @close="closeChangePosition"

@@ -1,98 +1,19 @@
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinInfo from '@/mixins/infoPage'
 
 export default {
+    components: {
+        rightSideBar,
+        saveNotification,
+        toggleStatus
+    },
+    mixins: [
+        MixinInfo
+    ],
     data() {
         return {
-            categoryDataApi: {
-                common: {
-                    id: '1R1469',
-                    name: 'Категория мемных котов',
-                    status: 'Показывать',
-                    image: 'https://mr-mem.ru/images/memes/mem-s-kotom-za-stolom.jpg',
-                    isCustom: false
-                },
-                products: {
-                    meta: {
-                        offset: 0,
-                        limit: 50,
-                        total: 10050
-                    },
-                    list: [
-                        {
-                            id: '161',
-                            image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
-                            article: '1RJ431',
-                            brand: 'Lauren Ralpher Laurensers Definitive',
-                            color: {
-                                id: 1,
-                                title: 'синий',
-                                color: '#0000ff',
-                                image: ''
-                            },
-                            status: 'Не показывать',
-                            order: 1
-                        },
-                        {
-                            id: '162',
-                            image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
-                            article: '1RJ431',
-                            brand: 'Lauren Ralpher Laurense',
-                            color: {
-                                id: 1,
-                                title: 'синий',
-                                color: '#0000ff',
-                                image: ''
-                            },
-                            status: 'Показывать',
-                            order: 2
-                        },
-                        {
-                            id: '163',
-                            image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
-                            article: '1RJ431',
-                            brand: 'Lauren Ralpher Laurense',
-                            color: {
-                                id: 1,
-                                title: 'синий',
-                                color: '#0000ff',
-                                image: ''
-                            },
-                            status: 'Показывать',
-                            order: 3
-                        },
-                        {
-                            id: '164',
-                            image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
-                            article: '1RJ431',
-                            brand: 'Lauren Ralpher Laurense',
-                            color: {
-                                id: 1,
-                                title: 'синий',
-                                color: '#0000ff',
-                                image: ''
-                            },
-                            status: 'Показывать',
-                            order: 4
-                        },
-                        {
-                            id: '165',
-                            image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
-                            article: '1RJ431',
-                            brand: 'Lauren Ralpher Laurense',
-                            color: {
-                                id: 1,
-                                title: 'синий',
-                                color: '#0000ff',
-                                image: ''
-                            },
-                            status: 'Показывать',
-                            order: 5
-                        },
-                    ]
-                }
-            },
             data: {},
             newCategoryData: {
                 common: {
@@ -120,10 +41,6 @@ export default {
             categoryData: {},
         }
     },
-    created() {
-        this.data = JSON.parse(JSON.stringify(this.categoryDataApi))
-        this.getCategoriesData()
-    },
     mounted() {
         this.navList = [
             {
@@ -138,11 +55,6 @@ export default {
             }
         ]
     },
-    components: {
-        rightSideBar,
-        saveNotification,
-        toggleStatus
-    },
     computed: {
         category() {
             if (this.$route.params.id === 'new-category') {
@@ -150,16 +62,10 @@ export default {
             } else return this.data
         },
         isChange() {
-            return JSON.stringify(this.data) !== JSON.stringify(this.categoryDataApi)
-        }
+            return JSON.stringify(this.data) !== JSON.stringify(this.info)
+        },
     },
     methods: {
-        async getCategoriesData() {
-            this.categoryData = await this.$store.dispatch('catalog/getCategoriesData', Number(this.$route.params.id))
-                .then((data) => {
-                    return data.list
-                })
-        },
         deleteCategory() {
             this.$confirm( 'Вы уверены, что хотите удалить выбранный товар?', 'Удалить товар?',  {
                 confirmButtonText: 'Удалить',
@@ -185,7 +91,7 @@ export default {
             this.data.common.image = URL.createObjectURL(file);
         },
         clear() {
-            this.data = JSON.parse(JSON.stringify(this.categoryDataApi))
+            this.data = JSON.parse(JSON.stringify(this.info))
         },
         save() {
             console.log('save')

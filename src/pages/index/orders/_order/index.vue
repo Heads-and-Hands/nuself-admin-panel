@@ -15,53 +15,53 @@
               <el-col class="info">
                 <div class="sub-title">Номер заказа</div>
                 <el-input
-                    v-model="orderData.common.id"
+                    v-model="info.common.id"
                     disabled
                 ></el-input>
               </el-col>
               <el-col class="info">
                 <div class="sub-title">Дата и время создания </div>
                 <el-input
-                    v-model="orderData.common.creationDate"
+                    v-model="info.common.creationDate"
                     disabled
                 ></el-input>
               </el-col>
               <el-col class="status">
                 <div class="sub-title">Статус заказа</div>
                 <el-tag
-                    :type="orderData.common.orderStatus === 'Доставлен' ? 'success' : 'warning'"
+                    :type="info.common.orderStatus === 'Доставлен' ? 'success' : 'warning'"
                     class="body-14-reg status-tag"
-                >{{ orderData.common.orderStatus }}</el-tag>
+                >{{ info.common.orderStatus }}</el-tag>
               </el-col>
             </div>
             <div class="container-inputs">
               <el-col class="info">
                 <div class="sub-title">Способ оплаты</div>
                 <el-input
-                    v-model="orderData.common.paymentType"
+                    v-model="info.common.paymentType"
                     disabled
                 ></el-input>
               </el-col>
               <el-col class="info">
                 <div class="sub-title">Дата и время оплаты</div>
                 <el-input
-                    v-model="orderData.common.paymentDate"
+                    v-model="info.common.paymentDate"
                     disabled
                 ></el-input>
               </el-col>
               <el-col class="status">
                 <div class="sub-title">Статус оплаты</div>
                 <el-tag
-                    :type="orderData.common.paymentStatus === 'Оплачен' ? 'success' : 'warning'"
+                    :type="info.common.paymentStatus === 'Оплачен' ? 'success' : 'warning'"
                     class="body-14-reg status-tag"
-                >{{ orderData.common.paymentStatus }}</el-tag>
+                >{{ info.common.paymentStatus }}</el-tag>
               </el-col>
             </div>
             <div class="container-inputs">
               <el-col class="textarea">
                 <div class="sub-title">Комментарий клиента</div>
                 <el-input
-                    v-model="orderData.common.comment"
+                    v-model="info.common.comment"
                     type="textarea"
                     disabled
                 ></el-input>
@@ -78,7 +78,7 @@
               <el-col>
                 <div class="sub-title">Способ доставки</div>
                 <el-input
-                    v-model="orderData.delivery.deliveryType"
+                    v-model="info.delivery.deliveryType"
                     disabled
                 ></el-input>
               </el-col>
@@ -87,14 +87,14 @@
               <el-col>
                 <div class="sub-title">Трек номер</div>
                 <el-input
-                    v-model="orderData.delivery.trackNumber"
+                    v-model="info.delivery.trackNumber"
                     disabled
                 ></el-input>
               </el-col>
               <el-col>
                 <div class="sub-title">Дата и время доставки</div>
                 <el-input
-                    v-model="orderData.delivery.date"
+                    v-model="info.delivery.date"
                     disabled
                 ></el-input>
               </el-col>
@@ -103,14 +103,14 @@
               <el-col>
                 <div class="sub-title">Имя получателя</div>
                 <el-input
-                    v-model="orderData.delivery.receiverName"
+                    v-model="info.delivery.receiverName"
                     disabled
                 ></el-input>
               </el-col>
               <el-col>
                 <div class="sub-title">Телефон получателя</div>
                 <el-input
-                    v-model="orderData.delivery.receiverPhone"
+                    v-model="info.delivery.receiverPhone"
                     disabled
                 ></el-input>
               </el-col>
@@ -119,7 +119,7 @@
               <el-col>
                 <div class="sub-title">Адрес доставки</div>
                 <el-input
-                    v-model="orderData.delivery.address"
+                    v-model="info.delivery.address"
                     disabled
                 ></el-input>
               </el-col>
@@ -233,7 +233,7 @@
           </div>
           <div class="products-item body-14-reg">
             <el-table
-                :data="orderData.products.list"
+                :data="info.products.list"
                 style="width: 100%">
               <el-table-column
                   prop="id"
