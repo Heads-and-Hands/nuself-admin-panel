@@ -10,7 +10,7 @@ export default {
                 status: 'Показывать',
                 sale: '15%',
                 validity: [ "2010-11-18", "2010-11-18" ],
-                subjectType: 'Бренд',
+                subjectType: 'Дизайнер',
                 relation: [
                     {
                         id: '123',
@@ -24,7 +24,7 @@ export default {
             data: {},
             selectType: [
                 {
-                    value: 'Бренд'
+                    value: 'Дизайнер'
                 },
                 {
                     value: 'Подборка'
@@ -45,11 +45,16 @@ export default {
     computed: {
         isSaveChange() {
             return JSON.stringify(this.data) !== JSON.stringify(this.saleData)
-        }
+        },
     },
     components: {
         saveNotification,
         toggleStatus
+    },
+    watch: {
+        data(val) {
+            console.log(val)
+        }
     },
     methods: {
         goToBack() {
@@ -76,6 +81,6 @@ export default {
                 this.data.status = status
             }
             this.dialogStatusVisible = false
-        }
+        },
     }
 }

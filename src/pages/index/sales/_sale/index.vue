@@ -73,7 +73,7 @@
             </div>
           </div>
           <div class="main-item">
-            <span class="subtitle head-18-s">Подборки между материалами <span class="limit">4</span></span>
+            <span class="subtitle head-18-s">{{ data.subjectType }} <span class="limit">4</span></span>
             <el-table
                 :data="data.relation"
                 style="width: 100%; margin-top: 16px">

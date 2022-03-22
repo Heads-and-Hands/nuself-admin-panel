@@ -76,6 +76,13 @@
     word-wrap: normal;
     word-break: normal;
 
+    .image {
+      height: 53px;
+      width: 44px;
+      border-radius: 4px;
+      object-fit: contain;
+    }
+
     .color {
       display: inline-flex;
       align-items: center;
