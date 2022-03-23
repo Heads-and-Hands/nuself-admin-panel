@@ -105,7 +105,7 @@ export default {
     components: {
         rightSideBar,
         saveNotification,
-        toggleStatus
+        toggleStatus,
         tableProducts,
         saveNotification
     },
