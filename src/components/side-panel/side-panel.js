@@ -89,9 +89,9 @@ export default {
         {
           title: "Скидки",
           icon: "el-icon-coin",
-          path: "",
+          path: "sales",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Промокоды",

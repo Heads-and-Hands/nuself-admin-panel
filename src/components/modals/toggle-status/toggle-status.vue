@@ -35,11 +35,11 @@
         ],
         activeList: [
           {
-            label: 'Активен',
+            label: 'Активный',
             type: 'success'
           },
           {
-            label: 'Неактивен',
+            label: 'Неактивный',
             type: 'warning'
           },
         ]
