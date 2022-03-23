@@ -75,76 +75,9 @@
             Товары  <span class="limit">{{ data.products.list.length }}</span>
           </div>
           <div class="products-item body-14-reg">
-            <el-table
-                :data="data.products.list"
-                style="width: 100%">
-              <el-table-column
-                  prop="id"
-                  label="ID"
-                  width="41">
-              </el-table-column>
-              <el-table-column
-                  prop="image"
-                  label="Фото"
-                  width="76">
-                <template slot-scope="scope">
-                  <img :src="scope.row.image" class="image">
-                </template>
-              </el-table-column>
-              <el-table-column
-                  prop="article"
-                  label="Артикул"
-                  width="82"
-              >
-              </el-table-column>
-              <el-table-column
-                  prop="brand"
-                  label="Бренд"
-                  width="112">
-              </el-table-column>
-              <el-table-column
-                  prop="name"
-                  label="Название"
-              >
-              </el-table-column>
-              <el-table-column
-                  prop="color"
-                  label="Цвет"
-                  width="104">
-                <template slot-scope="scope">
-                    <span class="body-14-reg color">
-                      <span class="color-circle" :style="`background-color: ${scope.row.color.color}`"></span>
-                      {{ scope.row.color.title}}
-                    </span>
-                </template>
-              </el-table-column>
-              <el-table-column
-                  prop="status"
-                  label="Статус"
-                  width="126">
-                <template slot-scope="scope">
-                  <el-tag
-                      :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
-                      class="body-14-reg status-tag"
-                  >{{ scope.row.status }}</el-tag>
-                </template>
-              </el-table-column>
-              <el-table-column
-                  width="40">
-                <template slot="header">
-                  <div style="text-align: right">
-                    <el-button
-                        icon="el-icon-edit"
-                        circle
-                        style="background-color: #292B33; color: white"
-                    ></el-button>
-                  </div>
-                </template>
-                <template>
-                  <el-button icon="el-icon-right" circle></el-button>
-                </template>
-              </el-table-column>
-            </el-table>
+            <table-products
+                :data="data.products"
+            />
           </div>
         </section>
       </div>

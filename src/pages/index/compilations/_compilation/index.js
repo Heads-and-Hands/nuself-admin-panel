@@ -1,6 +1,7 @@
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import tableProducts from "@/components/table-products/table-products.vue"
 
 export default {
     data() {
@@ -105,6 +106,8 @@ export default {
         rightSideBar,
         saveNotification,
         toggleStatus
+        tableProducts,
+        saveNotification
     },
     methods: {
         goToBack() {

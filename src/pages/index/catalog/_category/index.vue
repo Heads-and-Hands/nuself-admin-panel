@@ -191,6 +191,7 @@
               >
               </el-pagination>
             </div>
+            <table-products :data="category.products"/>
           </div>
           <el-button v-else class="btn-to-product">Перейти к товарам</el-button>
         </section>

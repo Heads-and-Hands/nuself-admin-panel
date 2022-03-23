@@ -1,6 +1,7 @@
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import tableProducts from "@/components/table-products/table-products.vue"
 
 export default {
     data() {
@@ -24,6 +25,7 @@ export default {
                             id: '161',
                             image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
                             article: '1RJ431',
+                            name: 'Футболка с красным принтом...',
                             brand: 'Lauren Ralpher Laurensers Definitive',
                             color: {
                                 id: 1,
@@ -38,6 +40,7 @@ export default {
                             id: '162',
                             image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
                             article: '1RJ431',
+                            name: 'Футболка с красным принтом...',
                             brand: 'Lauren Ralpher Laurense',
                             color: {
                                 id: 1,
@@ -52,6 +55,7 @@ export default {
                             id: '163',
                             image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
                             article: '1RJ431',
+                            name: 'Футболка с красным принтом...',
                             brand: 'Lauren Ralpher Laurense',
                             color: {
                                 id: 1,
@@ -66,6 +70,7 @@ export default {
                             id: '164',
                             image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
                             article: '1RJ431',
+                            name: 'Футболка с красным принтом...',
                             brand: 'Lauren Ralpher Laurense',
                             color: {
                                 id: 1,
@@ -80,6 +85,7 @@ export default {
                             id: '165',
                             image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
                             article: '1RJ431',
+                            name: 'Футболка с красным принтом...',
                             brand: 'Lauren Ralpher Laurense',
                             color: {
                                 id: 1,
@@ -141,7 +147,9 @@ export default {
     components: {
         rightSideBar,
         saveNotification,
-        toggleStatus
+        toggleStatus,
+        tableProducts,
+        saveNotification
     },
     computed: {
         category() {
