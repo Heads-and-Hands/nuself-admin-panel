@@ -20,7 +20,7 @@ export default {
     login() {
       this.loading = true
 
-      this.$store.dispatch('_user/auth', this.form).then(() => {
+      this.$store.dispatch('user/auth', this.form).then(() => {
         this.$router.push('/')
       }).catch(e => {
         this.$utils.addServerErrors(e, this.errors)
