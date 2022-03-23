@@ -11,21 +11,21 @@
       <el-col>
         <div class="sub-title body-14-reg">ID</div>
         <el-input
-            v-model="color.id"
+            v-model="info.id"
             disabled>
         </el-input>
       </el-col>
       <el-col>
         <div class="sub-title body-14-reg">Цвет</div>
         <el-input
-            v-model="color.title"
+            v-model="info.title"
             disabled>
         </el-input>
       </el-col>
       <el-col>
         <div class="sub-title body-14-reg">Значение</div>
         <el-input
-            :color="color.color"
+            :color="info.color"
             v-model="customImage"
             @focus="showPicker = true"
             clearable

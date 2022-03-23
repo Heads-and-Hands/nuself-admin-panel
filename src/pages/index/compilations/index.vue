@@ -1,6 +1,6 @@
 <template>
   <div class="compilations-page table-page">
-    <div class="head-32-s title">Подборки <span class="limit">{{ tableCompilations.length || 0 }}</span></div>
+    <div class="head-32-s title">Подборки <span class="limit">{{ list? list.length : 0 }}</span></div>
     <el-input
         placeholder="Поиск"
         class="input-search"
@@ -10,7 +10,7 @@
     <section>
       <div class="data-table">
         <el-table
-            :data="tableCompilations"
+            :data="list"
             ref="listRemoveTable"
             style="width: 100%"
             @selection-change="handleSelectionChange"
@@ -63,7 +63,7 @@
               </div>
             </template>
             <template slot-scope="scope">
-              <el-button icon="el-icon-right" circle @click="openCompilationPage(scope.row.id)"></el-button>
+              <el-button icon="el-icon-right" circle @click="openPage(`/catalog/category/${scope.row.id}`)"></el-button>
               <el-button icon="el-icon-delete" type="danger" circle @click="deleteCompilation"></el-button>
             </template>
           </el-table-column>

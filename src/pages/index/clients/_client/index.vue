@@ -15,14 +15,14 @@
               <el-col>
                 <div class="sub-title">Имя</div>
                 <el-input
-                    v-model="clientData.common.name"
+                    v-model="list.common.name"
                     disabled
                 ></el-input>
               </el-col>
               <el-col>
                 <div class="sub-title">Фамилия</div>
                 <el-input
-                    v-model="clientData.common.surname"
+                    v-model="list.common.surname"
                     disabled
                 ></el-input>
               </el-col>
@@ -31,14 +31,14 @@
               <el-col>
                 <div class="sub-title">Дата рождения</div>
                 <el-input
-                    v-model="clientData.common.birthday"
+                    v-model="list.common.birthday"
                     disabled
                 ></el-input>
               </el-col>
               <el-col>
                 <div class="sub-title">Дата последнего входа</div>
                 <el-input
-                    v-model="clientData.common.lastLogin"
+                    v-model="list.common.lastLogin"
                     disabled
                 ></el-input>
               </el-col>
@@ -46,9 +46,9 @@
                 <div class="sub-title">Статус</div>
                 <div class="status-container">
                   <el-tag
-                      :type="clientData.common.status === 'Активен' ? 'success' : 'warning'"
+                      :type="list.common.status === 'Активен' ? 'success' : 'warning'"
                       class="body-14-reg status-tag"
-                  >{{ clientData.common.status }}</el-tag>
+                  >{{ list.common.status }}</el-tag>
                   <el-button
                       icon="el-icon-edit"
                       circle
@@ -62,14 +62,14 @@
               <el-col>
                 <div class="sub-title">Телефон</div>
                 <el-input
-                    v-model="clientData.common.phone"
+                    v-model="list.common.phone"
                     disabled
                 ></el-input>
               </el-col>
               <el-col>
                 <div class="sub-title">E-mail</div>
                 <el-input
-                    v-model="clientData.common.email"
+                    v-model="list.common.email"
                     disabled
                 ></el-input>
               </el-col>
@@ -78,9 +78,9 @@
         </section>
         <section class="page-container address" ref="address">
           <div class="head-24-s title">
-            Адреса клиента <span class="limit">{{clientData.address.length}}</span>
+            Адреса клиента <span class="limit">{{list.address.length}}</span>
           </div>
-          <div class="main-item body-14-reg" v-for="(address, index) in clientData.address" :key="index">
+          <div class="main-item body-14-reg" v-for="(address, index) in list.address" :key="index">
             <span class="address-title head-18-s">Адрес {{index + 1}}</span>
             <div class="container-inputs">
               <el-col>
@@ -151,11 +151,11 @@
         </section>
         <section class="page-container orders" ref="orders">
           <div class="head-24-s title">
-            Заказы <span class="limit">{{clientData.orders.list.length}}</span>
+            Заказы <span class="limit">{{list.orders.list.length}}</span>
           </div>
           <div class="orders-item body-14-reg">
             <el-table
-                :data="clientData.orders.list"
+                :data="list.orders.list"
                 style="width: 100%">
               <el-table-column
                   prop="id"
@@ -207,7 +207,7 @@
 
     <toggle-status
         :dialogVisible="dialogStatusVisible"
-        :status="clientData.common.status"
+        :status="list.common.status"
         type="active"
         text="выбранного клиента"
         @close="dialogStatusVisible = false"

@@ -1,10 +1,10 @@
 <template>
   <div class="banners-page table-page">
-    <div class="head-32-s title">Баннеры <span class="limit">{{ tableBanners.length || 0 }}</span></div>
+    <div class="head-32-s title">Баннеры <span class="limit" >{{ list? list.length : 0 }}</span></div>
     <section>
       <div class="data-table">
         <el-table
-            :data="tableBanners"
+            :data="list"
             ref="listRemoveTable"
             style="width: 100%"
             @selection-change="handleSelectionChange"
@@ -65,7 +65,7 @@
               </div>
             </template>
             <template slot-scope="scope">
-              <el-button icon="el-icon-right" circle @click="openBannerPage(scope.row.id)"></el-button>
+              <el-button icon="el-icon-right" circle @click="openPage(`/catalog/category/${scope.row.id}`)"></el-button>
               <el-button icon="el-icon-delete" type="danger" circle @click="deleteBanner"></el-button>
             </template>
           </el-table-column>

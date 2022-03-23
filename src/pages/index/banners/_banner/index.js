@@ -1,37 +1,13 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinInfo from '@/mixins/infoPage'
 
 export default {
+    mixins: [
+        MixinInfo
+    ],
     data() {
         return {
-            tableBanner: {
-                id: '1R1469',
-                title: 'Заголовок баннера',
-                status: 'Показывать',
-                type: 'Обычный',
-                transition: 'Подборка',
-                gallery: [
-                    {
-                        id: '1234',
-                        imagePath: 'https://static.ngs.ru/news/99/preview/b62c41190a514b3428cb96498d0c3acc0b2ef73e_599_399_c.jpg',
-                        order: 1
-                    },
-                    {
-                        id: '1234',
-                        imagePath: 'https://4tololo.ru/sites/default/files/field/image/catman-1_0.jpg',
-                        order: 2
-                    },
-                ],
-                compilation: [
-                    {
-                        id: '163',
-                        name: 'Длинное название подборки',
-                        previewType: 'Карусель',
-                        status: 'Показывать',
-                        description: '',
-                    },
-                ]
-            },
             data: {},
             selectType: [
                 {
@@ -59,13 +35,13 @@ export default {
         }
     },
     created() {
-        this.data = JSON.parse(JSON.stringify(this.tableBanner))
+        this.data = JSON.parse(JSON.stringify(this.info))
         this.imageUrl = this.data.gallery[0].imagePath
         this.imageUrl2 = this.data.gallery[1].imagePath
     },
     computed: {
         isChange() {
-            return JSON.stringify(this.data) !== JSON.stringify(this.tableBanner)
+            return JSON.stringify(this.data) !== JSON.stringify(this.info)
         }
     },
     components: {
@@ -97,7 +73,7 @@ export default {
             this.dialogStatusVisible = false
         },
         clear() {
-            this.data = JSON.parse(JSON.stringify(this.tableBanner))
+            this.data = JSON.parse(JSON.stringify(this.info))
         },
         remove() {
             console.log('remove')

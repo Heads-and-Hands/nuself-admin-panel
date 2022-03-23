@@ -1,9 +1,9 @@
 <template>
   <div class="orders-page table-page">
-    <div class="head-32-s title">Заказы <span class="limit">{{ ordersData.length || 0 }}</span></div>
+    <div class="head-32-s title">Заказы <span class="limit">{{ list.length || 0 }}</span></div>
     <section>
       <el-table
-          :data="ordersData"
+          :data="list"
           ref="ordersTable"
           @selection-change="handleSelectionChange"
           style="width: 100%">
@@ -20,7 +20,6 @@
         <el-table-column
             prop="customer"
             label="ФИ клиента"
-
         >
         </el-table-column>
         <el-table-column

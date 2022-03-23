@@ -1,29 +1,13 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinList from '@/mixins/tableList'
 
 export default {
+    mixins: [
+        MixinList
+    ],
     data() {
         return {
-            tableBanners: [
-                {
-                    id: '163',
-                    image: 'https://anews.com/upload/post/2020/11/01/121377232/gallery/tn/286964460.jpg',
-                    title: 'Длинный заголовок баннера',
-                    type: 'С товарами',
-                    transition: 'Подборка',
-                    status: 'Показывать',
-                    description: '',
-                },
-                {
-                    id: '163',
-                    image: 'https://anews.com/upload/post/2020/11/01/121377232/gallery/tn/286964460.jpg',
-                    title: 'Длинный заголовок баннера',
-                    type: 'С товарами',
-                    transition: 'Подборка',
-                    status: 'Показывать',
-                    description: '',
-                },
-            ],
             dialogTablesVisible: false,
             listRemoveBanner: [],
             dialogStatusVisible: false
@@ -54,9 +38,6 @@ export default {
                     message: 'Your delete' + value
                 });
             })
-        },
-        openBannerPage(id) {
-            this.$router.push({ path: `banners/banner/${id}`});
         },
         handleSelectionChange(val) {
             this.listRemoveBanner = val;
