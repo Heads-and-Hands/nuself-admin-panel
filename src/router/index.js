@@ -24,7 +24,8 @@ import Rubrics from '../pages/index/rubrics/index.vue'
 import Rubric from '../pages/index/rubrics/_rubric/index.vue'
 import Contents from '../pages/index/contents/index.vue'
 import Content from '../pages/index/contents/_content/index.vue'
-
+import Promocodes from '../pages/index/promocodes/index.vue'
+import Promocode from '../pages/index/promocodes/_promocode/index.vue'
 
 // import store from '../store/index'
 
@@ -165,6 +166,17 @@ const routes = [
         path: `contents/content/:id`,
         component: Content,
         name: 'content',
+        props: true
+      },
+      {
+        path: 'promocodes',
+        component: Promocodes,
+        name: 'promocodes',
+      },
+      {
+        path: `promocodes/promocode/:id`,
+        component: Promocode,
+        name: 'promocode',
         props: true
       },
     ]

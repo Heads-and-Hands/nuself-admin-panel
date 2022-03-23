@@ -96,9 +96,9 @@ export default {
         {
           title: "Промокоды",
           icon: "el-icon-present",
-          path: "",
+          path: "promocodes",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Сертификаты",
