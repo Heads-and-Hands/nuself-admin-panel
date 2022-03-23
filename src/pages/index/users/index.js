@@ -8,38 +8,23 @@ export default {
                 {
                     id: '163',
                     name: 'Название скидки',
-                    sale: '15%',
+                    role: 'Администратор',
                     status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
+                    email: 'ivanov@gmail.com',
                 },
                 {
                     id: '163',
                     name: 'Название скидки',
-                    sale: '15%',
+                    role: 'Администратор',
                     status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
+                    email: 'ivanov@gmail.com',
                 },
                 {
                     id: '163',
                     name: 'Название скидки',
-                    sale: '15%',
+                    role: 'Администратор',
                     status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
-                },
-                {
-                    id: '163',
-                    name: 'Название скидки',
-                    sale: '15%',
-                    status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
+                    email: 'ivanov@gmail.com',
                 },
             ],
             dialogTablesVisible: false,
@@ -55,13 +40,13 @@ export default {
     computed: {
         textNotification() {
             let text = this.listRemoveSales.length === 1? 'Выбрана' : 'Выбрано'
-            text = text + ` ${this.listRemoveSales.length} ${this.ending(this.listRemoveSales.length, 'промокод')}`
+            text = text + ` ${this.listRemoveSales.length} ${this.ending(this.listRemoveSales.length, 'пользовател')}`
             return text
         }
     },
     methods: {
         deleteBanner() {
-            this.$confirm( 'Вы уверены, что хотите удалить выбранный промокод?', 'Удалить промокод?',  {
+            this.$confirm( 'Вы уверены, что хотите удалить выбранного пользователя?', 'Удалить пользователя?',  {
                 confirmButtonText: 'Удалить',
                 cancelButtonText: 'Отмена',
                 customClass: 'delete-modal',
@@ -75,7 +60,7 @@ export default {
             })
         },
         openPage(id) {
-            this.$router.push({ path: `promocodes/promocode/${id}`});
+            this.$router.push({ path: `users/user/${id}`});
         },
         toggleSelection() {
             this.$refs.listRemoveSales.clearSelection();
@@ -88,17 +73,17 @@ export default {
             switch (true) {
                 case value > 10 &&
                 value < 20:
-                    ending += "ов";
+                    ending += "ей";
                     break;
                 case value === 1:
-                    ending += "";
+                    ending += "ь";
                     break;
                 case value > 1 &&
                 value < 5:
-                    ending += "а";
+                    ending += "я";
                     break;
                 default:
-                    ending += "ов";
+                    ending += "ей";
                     break;
             }
             return ending;
@@ -109,10 +94,6 @@ export default {
         },
         clear() {
             this.$refs.listRemoveTable.clearSelection();
-        },
-        change() {
-            console.log('change status')
-            this.dialogStatusVisible = true
         },
         changeStatus() {
             console.log('change status method')

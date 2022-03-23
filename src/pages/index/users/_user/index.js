@@ -8,42 +8,25 @@ export default {
     },
     data() {
         return {
-            complData: {
-                id: '1R1469',
-                name: 'Название промокода',
-                sale: '15%',
+            complData:  {
+                id: '163',
+                name: 'Имя Фамилия',
+                role: 'Администратор',
                 status: 'Активен',
-                code: '1R14AS69',
-                condition: {
-                    type: 'date',
-                    params: {
-                        startDate: '2021-12-12',
-                        endDate: '2022-11-11'
-                    }
-                },
+                email: 'ivanov@gmail.com',
             },
             data: {},
             selectType: [
                 {
-                    type: 'birthday',
-                    title: 'День рождения'
-                },
-                {
-                    type: 'date',
-                    title: 'Срок действия'
-                },
-                {
-                    type: 'first',
-                    title: 'Первая покупка'
+                    type: 'admin',
+                    title: 'Администратор'
                 },
             ],
             dialogStatusVisible: false,
-            dataPicker: [],
         }
     },
     created() {
         this.data = JSON.parse(JSON.stringify(this.complData))
-        this.dataPicker = [this.data.condition.params.startDate, this.data.condition.params.endDate] || []
     },
     computed: {
         isSaveChange() {
@@ -52,7 +35,7 @@ export default {
     },
     methods: {
         goToBack() {
-            this.$router.push({ path: `/promocodes` });
+            this.$router.push({ path: `/users` });
         },
         remove() {
             console.log('remove')

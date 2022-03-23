@@ -1,6 +1,6 @@
 <template>
-  <div class="Sales-page table-page">
-    <div class="head-32-s title">Промокоды <span class="limit">{{ tableSales.length || 0 }}</span></div>
+  <div class="users-page table-page">
+    <div class="head-32-s title">Пользователи <span class="limit">{{ tableSales.length || 0 }}</span></div>
     <section>
       <div class="data-table">
         <el-table
@@ -16,21 +16,17 @@
           <el-table-column
               prop="id"
               label="ID"
-              width="66">
+              width="65">
           </el-table-column>
           <el-table-column
               prop="name"
-              label="Название">
-          </el-table-column>
-          <el-table-column
-              prop="sale"
-              label="Величина скидки"
-              width="130">
+              label="ФИО"
+              width="254">
           </el-table-column>
           <el-table-column
               prop="status"
               label="Статус"
-              width="120">
+              width="133">
             <template slot-scope="scope">
               <el-tag
                   :type="scope.row.status === 'Активен' ? 'success' : 'warning'"
@@ -39,14 +35,13 @@
             </template>
           </el-table-column>
           <el-table-column
-              prop="validity"
-              label="Условие"
-              width="191">
+              prop="role"
+              label="Роль"
+              width="185">
           </el-table-column>
           <el-table-column
-              prop="subjectType"
-              label="Код"
-              width="191">
+              prop="email"
+              label="E-mail">
           </el-table-column>
           <el-table-column
               width="123"
@@ -80,11 +75,9 @@
     <save-notification
         v-show="listRemoveSales.length"
         remove
-        status
         :text="textNotification"
         @clear="clear"
         @remove="remove"
-        @change="change"
     />
     <el-pagination
         style="text-align: right; margin-top: 32px"

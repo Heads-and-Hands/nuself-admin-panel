@@ -26,6 +26,8 @@ import Contents from '../pages/index/contents/index.vue'
 import Content from '../pages/index/contents/_content/index.vue'
 import Promocodes from '../pages/index/promocodes/index.vue'
 import Promocode from '../pages/index/promocodes/_promocode/index.vue'
+import Users from '../pages/index/users/index.vue'
+import User from '../pages/index/users/_user/index.vue'
 
 // import store from '../store/index'
 
@@ -179,6 +181,17 @@ const routes = [
         name: 'promocode',
         props: true
       },
+      {
+        path: 'users',
+        component: Users,
+        name: 'users',
+      },
+      {
+        path: `users/user/:id`,
+        component: User,
+        name: 'users',
+        props: true
+      },
     ]
   }
 ]
@@ -189,8 +202,8 @@ const router = new VueRouter({
 })
 
 // router.beforeEach((to, from, next) => {
-//   if ((to.meta.auth || to.meta.auth === undefined) && !store.state.user.data) {
-//     store.dispatch('user/init').then(() => {
+//   if ((to.meta.auth || to.meta.auth === undefined) && !store.state._user.data) {
+//     store.dispatch('_user/init').then(() => {
 //       next()
 //     }).catch(() => {
 //       next({ name: 'login' })

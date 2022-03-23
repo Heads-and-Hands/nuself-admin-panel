@@ -124,9 +124,9 @@ export default {
         {
           title: "Пользователи",
           icon: "el-icon-set-up",
-          path: "",
+          path: "users",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Настройки",
