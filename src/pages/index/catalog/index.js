@@ -1,97 +1,28 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 import changePositionModal from "@/components/modals/change-position-modal/change-position-modal.vue"
+import MixinList from '@/mixins/tableList'
 
 export default {
+    mixins: [
+        MixinList
+    ],
     data() {
         return {
-            customTableData2: [
-                {
-                    id: '671',
-                    image: 'https://pbs.twimg.com/media/DGuIzoRWsAAZnoD.jpg',
-                    name: 'Распродажа',
-                    status: 'Показывать',
-                    count: 1,
-                },
-                {
-                    id: '2',
-                    image: 'https://medialeaks.ru/wp-content/uploads/2021/09/cute-cat-japan-coronavirus-vaccine-side-effect-pfizer-moderns-reaction-photo-top-600x448.jpg',
-                    name: 'Распродажа',
-                    status: 'Показывать',
-                    count: 2,
-                },
-                {
-                    id: '3',
-                    image: 'https://images.glavred.info/2019_08/1564737970-1817.jpg?r=215867',
-                    name: 'Распродажа',
-                    status: 'Не показывать',
-                    count: 3,
-                },
-            ],
-            standartTableData: [
-                {
-                    id: '671',
-                    image: 'https://pbs.twimg.com/media/DGuIzoRWsAAZnoD.jpg',
-                    name: 'Распродажа',
-                    status: 'Показывать',
-                    count: '4',
-                    subcategory: [
-                        {
-                            id: '11',
-                            name: 'Платья',
-                            status: 'Показывать',
-                        }
-                    ]
-                },
-                {
-                    id: '2',
-                    image: 'https://medialeaks.ru/wp-content/uploads/2021/09/cute-cat-japan-coronavirus-vaccine-side-effect-pfizer-moderns-reaction-photo-top-600x448.jpg',
-                    name: 'Распродажа',
-                    status: 'Показывать',
-                    count: '5',
-                    subcategory: [
-                        {
-                            id: '21',
-                            name: 'Платья',
-                            status: 'Показывать',
-                        },
-                        {
-                            id: '22',
-                            name: 'Платья',
-                            status: 'Показывать',
-                        }
-                    ]
-                },
-                {
-                    id: '56',
-                    image: 'https://images.glavred.info/2019_08/1564737970-1817.jpg?r=215867',
-                    name: 'Распродажа',
-                    status: 'Показывать',
-                    count: '6',
-                    subcategory: [
-                        {
-                            id: '31',
-                            name: 'Платья',
-                            status: 'Показывать',
-                        }
-                    ]
-                },
-            ],
             showPopupPosition: false,
+            dialogStatusVisible: false,
             moveCategory: {},
             standardTableData: [],
             customTableData: [],
+            listRemoveCatalog: [],
+            loading: true,
             meta: {
                 offset: 0,
                 limit: 30,
             },
-            arrayIndexCategory: [],
-            listRemoveCatalog: [],
-            dialogStatusVisible: false
         }
     },
     created() {
-        this.getStandardTableData()
         this.getCustomTableData()
     },
     components: {
@@ -104,15 +35,12 @@ export default {
             let text = this.listRemoveCatalog.length === 1? 'Выбрана' : 'Выбрано'
             text = text + ` ${this.listRemoveCatalog.length} ${this.ending(this.listRemoveCatalog.length, 'категор')}`
             return text
+        },
+        listCustom() {
+            return this.$store.getters[`${this.$route.name}/listCustom`];
         }
     },
     methods: {
-        tableRowClassName({row}) {
-            if (!this.arrayIndexCategory.includes(row.id)) {
-                return 'warning-row body-14-reg'
-            }
-            return 'body-14-reg'
-        },
         openCategory(id) {
             this.$router.push({ path: `catalog/category/${id}`});
         },
@@ -131,15 +59,10 @@ export default {
             })
         },
         async getCustomTableData() {
-            this.standardTableData = await this.$store.dispatch('catalog/getCustom', this.meta).then((data) => data.list)
-            console.log('standardTableData',  this.customTableData);
-        },
-        async getStandardTableData() {
-            this.standardTableData = await this.$store.dispatch('catalog/getStandard', this.meta).then((data) => {
-                this.arrayIndexCategory = data.list.map(elem => elem.id)
-                return data.list
-            })
-            console.log('standardTableData',  this.standardTableData);
+            this.loading = true;
+            const action = `${this.$route.name}/getCustom`;
+            try { await this.$store.dispatch(action, this.meta) }
+            finally { this.loading = false }
         },
         ending(value, str){
             let ending = str;

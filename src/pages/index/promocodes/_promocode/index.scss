@@ -1,0 +1,47 @@
+.promo-page {
+  .main-item {
+    margin-top: 28px;
+
+    .el-tag {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container-inputs {
+      display: flex;
+      &:not(:last-child) {
+        margin-bottom: 24px;
+      }
+      .el-col:not(:last-child) {
+        margin-right: 24px;
+      }
+
+      .status {
+        .el-tag.el-tag--success {
+          height: 40px;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .status-container {
+          display: flex;
+          .status-tag {
+            margin-right: 16px;
+          }
+        }
+      }
+
+      .el-select {
+        width: 100%;
+      }
+
+      .el-range-editor.el-input__inner {
+        width: 100%;
+        padding-right: 480px;
+      }
+    }
+  }
+
+}

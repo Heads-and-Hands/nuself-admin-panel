@@ -2,6 +2,7 @@
   <el-dialog
       title="Выберите блок"
       :visible.sync="dialogVisible"
+      custom-class="select-block-modal"
       width="812px"
       :before-close="handleClose">
     <perfect-scrollbar>
@@ -56,41 +57,42 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.el-dialog {
-  margin-top: 5vh !important;
-  border-radius: 12px !important;
-  height: 85vh;
-  padding-top: 48px;
+<style lang="scss" scoped>
+.select-block-modal {
+  .el-dialog {
+    margin-top: 5vh !important;
+    border-radius: 12px !important;
+    height: 85vh;
+    padding-top: 48px;
 
-  .ps {
-    height: calc(70vh - 90px);
-    padding: 20px 48px;
-  }
+    .ps {
+      height: calc(70vh - 90px);
+      padding: 20px 48px;
+    }
 
-  &__title {
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 32px;
-    letter-spacing: 0em;
-    padding-left: 28px;
-  }
+    &__title {
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px;
+      letter-spacing: 0em;
+      padding-left: 28px;
+    }
 
-  &__body {
-    padding: 0 !important;
-    height: 70vh;
+    &__body {
+      padding: 0 !important;
+      height: 70vh;
 
-    .bottom-block {
-      height: 90px;
-      width: 100%;
-      box-sizing: border-box;
-      padding: 25px 48px;
-      text-align: right;
-      box-shadow: 0px -4px 12px rgba(40, 43, 52, 0.07);
+      .bottom-block {
+        height: 90px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 25px 48px;
+        text-align: right;
+        box-shadow: 0px -4px 12px rgba(40, 43, 52, 0.07);
+      }
     }
   }
-}
   .center-block {
     display: flex !important;
     flex-direction: column;
@@ -116,4 +118,5 @@ export default {
       }
     }
   }
+}
 </style>

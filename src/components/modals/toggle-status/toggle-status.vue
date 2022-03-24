@@ -35,11 +35,11 @@
         ],
         activeList: [
           {
-            label: 'Активен',
+            label: 'Активный',
             type: 'success'
           },
           {
-            label: 'Неактивен',
+            label: 'Неактивный',
             type: 'warning'
           },
         ]
@@ -88,7 +88,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .change-status-modal {
     height: 436px;
     border-radius: 8px !important;

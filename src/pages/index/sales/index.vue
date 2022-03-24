@@ -1,16 +1,10 @@
 <template>
-  <div class="compilations-page table-page">
-    <div class="head-32-s title">Подборки <span class="limit">{{ list? list.length : 0 }}</span></div>
-    <el-input
-        placeholder="Поиск"
-        class="input-search"
-        prefix-icon="el-icon-search"
-        v-model="searchValue">
-    </el-input>
+  <div class="Sales-page table-page">
+    <div class="head-32-s title">Скидки <span class="limit">{{ tableSales.length || 0 }}</span></div>
     <section>
       <div class="data-table">
         <el-table
-            :data="list"
+            :data="tableSales"
             ref="listRemoveTable"
             style="width: 100%"
             @selection-change="handleSelectionChange"
@@ -22,17 +16,17 @@
           <el-table-column
               prop="id"
               label="ID"
-              width="65">
+              width="66">
           </el-table-column>
           <el-table-column
               prop="name"
               label="Название"
-              width="257">
+              width="155">
           </el-table-column>
           <el-table-column
-              prop="previewType"
-              label="Вид превью"
-              width="118">
+              prop="sale"
+              label="Величина скидки"
+              width="77">
           </el-table-column>
           <el-table-column
               prop="status"
@@ -40,14 +34,22 @@
               width="126">
             <template slot-scope="scope">
               <el-tag
-                  :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
+                  :type="scope.row.status === 'Активна' ? 'success' : 'warning'"
                   class="body-14-reg status-tag"
               >{{ scope.row.status}}</el-tag>
             </template>
           </el-table-column>
           <el-table-column
-              prop="description"
-              label="Описание для сотрудников">
+              prop="validity"
+              label="Срок действия">
+          </el-table-column>
+          <el-table-column
+              prop="subjectType"
+              label="Тип субъекта">
+          </el-table-column>
+          <el-table-column
+              prop="subject"
+              label="Субъект">
           </el-table-column>
           <el-table-column
               width="123"
@@ -63,8 +65,8 @@
               </div>
             </template>
             <template slot-scope="scope">
-              <el-button icon="el-icon-right" circle @click="openPage(`/catalog/category/${scope.row.id}`)"></el-button>
-              <el-button icon="el-icon-delete" type="danger" circle @click="deleteCompilation"></el-button>
+              <el-button icon="el-icon-right" circle @click="openSalesPage(scope.row.id)"></el-button>
+              <el-button icon="el-icon-delete" type="danger" circle @click="deleteBanner"></el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -72,13 +74,14 @@
     </section>
     <toggle-status
         :dialogVisible="dialogStatusVisible"
-        status="Показывать"
-        text="выбранных категорий"
+        type="active"
+        status="Активный"
+        text="выбранных скидок"
         @close="closeToggleStatus"
         @change-status="changeStatus"
     />
     <save-notification
-        v-show="listRemoveCompilations.length"
+        v-show="listRemoveSales.length"
         remove
         status
         :text="textNotification"
@@ -90,7 +93,7 @@
         style="text-align: right; margin-top: 32px"
         background
         layout="prev, pager, next"
-        :total="10">
+        :total="100">
     </el-pagination>
   </div>
 </template>

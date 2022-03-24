@@ -24,6 +24,12 @@ import Rubrics from '../pages/index/rubrics/index.vue'
 import Rubric from '../pages/index/rubrics/_rubric/index.vue'
 import Contents from '../pages/index/contents/index.vue'
 import Content from '../pages/index/contents/_content/index.vue'
+import Promocodes from '../pages/index/promocodes/index.vue'
+import Promocode from '../pages/index/promocodes/_promocode/index.vue'
+import Users from '../pages/index/users/index.vue'
+import User from '../pages/index/users/_user/index.vue'
+import Sales from '../pages/index/sales/index.vue'
+import Sale from '../pages/index/sales/_sale/index.vue'
 import Main from '../pages/index/main/index.vue'
 
 // import store from '../store/index'
@@ -64,14 +70,9 @@ const routes = [
         name: 'catalog',
       },
       {
-        path: `catalog/category`,
-        component: Category,
-        name: 'category',
-      },
-      {
         path: `catalog/category/:id`,
         component: Category,
-        name: 'category',
+        name: 'catalog',
         props: true
       },
       {
@@ -165,6 +166,39 @@ const routes = [
         path: `contents/content/:id`,
         component: Content,
         name: 'content',
+        props: true
+      },
+      {
+        path: 'promocodes',
+        component: Promocodes,
+        name: 'promocodes',
+      },
+      {
+        path: `promocodes/promocode/:id`,
+        component: Promocode,
+        name: 'promocode',
+        props: true
+      },
+      {
+        path: 'users',
+        component: Users,
+        name: 'users',
+      },
+      {
+        path: `users/user/:id`,
+        component: User,
+        name: 'users',
+        props: true,
+      },
+      {
+        path: 'sales',
+        component: Sales,
+        name: 'sales',
+      },
+      {
+        path: 'sales/sale/:id',
+        component: Sale,
+        name: 'sale',
         props: true
       },
       {

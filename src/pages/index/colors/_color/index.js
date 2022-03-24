@@ -1,6 +1,10 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
+import MixinInfo from '@/mixins/infoPage'
 
 export default {
+    mixins: [
+        MixinInfo
+    ],
     data() {
         return {
             color: {
@@ -26,10 +30,10 @@ export default {
         },
         changeColor() {
             this.customImage = document.querySelector(".color-picker .el-input__inner").value
-            this.customImage !== this.color.color? this.isSaveChange = true : this.isSaveChange = false
+            this.customImage !== this.info.color? this.isSaveChange = true : this.isSaveChange = false
         },
         clearAll() {
-            this.customImage = this.color.color
+            this.customImage = this.info.color
             this.isSaveChange = false
         },
         save() {

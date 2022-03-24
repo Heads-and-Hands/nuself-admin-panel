@@ -2,7 +2,7 @@
   <div class="category-page">
     <div class="page-header">
       <i class="el-icon-back" @click="goToBack"></i>
-      {{ category.common.name }}
+      {{ info.common.name }}
     </div>
     <div class="category-page-container">
       <div class="left-container content">
@@ -13,18 +13,18 @@
               <div class="body-14-reg sub-title">Название категории</div>
               <el-input
                 placeholder="Please input"
-                v-model="category.common.name"
-                :value="category.common.name"
+                v-model="info.common.name"
+                :value="info.common.name"
                 clearable
-                :disabled="!category.common.isCustom"
+                :disabled="!info.common.isCustom"
               >
               </el-input>
             </div>
             <div class="id">
               <div class="body-14-reg sub-title">ID</div>
               <el-input
-                v-model="category.common.id"
-                :value="category.common.id"
+                v-model="info.common.id"
+                :value="info.common.id"
                 clearable
                 disabled
               >
@@ -34,12 +34,12 @@
               <div class="body-14-reg sub-title">Статус</div>
               <el-tag
                 :type="
-                  category.common.status === 'Показывать'
+                  info.common.status === 'Показывать'
                     ? 'success'
                     : 'warning'
                 "
                 class="body-14-reg status-tag"
-                >{{ category.common.status }}</el-tag
+                >{{ info.common.status }}</el-tag
               >
             </div>
             <div>
@@ -53,14 +53,14 @@
           </div>
           <div class="data-image">
             <div class="head-18-s">Обложка</div>
-            <div v-if="category.common.image" class="image-container">
-              <img class="image" :src="category.common.image" />
+            <div v-if="info.common.image" class="image-container">
+              <img class="image" :src="info.common.image" />
               <el-button
                 type="danger"
                 circle
                 class="delete-image"
                 size="mini"
-                @click="category.common.image = ''"
+                @click="info.common.image = ''"
                 >&#215;</el-button
               >
             </div>
@@ -112,10 +112,10 @@
           <div class="head-24-s title">
             Товары <span class="limit"> 42</span>
           </div>
-          <div class="page-content" v-if="category.common.isCustom">
+          <div class="page-content" v-if="info.common.isCustom && info.products">
             <div>
               <el-table
-                :data="category.products.list"
+                :data="info.products.list"
                 style="width: 100%"
                 row-key="id"
                 :indent="0"
@@ -200,7 +200,7 @@
     </div>
     <toggle-status
       :dialogVisible="dialogStatusVisible"
-      :status="category.common.status"
+      :status="info.common.status"
       text="выбранной категории"
       @close="dialogStatusVisible = false"
       @change-status="changeStatus"

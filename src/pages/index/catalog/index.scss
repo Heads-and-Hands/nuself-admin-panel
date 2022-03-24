@@ -7,6 +7,10 @@
     margin-bottom: 32px;
   }
 
+  section {
+    margin-bottom: 80px;
+  }
+
   section:last-child {
     padding-bottom: 108px;
   }
@@ -19,7 +23,8 @@
   }
 
   .el-table {
-     .warning-row {
+
+    .el-table__row--level-1 {
        background: #F6F6F6;
        &::v-deep .el-table__indent {
          padding-left: 0 !important;

@@ -2,8 +2,12 @@ import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 import tableProducts from "@/components/table-products/table-products.vue"
+import MixinInfo from '@/mixins/infoPage'
 
 export default {
+    mixins: [
+        MixinInfo
+    ],
     data() {
         return {
             categoryDataApi: {
@@ -126,10 +130,6 @@ export default {
             categoryData: {},
         }
     },
-    created() {
-        this.data = JSON.parse(JSON.stringify(this.categoryDataApi))
-        this.getCategoriesData()
-    },
     mounted() {
         this.navList = [
             {
@@ -158,16 +158,10 @@ export default {
             } else return this.data
         },
         isChange() {
-            return JSON.stringify(this.data) !== JSON.stringify(this.categoryDataApi)
-        }
+            return JSON.stringify(this.data) !== JSON.stringify(this.info)
+        },
     },
     methods: {
-        async getCategoriesData() {
-            this.categoryData = await this.$store.dispatch('catalog/getCategoriesData', Number(this.$route.params.id))
-                .then((data) => {
-                    return data.list
-                })
-        },
         deleteCategory() {
             this.$confirm( 'Вы уверены, что хотите удалить выбранный товар?', 'Удалить товар?',  {
                 confirmButtonText: 'Удалить',
@@ -193,7 +187,7 @@ export default {
             this.data.common.image = URL.createObjectURL(file);
         },
         clear() {
-            this.data = JSON.parse(JSON.stringify(this.categoryDataApi))
+            this.data = JSON.parse(JSON.stringify(this.info))
         },
         save() {
             console.log('save')

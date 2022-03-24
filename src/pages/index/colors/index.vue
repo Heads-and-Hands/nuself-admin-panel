@@ -1,9 +1,9 @@
 <template>
   <div class="colors-page table-page">
-    <div class="head-32-s title">Цвета <span class="limit">{{ colorsData.length || 0 }}</span></div>
+    <div class="head-32-s title">Цвета <span class="limit">{{ list.length || 0 }}</span></div>
     <section>
       <el-table
-          :data="colorsData"
+          :data="list"
           style="width: 100%">
         <el-table-column
             prop="id"
@@ -23,7 +23,7 @@
         <el-table-column
             width="72">
           <template slot-scope="scope">
-            <el-button icon="el-icon-right" circle @click="openColorPage(scope.row.id)"></el-button>
+            <el-button icon="el-icon-right" circle @click="openPage(`colors/color/${scope.row.id}`)"></el-button>
           </template>
         </el-table-column>
       </el-table>

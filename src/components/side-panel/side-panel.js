@@ -89,16 +89,16 @@ export default {
         {
           title: "Скидки",
           icon: "el-icon-coin",
-          path: "",
+          path: "sales",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Промокоды",
           icon: "el-icon-present",
-          path: "",
+          path: "promocodes",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Сертификаты",
@@ -124,9 +124,9 @@ export default {
         {
           title: "Пользователи",
           icon: "el-icon-set-up",
-          path: "",
+          path: "users",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Настройки",
