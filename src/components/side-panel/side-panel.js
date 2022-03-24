@@ -110,9 +110,9 @@ export default {
         {
           title: "Главный экран",
           icon: "el-icon-house",
-          path: "",
+          path: "main",
           line: false,
-          disabled: true,
+          disabled: false,
         },
         {
           title: "Инфостраницы",

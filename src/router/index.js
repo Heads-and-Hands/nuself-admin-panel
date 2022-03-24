@@ -24,7 +24,7 @@ import Rubrics from '../pages/index/rubrics/index.vue'
 import Rubric from '../pages/index/rubrics/_rubric/index.vue'
 import Contents from '../pages/index/contents/index.vue'
 import Content from '../pages/index/contents/_content/index.vue'
-
+import Main from '../pages/index/main/index.vue'
 
 // import store from '../store/index'
 
@@ -166,6 +166,11 @@ const routes = [
         component: Content,
         name: 'content',
         props: true
+      },
+      {
+        path: 'main',
+        component: Main,
+        name: 'main',
       },
     ]
   }
