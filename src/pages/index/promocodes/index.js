@@ -1,7 +1,11 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinList from '@/mixins/tableList'
 
 export default {
+    mixins: [
+        MixinList
+    ],
     data() {
         return {
             tableSales: [
@@ -57,7 +61,7 @@ export default {
             let text = this.listRemoveSales.length === 1? 'Выбрана' : 'Выбрано'
             text = text + ` ${this.listRemoveSales.length} ${this.ending(this.listRemoveSales.length, 'промокод')}`
             return text
-        }
+        },
     },
     methods: {
         deleteBanner() {
@@ -122,6 +126,15 @@ export default {
         closeToggleStatus() {
             this.clear()
             this.dialogStatusVisible = false
+        },
+        textStatus(status) {
+            if (status === 'active') return 'Активен'
+            if (status === 'inactive') return 'Неактивен'
+        },
+        textConditions(value) {
+            if (value === 'birthday') return 'День рождения'
+            if (value === 'date') return 'Срок действия'
+            if (value === 'first') return 'Первая покупка'
         }
     }
 }

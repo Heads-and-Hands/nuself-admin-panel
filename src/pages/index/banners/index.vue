@@ -65,7 +65,7 @@
               </div>
             </template>
             <template slot-scope="scope">
-              <el-button icon="el-icon-right" circle @click="openPage(`/catalog/category/${scope.row.id}`)"></el-button>
+              <el-button icon="el-icon-right" circle @click="openPage(`/banners/banner/${scope.row.id}`)"></el-button>
               <el-button icon="el-icon-delete" type="danger" circle @click="deleteBanner"></el-button>
             </template>
           </el-table-column>

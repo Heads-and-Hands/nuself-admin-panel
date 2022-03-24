@@ -8,6 +8,16 @@ export default {
     ],
     data() {
         return {
+            list: [
+                {
+                    id: '#',
+                    horizontalImageUrl: '#',
+                    title: '#',
+                    type: '#',
+                    transition: '#',
+                    status: '#',
+                }
+            ], // удалить после добавления запроса
             dialogTablesVisible: false,
             listRemoveBanner: [],
             dialogStatusVisible: false

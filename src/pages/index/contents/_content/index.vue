@@ -198,18 +198,23 @@
               </el-col>
               <el-col v-if="item.type === 'carousel'">
                 <div class="sub-header head-18-s">Карусель товаров  <span class="limit"> 3</span></div>
-                тут таблица товаров
+                <table-products
+                    :data="data.products"
+                    removeBtn
+                />
               </el-col>
               <el-col v-if="item.type === 'video'">
                 <div class="sub-header head-18-s">Видео</div>
                 <el-input
-
                     v-model="item.value"
                 ></el-input>
               </el-col>
               <el-col v-if="item.type === 'tile'">
                 <div class="sub-header head-18-s">Плитка товаров <span class="limit"> 3</span></div>
-                и тут таблица товаров
+                <table-products
+                    :data="data.products"
+                    removeBtn
+                />
               </el-col>
               <el-button
                   class="btn-plus"
@@ -227,13 +232,19 @@
               Товары из статьи <span class="limit"> 4</span>
 
             </div>
-            И здесь тоже таблица товаров
+            <table-products
+                :data="data.products"
+                removeBtn
+            />
           </section>
           <section class="page-container" ref="similar">
             <div class="head-24-s title">
               Похожие статьи <span class="limit"> 3</span>
             </div>
-            И тут таблица товаров
+            <table-products
+                :data="data.products"
+                removeBtn
+            />
           </section>
         </template>
       </div>

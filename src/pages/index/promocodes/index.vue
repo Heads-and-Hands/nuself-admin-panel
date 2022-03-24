@@ -1,10 +1,10 @@
 <template>
   <div class="Sales-page table-page">
-    <div class="head-32-s title">Промокоды <span class="limit">{{ tableSales.length || 0 }}</span></div>
+    <div class="head-32-s title">Промокоды <span class="limit">{{ list? list.length : 0 }}</span></div>
     <section>
       <div class="data-table">
         <el-table
-            :data="tableSales"
+            :data="list"
             ref="listRemoveTable"
             style="width: 100%"
             @selection-change="handleSelectionChange"
@@ -26,6 +26,9 @@
               prop="sale"
               label="Величина скидки"
               width="130">
+            <template slot-scope="scope">
+              <span>{{ scope.row.sale + '%' }}</span>
+            </template>
           </el-table-column>
           <el-table-column
               prop="status"
@@ -33,18 +36,21 @@
               width="120">
             <template slot-scope="scope">
               <el-tag
-                  :type="scope.row.status === 'Активен' ? 'success' : 'warning'"
+                  :type="scope.row.status === 'active' ? 'success' : 'warning'"
                   class="body-14-reg status-tag"
-              >{{ scope.row.status}}</el-tag>
+              >{{ textStatus(scope.row.status)}}</el-tag>
             </template>
           </el-table-column>
           <el-table-column
-              prop="validity"
+              prop="conditions[0].type"
               label="Условие"
               width="191">
+            <template slot-scope="scope">
+                <span>{{ textConditions(scope.row.conditions[0].type) }}</span>
+            </template>
           </el-table-column>
           <el-table-column
-              prop="subjectType"
+              prop="code"
               label="Код"
               width="191">
           </el-table-column>

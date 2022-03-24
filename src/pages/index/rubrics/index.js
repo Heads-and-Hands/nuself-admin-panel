@@ -1,11 +1,15 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 import changePositionModal from "@/components/modals/change-position-modal/change-position-modal.vue"
+import MixinList from '@/mixins/tableList'
 
 export default {
+    mixins: [
+        MixinList
+    ],
     data() {
         return {
-            rubricsData: [
+            list: [
                 {
                     id: '1639',
                     name: 'Название',

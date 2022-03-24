@@ -3,28 +3,28 @@ import Http from '@/services/http'
 export default ({
     namespaced: true,
     state: {
-        banners: null,
-        banner: null,
+        promocodes: null,
+        promocode: null,
     },
     getters: {
         list(state) {
-            return state.banners;
+            return state.promocodes;
         },
         info(state) {
-            return state.banner;
+            return state.promocode;
         }
     },
     mutations: {
-        setBanners(state, data) {
-            state.banners = data.list;
+        setPromocodes(state, data) {
+            state.promocodes = data.list;
         },
-        setBanner(state, data) {
-            state.banner = data;
+        setPromocode(state, data) {
+            state.promocode = data;
         },
     },
     actions: {
         async getList({ commit }, params) {
-            let url = `banners/search`;
+            let url = `promocodes/search`;
             const urlParams = [];
 
             Object.keys(params).forEach((key) => {
@@ -35,12 +35,12 @@ export default ({
                 url = url + "?" + urlParams.join("&");
             }
 
-            let { data } = await Http.get('banners', params);
-            commit("setBanners", data);
+            let { data } = await Http.get('promocodes', params);
+            commit("setPromocodes", data);
         },
         async getInfo({ commit }, id) {
-            let { data } = await Http.get(`/banners/${id}`);
-            commit("setBanner", data);
+            let { data } = await Http.get(`/promocodes/${id}`);
+            commit("setPromocode", data);
         }
     },
 })

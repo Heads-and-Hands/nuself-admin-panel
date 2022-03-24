@@ -2,11 +2,16 @@ import saveNotification from "@/components/save-notification/save-notification.v
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 import selectBlockModal from "@/components/modals/select-block-modal/select-block-modal.vue"
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
+import tableProducts from "@/components/table-products/table-products.vue"
+import MixinInfo from '@/mixins/infoPage'
 
 export default {
+    mixins: [
+        MixinInfo
+    ],
     data() {
         return {
-            tableContent: {
+            info: {
                 id: '1R1469',
                 title: 'Название',
                 status: 'Показывать',
@@ -77,6 +82,24 @@ export default {
                     date: 'Tue Mar 29 2022 00:03:00 GMT+0300',
                     place: 'г. Москва, ул. Ленина, 16',
                     link: 'https://youtu.be/aZeh6idYc1Y'
+                },
+                products: {
+                    list: [
+                        {
+                            id: '163',
+                            image: 'https://chpic.su/_data/archived/stickers/c/ca/cats_meme.webp',
+                            article: '1RJ431',
+                            status: 'Не показывать',
+                            name: 'Футболка с красным принтом...',
+                            brand: 'Lauren Ralpher Laurenser...',
+                            color: {
+                                id: 1,
+                                title: 'синий',
+                                color: '#0000ff',
+                                image: ''
+                            },
+                        },
+                    ],
                 },
             },
             data: {},
@@ -172,13 +195,20 @@ export default {
         } else { this.navList = [] }
     },
     created() {
-        this.data = JSON.parse(JSON.stringify(this.tableContent))
+        this.data = JSON.parse(JSON.stringify(this.info))
         this.imageUrl = this.data.album[0].imagePath
         this.imageUrl2 = this.data.album[1].imagePath
     },
+    components: {
+        rightSideBar,
+        saveNotification,
+        selectBlockModal,
+        toggleStatus,
+        tableProducts
+    },
     computed: {
         isChange() {
-            return JSON.stringify(this.data) !== JSON.stringify(this.tableContent)
+            return JSON.stringify(this.data) !== JSON.stringify(this.info)
         },
         isType() {
             return this.data.type
@@ -226,12 +256,6 @@ export default {
             } else { this.navList = [] }
         }
     },
-    components: {
-        rightSideBar,
-        saveNotification,
-        selectBlockModal,
-        toggleStatus
-    },
     methods: {
         goToBack() {
             this.$router.push({ path: `/contents` });
@@ -275,7 +299,7 @@ export default {
             this.dialogArticleVisible = false
         },
         clear() {
-            this.data = JSON.parse(JSON.stringify(this.tableContent))
+            this.data = JSON.parse(JSON.stringify(this.info))
         },
         remove() {
             console.log('remove')

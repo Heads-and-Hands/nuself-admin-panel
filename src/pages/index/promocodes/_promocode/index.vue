@@ -23,9 +23,9 @@
                 <div class="sub-title">Статус</div>
                 <div class="status-container">
                   <el-tag
-                      :type="data.status === 'Активен' ? 'success' : 'warning'"
+                      :type="data.status === 'active' ? 'success' : 'warning'"
                       class="body-14-reg status-tag"
-                  >{{ data.status }}</el-tag>
+                  >{{ textStatus(data.status) }}</el-tag>
                   <div>
                     <el-button
                         icon="el-icon-edit"
@@ -40,7 +40,7 @@
             <div class="container-inputs">
               <el-col>
                 <div class="sub-title">Условие</div>
-                <el-select v-model="data.condition.type" :placeholder="data.condition.type">
+                <el-select v-model="data.conditions.type" :placeholder="data.conditions.type">
                   <el-option
                       v-for="(item, index) in selectType"
                       :key="index"
@@ -64,7 +64,7 @@
                 ></el-input>
               </el-col>
             </div>
-            <div v-if="data.condition.type === 'date'" class="container-inputs">
+            <div v-if="data.conditions[0].type === 'date'" class="container-inputs">
               <el-col class="textarea">
                 <div class="sub-title">Срок действия</div>
                 <el-date-picker

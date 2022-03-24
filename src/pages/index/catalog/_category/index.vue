@@ -2,65 +2,78 @@
   <div class="category-page">
     <div class="page-header">
       <i class="el-icon-back" @click="goToBack"></i>
-      {{ info.common.name }}
+      {{ data.common.name }}
     </div>
     <div class="category-page-container">
       <div class="left-container content">
         <section class="main" ref="main">
           <div class="head-24-s title">Основное</div>
-          <div class="data-container">
-            <div class="name">
-              <div class="body-14-reg sub-title">Название категории</div>
-              <el-input
-                placeholder="Please input"
-                v-model="info.common.name"
-                :value="info.common.name"
-                clearable
-                :disabled="!info.common.isCustom"
-              >
-              </el-input>
-            </div>
-            <div class="id">
-              <div class="body-14-reg sub-title">ID</div>
-              <el-input
-                v-model="info.common.id"
-                :value="info.common.id"
-                clearable
-                disabled
-              >
-              </el-input>
-            </div>
-            <div class="status">
-              <div class="body-14-reg sub-title">Статус</div>
-              <el-tag
-                :type="
-                  info.common.status === 'Показывать'
+          <div class="data-info">
+            <div class="data-container">
+              <div class="name">
+                <div class="body-14-reg sub-title">Название категории</div>
+                <el-input
+                    placeholder="Please input"
+                    v-model="data.common.name"
+                    :value="data.common.name"
+                    clearable
+                >
+                </el-input>
+              </div>
+              <div class="id">
+                <div class="body-14-reg sub-title">ID</div>
+                <el-input
+                    v-model="data.common.id"
+                    :value="data.common.id"
+                    clearable
+                    disabled
+                >
+                </el-input>
+              </div>
+              <div class="status">
+                <div class="body-14-reg sub-title">Статус</div>
+                <el-tag
+                    :type="data.common.status === 'Показывать'
                     ? 'success'
                     : 'warning'
                 "
-                class="body-14-reg status-tag"
-                >{{ info.common.status }}</el-tag
-              >
+                    class="body-14-reg status-tag"
+                >{{ data.common.status }}</el-tag
+                >
+              </div>
+              <div>
+                <el-button
+                    icon="el-icon-edit"
+                    circle
+                    style="background-color: #292b33; color: white"
+                    @click="dialogStatusVisible = true"
+                ></el-button>
+              </div>
             </div>
-            <div>
-              <el-button
-                icon="el-icon-edit"
-                circle
-                style="background-color: #292b33; color: white"
-                @click="dialogStatusVisible = true"
-              ></el-button>
+            <div class="data-container">
+              <div class="size">
+                <div class="body-14-reg sub-title">Размерная таблица по умолчанию</div>
+                <el-select v-model="categoryDataApi.common.sizeTableType" :placeholder="categoryDataApi.common.sizeTableType">
+                  <el-option
+                      v-for="(item, index) in sizeSelectList"
+                      :key="index"
+                      :label="item.title"
+                      :value="item.value">
+                  </el-option>
+                </el-select>
+              </div>
             </div>
           </div>
           <div class="data-image">
             <div class="head-18-s">Обложка</div>
-            <div v-if="info.common.image" class="image-container">
-              <img class="image" :src="info.common.image" />
+            <div v-if="data.common.image" class="image-container">
+              <img class="image" :src="data.common.image" />
               <el-button
                 type="danger"
                 circle
                 class="delete-image"
                 size="mini"
-                @click="info.common.image = ''"
+                @click="data.common.image = ''"
                 >&#215;</el-button
               >
             </div>
@@ -80,127 +93,19 @@
               >
             </el-upload>
           </div>
-          <div class="data-table">
-            <div class="head-18-s">Размерная таблица по умолчанию</div>
-            <el-table :data="tableSize" style="width: 716px; margin-top: 16px">
-              <el-table-column prop="id" label="ID" width="44">
-              </el-table-column>
-              <el-table-column prop="image" label="Фото" width="85">
-                <template slot-scope="scope">
-                  <img :src="scope.row.image" class="image" />
-                </template>
-              </el-table-column>
-              <el-table-column prop="name" label="Название"> </el-table-column>
-              <el-table-column width="40" fixed="right">
-                <template slot="header">
-                  <div style="text-align: right">
-                    <el-button
-                      icon="el-icon-edit"
-                      circle
-                      style="background-color: #292b33; color: white"
-                    ></el-button>
-                  </div>
-                </template>
-                <template>
-                  <el-button icon="el-icon-right" circle></el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
         </section>
         <section class="product" ref="goods">
           <div class="head-24-s title">
             Товары <span class="limit"> 42</span>
           </div>
-          <div class="page-content" v-if="info.common.isCustom && info.products">
-            <div>
-              <el-table
-                :data="info.products.list"
-                style="width: 100%"
-                row-key="id"
-                :indent="0"
-                row-class-name="body-14-reg"
-              >
-                <el-table-column prop="id" label="ID" width="44">
-                </el-table-column>
-                <el-table-column prop="image" label="Фото" width="76">
-                  <template slot-scope="scope">
-                    <img :src="scope.row.image" class="image" />
-                  </template>
-                </el-table-column>
-                <el-table-column prop="article" label="Артикул" width="80">
-                </el-table-column>
-                <el-table-column prop="brand" label="Бренд" width="183">
-                  <template slot-scope="scope">
-                    <span class="brand">
-                      {{ scope.row.brand }}
-                    </span>
-                  </template>
-                </el-table-column>
-                <el-table-column prop="color" label="Цвет" width="104">
-                  <template slot-scope="scope">
-                    <span class="body-14-reg color">
-                      <span
-                        class="color-circle"
-                        :style="`background-color: ${scope.row.color.color}`"
-                      ></span>
-                      {{ scope.row.color.title }}
-                    </span>
-                  </template>
-                </el-table-column>
-                <el-table-column prop="status" label="Статус" width="126">
-                  <template slot-scope="scope">
-                    <el-tag
-                      :type="
-                        scope.row.status === 'Показывать'
-                          ? 'success'
-                          : 'warning'
-                      "
-                      class="body-14-reg status-tag"
-                      >{{ scope.row.status }}</el-tag
-                    >
-                  </template>
-                </el-table-column>
-                <el-table-column fixed="right" label="Operations">
-                  <template slot="header">
-                    <div style="text-align: right">
-                      <el-button
-                        icon="el-icon-edit"
-                        circle
-                        style="background-color: #292b33; color: white"
-                      ></el-button>
-                    </div>
-                  </template>
-                  <template>
-                    <el-button icon="el-icon-right" circle></el-button>
-                    <el-button
-                      type="danger"
-                      icon="el-icon-close"
-                      @click="deleteCategory"
-                      circle
-                      plain
-                    ></el-button>
-                  </template>
-                </el-table-column>
-              </el-table>
-              <el-pagination
-                class="pagination"
-                background
-                layout="prev, pager, next"
-                :total="25"
-              >
-              </el-pagination>
-            </div>
-            <table-products :data="category.products"/>
-          </div>
-          <el-button v-else class="btn-to-product">Перейти к товарам</el-button>
+          <el-button class="btn-to-product">Перейти к товарам</el-button>
         </section>
       </div>
       <right-side-bar v-if="navList.length" :list="navList"  />
     </div>
     <toggle-status
       :dialogVisible="dialogStatusVisible"
-      :status="info.common.status"
+      :status="data.common.status"
       text="выбранной категории"
       @close="dialogStatusVisible = false"
       @change-status="changeStatus"

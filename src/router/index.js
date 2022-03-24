@@ -176,7 +176,7 @@ const routes = [
       {
         path: `promocodes/promocode/:id`,
         component: Promocode,
-        name: 'promocode',
+        name: 'promocodes',
         props: true
       },
       {

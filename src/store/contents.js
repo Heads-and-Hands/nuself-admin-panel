@@ -1,31 +1,30 @@
 import Http from '@/services/http'
+
 export default ({
     namespaced: true,
     state: {
-        categories: null,
-        category: null,
+        contents: null,
+        content: null,
     },
     getters: {
         list(state) {
-            return state.categories;
+            return state.contents;
         },
         info(state) {
-            return state.category;
+            return state.content;
         }
     },
     mutations: {
-        setCategories(state, data) {
-            state.categories = data.list;
+        setContents(state, data) {
+            state.contents = data.list;
         },
-        setCategory(state, data) {
-            state.category = data;
+        setContent(state, data) {
+            state.content = data;
         },
     },
     actions: {
         async getList({ commit }, params) {
-            // потом будет get запрос category/standard
-
-            let url = `category/search`;
+            let url = `contents/search`;
             const urlParams = [];
 
             Object.keys(params).forEach((key) => {
@@ -36,12 +35,12 @@ export default ({
                 url = url + "?" + urlParams.join("&");
             }
 
-            let { data } = await Http.post('category/search', params);
-            commit("setCategories", data);
+            let { data } = await Http.post('contents/search', params);
+            commit("setContents", data);
         },
         async getInfo({ commit }, id) {
-            let { data } = await Http.get(`/category/${id}`);
-            commit("setCategory", data);
-        },
+            let { data } = await Http.get(`/contents/${id}`);
+            commit("setContent", data);
+        }
     },
 })

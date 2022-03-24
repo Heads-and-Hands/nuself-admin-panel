@@ -1,9 +1,9 @@
 <template>
   <div class="orders-page table-page">
-    <div class="head-32-s title">Рубрики <span class="limit">{{ rubricsData.length || 0 }}</span></div>
+    <div class="head-32-s title">Рубрики <span class="limit">{{ list? list.length : 0 }}</span></div>
     <section>
       <el-table
-          :data="rubricsData"
+          :data="list"
           ref="rubricsTable"
           @selection-change="handleSelectionChange"
           style="width: 100%">
@@ -60,7 +60,7 @@
     <change-position-modal
         v-if="showPopupPosition"
         :showPopupPosition="showPopupPosition"
-        :total="rubricsData.length"
+        :total="list.length"
         :position="moveCategory.count"
         @move="move"
         @close="closeChangePosition"

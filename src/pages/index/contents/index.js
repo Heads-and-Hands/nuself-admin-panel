@@ -1,10 +1,14 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinList from '@/mixins/tableList'
 
 export default {
+    mixins: [
+        MixinList
+    ],
     data() {
         return {
-            tableMaterials: [
+            list: [
                 {
                     id: '163',
                     image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
@@ -35,7 +39,14 @@ export default {
             ],
             dialogTablesVisible: false,
             listRemoveContent: [],
-            dialogStatusVisible: false
+            dialogStatusVisible: false,
+            typeContent: 'rubric',
+            selectTypeContent: [
+                {
+                    value: 'rubric',
+                    title: 'Рубрика'
+                }
+            ]
         }
     },
     components: {

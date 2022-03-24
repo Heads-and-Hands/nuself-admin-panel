@@ -1,8 +1,21 @@
 .contents-page {
+  .data-table  {
+    margin-top: 24px !important;
+  }
+
   .image {
     height: 53px;
     width: 44px;
     border-radius: 4px;
     object-fit: contain;
+  }
+
+  .el-select {
+    width: 100%;
+    max-width: 1008px;
+    .el-input__inner {
+      color: #C1C4CB;
+      font-weight: 400;
+    }
   }
 }

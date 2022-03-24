@@ -5,6 +5,8 @@ export default {
     data() {
         return {
             tableContent: {
+                mainCarouselBanners: [],
+                mainBody: []
             },
             data: {},
             articleList: [

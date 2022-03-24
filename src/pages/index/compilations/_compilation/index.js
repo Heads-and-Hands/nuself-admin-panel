@@ -111,7 +111,6 @@ export default {
         saveNotification,
         toggleStatus,
         tableProducts,
-        saveNotification
     },
     methods: {
         goToBack() {

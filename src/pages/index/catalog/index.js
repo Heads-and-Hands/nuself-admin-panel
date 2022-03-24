@@ -13,7 +13,6 @@ export default {
             dialogStatusVisible: false,
             moveCategory: {},
             standardTableData: [],
-            customTableData: [],
             listRemoveCatalog: [],
             loading: true,
             meta: {
@@ -21,9 +20,6 @@ export default {
                 limit: 30,
             },
         }
-    },
-    created() {
-        this.getCustomTableData()
     },
     components: {
         saveNotification,
@@ -36,14 +32,8 @@ export default {
             text = text + ` ${this.listRemoveCatalog.length} ${this.ending(this.listRemoveCatalog.length, 'категор')}`
             return text
         },
-        listCustom() {
-            return this.$store.getters[`${this.$route.name}/listCustom`];
-        }
     },
     methods: {
-        openCategory(id) {
-            this.$router.push({ path: `catalog/category/${id}`});
-        },
         deleteCategory() {
             this.$confirm( 'Вы уверены, что хотите удалить выбранные категории?', 'Удалить категорию?',  {
                 confirmButtonText: 'Удалить',
@@ -57,12 +47,6 @@ export default {
                     message: 'Your delete' + value
                 });
             })
-        },
-        async getCustomTableData() {
-            this.loading = true;
-            const action = `${this.$route.name}/getCustom`;
-            try { await this.$store.dispatch(action, this.meta) }
-            finally { this.loading = false }
         },
         ending(value, str){
             let ending = str;
