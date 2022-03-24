@@ -8,80 +8,68 @@
       <div class="left-container">
         <section class="page-container">
           <div class="container-article">
-            <div class="sub-header head-18-s">Карусель товаров <span class="limit"> 3</span></div>
-            <el-table
-              :data="tableSize"
-              max-height="552"
-              style="width: 100%; margin-top: 16px"
-              @selection-change="handleSelectionChange">
-            <el-table-column
-                prop="id"
-                label="ID"
-                width="40">
-            </el-table-column>
-            <el-table-column
-                prop="image"
-                label="Фото"
-                width="170">
-              <template slot-scope="scope">
-                <img :src="scope.row.image" class="image-horizontal" />
-              </template>
-            </el-table-column>
-            <el-table-column
-                prop="name"
-                label="Заголовок баннера"
-                width="263">
-            </el-table-column>
-              <el-table-column prop="status" label="Статус" width="126">
-                <template slot-scope="scope">
-                  <el-tag
-                      :type="
+            <div v-for="(item, index) in data" :key="index" class="content-block" :class="item.type">
+              <div class="sub-header head-18-s">{{ tableName(item) }} <span class="limit"> 3</span></div>
+              <el-table
+                  v-if="item.type === 'carousel' || item.type === 'tile' || item.type === 'products'"
+                  :data="item.value"
+                  max-height="552"
+                  style="width: 100%; margin-top: 16px">
+                <el-table-column
+                    prop="id"
+                    label="ID"
+                    width="40">
+                </el-table-column>
+                <el-table-column
+                    prop="image"
+                    label="Фото"
+                    width="170">
+                  <template slot-scope="scope">
+                    <img :src="scope.row.image" class="image-horizontal" />
+                  </template>
+                </el-table-column>
+                <el-table-column
+                    prop="name"
+                    label="Заголовок баннера"
+                    width="263">
+                </el-table-column>
+                <el-table-column prop="status" label="Статус" width="126">
+                  <template slot-scope="scope">
+                    <el-tag
+                        :type="
                         scope.row.status === 'Показывать'
                           ? 'success'
                           : 'warning'
                       "
-                      class="body-14-reg status-tag"
-                  >{{ scope.row.status }}</el-tag
-                  >
-                </template>
-              </el-table-column>
-              //исправить кнопки на таблицах
-              <el-table-column
-                  width="110"
-                  fixed="right">
-                <template slot="header">
-                  <div style="text-align: right">
-                    <el-button
-                        icon="el-icon-edit"
-                        circle
-                        style="background-color: #292B33; color: white"
-                        @click="dialogTablesVisible = true"
-                    ></el-button>
-                    <el-button
-                        icon="el-icon-close"
-                        circle
-                        type="danger"
-                        style="background: #DDDFE5; border-color: #DDDFE5;"
-                        disabled
-                        @click="dialogTablesVisible = true"
-                    ></el-button>
-                  </div>
-                </template>
-                <template slot-scope="scope">
-                  <el-button icon="el-icon-right" circle></el-button>
-                </template>
-              </el-table-column>
-          </el-table>
-            <el-button
-                class="btn-plus"
-                icon="el-icon-plus"
-                circle
-                style="background-color: #292B33; color: white"
-                @click="openSelectBlockModal(index)"
-            ></el-button>
-          </div>
-          <div class="container-article">
-            <div v-for="(item, index) in data" :key="index" class="content-block" :class="item.type">
+                        class="body-14-reg status-tag"
+                    >{{ scope.row.status }}</el-tag
+                    >
+                  </template>
+                </el-table-column>
+                <el-table-column
+                    width="110"
+                    fixed="right">
+                  <template slot="header">
+                    <div style="text-align: right">
+                      <el-button
+                          icon="el-icon-edit"
+                          circle
+                          style="background-color: #292B33; color: white"
+                          @click="dialogTablesVisible = true"
+                      ></el-button>
+                      <el-button
+                          icon="el-icon-close"
+                          circle
+                          type="danger"
+                          @click="dialogTablesVisible = true"
+                      ></el-button>
+                    </div>
+                  </template>
+                  <template slot-scope="scope">
+                    <el-button icon="el-icon-right" circle></el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
               <el-button
                   class="btn-plus"
                   icon="el-icon-plus"

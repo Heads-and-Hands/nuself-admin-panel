@@ -71,5 +71,13 @@ export default {
             console.log('save')
             this.clear()
         },
+        tableName(item) {
+            if (item.type === 'carousel') return 'Карусель баннеров'
+            if (item.type === 'tile') return 'Плитка баннеров'
+            if (item.type === 'compilations') return 'Подборка'
+            if (item.type === 'products') return 'Баннер с товаром'
+            if (item.type === 'materials') return 'Плитка материалов'
+            if (item.type === 'community') return 'Блок "Сообщество"'
+        },
     }
 }
