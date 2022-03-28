@@ -8,13 +8,13 @@ export default {
     ],
     data() {
         return {
-            clientData: {
+            data: {
                 common: {
                     name: 'Константин',
                     surname: 'Константинопольский',
                     birthday: '30.11.1997',
                     lastLogin: '13.05.2021, 15:00',
-                    status: 'Активен',
+                    status: 'active',
                     phone: '+7 982 974 21 68',
                     email: 'S.vasiliev@yandex.ru',
                     country: '',
@@ -81,7 +81,7 @@ export default {
     },
     components: {
         rightSideBar,
-        toggleStatus
+        toggleStatus,
     },
     methods: {
         goToBack() {

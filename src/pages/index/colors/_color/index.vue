@@ -11,29 +11,29 @@
       <el-col>
         <div class="sub-title body-14-reg">ID</div>
         <el-input
-            v-model="info.id"
+            v-model="data.id"
             disabled>
         </el-input>
       </el-col>
       <el-col>
         <div class="sub-title body-14-reg">Цвет</div>
         <el-input
-            v-model="info.title"
+            v-model="data.title"
             disabled>
         </el-input>
       </el-col>
       <el-col>
         <div class="sub-title body-14-reg">Значение</div>
         <el-input
-            :color="info.color"
-            v-model="customImage"
+            :color="data.color"
+            v-model="data.color"
             @focus="showPicker = true"
             clearable
         >
         </el-input>
         <div v-show="showPicker" class="block" @mouseleave="showPicker = false">
           <el-color-picker
-              v-model="customImage"
+              v-model="data.color"
               popper-class="palette"
               class="color-picker"
               @mouseout.native="changeColor()"

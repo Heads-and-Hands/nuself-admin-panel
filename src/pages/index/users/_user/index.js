@@ -1,21 +1,24 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinInfo from '@/mixins/infoPage'
 
 export default {
+    mixins: [
+        MixinInfo
+    ],
     components: {
         saveNotification,
         toggleStatus
     },
     data() {
         return {
-            complData:  {
+            data:  {
                 id: '163',
                 name: 'Имя Фамилия',
                 role: 'Администратор',
-                status: 'Активен',
+                status: 'active',
                 email: 'ivanov@gmail.com',
             },
-            data: {},
             selectType: [
                 {
                     type: 'admin',
@@ -25,12 +28,9 @@ export default {
             dialogStatusVisible: false,
         }
     },
-    created() {
-        this.data = JSON.parse(JSON.stringify(this.complData))
-    },
     computed: {
         isSaveChange() {
-            return JSON.stringify(this.data) !== JSON.stringify(this.complData)
+            return JSON.stringify(this.data) !== JSON.stringify(this.info)
         },
     },
     methods: {
@@ -45,7 +45,7 @@ export default {
             console.log('save')
         },
         clear() {
-            this.data = JSON.parse(JSON.stringify(this.complData))
+            this.data = JSON.parse(JSON.stringify(this.info))
         },
         changeStatus(status) {
             if (status) {

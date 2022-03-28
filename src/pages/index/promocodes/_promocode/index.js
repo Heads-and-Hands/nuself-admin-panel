@@ -12,21 +12,20 @@ export default {
     },
     data() {
         return {
-            // info: {
+            // data: {
             //     id: '1R1469',
             //     name: 'Название промокода',
             //     sale: '15%',
-            //     status: 'Активен',
+            //     status: 'active',
             //     code: '1R14AS69',
-            //     condition: {
+            //     condition: [{
             //         type: 'date',
             //         params: {
             //             startDate: '2021-12-12',
             //             endDate: '2022-11-11'
             //         }
-            //     },
+            //     }]
             // },
-            data: {},
             selectType: [
                 {
                     type: 'birthday',
@@ -37,20 +36,24 @@ export default {
                     title: 'Срок действия'
                 },
                 {
-                    type: 'first',
+                    type: 'ordinalPurchase',
                     title: 'Первая покупка'
                 },
+                {
+                    type: 'registration',
+                    title: 'Регистрация'
+                }
             ],
+            selectCondition: '',
             dialogStatusVisible: false,
             dataPicker: [],
         }
     },
     created() {
         // поправить ошибки
-        this.data = JSON.parse(JSON.stringify(this.info))
-        if (this.data.conditions[0].type === 'date') {
-            this.dataPicker = [this.data.conditions.params.startDate, this.data.conditions.params.endDate]
-        }
+      if (this.data && this.data.conditions[0].type === 'date') {
+         this.dataPicker = [this.data.conditions[0].params.startDate, this.data.conditions[0].params.endDate]
+      }
     },
     computed: {
         isSaveChange() {
@@ -77,6 +80,5 @@ export default {
             }
             this.dialogStatusVisible = false
         },
-
     }
 }

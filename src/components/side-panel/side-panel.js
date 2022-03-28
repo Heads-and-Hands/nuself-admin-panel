@@ -27,13 +27,6 @@ export default {
           title: "Цвета",
           icon: "el-icon-brush",
           path: "colors",
-          line: false,
-          disabled: false,
-        },
-        {
-          title: "Таблицы размеров",
-          icon: "el-icon-crop",
-          path: "sizes",
           line: true,
           disabled: false,
         },
@@ -91,7 +84,7 @@ export default {
           icon: "el-icon-coin",
           path: "sales",
           line: false,
-          disabled: false,
+          disabled: true,
         },
         {
           title: "Промокоды",

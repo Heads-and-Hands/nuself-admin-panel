@@ -64,9 +64,6 @@ export default {
             }
         ]
     },
-    created() {
-        this.data = JSON.parse(JSON.stringify(this.info))
-    },
     computed: {
         isChange() {
             return JSON.stringify(this.data) !== JSON.stringify(this.info)

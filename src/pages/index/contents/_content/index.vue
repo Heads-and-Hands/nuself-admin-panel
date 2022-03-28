@@ -23,16 +23,12 @@
                 <el-col class="status-container">
                   <div class="body-14-reg sub-title">Статус</div>
                   <div class="status">
-                    <el-tag
-                        :type="data.status === 'Показывать' ? 'success' : 'warning'"
-                        class="body-14-reg status-tag"
-                    >{{ data.status}}</el-tag>
-                    <el-button
-                        icon="el-icon-edit"
-                        circle
-                        style="background-color: #292B33; color: white"
-                        @click="dialogStatusVisible = true"
-                    ></el-button>
+                    <status-btn
+                        :status="data.status"
+                        type="visibility"
+                        edit
+                        @openStatusModal="dialogStatusVisible = true"
+                    />
                   </div>
                 </el-col>
               </div>

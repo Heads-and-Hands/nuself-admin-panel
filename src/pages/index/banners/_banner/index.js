@@ -35,7 +35,6 @@ export default {
         }
     },
     created() {
-        this.data = JSON.parse(JSON.stringify(this.info))
         this.imageUrl = this.data.gallery[0].imagePath
         this.imageUrl2 = this.data.gallery[1].imagePath
     },

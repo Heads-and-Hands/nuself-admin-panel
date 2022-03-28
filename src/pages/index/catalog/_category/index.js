@@ -103,7 +103,6 @@ export default {
                     ]
                 }
             },
-            data: {},
             sizeSelectList: [
                 {
                     title: 'Одежда',
@@ -142,9 +141,6 @@ export default {
         toggleStatus,
         tableProducts,
         saveNotification
-    },
-    created() {
-        this.data = JSON.parse(JSON.stringify(this.info))
     },
     computed: {
         isChange() {

@@ -8,44 +8,6 @@ export default {
     ],
     data() {
         return {
-            tableSales: [
-                {
-                    id: '163',
-                    name: 'Название скидки',
-                    sale: '15%',
-                    status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
-                },
-                {
-                    id: '163',
-                    name: 'Название скидки',
-                    sale: '15%',
-                    status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
-                },
-                {
-                    id: '163',
-                    name: 'Название скидки',
-                    sale: '15%',
-                    status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
-                },
-                {
-                    id: '163',
-                    name: 'Название скидки',
-                    sale: '15%',
-                    status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
-                },
-            ],
             dialogTablesVisible: false,
             listRemoveSales: [],
             searchValue: '',
@@ -126,10 +88,6 @@ export default {
         closeToggleStatus() {
             this.clear()
             this.dialogStatusVisible = false
-        },
-        textStatus(status) {
-            if (status === 'active') return 'Активен'
-            if (status === 'inactive') return 'Неактивен'
         },
         textConditions(value) {
             if (value === 'birthday') return 'День рождения'

@@ -1,7 +1,11 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinInfo from '@/mixins/infoPage'
 
 export default {
+    mixins: [
+        MixinInfo
+    ],
     data() {
         return {
             saleData: {
@@ -21,7 +25,6 @@ export default {
                     },
                 ]
             },
-            data: {},
             selectType: [
                 {
                     value: 'Дизайнер'
@@ -38,9 +41,6 @@ export default {
             ],
             dialogStatusVisible: false,
         }
-    },
-    created() {
-        this.data = JSON.parse(JSON.stringify(this.saleData))
     },
     computed: {
         isSaveChange() {

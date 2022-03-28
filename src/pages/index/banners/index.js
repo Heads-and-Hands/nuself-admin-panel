@@ -10,12 +10,12 @@ export default {
         return {
             list: [
                 {
-                    id: '#',
+                    id: '1',
                     horizontalImageUrl: '#',
                     title: '#',
                     type: '#',
                     transition: '#',
-                    status: '#',
+                    status: 'active',
                 }
             ], // удалить после добавления запроса
             dialogTablesVisible: false,

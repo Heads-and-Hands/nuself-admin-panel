@@ -39,10 +39,11 @@
               label="Статус"
               width="126">
             <template slot-scope="scope">
-              <el-tag
-                  :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
-                  class="body-14-reg status-tag"
-              >{{ scope.row.status}}</el-tag>
+              <status-btn
+                  :status="scope.row.status"
+                  type="visibility"
+                  size="small"
+              />
             </template>
           </el-table-column>
           <el-table-column
@@ -63,7 +64,7 @@
               </div>
             </template>
             <template slot-scope="scope">
-              <el-button icon="el-icon-right" circle @click="openPage(`/catalog/category/${scope.row.id}`)"></el-button>
+              <el-button icon="el-icon-right" circle @click="openPage(`/compilations/compilation/${scope.row.id}`)"></el-button>
               <el-button icon="el-icon-delete" type="danger" circle @click="deleteCompilation"></el-button>
             </template>
           </el-table-column>

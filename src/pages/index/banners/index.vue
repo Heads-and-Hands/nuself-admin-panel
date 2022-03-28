@@ -45,10 +45,11 @@
               label="Статус"
               width="171">
             <template slot-scope="scope">
-              <el-tag
-                  :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
-                  class="body-14-reg status-tag"
-              >{{ scope.row.status}}</el-tag>
+              <status-btn
+                  :status="scope.row.status"
+                  type="visibility"
+                  size="small"
+              />
             </template>
           </el-table-column>
           <el-table-column

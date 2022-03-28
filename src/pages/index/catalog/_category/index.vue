@@ -32,22 +32,12 @@
               </div>
               <div class="status">
                 <div class="body-14-reg sub-title">Статус</div>
-                <el-tag
-                    :type="data.common.status === 'Показывать'
-                    ? 'success'
-                    : 'warning'
-                "
-                    class="body-14-reg status-tag"
-                >{{ data.common.status }}</el-tag
-                >
-              </div>
-              <div>
-                <el-button
-                    icon="el-icon-edit"
-                    circle
-                    style="background-color: #292b33; color: white"
-                    @click="dialogStatusVisible = true"
-                ></el-button>
+                <status-btn
+                    :status="data.common.status"
+                    type="active"
+                    edit
+                    @openStatusModal="dialogStatusVisible = true"
+                />
               </div>
             </div>
             <div class="data-container">

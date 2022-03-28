@@ -11,10 +11,10 @@ export default {
     ],
     data() {
         return {
-            info: {
+            data: {
                 id: '1R1469',
                 title: 'Название',
-                status: 'Показывать',
+                status: 'active',
                 type: 'Статья',
                 rubric: 'Люди',
                 album: [
@@ -102,7 +102,6 @@ export default {
                     ],
                 },
             },
-            data: {},
             selectType: [
                 {
                     value: 'Статья'
@@ -195,7 +194,6 @@ export default {
         } else { this.navList = [] }
     },
     created() {
-        this.data = JSON.parse(JSON.stringify(this.info))
         this.imageUrl = this.data.album[0].imagePath
         this.imageUrl2 = this.data.album[1].imagePath
     },

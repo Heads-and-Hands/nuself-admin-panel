@@ -2,6 +2,7 @@ export default {
   data() {
     return {
       loading: true,
+      data: {}
     }
   },
   created() {
@@ -17,7 +18,10 @@ export default {
       this.loading = true;
       const action = `${this.$route.name}/getInfo`;
       try { await this.$store.dispatch(action, this.$route.params.id) }
-      finally { this.loading = false }
+      finally {
+        this.data = this.info ? JSON.parse(JSON.stringify(this.info)) : {}
+        this.loading = false
+      }
     },
     back() {
       this.$router.push({ path: `/${this.$route.name}` });
@@ -26,10 +30,6 @@ export default {
       if (value === 'birthday') return 'День рождения'
       if (value === 'date') return 'Срок действия'
       if (value === 'first') return 'Первая покупка'
-    },
-    textStatus(status) {
-      if (status === 'active') return 'Активен'
-      if (status === 'inactive') return 'Неактивен'
     },
   },
 }

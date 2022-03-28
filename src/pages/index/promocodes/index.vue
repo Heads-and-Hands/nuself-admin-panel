@@ -10,10 +10,6 @@
             @selection-change="handleSelectionChange"
         >
           <el-table-column
-              type="selection"
-              width="46">
-          </el-table-column>
-          <el-table-column
               prop="id"
               label="ID"
               width="66">
@@ -35,10 +31,11 @@
               label="Статус"
               width="120">
             <template slot-scope="scope">
-              <el-tag
-                  :type="scope.row.status === 'active' ? 'success' : 'warning'"
-                  class="body-14-reg status-tag"
-              >{{ textStatus(scope.row.status)}}</el-tag>
+              <status-btn
+                  :status="scope.row.status"
+                  type="active"
+                  size="small"
+              />
             </template>
           </el-table-column>
           <el-table-column
