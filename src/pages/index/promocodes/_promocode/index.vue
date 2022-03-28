@@ -4,7 +4,7 @@
       <i class="el-icon-back" @click="goToBack"></i>
       {{data.name}}
     </div>
-    <div class="separate-page-container">
+    <div v-if="data" class="separate-page-container">
       <div class="left-container">
         <section class="page-container">
           <div class="head-24-s title">
@@ -52,12 +52,14 @@
               <el-col class="info">
                 <div class="sub-title">Величина скидки на корзину</div>
                 <el-input
-                    class="inline-input"
-                    v-model="data.sale + '%'"
-                ></el-input>
+                    class="inline-input sale-input"
+                    :value="data.sale + '%'"
+                    @input="change"
+                >
+                </el-input>
               </el-col>
             </div>
-            <div v-if="(data.conditions && data.conditions[0].type === 'date') || selectCondition === 'date'" class="container-inputs">
+            <div v-if="data.conditions && data.conditions[0].type === 'date'" class="container-inputs">
               <el-col class="textarea">
                 <div class="sub-title">Срок действия</div>
                 <el-date-picker

@@ -41,6 +41,10 @@ export default ({
         async getInfo({ commit }, id) {
             let { data } = await Http.get(`/promocodes/${id}`);
             commit("setPromocode", data);
+        },
+        async putInfo({ commit }, params) {
+            console.log(params)
+            await Http.put(`/promocodes/${params.id}`, params.data);
         }
     },
 })

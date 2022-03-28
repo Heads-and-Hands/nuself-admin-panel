@@ -10,7 +10,9 @@ export default {
   },
   computed: {
     info() {
-      return this.$store.getters[`${this.$route.name}/info`];
+      let info = this.$store.getters[`${this.$route.name}/info`]
+      this.data = info ? JSON.parse(JSON.stringify(info)) : {}
+      return info
     },
   },
   methods: {
@@ -19,7 +21,6 @@ export default {
       const action = `${this.$route.name}/getInfo`;
       try { await this.$store.dispatch(action, this.$route.params.id) }
       finally {
-        this.data = this.info ? JSON.parse(JSON.stringify(this.info)) : {}
         this.loading = false
       }
     },
