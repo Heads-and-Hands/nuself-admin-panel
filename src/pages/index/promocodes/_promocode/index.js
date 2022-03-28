@@ -32,8 +32,12 @@ export default {
             ],
             selectCondition: '',
             dialogStatusVisible: false,
-            dataPicker: []
+            dataPicker: [],
+            dataPicker2: []
         }
+    },
+    mounted() {
+        this.fixData(JSON.parse(JSON.stringify(this.info.conditions[0].params)))
     },
     computed: {
         isSaveChange() {
@@ -85,5 +89,8 @@ export default {
                 this.data.sale = newSale
             }
         },
+        fixData(params) {
+            this.dataPicker = [params.startDate, params.endDate]
+        }
     },
 }
