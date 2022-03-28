@@ -63,13 +63,13 @@ export default {
     },
     computed: {
         customerTable() {
-            return [JSON.parse(JSON.stringify(this.orderData.customer))]
+            return [JSON.parse(JSON.stringify(this.info.customer))]
         },
         promoTable() {
-            return [JSON.parse(JSON.stringify(this.orderData.promocodes))]
+            return [JSON.parse(JSON.stringify(this.info.promocodes))]
         },
         sumOrder() {
-            let result = this.orderData.products.list.reduce(function(sum, elem) {
+            let result = this.info.products.list.reduce(function(sum, elem) {
                 return Number(sum) + Number(elem.price)
             }, 0)
             console.log(result)
