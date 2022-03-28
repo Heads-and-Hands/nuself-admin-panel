@@ -21,26 +21,19 @@
               </el-col>
               <el-col class="status">
                 <div class="sub-title">Статус</div>
-                <div class="status-container">
-                  <el-tag
-                      :type="data.status === 'Активен' ? 'success' : 'warning'"
-                      class="body-14-reg status-tag"
-                  >{{ data.status }}</el-tag>
-                  <div>
-                    <el-button
-                        icon="el-icon-edit"
-                        circle
-                        style="background-color: #292B33; color: white"
-                        @click="dialogStatusVisible = true"
-                    ></el-button>
-                  </div>
-                </div>
+                <status-btn
+                    class="status-container"
+                    :status="data.status"
+                    type="active"
+                    edit
+                    @openStatusModal="dialogStatusVisible = true"
+                />
               </el-col>
             </div>
             <div class="container-inputs">
-              <el-col>
+              <el-col v-if="data.conditions">
                 <div class="sub-title">Условие</div>
-                <el-select v-model="data.condition.type" :placeholder="data.condition.type">
+                <el-select v-model="data.conditions[0].type" :placeholder="data.conditions[0].type">
                   <el-option
                       v-for="(item, index) in selectType"
                       :key="index"
@@ -60,17 +53,19 @@
                 <div class="sub-title">Величина скидки на корзину</div>
                 <el-input
                     class="inline-input"
-                    v-model="data.sale"
+                    v-model="data.sale + '%'"
                 ></el-input>
               </el-col>
             </div>
-            <div v-if="data.condition.type === 'date'" class="container-inputs">
+            <div v-if="(data.conditions && data.conditions[0].type === 'date') || selectCondition === 'date'" class="container-inputs">
               <el-col class="textarea">
                 <div class="sub-title">Срок действия</div>
                 <el-date-picker
                     v-model="dataPicker"
                     type="daterange"
                     align="left"
+                    start-placeholder="Start Date"
+                    end-placeholder="End Date"
                     value-format="yyyy-MM-dd">
                 </el-date-picker>
               </el-col>
@@ -82,6 +77,7 @@
     <toggle-status
         :dialogVisible="dialogStatusVisible"
         :status="data.status"
+        type="active"
         text="выбранной подборки"
         @close="dialogStatusVisible = false"
         @change-status="changeStatus"

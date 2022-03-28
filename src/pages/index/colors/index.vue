@@ -1,9 +1,9 @@
 <template>
   <div class="colors-page table-page">
-    <div class="head-32-s title">Цвета <span class="limit">{{ list.length || 0 }}</span></div>
+    <div class="head-32-s title">Цвета <span class="limit">{{ data.length || 0 }}</span></div>
     <section>
       <el-table
-          :data="list"
+          :data="data"
           style="width: 100%">
         <el-table-column
             prop="id"

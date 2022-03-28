@@ -1,9 +1,9 @@
 <template>
   <div class="orders-page table-page">
-    <div class="head-32-s title">Рубрики <span class="limit">{{ rubricsData.length || 0 }}</span></div>
+    <div class="head-32-s title">Рубрики <span class="limit">{{ list? list.length : 0 }}</span></div>
     <section>
       <el-table
-          :data="rubricsData"
+          :data="list"
           ref="rubricsTable"
           @selection-change="handleSelectionChange"
           style="width: 100%">
@@ -26,10 +26,11 @@
             label="Статус"
             width="126">
           <template slot-scope="scope">
-            <el-tag
-                :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
-                class="body-14-reg status-tag"
-            >{{ scope.row.status }}</el-tag>
+            <status-btn
+                :status="scope.row.status"
+                type="active"
+                size="small"
+            />
           </template>
         </el-table-column>
         <el-table-column
@@ -60,7 +61,7 @@
     <change-position-modal
         v-if="showPopupPosition"
         :showPopupPosition="showPopupPosition"
-        :total="rubricsData.length"
+        :total="list.length"
         :position="moveCategory.count"
         @move="move"
         @close="closeChangePosition"

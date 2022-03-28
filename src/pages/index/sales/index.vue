@@ -1,10 +1,10 @@
 <template>
   <div class="Sales-page table-page">
-    <div class="head-32-s title">Скидки <span class="limit">{{ tableSales.length || 0 }}</span></div>
+    <div class="head-32-s title">Скидки <span class="limit">{{ list ? list.length : 0 }}</span></div>
     <section>
       <div class="data-table">
         <el-table
-            :data="tableSales"
+            :data="list"
             ref="listRemoveTable"
             style="width: 100%"
             @selection-change="handleSelectionChange"

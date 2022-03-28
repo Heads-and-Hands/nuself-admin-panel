@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{'remove': removeBtn}">
     <el-table
         :data="data.list"
         class="body-14-reg table-products"
@@ -47,7 +47,8 @@
       <el-table-column
           prop="status"
           label="Статус"
-          width="140">
+          class-name="status"
+      >
         <template slot-scope="scope">
           <el-tag
               :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
@@ -56,13 +57,20 @@
         </template>
       </el-table-column>
       <el-table-column
-          width="40">
+          :width="removeBtn? 100 : 56"
+      >
         <template slot="header">
           <div style="text-align: right">
             <el-button
                 icon="el-icon-edit"
                 circle
                 style="background-color: #292B33; color: white"
+            ></el-button>
+            <el-button
+                v-if="removeBtn"
+                icon="el-icon-close"
+                type="danger"
+                circle
             ></el-button>
           </div>
         </template>
@@ -88,8 +96,12 @@ export default {
     data: {
       type: Object,
       default: {}
+    },
+    removeBtn: {
+      type: Boolean,
+      default: false
     }
-  }
+  },
 }
 </script>
 
@@ -151,6 +163,12 @@ export default {
     border-radius: 4px;
     object-fit: contain;
   }
+}
+.status .cell {
+  padding: 0 !important;
+}
+.remove .status .cell {
+  overflow: unset;
 }
 
 .pagination {

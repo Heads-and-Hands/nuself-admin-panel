@@ -1,28 +1,31 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinInfo from '@/mixins/infoPage'
 
 export default {
+    mixins: [
+        MixinInfo
+    ],
     components: {
         saveNotification,
         toggleStatus
     },
     data() {
         return {
-            complData: {
-                id: '1R1469',
-                name: 'Название промокода',
-                sale: '15%',
-                status: 'Активен',
-                code: '1R14AS69',
-                condition: {
-                    type: 'date',
-                    params: {
-                        startDate: '2021-12-12',
-                        endDate: '2022-11-11'
-                    }
-                },
-            },
-            data: {},
+            // data: {
+            //     id: '1R1469',
+            //     name: 'Название промокода',
+            //     sale: '15%',
+            //     status: 'active',
+            //     code: '1R14AS69',
+            //     condition: [{
+            //         type: 'date',
+            //         params: {
+            //             startDate: '2021-12-12',
+            //             endDate: '2022-11-11'
+            //         }
+            //     }]
+            // },
             selectType: [
                 {
                     type: 'birthday',
@@ -33,21 +36,28 @@ export default {
                     title: 'Срок действия'
                 },
                 {
-                    type: 'first',
+                    type: 'ordinalPurchase',
                     title: 'Первая покупка'
                 },
+                {
+                    type: 'registration',
+                    title: 'Регистрация'
+                }
             ],
+            selectCondition: '',
             dialogStatusVisible: false,
             dataPicker: [],
         }
     },
     created() {
-        this.data = JSON.parse(JSON.stringify(this.complData))
-        this.dataPicker = [this.data.condition.params.startDate, this.data.condition.params.endDate] || []
+        // поправить ошибки
+      if (this.data && this.data.conditions[0].type === 'date') {
+         this.dataPicker = [this.data.conditions[0].params.startDate, this.data.conditions[0].params.endDate]
+      }
     },
     computed: {
         isSaveChange() {
-            return JSON.stringify(this.data) !== JSON.stringify(this.complData)
+            return JSON.stringify(this.data) !== JSON.stringify(this.info)
         },
     },
     methods: {
@@ -62,13 +72,13 @@ export default {
             console.log('save')
         },
         clear() {
-            this.data = JSON.parse(JSON.stringify(this.complData))
+            this.data = JSON.parse(JSON.stringify(this.info))
         },
         changeStatus(status) {
             if (status) {
                 this.data.status = status
             }
             this.dialogStatusVisible = false
-        }
+        },
     }
 }

@@ -8,8 +8,8 @@
     >
       <span class="subtitle body-14-reg">Выберите статус, который вы хотите установить для {{ text }}</span>
       <div class="radio-container">
-          <el-radio v-for="(elem, index) in list" :key="index" v-model="valueStatus" :label="elem.label" border>
-            <el-tag :type="elem.type" class="body-14-reg">{{ elem.label }}</el-tag>
+          <el-radio v-for="(elem, index) in list" :key="index" v-model="valueStatus" :label="elem.type" border>
+            <el-tag :type="elem.style" class="body-14-reg">{{ elem.label }}</el-tag>
           </el-radio>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -26,21 +26,24 @@
         showList: [
           {
             label: 'Показывать',
-            type: 'success'
+            type: 'active',
+            style: 'success'
           },
           {
             label: 'Не показывать',
-            type: 'warning'
+            style: 'warning'
           },
         ],
         activeList: [
           {
             label: 'Активный',
-            type: 'success'
+            type: 'active',
+            style: 'success'
           },
           {
             label: 'Неактивный',
-            type: 'warning'
+            type: 'inactive',
+            style: 'warning'
           },
         ]
       }
@@ -52,7 +55,7 @@
       },
       status: {
         type: String,
-        default: 'не показывать'
+        default: 'active'
       },
       text: {
         type: String,
@@ -60,12 +63,12 @@
       },
       type: {
         type: String,
-        default: 'show'
+        default: 'visibility'
       }
     },
     computed: {
       list() {
-        if (this.type === 'show') {
+        if (this.type === 'visibility') {
           return this.showList
         }
         if (this.type === 'active') {

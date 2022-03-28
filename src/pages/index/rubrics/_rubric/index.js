@@ -1,11 +1,15 @@
 import rightSideBar from "@/components/right-sidebar/right-sidebar.vue"
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinInfo from '@/mixins/infoPage'
 
 export default {
+    mixins: [
+        MixinInfo
+    ],
     data() {
         return {
-            rubricData: {
+            info: {
                 common: {
                     id: '1R1469',
                     name: 'Название подборки',
@@ -60,12 +64,9 @@ export default {
             }
         ]
     },
-    created() {
-        this.data = JSON.parse(JSON.stringify(this.rubricData))
-    },
     computed: {
         isChange() {
-            return JSON.stringify(this.data) !== JSON.stringify(this.rubricData)
+            return JSON.stringify(this.data) !== JSON.stringify(this.info)
         }
     },
     components: {
@@ -78,7 +79,7 @@ export default {
             this.$router.push({ path: `/rubrics` });
         },
         clear() {
-            this.data = JSON.parse(JSON.stringify(this.rubricData))
+            this.data = JSON.parse(JSON.stringify(this.info))
         },
         remove() {
             console.log('remove')

@@ -23,16 +23,12 @@
                 <el-col class="status-container">
                   <div class="body-14-reg sub-title">Статус</div>
                   <div class="status">
-                    <el-tag
-                        :type="data.status === 'Показывать' ? 'success' : 'warning'"
-                        class="body-14-reg status-tag"
-                    >{{ data.status}}</el-tag>
-                    <el-button
-                        icon="el-icon-edit"
-                        circle
-                        style="background-color: #292B33; color: white"
-                        @click="dialogStatusVisible = true"
-                    ></el-button>
+                    <status-btn
+                        :status="data.status"
+                        type="visibility"
+                        edit
+                        @openStatusModal="dialogStatusVisible = true"
+                    />
                   </div>
                 </el-col>
               </div>
@@ -198,18 +194,23 @@
               </el-col>
               <el-col v-if="item.type === 'carousel'">
                 <div class="sub-header head-18-s">Карусель товаров  <span class="limit"> 3</span></div>
-                тут таблица товаров
+                <table-products
+                    :data="data.products"
+                    removeBtn
+                />
               </el-col>
               <el-col v-if="item.type === 'video'">
                 <div class="sub-header head-18-s">Видео</div>
                 <el-input
-
                     v-model="item.value"
                 ></el-input>
               </el-col>
               <el-col v-if="item.type === 'tile'">
                 <div class="sub-header head-18-s">Плитка товаров <span class="limit"> 3</span></div>
-                и тут таблица товаров
+                <table-products
+                    :data="data.products"
+                    removeBtn
+                />
               </el-col>
               <el-button
                   class="btn-plus"
@@ -227,13 +228,19 @@
               Товары из статьи <span class="limit"> 4</span>
 
             </div>
-            И здесь тоже таблица товаров
+            <table-products
+                :data="data.products"
+                removeBtn
+            />
           </section>
           <section class="page-container" ref="similar">
             <div class="head-24-s title">
               Похожие статьи <span class="limit"> 3</span>
             </div>
-            И тут таблица товаров
+            <table-products
+                :data="data.products"
+                removeBtn
+            />
           </section>
         </template>
       </div>

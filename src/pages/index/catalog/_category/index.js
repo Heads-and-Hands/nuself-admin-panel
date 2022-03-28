@@ -16,7 +16,7 @@ export default {
                     name: 'Категория мемных котов',
                     status: 'Показывать',
                     image: 'https://mr-mem.ru/images/memes/mem-s-kotom-za-stolom.jpg',
-                    isCustom: false
+                    sizeTableType: 'wear'
                 },
                 products: {
                     meta: {
@@ -103,28 +103,20 @@ export default {
                     ]
                 }
             },
-            data: {},
-            newCategoryData: {
-                common: {
-                    id: '',
-                    name: 'Новая категория',
-                    status: 'Показывать',
-                    image: '',
+            sizeSelectList: [
+                {
+                    title: 'Одежда',
+                    value: 'wear'
                 },
-                products: {
-                    meta: {
-                        offset: 0,
-                        limit: 50,
-                        total: 10050
-                    },
-                    list: []
-                }
-            },
-            tableSize: [{
-                id: 1,
-                image: 'https://www.meme-arsenal.com/memes/6ff0361592a987331d8ac83f9e2229d9.jpg',
-                name: 'Таблица размеров'
-            }],
+                {
+                    title: 'Обувь',
+                    value: 'shoes'
+                },
+                {
+                    title: 'Джинсы',
+                    value: 'jeans'
+                },
+            ],
             navList: [],
             dialogStatusVisible: false,
             categoryData: {},
@@ -146,17 +138,11 @@ export default {
     },
     components: {
         rightSideBar,
-        saveNotification,
         toggleStatus,
         tableProducts,
         saveNotification
     },
     computed: {
-        category() {
-            if (this.$route.params.id === 'new-category') {
-                return this.newCategoryData
-            } else return this.data
-        },
         isChange() {
             return JSON.stringify(this.data) !== JSON.stringify(this.info)
         },

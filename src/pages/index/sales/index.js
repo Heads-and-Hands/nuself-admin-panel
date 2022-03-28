@@ -1,10 +1,14 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinList from '@/mixins/tableList'
 
 export default {
+    mixins: [
+        MixinList
+    ],
     data() {
         return {
-            tableSales: [
+            list: [
                 {
                     id: '163',
                     name: 'Название скидки',

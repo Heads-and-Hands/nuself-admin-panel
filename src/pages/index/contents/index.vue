@@ -1,10 +1,18 @@
 <template>
   <div class="contents-page table-page">
-    <div class="head-32-s title">Материалы <span class="limit">{{ tableMaterials.length || 0 }}</span></div>
+    <div class="head-32-s title">Материалы <span class="limit">{{ list? list.length : 0 }}</span></div>
+    <el-select v-model="typeContent" :placeholder="typeContent">
+      <el-option
+          v-for="(item, index) in selectTypeContent"
+          :key="index"
+          :label="item.title"
+          :value="item.value">
+      </el-option>
+    </el-select>
     <section>
       <div class="data-table">
         <el-table
-            :data="tableMaterials"
+            :data="list"
             ref="listRemoveTable"
             style="width: 100%"
             @selection-change="handleSelectionChange"
@@ -45,10 +53,11 @@
               label="Статус"
               width="130">
             <template slot-scope="scope">
-              <el-tag
-                  :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
-                  class="body-14-reg status-tag"
-              >{{ scope.row.status}}</el-tag>
+              <status-btn
+                  :status="scope.row.status"
+                  type="visibility"
+                  size="small"
+              />
             </template>
           </el-table-column>
           <el-table-column

@@ -1,47 +1,13 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
+import MixinList from '@/mixins/tableList'
 
 export default {
+    mixins: [
+        MixinList
+    ],
     data() {
         return {
-            tableSales: [
-                {
-                    id: '163',
-                    name: 'Название скидки',
-                    sale: '15%',
-                    status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
-                },
-                {
-                    id: '163',
-                    name: 'Название скидки',
-                    sale: '15%',
-                    status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
-                },
-                {
-                    id: '163',
-                    name: 'Название скидки',
-                    sale: '15%',
-                    status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
-                },
-                {
-                    id: '163',
-                    name: 'Название скидки',
-                    sale: '15%',
-                    status: 'Активен',
-                    validity: '15.08.21 — 15.08.21',
-                    subjectType: 'Подборка',
-                    subject: 'Название подборки',
-                },
-            ],
             dialogTablesVisible: false,
             listRemoveSales: [],
             searchValue: '',
@@ -57,7 +23,7 @@ export default {
             let text = this.listRemoveSales.length === 1? 'Выбрана' : 'Выбрано'
             text = text + ` ${this.listRemoveSales.length} ${this.ending(this.listRemoveSales.length, 'промокод')}`
             return text
-        }
+        },
     },
     methods: {
         deleteBanner() {
@@ -122,6 +88,11 @@ export default {
         closeToggleStatus() {
             this.clear()
             this.dialogStatusVisible = false
+        },
+        textConditions(value) {
+            if (value === 'birthday') return 'День рождения'
+            if (value === 'date') return 'Срок действия'
+            if (value === 'first') return 'Первая покупка'
         }
     }
 }

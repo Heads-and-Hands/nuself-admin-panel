@@ -49,7 +49,7 @@
               <el-col class="textarea">
                 <div class="sub-title">Описание для сотрудников</div>
                 <el-input
-                    v-model="data.common.descriptions"
+                    v-model="data.common.description"
                     type="textarea"
                 ></el-input>
               </el-col>

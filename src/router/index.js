@@ -10,8 +10,6 @@ import Category from '../pages/index/catalog/_category/index.vue'
 import Brands from '../pages/index/brands/index.vue'
 import Colors from '../pages/index/colors/index.vue'
 import Color from '../pages/index/colors/_color/index.vue'
-import Sizes from '../pages/index/sizes/index.vue'
-import Size from '../pages/index/sizes/_size/index.vue'
 import Orders from '../pages/index/orders/index.vue'
 import Order from '../pages/index/orders/_order/index.vue'
 import Clients from '../pages/index/clients/index.vue'
@@ -30,6 +28,7 @@ import Users from '../pages/index/users/index.vue'
 import User from '../pages/index/users/_user/index.vue'
 import Sales from '../pages/index/sales/index.vue'
 import Sale from '../pages/index/sales/_sale/index.vue'
+import Main from '../pages/index/main/index.vue'
 
 // import store from '../store/index'
 
@@ -87,18 +86,7 @@ const routes = [
       {
         path: `colors/color/:id`,
         component: Color,
-        name: 'color',
-        props: true
-      },
-      {
-        path: 'sizes',
-        component: Sizes,
-        name: 'sizes',
-      },
-      {
-        path: `sizes/size/:id`,
-        component: Size,
-        name: 'size',
+        name: 'colors',
         props: true
       },
       {
@@ -109,7 +97,7 @@ const routes = [
       {
         path: `orders/order/:id`,
         component: Order,
-        name: 'order',
+        name: 'orders',
         props: true
       },
       {
@@ -120,7 +108,7 @@ const routes = [
       {
         path: `clients/client/:id`,
         component: Client,
-        name: 'client',
+        name: 'clients',
         props: true
       },
       {
@@ -131,7 +119,7 @@ const routes = [
       {
         path: `banners/banner/:id`,
         component: Banner,
-        name: 'banner',
+        name: 'banners',
         props: true
       },
       {
@@ -142,7 +130,7 @@ const routes = [
       {
         path: `compilations/compilation/:id`,
         component: Compilation,
-        name: 'compilation',
+        name: 'compilations',
         props: true
       },
       {
@@ -153,7 +141,7 @@ const routes = [
       {
         path: `rubrics/rubric/:id`,
         component: Rubric,
-        name: 'rubric',
+        name: 'rubrics',
         props: true
       },
       {
@@ -164,7 +152,7 @@ const routes = [
       {
         path: `contents/content/:id`,
         component: Content,
-        name: 'content',
+        name: 'contents',
         props: true
       },
       {
@@ -175,7 +163,7 @@ const routes = [
       {
         path: `promocodes/promocode/:id`,
         component: Promocode,
-        name: 'promocode',
+        name: 'promocodes',
         props: true
       },
       {
@@ -187,15 +175,23 @@ const routes = [
         path: `users/user/:id`,
         component: User,
         name: 'users',
-        path: 'sales',
-        component: Sales,
-        name: 'sales',
+        props: true,
       },
+      // {
+      //   path: 'sales',
+      //   component: Sales,
+      //   name: 'sales',
+      // },
+      // {
+      //   path: 'sales/sale/:id',
+      //   component: Sale,
+      //   name: 'sales',
+      //   props: true
+      // },
       {
-        path: 'sales/sale/:id',
-        component: Sale,
-        name: 'sale',
-        props: true
+        path: 'main',
+        component: Main,
+        name: 'main',
       },
     ]
   }
@@ -207,8 +203,8 @@ const router = new VueRouter({
 })
 
 // router.beforeEach((to, from, next) => {
-//   if ((to.meta.auth || to.meta.auth === undefined) && !store.state._user.data) {
-//     store.dispatch('_user/init').then(() => {
+//   if ((to.meta.auth || to.meta.auth === undefined) && !store.state.user.data) {
+//     store.dispatch('user/init').then(() => {
 //       next()
 //     }).catch(() => {
 //       next({ name: 'login' })

@@ -1,15 +1,19 @@
 import saveNotification from "@/components/save-notification/save-notification.vue"
 import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 import changePositionModal from "@/components/modals/change-position-modal/change-position-modal.vue"
+import MixinList from '@/mixins/tableList'
 
 export default {
+    mixins: [
+        MixinList
+    ],
     data() {
         return {
-            rubricsData: [
+            list: [
                 {
                     id: '1639',
                     name: 'Название',
-                    status: 'Показывать',
+                    status: 'active',
                     description: 'Облегченный комбинезон из мягкого трикотажа с петлей наизнанке.' +
                         ' Капюшон дополнен шнуром для дополнительной утяжки и защиты. ',
                     count: '1',
@@ -17,7 +21,7 @@ export default {
                 {
                     id: '1640',
                     name: 'Название',
-                    status: 'Показывать',
+                    status: 'inactive',
                     description: 'Облегченный комбинезон из мягкого трикотажа с петлей наизнанке.' +
                         ' Капюшон дополнен шнуром для дополнительной утяжки и защиты. ',
                     count: '1',

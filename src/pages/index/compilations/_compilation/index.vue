@@ -33,20 +33,12 @@
               </el-col>
               <el-col class="status">
                 <div class="sub-title">Статус</div>
-                <div class="status-container">
-                  <el-tag
-                      :type="data.common.status === 'Показывать' ? 'success' : 'warning'"
-                      class="body-14-reg status-tag"
-                  >{{ data.common.status }}</el-tag>
-                  <div>
-                    <el-button
-                        icon="el-icon-edit"
-                        circle
-                        style="background-color: #292B33; color: white"
-                        @click="dialogStatusVisible = true"
-                    ></el-button>
-                  </div>
-                </div>
+                <status-btn
+                    :status="data.common.status"
+                    type="visibility"
+                    edit
+                    @openStatusModal="dialogStatusVisible = true"
+                />
               </el-col>
             </div>
             <div class="container-inputs">

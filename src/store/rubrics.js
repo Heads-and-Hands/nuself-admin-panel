@@ -3,28 +3,28 @@ import Http from '@/services/http'
 export default ({
     namespaced: true,
     state: {
-        banners: null,
-        banner: null,
+        rubrics: null,
+        rubric: null,
     },
     getters: {
         list(state) {
-            return state.banners;
+            return state.rubrics;
         },
         info(state) {
-            return state.banner;
+            return state.rubric;
         }
     },
     mutations: {
-        setBanners(state, data) {
-            state.banners = data.list;
+        setRubrics(state, data) {
+            state.rubrics = data.list;
         },
-        setBanner(state, data) {
-            state.banner = data;
+        setRubric(state, data) {
+            state.rubric = data;
         },
     },
     actions: {
         async getList({ commit }, params) {
-            let url = `banners/search`;
+            let url = `rubrics/search`;
             const urlParams = [];
 
             Object.keys(params).forEach((key) => {
@@ -35,12 +35,12 @@ export default ({
                 url = url + "?" + urlParams.join("&");
             }
 
-            let { data } = await Http.get('banners', params);
-            commit("setBanners", data);
+            let { data } = await Http.get('rubrics', params);
+            commit("setRubrics", data);
         },
         async getInfo({ commit }, id) {
-            let { data } = await Http.get(`/banners/${id}`);
-            commit("setBanner", data);
+            let { data } = await Http.get(`/rubrics/${id}`);
+            commit("setRubric", data);
         }
     },
 })

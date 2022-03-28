@@ -40,20 +40,12 @@
               </el-col>
               <el-col class="status">
                 <div class="sub-title">Статус</div>
-                <div class="status-container">
-                  <el-tag
-                      :type="data.status === 'Активен' ? 'success' : 'warning'"
-                      class="body-14-reg status-tag"
-                  >{{ data.status }}</el-tag>
-                  <div>
-                    <el-button
-                        icon="el-icon-edit"
-                        circle
-                        style="background-color: #292B33; color: white"
-                        @click="dialogStatusVisible = true"
-                    ></el-button>
-                  </div>
-                </div>
+                <status-btn
+                    :status="data.status"
+                    type="active"
+                    edit
+                    @openStatusModal="dialogStatusVisible = true"
+                />
               </el-col>
             </div>
             <div class="container-inputs">
