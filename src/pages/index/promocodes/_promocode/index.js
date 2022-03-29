@@ -55,7 +55,7 @@ export default {
                     endDate: this.dataPicker[1]
                 }
             }
-            const action = `${this.$route.name}/putInfo`;
+            const action = `${this.$route.name}s/putInfo`;
             const body = {
                 id: this.$route.params.id,
                 data: this.data
