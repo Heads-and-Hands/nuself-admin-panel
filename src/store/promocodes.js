@@ -27,7 +27,10 @@ export default ({
                 startDate: '',
                 endDate: ''
             })
-        }
+        },
+        deleteDateParams(state) {
+            Vue.delete(state.promocode.conditions[0], "params")
+        },
     },
     actions: {
         async getList({ commit }, params) {
@@ -49,9 +52,13 @@ export default ({
             let { data } = await Http.get(`/promocodes/${id}`);
             commit("setPromocode", data);
         },
-        async putInfo({ commit }, params) {
+        async putInfo({ commit }, id) {
             console.log(params)
             await Http.put(`/promocodes/${params.id}`, params.data);
-        }
+        },
+        // async deletePromocode({ commit }, id) {
+        //     await Http.delete(`/promocodes/${id}`);
+        //     this.$router.push({ path: `/promocodes` });
+        // }
     },
 })

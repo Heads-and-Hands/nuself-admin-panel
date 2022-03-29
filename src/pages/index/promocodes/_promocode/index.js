@@ -75,7 +75,7 @@ export default {
             if (value === 'date') {
                 this.$store.commit('promocodes/addDateParams')
             } else {
-                console.log('delete')
+                this.$store.commit('promocodes/deleteDateParams')
             }
         }
     },
