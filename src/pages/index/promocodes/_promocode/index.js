@@ -41,7 +41,7 @@ export default {
     },
     computed: {
         isSaveChange() {
-           return JSON.stringify(this.data) !== JSON.stringify(this.info)
+           return (JSON.stringify(this.data) !== JSON.stringify(this.info)) || (JSON.stringify(this.dataPicker) !== JSON.stringify(this.dataPicker2))
         },
     },
     methods: {
@@ -76,6 +76,7 @@ export default {
         },
         clear() {
             this.data = JSON.parse(JSON.stringify(this.info))
+            this.dataPicker = JSON.parse(JSON.stringify(this.dataPicker2))
         },
         changeStatus(status) {
             if (status) {
@@ -91,6 +92,7 @@ export default {
         },
         fixData(params) {
             this.dataPicker = [params.startDate, params.endDate]
+            this.dataPicker2 = [params.startDate, params.endDate]
         }
     },
 }
