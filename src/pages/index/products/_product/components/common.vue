@@ -3,29 +3,27 @@
     <section class="common" ref="main">
       <div class="head-24-s title">Основное</div>
       <div class="row-container">
-        <div class="name">
-          <div class="body-14-reg sub-title">Название категории</div>
-          <el-input
-            placeholder="Please input"
-            v-model="data.name"
-            :value="data.name"
-            clearable
-            :disabled="!data.isCustom"
-          >
-          </el-input>
-        </div>
-        <div class="id">
+        <div class="input-wrapper id">
           <div class="body-14-reg sub-title">ID</div>
-          <el-input v-model="data.id" :value="data.id" clearable disabled>
-          </el-input>
+          <el-input v-model="data.id" :value="data.id" clearable disabled />
         </div>
-        <div class="status">
+        <div class="input-wrapper vendor-code">
+          <div class="body-14-reg sub-title">Артикул</div>
+          <el-input
+            v-model="data.vendorCode"
+            :value="data.vendorCode"
+            clearable
+            disabled
+          />
+        </div>
+        <div class="input-wrapper status">
           <div class="body-14-reg sub-title">Статус</div>
           <el-tag
             :type="data.status === 'Показывать' ? 'success' : 'warning'"
             class="body-14-reg status-tag"
-            >{{ data.status }}</el-tag
           >
+            {{ data.status }}
+          </el-tag>
         </div>
         <div>
           <el-button
@@ -33,11 +31,42 @@
             circle
             style="background-color: #292b33; color: white"
             @click="dialogStatusVisible = true"
-          ></el-button>
+          />
+        </div>
+      </div>
+      <div class="row-container">
+        <div class="input-wrapper">
+          <div class="body-14-reg sub-title">Брэнд</div>
+          <el-input
+            v-model="data.brand"
+            :value="data.brand"
+            clearable
+            disabled
+          />
+        </div>
+        <el-button icon="el-icon-right" circle></el-button>
+      </div>
+      <div class="row-container">
+        <div class="input-wrapper">
+          <div class="body-14-reg sub-title">Базовое название (1С)</div>
+          <el-input
+            v-model="data.basicName"
+            :value="data.basicName"
+            clearable
+            disabled
+          />
+        </div>
+      </div>
+      <div class="row-container">
+        <div class="input-wrapper">
+          <div class="body-14-reg sub-title">
+            Название на сайте и в приложении
+          </div>
+          <el-input v-model="data.name" :value="data.name" clearable />
         </div>
       </div>
       <div class="data-image">
-        <div class="head-18-s">Обложка</div>
+        <div class="head-18-s">Галерея</div>
         <div v-if="data.image" class="image-container">
           <img class="image" :src="data.image" />
           <el-button
@@ -65,31 +94,48 @@
           >
         </el-upload>
       </div>
-      <div class="data-table">
-        <div class="head-18-s">Размерная таблица по умолчанию</div>
-        <el-table :data="tableSize" style="width: 716px; margin-top: 16px">
-          <el-table-column prop="id" label="ID" width="44"> </el-table-column>
-          <el-table-column prop="image" label="Фото" width="85">
-            <template slot-scope="scope">
-              <img :src="scope.row.image" class="image" />
-            </template>
-          </el-table-column>
-          <el-table-column prop="name" label="Название"> </el-table-column>
-          <el-table-column width="40" fixed="right">
-            <template slot="header">
-              <div style="text-align: right">
-                <el-button
-                  icon="el-icon-edit"
-                  circle
-                  style="background-color: #292b33; color: white"
-                ></el-button>
-              </div>
-            </template>
-            <template>
-              <el-button icon="el-icon-right" circle></el-button>
-            </template>
-          </el-table-column>
-        </el-table>
+      <div class="row-container">
+        <div class="input-wrapper">
+          <div class="body-14-reg sub-title">Ссылка на видео</div>
+          <el-input
+            v-model="data.videoLink"
+            :value="data.videoLink"
+            clearable
+          />
+        </div>
+      </div>
+      <div class="row-container">
+        <div class="input-wrapper">
+          <div class="body-14-reg sub-title">Категория</div>
+          <el-input
+            v-model="data.category"
+            :value="data.category"
+            clearable
+            disabled
+          />
+        </div>
+      </div>
+      <div class="row-container">
+        <div class="input-wrapper">
+          <div class="body-14-reg sub-title">Покатегория</div>
+          <el-input
+            v-model="data.subcategory"
+            :value="data.subcategory"
+            clearable
+            disabled
+          />
+        </div>
+      </div>
+      <div class="row-container">
+        <div class="input-wrapper">
+          <div class="body-14-reg sub-title">Название цвета</div>
+          <el-input
+            v-model="data.color.title"
+            :value="data.color.title"
+            clearable
+            disabled
+          />
+        </div>
       </div>
       {{ dialogStatusVisible }}
     </section>
@@ -118,9 +164,65 @@ export default {
     box-shadow: 0px 4px 12px rgba(40, 43, 52, 0.07);
     padding: 40px 48px 48px;
 
+    .title {
+      margin-bottom: 40px;
+    }
+
+    .row-container {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 24px;
+
+      .input-wrapper {
+        width: 100%;
+
+        .sub-title {
+          color: #919398;
+          margin-bottom: 8px;
+        }
+      }
+
+      .el-button {
+        margin-left: 24px;
+      }
+
+      .vendor-code,
+      .id {
+        margin-right: 24px;
+        width: 253px;
+      }
+
+      .status {
+        width: 106px;
+
+        .status-tag {
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
     .data-image {
+      margin-bottom: 24px;
+
+      .head-18-s {
+        margin-bottom: 24px;
+      }
+
       .image-container {
         position: relative;
+
+        img {
+          border: 1px solid #dddfe5;
+          box-sizing: border-box;
+          border-radius: 4px;
+          height: 250px;
+          width: 716px;
+          object-fit: cover;
+        }
+
         .delete-image {
           width: 18px;
           height: 18px;
@@ -133,6 +235,7 @@ export default {
           top: -8px;
           border: 2px solid #ffffff;
           box-sizing: border-box;
+
           span {
             display: block;
             width: 6px;
@@ -152,80 +255,10 @@ export default {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
         span {
           line-height: 40px;
         }
-      }
-    }
-
-    .title {
-      margin-bottom: 40px;
-    }
-
-    .sub-title {
-      color: #919398;
-      margin-bottom: 8px;
-    }
-
-    .row-container {
-      display: flex;
-      align-items: flex-end;
-      margin-bottom: 48px;
-
-      .name,
-      .id {
-        margin-right: 24px;
-      }
-      .name {
-        width: 222px;
-      }
-      .id {
-        width: 188px;
-      }
-      .status {
-        width: 106px;
-        margin-right: 16px;
-
-        .status-tag {
-          height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-      }
-    }
-
-    .data-image {
-      .head-18-s {
-        margin-bottom: 24px;
-      }
-
-      img {
-        border: 1px solid #dddfe5;
-        box-sizing: border-box;
-        border-radius: 4px;
-        height: 250px;
-        width: 716px;
-        object-fit: cover;
-      }
-    }
-
-    .data-size {
-      margin-top: 48px;
-      .el-table td:first-child,
-      .el-table td:last-child,
-      .el-table th:first-child,
-      .el-table th:last-child {
-        .cell {
-          padding: 0;
-        }
-      }
-
-      .image {
-        height: 53px;
-        width: 44px;
-        border-radius: 4px;
-        object-fit: contain;
       }
     }
   }
