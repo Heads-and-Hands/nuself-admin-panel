@@ -32,6 +32,7 @@ export default {
       try { await this.$store.dispatch(action, this.$route.params.id) }
       finally {
         this.loading = false
+        this.isSaveChange = false
       }
     },
     back() {

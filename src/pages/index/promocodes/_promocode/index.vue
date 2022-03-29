@@ -63,7 +63,7 @@
               <el-col v-if="info.conditions[0].params" class="date-picker">
                 <div class="sub-title">Начало действия скидки</div>
                 <el-date-picker
-                    v-model="startDate"
+                    v-model="info.conditions[0].params.startDate"
                     type="date"
                     @change="isSaveChange = true"
                     value-format="yyyy-MM-dd"
@@ -74,7 +74,7 @@
               <el-col  v-if="info.conditions[0].params" class="date-picker">
                 <div class="sub-title">Конец действия скидки</div>
                 <el-date-picker
-                    v-model="endDate"
+                    v-model="info.conditions[0].params.endDate"
                     type="date"
                     @change="isSaveChange = true"
                     value-format="yyyy-MM-dd"
