@@ -72,11 +72,14 @@ export default {
             }
         },
         changeConditions(value) {
-            if (value === 'date') {
-                this.$store.commit('promocodes/addDateParams')
-            } else {
-                this.$store.commit('promocodes/deleteDateParams')
+            if (this.$route.params.id !== 'create') {
+                if (value === 'date') {
+                    this.$store.commit('promocodes/addDateParams', false)
+                } else {
+                    this.$store.commit('promocodes/deleteDateParams', false)
+                }
             }
+        // сделать добавление нового промокода
         }
     },
 }

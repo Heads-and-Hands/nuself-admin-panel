@@ -60,7 +60,7 @@
                     icon="el-icon-plus"
                     circle
                     style="background-color: #292B33; color: white"
-                    @click="dialogTablesVisible = true"
+                    @click="$router.push({ path: `promocodes/promocode/create`});"
                 ></el-button>
               </div>
             </template>

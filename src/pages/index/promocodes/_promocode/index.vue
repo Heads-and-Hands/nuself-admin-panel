@@ -98,7 +98,7 @@
         @close="dialogStatusVisible = false"
         @change-status="changeStatus"
     />
-    <save-notification remove :change="isSaveChange" @remove="remove" @save="save" @clear="clear"/>
+    <save-notification remove :change="isSaveChange" @remove="remove" @save="save"/>
   </div>
 </template>
 

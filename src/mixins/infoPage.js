@@ -6,11 +6,17 @@ export default {
     }
   },
   created() {
-    this.getInfo()
+    if (this.$route.params.id !== 'create') {
+      this.getInfo()
+    }
   },
   computed: {
     info() {
-      return this.$store.getters[`${this.$route.name}s/info`]
+      if (this.$route.params.id !== 'create') {
+        return this.$store.getters[`${this.$route.name}s/info`]
+      } else {
+        return this.$store.getters[`${this.$route.name}s/newInfo`]
+      }
     },
   },
   watch: {

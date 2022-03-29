@@ -6,6 +6,17 @@ export default ({
     state: {
         promocodes: null,
         promocode: null,
+        newPromocode: {
+            name: 'Название промокода',
+            sale: 0,
+            code: '',
+            status: 'inactive',
+            conditions: [
+                {
+                    type: 'birthday',
+                }
+            ],
+        }
     },
     getters: {
         list(state) {
@@ -13,6 +24,9 @@ export default ({
         },
         info(state) {
             return state.promocode;
+        },
+        newInfo(state) {
+            return state.newPromocode;
         }
     },
     mutations: {
@@ -22,13 +36,13 @@ export default ({
         setPromocode(state, data) {
             state.promocode = data;
         },
-        addDateParams(state) {
+        addDateParams(state, newPromo) {
             Vue.set(state.promocode.conditions[0], "params", {
                 startDate: '',
                 endDate: ''
             })
         },
-        deleteDateParams(state) {
+        deleteDateParams(state, newPromo) {
             Vue.delete(state.promocode.conditions[0], "params")
         },
     },
@@ -55,6 +69,10 @@ export default ({
         async putInfo({ commit }, id) {
             console.log(params)
             await Http.put(`/promocodes/${params.id}`, params.data);
+        },
+        async createPromocode({ commit }, body) {
+            let { data } = await Http.post(`/promocodes/`, body);
+            this.getInfo()
         },
         // async deletePromocode({ commit }, id) {
         //     await Http.delete(`/promocodes/${id}`);

@@ -11,7 +11,7 @@ export default {
             dialogTablesVisible: false,
             listRemoveSales: [],
             searchValue: '',
-            dialogStatusVisible: false
+            dialogStatusVisible: false,
         }
     },
     components: {
@@ -27,13 +27,13 @@ export default {
     },
     methods: {
         deleteBanner() {
-            this.$confirm( 'Вы уверены, что хотите удалить выбранный промокод?', 'Удалить промокод?',  {
+            this.$confirm('Вы уверены, что хотите удалить выбранный промокод?', 'Удалить промокод?', {
                 confirmButtonText: 'Удалить',
                 cancelButtonText: 'Отмена',
                 customClass: 'delete-modal',
                 cancelButtonClass: 'button',
                 confirmButtonClass: 'button',
-            }).then(({ value }) => {
+            }).then(({value}) => {
                 this.$message({
                     type: 'success',
                     message: 'Your delete' + value
@@ -41,7 +41,7 @@ export default {
             })
         },
         openPage(id) {
-            this.$router.push({ path: `promocodes/promocode/${id}`});
+            this.$router.push({path: `promocodes/promocode/${id}`});
         },
         toggleSelection() {
             this.$refs.listRemoveSales.clearSelection();
@@ -49,7 +49,7 @@ export default {
         handleSelectionChange(val) {
             this.listRemoveSales = val;
         },
-        ending(value, str){
+        ending(value, str) {
             let ending = str;
             switch (true) {
                 case value > 10 &&
@@ -93,6 +93,6 @@ export default {
             if (value === 'birthday') return 'День рождения'
             if (value === 'date') return 'Срок действия'
             if (value === 'first') return 'Первая покупка'
-        }
+        },
     }
 }
