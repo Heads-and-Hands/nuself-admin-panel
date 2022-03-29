@@ -75,10 +75,6 @@ export default {
             this.putInfo()
             this.isSaveChange = false
         },
-        clear() {
-            this.getInfo()
-            this.isSaveChange = false
-        },
         changeStatus(status) {
             if (status) {
                 this.data.status = status

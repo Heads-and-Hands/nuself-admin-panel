@@ -2,7 +2,7 @@ export default {
   data() {
     return {
       loading: true,
-      data: {}
+      contentEdited: false,
     }
   },
   created() {
@@ -16,7 +16,11 @@ export default {
   watch: {
     info: {
       handler(newValue, oldValue) {
-        this.isSaveChange = true
+        if (this.contentEdited) {
+          this.isSaveChange = true;
+          console.log("edit");
+        }
+        this.contentEdited = true;
       },
       deep: true,
     }
@@ -37,6 +41,11 @@ export default {
       if (value === 'birthday') return 'День рождения'
       if (value === 'date') return 'Срок действия'
       if (value === 'first') return 'Первая покупка'
+    },
+    clear() {
+        this.getInfo()
+        this.contentEdited = false;
+        this.isSaveChange = false;
     },
   },
 }
