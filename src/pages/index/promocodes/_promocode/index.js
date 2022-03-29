@@ -33,18 +33,14 @@ export default {
             selectCondition: '',
             dialogStatusVisible: false,
             dataPicker: [],
-            dataPicker2: []
+            dataPicker2: [],
+            isSaveChange: false
         }
     },
     created() {
         if (this.info && this.info.conditions) {
             this.fixData(JSON.parse(JSON.stringify(this.info.conditions[0].params)))
         }
-    },
-    computed: {
-        isSaveChange() {
-           return (JSON.stringify(this.data) !== JSON.stringify(this.info)) || (JSON.stringify(this.dataPicker) !== JSON.stringify(this.dataPicker2))
-        },
     },
     methods: {
         async putInfo() {
@@ -54,6 +50,8 @@ export default {
                     startDate: this.dataPicker[0],
                     endDate: this.dataPicker[1]
                 }
+            } else {
+
             }
             const action = `${this.$route.name}s/putInfo`;
             const body = {
@@ -75,10 +73,11 @@ export default {
         save() {
             console.log('save')
             this.putInfo()
+            this.isSaveChange = false
         },
         clear() {
-            this.data = JSON.parse(JSON.stringify(this.info))
-            this.dataPicker = JSON.parse(JSON.stringify(this.dataPicker2))
+            this.getInfo()
+            this.isSaveChange = false
         },
         changeStatus(status) {
             if (status) {

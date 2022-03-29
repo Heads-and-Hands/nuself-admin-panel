@@ -2,9 +2,9 @@
   <div class="promo-page separate-page">
     <div class="title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
-      {{data.name}}
+      {{info? info.name : ''}}
     </div>
-    <div v-if="data" class="separate-page-container">
+    <div v-if="info" class="separate-page-container">
       <div class="left-container">
         <section class="page-container">
           <div class="head-24-s title">
@@ -16,14 +16,14 @@
                 <div class="sub-title">Название</div>
                 <el-input
                     class="inline-input"
-                    v-model="data.name"
+                    v-model="info.name"
                 ></el-input>
               </el-col>
               <el-col class="status">
                 <div class="sub-title">Статус</div>
                 <status-btn
                     class="status-container"
-                    :status="data.status"
+                    :status="info.status"
                     type="active"
                     edit
                     @openStatusModal="dialogStatusVisible = true"
@@ -31,9 +31,9 @@
               </el-col>
             </div>
             <div class="container-inputs">
-              <el-col v-if="data.conditions">
+              <el-col v-if="info.conditions">
                 <div class="sub-title">Условие</div>
-                <el-select v-model="data.conditions[0].type" :placeholder="data.conditions[0].type">
+                <el-select v-model="info.conditions[0].type" :placeholder="info.conditions[0].type">
                   <el-option
                       v-for="(item, index) in selectType"
                       :key="index"
@@ -46,20 +46,20 @@
                 <div class="sub-title">Код промокода</div>
                 <el-input
                     class="inline-input"
-                    v-model="data.code"
+                    v-model="info.code"
                 ></el-input>
               </el-col>
               <el-col class="info">
                 <div class="sub-title">Величина скидки на корзину</div>
                 <el-input
                     class="inline-input sale-input"
-                    :value="data.sale + '%'"
+                    :value="info.sale + '%'"
                     @input="change"
                 >
                 </el-input>
               </el-col>
             </div>
-            <div v-if="data.conditions && data.conditions[0].type === 'date'" class="container-inputs">
+            <div v-if="info.conditions && info.conditions[0].type === 'date'" class="container-inputs">
               <el-col class="textarea">
                 <div class="sub-title">Срок действия</div>
                 <el-date-picker
@@ -78,8 +78,9 @@
       </div>
     </div>
     <toggle-status
+        v-if="info"
         :dialogVisible="dialogStatusVisible"
-        :status="data.status"
+        :status="info.status"
         type="active"
         text="выбранной подборки"
         @close="dialogStatusVisible = false"

@@ -10,10 +10,16 @@ export default {
   },
   computed: {
     info() {
-      let info = this.$store.getters[`${this.$route.name}s/info`]
-      this.data = info ? JSON.parse(JSON.stringify(info)) : {}
-      return info
+      return this.$store.getters[`${this.$route.name}s/info`]
     },
+  },
+  watch: {
+    info: {
+      handler(newValue, oldValue) {
+        this.isSaveChange = true
+      },
+      deep: true,
+    }
   },
   methods: {
     async getInfo() {
