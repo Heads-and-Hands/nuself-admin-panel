@@ -40,13 +40,13 @@ export default {
     created() {
         // this.createDate()
     },
-    computed: {
-        isDateType() {
-             if (this.info && this.info.conditions) {
-                 return this.info.conditions[0].type === 'date'
-             }
-        },
-    },
+    // computed: {
+    //     isDateType() {
+    //          if (this.info && this.info.conditions) {
+    //              return this.info.conditions[0].type === 'date'
+    //          }
+    //     },
+    // },
     // watch: {
     //     isDateType(value) {
     //         if (this.info && this.info.conditions) {
@@ -102,12 +102,12 @@ export default {
                 this.info.sale = newSale
             }
         },
-        createDate() {
-            if (this.isDateType) {
-                this.startDate = this.info.conditions[0].params ? this.info.conditions[0].params.startDate : ''
-                this.endDate = this.info.conditions[0].params ? this.info.conditions[0].params.endDate : ''
-            }
-        },
+        // createDate() {
+        //     if (this.isDateType) {
+        //         this.startDate = this.info.conditions[0].params ? this.info.conditions[0].params.startDate : ''
+        //         this.endDate = this.info.conditions[0].params ? this.info.conditions[0].params.endDate : ''
+        //     }
+        // },
         // clear() {
         //     if (this.isDateType) {
         //         this.startDate = this.info.conditions[0].params.startDate

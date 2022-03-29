@@ -59,7 +59,7 @@
                 </el-input>
               </el-col>
             </div>
-            <div v-if="isDateType" class="container-inputs">
+            <div v-if="info.conditions[0].type === 'date'" class="container-inputs">
               <el-col v-if="info.conditions[0].params" class="date-picker">
                 <div class="sub-title">Начало действия скидки</div>
                 <el-date-picker
