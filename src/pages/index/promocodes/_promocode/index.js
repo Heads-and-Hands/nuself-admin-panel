@@ -36,8 +36,10 @@ export default {
             dataPicker2: []
         }
     },
-    mounted() {
-        this.fixData(JSON.parse(JSON.stringify(this.info.conditions[0].params)))
+    created() {
+        if (this.info && this.info.conditions) {
+            this.fixData(JSON.parse(JSON.stringify(this.info.conditions[0].params)))
+        }
     },
     computed: {
         isSaveChange() {
