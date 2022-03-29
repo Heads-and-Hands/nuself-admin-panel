@@ -73,9 +73,9 @@ export default {
         },
         changeConditions(value) {
             if (value === 'date') {
-              this.$store.commit('promocodes/addDateParams')
+                this.$store.commit('promocodes/addDateParams')
             } else {
-               console.log('delete')
+                console.log('delete')
             }
         }
     },

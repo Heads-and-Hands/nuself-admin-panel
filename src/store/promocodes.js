@@ -1,4 +1,5 @@
 import Http from '@/services/http'
+import Vue from 'vue';
 
 export default ({
     namespaced: true,
@@ -22,10 +23,10 @@ export default ({
             state.promocode = data;
         },
         addDateParams(state) {
-            state.promocode.conditions[0].params = {
+            Vue.set(state.promocode.conditions[0], "params", {
                 startDate: '',
                 endDate: ''
-            }
+            })
         }
     },
     actions: {
