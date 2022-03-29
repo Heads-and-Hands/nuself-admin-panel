@@ -33,7 +33,10 @@
             <div class="container-inputs">
               <el-col v-if="info.conditions">
                 <div class="sub-title">Условие</div>
-                <el-select v-model="info.conditions[0].type" :placeholder="info.conditions[0].type">
+                <el-select
+                    v-model="info.conditions[0].type"
+                    :placeholder="info.conditions[0].type"
+                    @change="changeConditions($event)">
                   <el-option
                       v-for="(item, index) in selectType"
                       :key="index"

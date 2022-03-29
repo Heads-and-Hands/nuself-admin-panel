@@ -33,43 +33,12 @@ export default {
             selectCondition: '',
             dialogStatusVisible: false,
             isSaveChange: false,
-            // startDate: '',
-            // endDate: ''
         }
     },
-    created() {
-        // this.createDate()
-    },
-    // computed: {
-    //     isDateType() {
-    //          if (this.info && this.info.conditions) {
-    //              return this.info.conditions[0].type === 'date'
-    //          }
-    //     },
-    // },
-    // watch: {
-    //     isDateType(value) {
-    //         if (this.info && this.info.conditions) {
-    //             if (value) {
-    //                 // this.createDate()
-    //                 return this.info.conditions[0].params = {
-    //                     startDate: '',
-    //                     endDate: ''
-    //                 }
-    //             } else {
-    //                 delete this.info.conditions[0].params
-    //             }
-    //         }
-    //     }
-    // },
     methods: {
         async putInfo() {
             this.loading = true;
             const action = `${this.$route.name}s/putInfo`;
-            // if (this.isDateType) {
-            //     this.info.conditions[0].params.startDate = this.startDate
-            //     this.info.conditions[0].params.endDate = this.endDate
-            // }
             const body = {
                 id: this.$route.params.id,
                 data: this.info
@@ -102,17 +71,12 @@ export default {
                 this.info.sale = newSale
             }
         },
-        // createDate() {
-        //     if (this.isDateType) {
-        //         this.startDate = this.info.conditions[0].params ? this.info.conditions[0].params.startDate : ''
-        //         this.endDate = this.info.conditions[0].params ? this.info.conditions[0].params.endDate : ''
-        //     }
-        // },
-        // clear() {
-        //     if (this.isDateType) {
-        //         this.startDate = this.info.conditions[0].params.startDate
-        //         this.endDate = this.info.conditions[0].params.endDate
-        //     }
-        // }
+        changeConditions(value) {
+            if (value === 'date') {
+              this.$store.commit('promocodes/addDateParams')
+            } else {
+               console.log('delete')
+            }
+        }
     },
 }

@@ -21,6 +21,12 @@ export default ({
         setPromocode(state, data) {
             state.promocode = data;
         },
+        addDateParams(state) {
+            state.promocode.conditions[0].params = {
+                startDate: '',
+                endDate: ''
+            }
+        }
     },
     actions: {
         async getList({ commit }, params) {
