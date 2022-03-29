@@ -54,22 +54,31 @@
                 <el-input
                     class="inline-input sale-input"
                     :value="info.sale + '%'"
-                    @input="change"
+                    @input="changeSale"
                 >
                 </el-input>
               </el-col>
             </div>
-            <div v-if="info.conditions && info.conditions[0].type === 'date'" class="container-inputs">
-              <el-col class="textarea">
-                <div class="sub-title">Срок действия</div>
+            <div v-if="isDateType" class="container-inputs">
+              <el-col v-if="info.conditions[0].params" class="date-picker">
+                <div class="sub-title">Начало действия скидки</div>
                 <el-date-picker
-                    v-model="dataPicker"
-                    type="daterange"
-                    align="left"
-                    start-placeholder="Start Date"
-                    end-placeholder="End Date"
+                    v-model="startDate"
+                    type="date"
+                    @change="isSaveChange = true"
                     value-format="yyyy-MM-dd"
-                >
+                    placeholder="Начало"
+                    >
+                </el-date-picker>
+              </el-col>
+              <el-col  v-if="info.conditions[0].params" class="date-picker">
+                <div class="sub-title">Конец действия скидки</div>
+                <el-date-picker
+                    v-model="endDate"
+                    type="date"
+                    @change="isSaveChange = true"
+                    value-format="yyyy-MM-dd"
+                    placeholder="Окончание">
                 </el-date-picker>
               </el-col>
             </div>

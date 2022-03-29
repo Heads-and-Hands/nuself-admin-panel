@@ -32,31 +32,47 @@ export default {
             ],
             selectCondition: '',
             dialogStatusVisible: false,
-            dataPicker: [],
-            dataPicker2: [],
-            isSaveChange: false
+            isSaveChange: false,
+            startDate: '',
+            endDate: ''
         }
     },
     created() {
-        if (this.info && this.info.conditions) {
-            this.fixData(JSON.parse(JSON.stringify(this.info.conditions[0].params)))
+        this.createDate()
+    },
+    computed: {
+        isDateType() {
+             if (this.info && this.info.conditions) {
+                 return this.info.conditions[0].type === 'date'
+             }
+        },
+    },
+    watch: {
+        isDateType(value) {
+            if (this.info && this.info.conditions) {
+                if (value) {
+                    this.createDate()
+                    return this.info.conditions[0].params = {
+                        startDate: '',
+                        endDate: ''
+                    }
+                } else {
+                    delete this.info.conditions[0].params
+                }
+            }
         }
     },
     methods: {
         async putInfo() {
             this.loading = true;
-            if ( this.data && this.data.conditions && this.data.conditions[0].type === 'date') {
-                this.data.conditions[0].params = {
-                    startDate: this.dataPicker[0],
-                    endDate: this.dataPicker[1]
-                }
-            } else {
-
-            }
             const action = `${this.$route.name}s/putInfo`;
+            if (this.isDateType) {
+                this.info.conditions[0].params.startDate = this.startDate
+                this.info.conditions[0].params.endDate = this.endDate
+            }
             const body = {
                 id: this.$route.params.id,
-                data: this.data
+                data: this.info
             }
             try { await this.$store.dispatch(action, body) }
             finally {
@@ -77,19 +93,27 @@ export default {
         },
         changeStatus(status) {
             if (status) {
-                this.data.status = status
+                this.info.status = status
             }
             this.dialogStatusVisible = false
         },
-        change(value) {
+        changeSale(value) {
             let newSale = value.replace(/%/gi, '').replace(/[^0-9]/, '')
             if (newSale > 0 && newSale <= 100) {
-                this.data.sale = newSale
+                this.info.sale = newSale
             }
         },
-        fixData(params) {
-            this.dataPicker = [params.startDate, params.endDate]
-            this.dataPicker2 = [params.startDate, params.endDate]
+        createDate() {
+            if (this.isDateType) {
+                this.startDate = this.info.conditions[0].params ? this.info.conditions[0].params.startDate : ''
+                this.endDate = this.info.conditions[0].params ? this.info.conditions[0].params.endDate : ''
+            }
+        },
+        clear() {
+            if (this.isDateType) {
+                this.startDate = this.info.conditions[0].params.startDate
+                this.endDate = this.info.conditions[0].params.endDate
+            }
         }
     },
 }
