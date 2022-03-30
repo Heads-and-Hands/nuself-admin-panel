@@ -9,9 +9,6 @@ export default {
         }
     },
     methods: {
-        openPage(id) {
-            this.$router.push({path: `promocodes/promocode/${id}`});
-        },
         deletePromo(id) {
             this.$confirm('Вы уверены, что хотите удалить выбранный промокод?', 'Удалить промокод?', {
                 confirmButtonText: 'Удалить',

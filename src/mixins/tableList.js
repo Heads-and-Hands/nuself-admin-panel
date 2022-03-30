@@ -38,16 +38,12 @@ export default {
       switch (value) {
         case 'birthday':
           return 'День рождения'
-          break;
         case 'date':
           return 'Срок действия'
-          break;
         case 'ordinalPurchase':
           return 'Первая покупка'
-          break;
         case 'registration':
           return 'Первая покупка'
-          break;
         default:
           return ''
       }
