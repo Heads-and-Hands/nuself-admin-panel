@@ -7,7 +7,7 @@ import orders from './orders';
 import brands from './brands';
 import colors from './colors';
 import banners from './banners';
-import catalog from './catalog';
+import catalogs from './catalogs';
 import clients from './clients';
 import rubrics from './rubrics';
 import contents from './contents';
@@ -28,7 +28,7 @@ export default new Vuex.Store({
     rubrics,
     clients,
     banners,
-    catalog,
+    catalogs,
     products,
     contents,
     promocodes,

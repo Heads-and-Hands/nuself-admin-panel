@@ -12,7 +12,7 @@ export default {
         {
           title: "Каталог",
           icon: "el-icon-reading",
-          path: "catalog",
+          path: "catalogs",
           line: false,
           disabled: false,
         },

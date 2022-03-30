@@ -43,7 +43,7 @@
             <template slot-scope="scope">
               <span class="count">{{scope.row.count}}</span>
               <el-button icon="el-icon-sort" circle @click="openPositionModal(scope.row)"></el-button>
-              <el-button icon="el-icon-right" circle @click="openPage(`/catalog/category/${scope.row.id}`)"></el-button>
+              <el-button icon="el-icon-right" circle @click="openPage(`/catalogs/category/${scope.row.id}`)"></el-button>
             </template>
           </el-table-column>
         </el-table>

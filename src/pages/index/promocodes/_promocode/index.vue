@@ -2,9 +2,9 @@
   <div class="promo-page separate-page">
     <div class="title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
-      {{data.name}}
+      {{info? info.name : ''}}
     </div>
-    <div class="separate-page-container">
+    <div v-if="info" class="separate-page-container">
       <div class="left-container">
         <section class="page-container">
           <div class="head-24-s title">
@@ -16,14 +16,14 @@
                 <div class="sub-title">Название</div>
                 <el-input
                     class="inline-input"
-                    v-model="data.name"
+                    v-model="info.name"
                 ></el-input>
               </el-col>
               <el-col class="status">
                 <div class="sub-title">Статус</div>
                 <status-btn
                     class="status-container"
-                    :status="data.status"
+                    :status="info.status"
                     type="active"
                     edit
                     @openStatusModal="dialogStatusVisible = true"
@@ -31,9 +31,12 @@
               </el-col>
             </div>
             <div class="container-inputs">
-              <el-col v-if="data.conditions">
+              <el-col v-if="info.conditions">
                 <div class="sub-title">Условие</div>
-                <el-select v-model="data.conditions[0].type" :placeholder="data.conditions[0].type">
+                <el-select
+                    v-model="info.conditions[0].type"
+                    :placeholder="info.conditions[0].type"
+                    @change="changeConditions($event)">
                   <el-option
                       v-for="(item, index) in selectType"
                       :key="index"
@@ -46,27 +49,39 @@
                 <div class="sub-title">Код промокода</div>
                 <el-input
                     class="inline-input"
-                    v-model="data.code"
+                    v-model="info.code"
                 ></el-input>
               </el-col>
               <el-col class="info">
                 <div class="sub-title">Величина скидки на корзину</div>
                 <el-input
-                    class="inline-input"
-                    v-model="data.sale + '%'"
-                ></el-input>
+                    class="inline-input sale-input"
+                    :value="info.sale + '%'"
+                    @input="changeSale"
+                >
+                </el-input>
               </el-col>
             </div>
-            <div v-if="(data.conditions && data.conditions[0].type === 'date') || selectCondition === 'date'" class="container-inputs">
-              <el-col class="textarea">
-                <div class="sub-title">Срок действия</div>
+            <div v-if="info.conditions[0].type === 'date'" class="container-inputs">
+              <el-col v-if="info.conditions[0].params" class="date-picker">
+                <div class="sub-title">Начало действия скидки</div>
                 <el-date-picker
-                    v-model="dataPicker"
-                    type="daterange"
-                    align="left"
-                    start-placeholder="Start Date"
-                    end-placeholder="End Date"
-                    value-format="yyyy-MM-dd">
+                    v-model="info.conditions[0].params.startDate"
+                    type="date"
+                    @change="isSaveChange = true"
+                    value-format="yyyy-MM-dd"
+                    placeholder="Начало"
+                    >
+                </el-date-picker>
+              </el-col>
+              <el-col  v-if="info.conditions[0].params" class="date-picker">
+                <div class="sub-title">Конец действия скидки</div>
+                <el-date-picker
+                    v-model="info.conditions[0].params.endDate"
+                    type="date"
+                    @change="isSaveChange = true"
+                    value-format="yyyy-MM-dd"
+                    placeholder="Окончание">
                 </el-date-picker>
               </el-col>
             </div>
@@ -75,14 +90,15 @@
       </div>
     </div>
     <toggle-status
+        v-if="info"
         :dialogVisible="dialogStatusVisible"
-        :status="data.status"
+        :status="info.status"
         type="active"
         text="выбранной подборки"
         @close="dialogStatusVisible = false"
         @change-status="changeStatus"
     />
-    <save-notification v-show="isSaveChange" remove change @remove="remove" @save="save" @clear="clear"/>
+    <save-notification remove :change="isSaveChange" @remove="remove" @save="save" @clear="clear"/>
   </div>
 </template>
 
