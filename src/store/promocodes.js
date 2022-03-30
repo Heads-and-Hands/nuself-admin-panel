@@ -86,11 +86,10 @@ export default ({
             await Http.put(`/promocodes/${params.id}`, params.data);
         },
         async createInfo({ commit }, body) {
-            await Http.post(`/promocodes/`, body);
+            await Http.post(`/promocodes`, body);
         },
         async deleteInfo({ commit }, id) {
             await Http.delete(`/promocodes/${id}`);
-            this.$router.push({ path: `/promocodes` });
         }
     },
 })

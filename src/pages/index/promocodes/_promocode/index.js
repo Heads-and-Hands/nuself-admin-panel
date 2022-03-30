@@ -56,7 +56,6 @@ export default {
             if (this.$route.params.id === 'create' ) {
                 this.goToBack()
             } else {
-                console.log('wowitdelte')
                 this.deleteInfo()
             }
         },
