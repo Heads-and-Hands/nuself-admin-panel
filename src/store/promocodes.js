@@ -37,14 +37,29 @@ export default ({
             state.promocode = data;
         },
         addDateParams(state, newPromo) {
-            Vue.set(state.promocode.conditions[0], "params", {
+            let value = newPromo? 'newPromocode' : 'promocode'
+            Vue.set(state[value].conditions[0], "params", {
                 startDate: '',
                 endDate: ''
             })
         },
         deleteDateParams(state, newPromo) {
-            Vue.delete(state.promocode.conditions[0], "params")
+            let value = newPromo? 'newPromocode' : 'promocode'
+            Vue.delete(state[value].conditions[0], "params")
         },
+        clearNewPromo(state) {
+            state.newPromocode = {
+                name: 'Название промокода',
+                sale: 0,
+                code: '',
+                status: 'inactive',
+                conditions: [
+                    {
+                        type: 'birthday',
+                    }
+                ],
+            }
+        }
     },
     actions: {
         async getList({ commit }, params) {
@@ -70,13 +85,12 @@ export default ({
             console.log(params)
             await Http.put(`/promocodes/${params.id}`, params.data);
         },
-        async createPromocode({ commit }, body) {
-            let { data } = await Http.post(`/promocodes/`, body);
-            this.getInfo()
+        async createInfo({ commit }, body) {
+            await Http.post(`/promocodes/`, body);
         },
-        // async deletePromocode({ commit }, id) {
-        //     await Http.delete(`/promocodes/${id}`);
-        //     this.$router.push({ path: `/promocodes` });
-        // }
+        async deleteInfo({ commit }, id) {
+            await Http.delete(`/promocodes/${id}`);
+            this.$router.push({ path: `/promocodes` });
+        }
     },
 })

@@ -41,16 +41,56 @@ export default {
         this.isSaveChange = false
       }
     },
+    async putInfo() {
+      this.loading = true;
+      const action = `${this.$route.name}s/putInfo`;
+      const body = {
+        id: this.$route.params.id,
+        data: this.info
+      }
+      try { await this.$store.dispatch(action, body) }
+      finally {
+        this.getInfo()
+      }
+    },
+    async createNewInfo() {
+      this.loading = true;
+      const action = `${this.$route.name}s/createInfo`;
+      try { await this.$store.dispatch(action, this.info) }
+      finally {
+        this.goToBack()
+      }
+    },
+    async deleteInfo() {
+      this.loading = true;
+      const action = `${this.$route.name}s/deleteInfo`;
+      try { await this.$store.dispatch(action, this.$route.params.id) }
+      finally {
+        this.goToBack()
+      }
+    },
     back() {
       this.$router.push({ path: `/${this.$route.name}` });
     },
     textConditions(value) {
-      if (value === 'birthday') return 'День рождения'
-      if (value === 'date') return 'Срок действия'
-      if (value === 'first') return 'Первая покупка'
+      switch (value) {
+        case 'birthday':
+          return 'День рождения'
+          break;
+        case 'date':
+          return 'Срок действия'
+          break;
+        case 'ordinalPurchase':
+          return 'Первая покупка'
+          break;
+        case 'registration':
+          return 'Первая покупка'
+          break;
+        default:
+          return ''
+      }
     },
     clear() {
-        this.getInfo()
         this.contentEdited = false;
         this.isSaveChange = false;
     },

@@ -38,7 +38,7 @@ export default {
     methods: {
         async putInfo() {
             this.loading = true;
-            const action = `${this.$route.name}s/putInfo`;
+            const action = `promocodes/putInfo`;
             const body = {
                 id: this.$route.params.id,
                 data: this.info
@@ -52,12 +52,25 @@ export default {
             this.$router.push({ path: `/promocodes` });
         },
         remove() {
-            console.log('remove')
             this.clear()
+            if (this.$route.params.id === 'create' ) {
+                this.goToBack()
+            } else {
+                console.log('wowitdelte')
+                this.deleteInfo()
+            }
         },
         save() {
             console.log('save')
-            this.putInfo()
+            this.$route.params.id === 'create' ?  this.createNewInfo() : this.putInfo()
+        },
+        clear() {
+            if (this.$route.params.id === 'create' ) {
+                console.log('clearlol')
+                this.$store.commit('promocodes/clearNewPromo')
+            } else {
+                this.getInfo()
+            }
         },
         changeStatus(status) {
             if (status) {
@@ -72,14 +85,12 @@ export default {
             }
         },
         changeConditions(value) {
-            if (this.$route.params.id !== 'create') {
+            let isNewPromo = this.$route.params.id === 'create'
                 if (value === 'date') {
-                    this.$store.commit('promocodes/addDateParams', false)
+                    this.$store.commit('promocodes/addDateParams', isNewPromo)
                 } else {
-                    this.$store.commit('promocodes/deleteDateParams', false)
+                    this.$store.commit('promocodes/deleteDateParams', isNewPromo)
                 }
-            }
-        // сделать добавление нового промокода
         }
     },
 }
