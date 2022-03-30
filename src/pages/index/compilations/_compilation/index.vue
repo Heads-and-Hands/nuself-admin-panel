@@ -4,7 +4,7 @@
       <i class="el-icon-back" @click="goToBack"></i>
       Подборка
     </div>
-    <div class="separate-page-container">
+    <div v-if="info" class="separate-page-container">
       <div class="left-container">
         <section class="page-container common" ref="common">
           <div class="head-24-s title">
@@ -16,17 +16,17 @@
                 <div class="sub-title">ID</div>
                 <el-input
                     class="inline-input"
-                    v-model="data.common.id"
+                    :value="info.id"
                     disabled
                 ></el-input>
               </el-col>
               <el-col>
                 <div class="sub-title">Вид превью</div>
-                <el-select v-model="data.common.preview" :placeholder="data.common.preview">
+                <el-select v-model="info.previewType" :placeholder="info.previewType">
                   <el-option
                       v-for="(item, index) in selectType"
                       :key="index"
-                      :label="item.value"
+                      :label="item.title"
                       :value="item.value">
                   </el-option>
                 </el-select>
@@ -34,7 +34,7 @@
               <el-col class="status">
                 <div class="sub-title">Статус</div>
                 <status-btn
-                    :status="data.common.status"
+                    :status="info.status"
                     type="visibility"
                     edit
                     @openStatusModal="dialogStatusVisible = true"
@@ -46,7 +46,7 @@
                 <div class="sub-title">Название</div>
                 <el-input
                     class="inline-input"
-                    v-model="data.common.name"
+                    v-model="info.name"
                 ></el-input>
               </el-col>
             </div>
@@ -55,20 +55,20 @@
                 <div class="sub-title">Описание для сотрудников</div>
                 <el-input
                     class="inline-input"
-                    v-model="data.common.descriptions"
+                    v-model="info.description"
                     type="textarea"
                 ></el-input>
               </el-col>
             </div>
           </div>
         </section>
-        <section class="page-container products" ref="products">
+        <section v-if="products" class="page-container products" ref="products">
           <div class="head-24-s title">
-            Товары  <span class="limit">{{ data.products.list.length }}</span>
+            Товары  <span class="limit">{{ products.list.length }}</span>
           </div>
           <div class="products-item body-14-reg">
             <table-products
-                :data="data.products"
+                :data="products"
             />
           </div>
         </section>
@@ -76,13 +76,14 @@
       <right-side-bar v-if="navList.length" :list="navList"/>
     </div>
     <toggle-status
+        v-if="info"
         :dialogVisible="dialogStatusVisible"
-        :status="data.common.status"
+        :status="info.status"
         text="выбранной подборки"
         @close="dialogStatusVisible = false"
         @change-status="changeStatus"
     />
-    <save-notification v-show="isSaveChange" remove change @remove="remove" @save="save" @clear="clear"/>
+    <save-notification remove change @remove="remove" @save="save" @clear="clear"/>
   </div>
 </template>
 

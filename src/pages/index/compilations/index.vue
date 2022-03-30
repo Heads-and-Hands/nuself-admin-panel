@@ -33,6 +33,9 @@
               prop="previewType"
               label="Вид превью"
               width="118">
+            <template slot-scope="scope">
+              <span>{{textConditions(scope.row.previewType)}}</span>
+            </template>
           </el-table-column>
           <el-table-column
               prop="status"

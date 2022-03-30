@@ -5,6 +5,7 @@ export default ({
     state: {
         compilations: null,
         compilation: null,
+        products: null
     },
     getters: {
         list(state) {
@@ -20,6 +21,9 @@ export default ({
         },
         setCompilation(state, data) {
             state.compilation = data;
+        },
+        setProducts(state, data) {
+            state.products = data;
         },
     },
     actions: {
@@ -41,6 +45,21 @@ export default ({
         async getInfo({ commit }, id) {
             let { data } = await Http.get(`/compilations/${id}`);
             commit("setCompilation", data);
-        }
+        },
+        async getProducts({ commit }, params) {
+            let url = `compilations/search`;
+            const urlParams = [];
+
+            Object.keys(params).forEach((key) => {
+                urlParams.push(`${key}=${params[key]}`);
+            });
+
+            if (urlParams.length) {
+                url = url + "?" + urlParams.join("&");
+            }
+
+            let { data } = await Http.get(`/compilations/${params.id}/products`);
+            commit("setProducts", data);
+        },
     },
 })
