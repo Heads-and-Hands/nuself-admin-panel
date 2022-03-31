@@ -36,18 +36,6 @@ export default {
         }
     },
     methods: {
-        async putInfo() {
-            this.loading = true;
-            const action = `promocodes/putInfo`;
-            const body = {
-                id: this.$route.params.id,
-                data: this.info
-            }
-            try { await this.$store.dispatch(action, body) }
-            finally {
-                this.getInfo()
-            }
-        },
         goToBack() {
             this.$router.push({ path: `/promocodes` });
         },

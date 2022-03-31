@@ -87,8 +87,8 @@ export default ({
             let { data } = await Http.get(`/compilations/${params.id}/products`);
             commit("setProducts", data);
         },
-        async putInfo({ commit }, id) {
-            console.log(params)
+        async putInfo({ commit }, params) {
+            console.log('ffff',params)
             await Http.put(`/compilations/${params.id}`, params.data);
         },
         async createInfo({ commit }, body) {

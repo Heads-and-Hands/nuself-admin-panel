@@ -45,6 +45,7 @@ export default {
     async putInfo() {
       this.loading = true;
       const action = `${this.$route.name}s/putInfo`;
+      delete this.info.id
       const body = {
         id: this.$route.params.id,
         data: this.info

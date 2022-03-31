@@ -43,7 +43,9 @@ export default {
         ]
     },
     created() {
-        this.getCompilationsProducts()
+        if (this.$route.params.id !== 'create') {
+            this.getCompilationsProducts()
+        }
     },
     computed: {
         products() {
@@ -88,7 +90,7 @@ export default {
         },
         save() {
             console.log('save')
-            if ( this.$route.params.id === 'create') {
+            if (this.$route.params.id === 'create') {
                 let listId = this.products.list.map((elem) => elem.id)
                 let value = {...this.info, ...listId} //доделать создание когда можно будет добавить продукты
                 this.createNewInfo(value)
