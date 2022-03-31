@@ -14,7 +14,27 @@ export default {
                 image: '#'
             },
             showPicker: false,
-            isSaveChange: false
+            isSaveChange: false,
+            selectProducColor: [],
+            productColors: [
+                {
+                    id: 1,
+                    title: 'какойто цвет'
+                },
+                {
+                    id: 2,
+                    title: 'какойто цвет'
+                },
+                {
+                    id: 3,
+                    title: 'какойто цвет'
+                },
+                {
+                    id: 4,
+                    title: 'какойто цвет'
+                },
+
+            ]
         }
     },
     // mounted() {

@@ -5,6 +5,11 @@ export default ({
     state: {
         colors: null,
         color: null,
+        newColor: {
+            title: '',
+            hex: '',
+            productColorIds: ''
+        },
     },
     getters: {
         list(state) {

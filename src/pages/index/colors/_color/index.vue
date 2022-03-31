@@ -2,7 +2,7 @@
   <div class="separate-page color-page">
     <div class="page-title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
-      Цвет
+      {{ data.title || 'Название цвета фильтра' }}
     </div>
     <section class="page-container color-container">
       <div class="head-24-s title">
@@ -16,10 +16,9 @@
         </el-input>
       </el-col>
       <el-col>
-        <div class="sub-title body-14-reg">Цвет</div>
+        <div class="sub-title body-14-reg">Название цвета фильтров</div>
         <el-input
-            v-model="data.title"
-            disabled>
+            v-model="data.title">
         </el-input>
       </el-col>
       <el-col>
@@ -40,6 +39,24 @@
           >
           </el-color-picker>
         </div>
+      </el-col>
+      <el-col>
+        <div class="sub-title body-14-reg">Цвета товаров</div>
+        <el-select
+            v-model="selectProducColor"
+            multiple
+            filterable
+            allow-create
+            default-first-option
+            popper-class="body-14-reg"
+            placeholder="Найти цвета товаров">
+          <el-option
+              v-for="item in productColors"
+              :key="item.id"
+              :label="item.title"
+              :value="item.id">
+          </el-option>
+        </el-select>
       </el-col>
     </section>
     <save-notification v-show="isSaveChange" @clear="clearAll()" change @save="save"/>
