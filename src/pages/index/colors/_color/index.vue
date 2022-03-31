@@ -2,7 +2,7 @@
   <div class="separate-page color-page">
     <div class="page-title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
-      {{ data.title || 'Название цвета фильтра' }}
+      {{ info.title || 'Название цвета фильтра' }}
     </div>
     <section class="page-container color-container">
       <div class="head-24-s title">
@@ -11,28 +11,28 @@
       <el-col>
         <div class="sub-title body-14-reg">ID</div>
         <el-input
-            v-model="data.id"
+            v-model="info.id"
             disabled>
         </el-input>
       </el-col>
       <el-col>
         <div class="sub-title body-14-reg">Название цвета фильтров</div>
         <el-input
-            v-model="data.title">
+            v-model="info.title">
         </el-input>
       </el-col>
       <el-col>
         <div class="sub-title body-14-reg">Значение</div>
         <el-input
-            :color="data.color"
-            v-model="data.color"
+            :color="info.color"
+            v-model="info.color"
             @focus="showPicker = true"
             clearable
         >
         </el-input>
         <div v-show="showPicker" class="block" @mouseleave="showPicker = false">
           <el-color-picker
-              v-model="data.color"
+              v-model="info.color"
               popper-class="palette"
               class="color-picker"
               @mouseout.native="changeColor()"
