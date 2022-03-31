@@ -44,6 +44,10 @@ export default {
           return 'Первая покупка'
         case 'registration':
           return 'Первая покупка'
+        case 'tile':
+          return 'Плитка'
+        case 'carousel':
+          return 'Карусель'
         default:
           return ''
       }

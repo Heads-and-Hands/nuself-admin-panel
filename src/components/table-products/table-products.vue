@@ -39,7 +39,7 @@
           width="104">
         <template slot-scope="scope">
           <span class="body-14-reg color">
-            <span class="color-circle" :style="`background-color: ${scope.row.color.color}`"></span>
+            <span class="color-circle" :style="`background-color: #${scope.row.color.color}`"></span>
             {{ scope.row.color.title}}
           </span>
         </template>
@@ -50,10 +50,11 @@
           class-name="status"
       >
         <template slot-scope="scope">
-          <el-tag
-              :type="scope.row.status === 'Показывать' ? 'success' : 'warning'"
-              class="body-14-reg status-tag"
-          >{{ scope.row.status }}</el-tag>
+          <status-btn
+              :status="scope.row.status"
+              type="visibility"
+              size="small"
+          />
         </template>
       </el-table-column>
       <el-table-column
@@ -127,7 +128,7 @@ export default {
     padding-right: 16px;
     overflow: hidden;
     word-wrap: normal;
-    word-break: normal;
+    word-break: unset;
 
     .color {
       display: inline-flex;
@@ -162,6 +163,7 @@ export default {
     width: 44px;
     border-radius: 4px;
     object-fit: contain;
+    vertical-align: middle;
   }
 }
 .status .cell {

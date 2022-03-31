@@ -10,77 +10,22 @@ export default {
     ],
     data() {
         return {
-            data: {
-                common: {
-                    id: '1R1469',
-                    name: 'Название подборки',
-                    status: 'active',
-                    preview: 'Карусель',
-                    descriptions: 'Облегченный комбинезон из мягкого трикотажа с петлей наизнанке. ' +
-                        'Капюшон дополнен шнуром для дополнительной утяжки и защиты от ветра. Воротник-стойка. ' +
-                        'Вместительные боковые карманы. Манжеты на рукавах и штанинах. Двойной бегунок для' +
-                        ' удобства туалета',
-                },
-                products: {
-                    list: [
-                        {
-                            id: '163',
-                            image: 'https://chpic.su/_data/archived/stickers/c/ca/cats_meme.webp',
-                            article: '1RJ431',
-                            name: 'Футболка с красным принтом...',
-                            brand: 'Lauren Ralpher Laurenser...',
-                            color: {
-                                id: 1,
-                                title: 'синий',
-                                color: '#0000ff',
-                                image: ''
-                            },
-                            status: 'active',
-                            order: 1
-                        },
-                        {
-                            id: '163',
-                            image: 'https://chpic.su/_data/archived/stickers/c/ca/cats_meme.webp',
-                            article: '1RJ431',
-                            name: 'Футболка с красным принтом...',
-                            brand: 'Lauren Ralpher Laurenser...',
-                            color: {
-                                id: 1,
-                                title: 'синий',
-                                color: '#0000ff',
-                                image: ''
-                            },
-                            status: 'Показывать',
-                            order: 1
-                        },
-                        {
-                            id: '163',
-                            image: 'https://chpic.su/_data/archived/stickers/c/ca/cats_meme.webp',
-                            article: '1RJ431',
-                            name: 'Футболка с красным принтом...',
-                            brand: 'Lauren Ralpher Laurenser...',
-                            color: {
-                                id: 1,
-                                title: 'синий',
-                                color: '#0000ff',
-                                image: ''
-                            },
-                            status: 'Показывать',
-                            order: 1
-                        },
-                    ]
-                }
-            },
             selectType: [
                 {
-                    value: 'Карусель'
+                    title: 'Карусель',
+                    value: 'carousel'
                 },
                 {
-                    value: 'Плитка'
+                    title: 'Плитка',
+                    value: 'tile'
                 }
             ],
             navList: [],
             dialogStatusVisible: false,
+            productMeta: {
+                offset: 0,
+                limit: 30,
+            }
         }
     },
     mounted() {
@@ -98,11 +43,15 @@ export default {
         ]
     },
     created() {
-        this.data = JSON.parse(JSON.stringify(this.list))
+        this.getCompilationsProducts()
     },
     computed: {
-        isSaveChange() {
-            return JSON.stringify(this.data) !== JSON.stringify(this.list)
+        products() {
+            if (this.$route.params.id !== 'create') {
+                return this.$store.state.compilations.products
+            } else {
+                return this.$store.state.compilations.newProducts
+            }
         }
     },
     components: {
@@ -112,24 +61,46 @@ export default {
         tableProducts,
     },
     methods: {
+        deleteCompilation() {
+            this.$confirm('Вы уверены, что хотите удалить выбранную подборку?', 'Удалить подборку?', {
+                confirmButtonText: 'Удалить',
+                cancelButtonText: 'Отмена',
+                customClass: 'delete-modal',
+                cancelButtonClass: 'button',
+                confirmButtonClass: 'button',
+            }).then(() => {
+                this.deleteInfo()
+                this.$message({
+                    type: 'success',
+                    message: 'Подборка успешно удалена'
+                });
+            })
+        },
+        async getCompilationsProducts() {
+            this.loading = true
+            const action = `compilations/getProducts`;
+            let params = {id: this.$route.params.id, ...this.productMeta }
+            try { await this.$store.dispatch(action, params)}
+            finally { this.loading = false }
+        },
         goToBack() {
             this.$router.push({ path: `/compilations` });
         },
-        remove() {
-            console.log('remove')
-            this.clear()
-        },
         save() {
             console.log('save')
-        },
-        clear() {
-            this.data = JSON.parse(JSON.stringify(this.list))
+            if ( this.$route.params.id === 'create') {
+                let listId = this.products.list.map((elem) => elem.id)
+                let value = {...this.info, ...listId} //доделать создание когда можно будет добавить продукты
+                this.createNewInfo(value)
+            } else {
+                this.putInfo()
+            }
         },
         changeStatus(status) {
             if (status) {
-                this.data.common.status = status
+                this.info.status = status
             }
             this.dialogStatusVisible = false
-        }
+        },
     }
 }

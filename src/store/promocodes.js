@@ -16,7 +16,7 @@ export default ({
                     type: 'birthday',
                 }
             ],
-        }
+        },
     },
     getters: {
         list(state) {
@@ -47,7 +47,7 @@ export default ({
             let value = newPromo? 'newPromocode' : 'promocode'
             Vue.delete(state[value].conditions[0], "params")
         },
-        clearNewPromo(state) {
+        clearNewInfo(state) {
             state.newPromocode = {
                 name: 'Название промокода',
                 sale: 0,
@@ -87,6 +87,7 @@ export default ({
         },
         async createInfo({ commit }, body) {
             await Http.post(`/promocodes`, body);
+            commit("clearNewInfo");
         },
         async deleteInfo({ commit }, id) {
             await Http.delete(`/promocodes/${id}`);

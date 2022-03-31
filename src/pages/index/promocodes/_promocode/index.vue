@@ -94,7 +94,7 @@
         :dialogVisible="dialogStatusVisible"
         :status="info.status"
         type="active"
-        text="выбранной подборки"
+        text="выбранного промокода"
         @close="dialogStatusVisible = false"
         @change-status="changeStatus"
     />

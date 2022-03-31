@@ -33,6 +33,9 @@
               prop="previewType"
               label="Вид превью"
               width="118">
+            <template slot-scope="scope">
+              <span>{{textConditions(scope.row.previewType)}}</span>
+            </template>
           </el-table-column>
           <el-table-column
               prop="status"
@@ -59,13 +62,13 @@
                     icon="el-icon-plus"
                     circle
                     style="background-color: #292B33; color: white"
-                    @click="dialogTablesVisible = true"
+                    @click="openPage(`compilations/compilation/create`);"
                 ></el-button>
               </div>
             </template>
             <template slot-scope="scope">
               <el-button icon="el-icon-right" circle @click="openPage(`/compilations/compilation/${scope.row.id}`)"></el-button>
-              <el-button icon="el-icon-delete" type="danger" circle @click="deleteCompilation"></el-button>
+              <el-button icon="el-icon-delete" type="danger" circle @click="deleteCompilation(scope.row.id)"></el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -73,14 +76,14 @@
     </section>
     <toggle-status
         :dialogVisible="dialogStatusVisible"
-        status="Показывать"
-        text="выбранных категорий"
-        @close="closeToggleStatus"
-        @change-status="changeStatus"
+        type="visibility"
+        status="active"
+        text="выбранных подборок"
+        @change-status="changeAllStatus"
+        @close="this.dialogStatusVisible = false"
     />
     <save-notification
         v-show="listRemoveCompilations.length"
-        remove
         status
         :text="textNotification"
         @clear="clear"
