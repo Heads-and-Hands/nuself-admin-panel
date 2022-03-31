@@ -3,6 +3,7 @@ export default {
     return {
       loading: true,
       contentEdited: false,
+      isSaveChange: false,
     }
   },
   created() {
@@ -53,10 +54,10 @@ export default {
         this.getInfo()
       }
     },
-    async createNewInfo() {
+    async createNewInfo(value) {
       this.loading = true;
       const action = `${this.$route.name}s/createInfo`;
-      try { await this.$store.dispatch(action, this.info) }
+      try { await this.$store.dispatch(action, value) }
       finally {
         this.goToBack()
       }
@@ -87,6 +88,11 @@ export default {
       }
     },
     clear() {
+        if (this.$route.params.id === 'create' ) {
+          this.$store.commit(`${this.$route.name}s/clearNewInfo`)
+        } else {
+          this.getInfo()
+        }
         this.contentEdited = false;
         this.isSaveChange = false;
     },

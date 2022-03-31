@@ -31,6 +31,7 @@
           },
           {
             label: 'Не показывать',
+            type: 'inactive',
             style: 'warning'
           },
         ],

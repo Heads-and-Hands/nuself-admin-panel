@@ -5,7 +5,16 @@ export default ({
     state: {
         compilations: null,
         compilation: null,
-        products: null
+        products: {},
+        newCompilation: {
+            description: '',
+            name: '',
+            previewType: 'tile',
+            status: 'inactive',
+        },
+        newProducts: {
+            list: []
+        }
     },
     getters: {
         list(state) {
@@ -13,6 +22,12 @@ export default ({
         },
         info(state) {
             return state.compilation;
+        },
+        newInfo(state) {
+            return state.newCompilation;
+        },
+        newProducts(state) {
+            return state.newProducts;
         }
     },
     mutations: {
@@ -25,6 +40,17 @@ export default ({
         setProducts(state, data) {
             state.products = data;
         },
+        clearNewInfo(state) {
+            state.newCompilation = {
+                description: '',
+                    name: '',
+                    previewType: 'tile',
+                    status: 'inactive',
+            }
+            state.newProducts = {
+                list: []
+            }
+        }
     },
     actions: {
         async getList({ commit }, params) {
@@ -60,6 +86,21 @@ export default ({
 
             let { data } = await Http.get(`/compilations/${params.id}/products`);
             commit("setProducts", data);
+        },
+        async putInfo({ commit }, id) {
+            console.log(params)
+            await Http.put(`/compilations/${params.id}`, params.data);
+        },
+        async createInfo({ commit }, body) {
+            await Http.post(`/compilations`, body);
+            commit("clearNewInfo");
+        },
+        async deleteInfo({ commit }, id) {
+            await Http.delete(`/compilations/${id}`);
+        },
+        async changeStatus({ commit }, params) {
+            console.log(params)
+            await Http.post(`/compilations/status`, params);
         },
     },
 })

@@ -2,7 +2,7 @@
   <div class="compilation-page separate-page">
     <div class="title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
-      Подборка
+      {{this.$route.params.id === 'create' ? 'Новая подобрка' : 'Подборка'}}
     </div>
     <div v-if="info" class="separate-page-container">
       <div class="left-container">
@@ -64,7 +64,7 @@
         </section>
         <section v-if="products" class="page-container products" ref="products">
           <div class="head-24-s title">
-            Товары  <span class="limit">{{ products.list.length }}</span>
+            Товары  <span class="limit">{{ products.list.length || 0 }}</span>
           </div>
           <div class="products-item body-14-reg">
             <table-products
@@ -79,11 +79,12 @@
         v-if="info"
         :dialogVisible="dialogStatusVisible"
         :status="info.status"
+        type="active"
         text="выбранной подборки"
         @close="dialogStatusVisible = false"
         @change-status="changeStatus"
     />
-    <save-notification remove change @remove="remove" @save="save" @clear="clear"/>
+    <save-notification remove :change="isSaveChange" @remove="deleteCompilation" @save="save" @clear="clear"/>
   </div>
 </template>
 

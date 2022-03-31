@@ -37,17 +37,18 @@ export default {
         }
     },
     methods: {
-        deleteCompilation() {
-            this.$confirm( 'Вы уверены, что хотите удалить выбранную подборку?', 'Удалить подборку?',  {
+        deleteCompilation(id) {
+            this.$confirm('Вы уверены, что хотите удалить выбранную подборку?', 'Удалить подборку?', {
                 confirmButtonText: 'Удалить',
                 cancelButtonText: 'Отмена',
                 customClass: 'delete-modal',
                 cancelButtonClass: 'button',
                 confirmButtonClass: 'button',
-            }).then(({ value }) => {
+            }).then(() => {
+                this.deleteItem(id)
                 this.$message({
                     type: 'success',
-                    message: 'Your delete' + value
+                    message: 'Подборка успешно удалена'
                 });
             })
         },
@@ -58,31 +59,25 @@ export default {
             try { await this.$store.dispatch(action, params)}
             finally { this.loading = false }
         },
+        async changeStatus(status) {
+            this.loading = true;
+            const action = `${this.$route.name}/changeStatus`;
+            let params = {
+                itemIds: this.listRemoveCompilations.map(elem => elem.id),
+                status: status
+            }
+            try { await this.$store.dispatch(action, params)}
+            finally {
+                this.loading = false
+                this.dialogStatusVisible = false
+                this.getList()
+            }
+        },
         toggleSelection() {
             this.$refs.listRemoveCompilations.clearSelection();
         },
         handleSelectionChange(val) {
             this.listRemoveCompilations = val;
-        },
-        ending2(value, str){
-            let ending = str;
-            switch (true) {
-                case value > 10 &&
-                value < 20:
-                    ending += "ок";
-                    break;
-                case value === 1:
-                    ending += "ка";
-                    break;
-                case value > 1 &&
-                value < 5:
-                    ending += "ки";
-                    break;
-                default:
-                    ending += "ок";
-                    break;
-            }
-            return ending;
         },
         ending(value, str) {
             let ending = str;
@@ -117,14 +112,12 @@ export default {
             console.log('change status')
             this.dialogStatusVisible = true
         },
-        changeStatus() {
-            console.log('change status method')
-            this.clear()
-            this.dialogStatusVisible = false
-        },
-        closeToggleStatus() {
-            this.clear()
-            this.dialogStatusVisible = false
-        },
+        // closeToggleStatus() {
+        //     this.clear()
+        //     this.dialogStatusVisible = false
+        // },
+        changeAllStatus(status) {
+            this.changeStatus(status)
+        }
     }
 }

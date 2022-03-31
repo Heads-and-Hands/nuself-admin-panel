@@ -47,7 +47,11 @@ export default {
     },
     computed: {
         products() {
-            return this.$store.state.compilations.products
+            if (this.$route.params.id !== 'create') {
+                return this.$store.state.compilations.products
+            } else {
+                return this.$store.state.compilations.newProducts
+            }
         }
     },
     components: {
@@ -57,6 +61,21 @@ export default {
         tableProducts,
     },
     methods: {
+        deleteCompilation() {
+            this.$confirm('Вы уверены, что хотите удалить выбранную подборку?', 'Удалить подборку?', {
+                confirmButtonText: 'Удалить',
+                cancelButtonText: 'Отмена',
+                customClass: 'delete-modal',
+                cancelButtonClass: 'button',
+                confirmButtonClass: 'button',
+            }).then(() => {
+                this.deleteInfo()
+                this.$message({
+                    type: 'success',
+                    message: 'Подборка успешно удалена'
+                });
+            })
+        },
         async getCompilationsProducts() {
             this.loading = true
             const action = `compilations/getProducts`;
@@ -67,21 +86,21 @@ export default {
         goToBack() {
             this.$router.push({ path: `/compilations` });
         },
-        remove() {
-            console.log('remove')
-            this.clear()
-        },
         save() {
             console.log('save')
-        },
-        clear() {
-            this.data = JSON.parse(JSON.stringify(this.list))
+            if ( this.$route.params.id === 'create') {
+                let listId = this.products.list.map((elem) => elem.id)
+                let value = {...this.info, ...listId} //доделать создание когда можно будет добавить продукты
+                this.createNewInfo(value)
+            } else {
+                this.putInfo()
+            }
         },
         changeStatus(status) {
             if (status) {
-                this.data.common.status = status
+                this.info.status = status
             }
             this.dialogStatusVisible = false
-        }
+        },
     }
 }

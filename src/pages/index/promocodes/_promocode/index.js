@@ -61,15 +61,7 @@ export default {
         },
         save() {
             console.log('save')
-            this.$route.params.id === 'create' ?  this.createNewInfo() : this.putInfo()
-        },
-        clear() {
-            if (this.$route.params.id === 'create' ) {
-                console.log('clearlol')
-                this.$store.commit('promocodes/clearNewPromo')
-            } else {
-                this.getInfo()
-            }
+            this.$route.params.id === 'create' ?  this.createNewInfo(this.info) : this.putInfo()
         },
         changeStatus(status) {
             if (status) {
