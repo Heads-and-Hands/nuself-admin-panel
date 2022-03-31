@@ -89,7 +89,13 @@ export default ({
         },
         async putInfo({ commit }, params) {
             console.log('ffff',params)
-            await Http.put(`/compilations/${params.id}`, params.data);
+            let body = {
+                name: params.data.name,
+                previewType: params.data.previewType,
+                status: params.data.status,
+                description: params.data.description,
+            }
+            await Http.put(`/compilations/${params.id}`, body);
         },
         async createInfo({ commit }, body) {
             await Http.post(`/compilations`, body);
