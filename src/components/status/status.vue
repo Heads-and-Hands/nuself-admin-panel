@@ -39,13 +39,15 @@ export default {
   },
   methods: {
     textStatus(status, type = 'active') {
-      if ( type === 'active') {
-        if (status === 'active') return 'Активен'
-        if (status === 'inactive') return 'Неактивен'
-      }
-      if ( type === 'visibility') {
-        if (status === 'active') return 'Показывать'
-        if (status === 'inactive') return 'Не показывать'
+      switch (type) {
+        case 'active':
+          if (status === 'active') return 'Активен'
+          if (status === 'inactive') return 'Неактивен'
+        case 'visibility':
+          if (status === 'active') return 'Показывать'
+          if (status === 'inactive') return 'Не показывать'
+        default:
+          return status
       }
     },
   }

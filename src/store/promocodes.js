@@ -1,10 +1,22 @@
 import Http from '@/services/http'
+import Vue from 'vue';
 
 export default ({
     namespaced: true,
     state: {
         promocodes: null,
         promocode: null,
+        newPromocode: {
+            name: 'Название промокода',
+            sale: 0,
+            code: '',
+            status: 'inactive',
+            conditions: [
+                {
+                    type: 'birthday',
+                }
+            ],
+        },
     },
     getters: {
         list(state) {
@@ -12,6 +24,9 @@ export default ({
         },
         info(state) {
             return state.promocode;
+        },
+        newInfo(state) {
+            return state.newPromocode;
         }
     },
     mutations: {
@@ -21,6 +36,30 @@ export default ({
         setPromocode(state, data) {
             state.promocode = data;
         },
+        addDateParams(state, newPromo) {
+            let value = newPromo? 'newPromocode' : 'promocode'
+            Vue.set(state[value].conditions[0], "params", {
+                startDate: '',
+                endDate: ''
+            })
+        },
+        deleteDateParams(state, newPromo) {
+            let value = newPromo? 'newPromocode' : 'promocode'
+            Vue.delete(state[value].conditions[0], "params")
+        },
+        clearNewInfo(state) {
+            state.newPromocode = {
+                name: 'Название промокода',
+                sale: 0,
+                code: '',
+                status: 'inactive',
+                conditions: [
+                    {
+                        type: 'birthday',
+                    }
+                ],
+            }
+        }
     },
     actions: {
         async getList({ commit }, params) {
@@ -41,6 +80,17 @@ export default ({
         async getInfo({ commit }, id) {
             let { data } = await Http.get(`/promocodes/${id}`);
             commit("setPromocode", data);
+        },
+        async putInfo({ commit }, id) {
+            console.log(params)
+            await Http.put(`/promocodes/${params.id}`, params.data);
+        },
+        async createInfo({ commit }, body) {
+            await Http.post(`/promocodes`, body);
+            commit("clearNewInfo");
+        },
+        async deleteInfo({ commit }, id) {
+            await Http.delete(`/promocodes/${id}`);
         }
     },
 })

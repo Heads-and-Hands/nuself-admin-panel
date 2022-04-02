@@ -8,41 +8,6 @@ export default {
     ],
     data() {
         return {
-            list: [
-                {
-                    id: '163',
-                    name: 'Длинное название подборки',
-                    previewType: 'Карусель',
-                    status: 'active',
-                    description: 'Облегченный комбинезон из мягкого трикотажа с петлей наизнанке.' +
-                        ' Капюшон дополнен шнуром для дополнительной утяж... ',
-                },
-                {
-                    id: '163',
-                    name: 'Длинное название подборки',
-                    previewType: 'Карусель',
-                    status: 'inactive',
-                    description: 'Облегченный комбинезон из мягкого трикотажа с петлей наизнанке.' +
-                        ' Капюшон дополнен шнуром для дополнительной утяж... ',
-                },
-                {
-                    id: '163',
-                    name: 'Длинное название подборки',
-                    previewType: 'Карусель',
-                    status: 'Показывать',
-                    description: 'Облегченный комбинезон из мягкого трикотажа с петлей наизнанке.' +
-                        ' Капюшон дополнен шнуром для дополнительной утяж... ',
-                },
-                {
-                    id: '163',
-                    name: 'Длинное название подборки',
-                    previewType: 'Карусель',
-                    status: 'Показывать',
-                    description: 'Облегченный комбинезон из мягкого трикотажа с петлей наизнанке.' +
-                        ' Капюшон дополнен шнуром для дополнительной утяж... ',
-                },
-
-            ],
             dialogTablesVisible: false,
             listRemoveCompilations: [],
             searchValue: '',
@@ -60,20 +25,53 @@ export default {
             return text
         }
     },
+    // отслеживаем три символа после которых начинается поиск
+    watch: {
+        searchValue(newValue, oldValue) {
+            if (String(newValue).length > 2) {
+                this.getListSearch()
+            }
+            if (String(newValue).length === 2 && String(oldValue).length === 3) {
+                this.getList()
+            }
+        }
+    },
     methods: {
-        deleteCompilation() {
-            this.$confirm( 'Вы уверены, что хотите удалить выбранную подборку?', 'Удалить подборку?',  {
+        deleteCompilation(id) {
+            this.$confirm('Вы уверены, что хотите удалить выбранную подборку?', 'Удалить подборку?', {
                 confirmButtonText: 'Удалить',
                 cancelButtonText: 'Отмена',
                 customClass: 'delete-modal',
                 cancelButtonClass: 'button',
                 confirmButtonClass: 'button',
-            }).then(({ value }) => {
+            }).then(() => {
+                this.deleteItem(id)
                 this.$message({
                     type: 'success',
-                    message: 'Your delete' + value
+                    message: 'Подборка успешно удалена'
                 });
             })
+        },
+        async getListSearch() {
+            this.loading = true;
+            const action = `${this.$route.name}/getList`;
+            let params = {...this.meta, ...{search: this.searchValue}}
+            try { await this.$store.dispatch(action, params)}
+            finally { this.loading = false }
+        },
+        async changeStatus(status) {
+            this.loading = true;
+            const action = `${this.$route.name}/changeStatus`;
+            let params = {
+                itemIds: this.listRemoveCompilations.map(elem => elem.id),
+                status: status
+            }
+            try { await this.$store.dispatch(action, params)}
+            finally {
+                this.loading = false
+                this.dialogStatusVisible = false
+                this.getList()
+            }
         },
         toggleSelection() {
             this.$refs.listRemoveCompilations.clearSelection();
@@ -81,13 +79,10 @@ export default {
         handleSelectionChange(val) {
             this.listRemoveCompilations = val;
         },
-        ending(value, str){
+        ending(value, str) {
             let ending = str;
+            value = +value.toString().split('').pop()
             switch (true) {
-                case value > 10 &&
-                value < 20:
-                    ending += "ок";
-                    break;
                 case value === 1:
                     ending += "ка";
                     break;
@@ -95,12 +90,17 @@ export default {
                 value < 5:
                     ending += "ки";
                     break;
+                case value > 4 &&
+                value < 9:
+                    ending += "ок";
+                    break;
                 default:
                     ending += "ок";
                     break;
             }
             return ending;
         },
+
         remove() {
             console.log('remove')
             this.clear()
@@ -112,14 +112,12 @@ export default {
             console.log('change status')
             this.dialogStatusVisible = true
         },
-        changeStatus() {
-            console.log('change status method')
-            this.clear()
-            this.dialogStatusVisible = false
-        },
-        closeToggleStatus() {
-            this.clear()
-            this.dialogStatusVisible = false
+        // closeToggleStatus() {
+        //     this.clear()
+        //     this.dialogStatusVisible = false
+        // },
+        changeAllStatus(status) {
+            this.changeStatus(status)
         }
     }
 }

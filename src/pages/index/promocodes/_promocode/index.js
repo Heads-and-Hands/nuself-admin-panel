@@ -12,20 +12,6 @@ export default {
     },
     data() {
         return {
-            // data: {
-            //     id: '1R1469',
-            //     name: 'Название промокода',
-            //     sale: '15%',
-            //     status: 'active',
-            //     code: '1R14AS69',
-            //     condition: [{
-            //         type: 'date',
-            //         params: {
-            //             startDate: '2021-12-12',
-            //             endDate: '2022-11-11'
-            //         }
-            //     }]
-            // },
             selectType: [
                 {
                     type: 'birthday',
@@ -46,39 +32,56 @@ export default {
             ],
             selectCondition: '',
             dialogStatusVisible: false,
-            dataPicker: [],
+            isSaveChange: false,
         }
     },
-    created() {
-        // поправить ошибки
-      if (this.data && this.data.conditions[0].type === 'date') {
-         this.dataPicker = [this.data.conditions[0].params.startDate, this.data.conditions[0].params.endDate]
-      }
-    },
-    computed: {
-        isSaveChange() {
-            return JSON.stringify(this.data) !== JSON.stringify(this.info)
-        },
-    },
     methods: {
+        async putInfo() {
+            this.loading = true;
+            const action = `promocodes/putInfo`;
+            const body = {
+                id: this.$route.params.id,
+                data: this.info
+            }
+            try { await this.$store.dispatch(action, body) }
+            finally {
+                this.getInfo()
+            }
+        },
         goToBack() {
             this.$router.push({ path: `/promocodes` });
         },
         remove() {
-            console.log('remove')
             this.clear()
+            if (this.$route.params.id === 'create' ) {
+                this.goToBack()
+            } else {
+                this.deleteInfo()
+            }
         },
         save() {
             console.log('save')
-        },
-        clear() {
-            this.data = JSON.parse(JSON.stringify(this.info))
+            this.$route.params.id === 'create' ?  this.createNewInfo(this.info) : this.putInfo()
         },
         changeStatus(status) {
             if (status) {
-                this.data.status = status
+                this.info.status = status
             }
             this.dialogStatusVisible = false
         },
-    }
+        changeSale(value) {
+            let newSale = value.replace(/%/gi, '').replace(/[^0-9]/, '')
+            if (newSale > 0 && newSale <= 100) {
+                this.info.sale = newSale
+            }
+        },
+        changeConditions(value) {
+            let isNewPromo = this.$route.params.id === 'create'
+                if (value === 'date') {
+                    this.$store.commit('promocodes/addDateParams', isNewPromo)
+                } else {
+                    this.$store.commit('promocodes/deleteDateParams', isNewPromo)
+                }
+        }
+    },
 }

@@ -5,9 +5,7 @@
       <div class="data-table">
         <el-table
             :data="list"
-            ref="listRemoveTable"
             style="width: 100%"
-            @selection-change="handleSelectionChange"
         >
           <el-table-column
               prop="id"
@@ -60,40 +58,24 @@
                     icon="el-icon-plus"
                     circle
                     style="background-color: #292B33; color: white"
-                    @click="dialogTablesVisible = true"
+                    @click="openPage(`promocodes/promocode/create`);"
                 ></el-button>
               </div>
             </template>
             <template slot-scope="scope">
-              <el-button icon="el-icon-right" circle @click="openPage(scope.row.id)"></el-button>
-              <el-button icon="el-icon-delete" type="danger" circle @click="deleteBanner"></el-button>
+              <el-button icon="el-icon-right" circle @click="openPage(`promocodes/promocode/${scope.row.id}`)"></el-button>
+              <el-button icon="el-icon-delete" type="danger" circle @click="deletePromo(scope.row.id)"></el-button>
             </template>
           </el-table-column>
         </el-table>
       </div>
     </section>
-    <toggle-status
-        :dialogVisible="dialogStatusVisible"
-        type="active"
-        status="Активный"
-        text="выбранных скидок"
-        @close="closeToggleStatus"
-        @change-status="changeStatus"
-    />
-    <save-notification
-        v-show="listRemoveSales.length"
-        remove
-        status
-        :text="textNotification"
-        @clear="clear"
-        @remove="remove"
-        @change="change"
-    />
     <el-pagination
         style="text-align: right; margin-top: 32px"
         background
         layout="prev, pager, next"
-        :total="100">
+        :total="list.length"
+        :page-sizes="meta.limit">
     </el-pagination>
   </div>
 </template>

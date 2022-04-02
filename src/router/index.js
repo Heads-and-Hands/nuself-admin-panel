@@ -5,8 +5,8 @@ import Dashboard from '../pages/index/index.vue'
 
 import Products from '../pages/index/products/index.vue'
 import Product from '../pages/index/products/_product/index.vue'
-import Catalog from '../pages/index/catalog/index.vue'
-import Category from '../pages/index/catalog/_category/index.vue'
+import Catalog from '../pages/index/catalogs/index.vue'
+import Category from '../pages/index/catalogs/_category/index.vue'
 import Brands from '../pages/index/brands/index.vue'
 import Colors from '../pages/index/colors/index.vue'
 import Color from '../pages/index/colors/_color/index.vue'
@@ -60,15 +60,15 @@ const routes = [
       {
         path: 'products/product/:id',
         component: Product,
-        name: 'products',
+        name: 'product',
       },
       {
-        path: 'catalog',
+        path: 'catalogs',
         component: Catalog,
-        name: 'catalog',
+        name: 'catalogs',
       },
       {
-        path: `catalog/category/:id`,
+        path: `catalogs/category/:id`,
         component: Category,
         name: 'catalog',
         props: true
@@ -76,7 +76,7 @@ const routes = [
       {
         path: 'brands',
         component: Brands,
-        name: 'brands',
+        name: 'brand',
       },
       {
         path: 'colors',
@@ -86,7 +86,7 @@ const routes = [
       {
         path: `colors/color/:id`,
         component: Color,
-        name: 'colors',
+        name: 'color',
         props: true
       },
       {
@@ -97,7 +97,7 @@ const routes = [
       {
         path: `orders/order/:id`,
         component: Order,
-        name: 'orders',
+        name: 'order',
         props: true
       },
       {
@@ -108,7 +108,7 @@ const routes = [
       {
         path: `clients/client/:id`,
         component: Client,
-        name: 'clients',
+        name: 'client',
         props: true
       },
       {
@@ -119,7 +119,7 @@ const routes = [
       {
         path: `banners/banner/:id`,
         component: Banner,
-        name: 'banners',
+        name: 'banner',
         props: true
       },
       {
@@ -130,7 +130,7 @@ const routes = [
       {
         path: `compilations/compilation/:id`,
         component: Compilation,
-        name: 'compilations',
+        name: 'compilation',
         props: true
       },
       {
@@ -141,7 +141,7 @@ const routes = [
       {
         path: `rubrics/rubric/:id`,
         component: Rubric,
-        name: 'rubrics',
+        name: 'rubric',
         props: true
       },
       {
@@ -152,7 +152,7 @@ const routes = [
       {
         path: `contents/content/:id`,
         component: Content,
-        name: 'contents',
+        name: 'content',
         props: true
       },
       {
@@ -163,7 +163,7 @@ const routes = [
       {
         path: `promocodes/promocode/:id`,
         component: Promocode,
-        name: 'promocodes',
+        name: 'promocode',
         props: true
       },
       {
@@ -174,7 +174,7 @@ const routes = [
       {
         path: `users/user/:id`,
         component: User,
-        name: 'users',
+        name: 'user',
         props: true,
       },
       // {
@@ -185,7 +185,7 @@ const routes = [
       // {
       //   path: 'sales/sale/:id',
       //   component: Sale,
-      //   name: 'sales',
+      //   name: 'sale',
       //   props: true
       // },
       {
