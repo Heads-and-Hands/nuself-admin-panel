@@ -17,7 +17,6 @@ export default {
       navList: [],
       imageUrl: '',
       changeStatus: '',
-      dialogStatusVisible: false,
       isSaveChange: false,
       categoryData: {}
     }
@@ -66,13 +65,6 @@ export default {
         });
       })
     },
-    beforeImageUpload(file) {
-      this.addImage(file)
-      return true;
-    },
-    addImage(file) {
-      this.imageUrl = URL.createObjectURL(file);
-    },
     scrollToBlock(item) {
       let parent = document.querySelector('.main-view');
       let element = this.$refs[item];
@@ -80,5 +72,4 @@ export default {
       parent.scrollTo({ top, behavior: "smooth" });
     }
   }
-
 }

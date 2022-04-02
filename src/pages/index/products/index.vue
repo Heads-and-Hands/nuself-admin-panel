@@ -29,10 +29,8 @@
             :min-width="column.width"
           >
             <template slot-scope="scope">
-              <template
-                v-if="column.reference === 'image' && !!scope.row.image"
-              >
-                <img :src="scope.row.image" class="image" />
+              <template v-if="column.reference === 'mainImage'">
+                <img :src="scope.row.mainImage" class="image" />
               </template>
               <template v-else-if="column.reference === 'status'">
                 <el-tag type="success">{{

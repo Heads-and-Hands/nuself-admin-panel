@@ -20,9 +20,9 @@ export default {
       }],
       tableColumns: [
         { title: "ID", reference: "id", width: "70" },
-        { title: "Фото", reference: "image", width: "90" },
-        { title: "Артикул", reference: "article", width: "120" },
-        { title: "Бренд", reference: "brand", width: "120" },
+        { title: "Фото", reference: "mainImage", width: "90" },
+        { title: "Артикул", reference: "vendorCode", width: "120" },
+        { title: "Бренд", reference: "brandName", width: "120" },
         { title: "Название", reference: "name", width: "170" },
         { title: "Статус", reference: "status", width: "120" },
         { title: "Цвет", reference: "color", width: "120" },

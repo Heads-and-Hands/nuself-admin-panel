@@ -38,8 +38,8 @@
         <div class="input-wrapper">
           <div class="body-14-reg sub-title">Брэнд</div>
           <el-input
-            v-model="data.brand"
-            :value="data.brand"
+            v-model="data.brandName"
+            :value="data.brandName"
             clearable
             disabled
           />
@@ -137,17 +137,60 @@
           />
         </div>
       </div>
+      <div class="row-container">
+        <div class="input-wrapper">
+          <div class="body-14-reg sub-title">Цвет фильтров</div>
+          <el-input
+            v-model="data.color.title"
+            :value="data.color.title"
+            clearable
+            disabled
+          />
+        </div>
+      </div>
+
+      <div class="row-container">
+        <div class="input-wrapper prise">
+          <div class="body-14-reg sub-title">Базовая цена</div>
+          <el-input
+            v-model="data.price"
+            :value="data.price"
+            clearable
+          />
+        </div>
+        <div class="input-wrapper">
+          <div class="body-14-reg sub-title">Цена со скидкой</div>
+          <el-input
+            v-model="data.salePrice"
+            :value="data.salePrice"
+            clearable
+          />
+        </div>
+      </div>
       {{ dialogStatusVisible }}
     </section>
   </div>
 </template>
 <script>
 export default {
-  name: "App",
+  data() {
+    return {
+      dialogStatusVisible: false,
+    }
+  },
   props: ["data"],
   mounted() {
     console.log(this.data);
   },
+  methods: {
+    beforeImageUpload(file) {
+      this.addImage(file)
+      return true;
+    },
+    addImage(file) {
+      this.imageUrl = URL.createObjectURL(file);
+    },
+  }
 };
 </script>
 
@@ -184,6 +227,10 @@ export default {
 
       .el-button {
         margin-left: 24px;
+      }
+
+      .prise {
+        margin-right: 24px;
       }
 
       .vendor-code,
