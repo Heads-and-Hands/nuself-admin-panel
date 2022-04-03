@@ -76,7 +76,6 @@ export default ({
             commit("setSelectColorList", data);
         },
         async putInfo({ commit }, params) {
-            console.log(params)
             await Http.put(`/colors/${params.id}`, params.data);
         },
         async createInfo({ commit }, body) {

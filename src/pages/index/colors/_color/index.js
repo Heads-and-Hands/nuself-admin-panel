@@ -76,6 +76,7 @@ export default {
             Vue.set(this.info, "productColors", this.colorList)
             this.$route.params.id === 'create' ?  this.createNewInfo(this.info) : this.putInfo(this.info)
             this.isSaveChange = false
+            this.clear()
         },
         remove() {
             this.clear()
