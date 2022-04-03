@@ -41,6 +41,17 @@ export default ({
     async getInfo({ commit }, id) {
       let { data } = await Http.get(`/products/${id}`);
       commit("setProduct", data);
+    },
+    async putInfo({ commit }, params) {
+      console.log(params);
+      await Http.put(`/products/${params.id}`, params.data);
+    },
+    async createInfo({ commit }, body) {
+      await Http.post(`/products`, body);
+      commit("clearNewInfo"); // добавить
+    },
+    async deleteInfo({ commit }, id) {
+      await Http.delete(`/products/${id}`);
     }
   },
 })

@@ -27,7 +27,7 @@
       @close="dialogStatusVisible = false"
       @change-status="changeStatus($event)"
     />
-    <save-notification v-show="isSaveChange" />
+    <save-notification v-if="isSaveChange" remove :change="isSaveChange" @remove="remove" @save="save" @clear="clear"/>
   </div>
 </template>
 

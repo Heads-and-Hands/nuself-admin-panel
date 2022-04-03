@@ -48,21 +48,6 @@ export default {
                 this.getInfo()
             }
         },
-        goToBack() {
-            this.$router.push({ path: `/promocodes` });
-        },
-        remove() {
-            this.clear()
-            if (this.$route.params.id === 'create' ) {
-                this.goToBack()
-            } else {
-                this.deleteInfo()
-            }
-        },
-        save() {
-            console.log('save')
-            this.$route.params.id === 'create' ?  this.createNewInfo(this.info) : this.putInfo()
-        },
         changeStatus(status) {
             if (status) {
                 this.info.status = status

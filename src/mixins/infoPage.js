@@ -8,21 +8,21 @@ export default {
   },
   created() {
     if (this.$route.params.id !== 'create') {
-      this.getInfo()
+      this.getInfo();
     }
   },
   computed: {
     info() {
       if (this.$route.params.id !== 'create') {
-        return this.$store.getters[`${this.$route.name}s/info`]
+        return this.$store.getters[`${this.$route.name}s/info`];
       } else {
-        return this.$store.getters[`${this.$route.name}s/newInfo`]
+        return this.$store.getters[`${this.$route.name}s/newInfo`];
       }
     },
   },
   watch: {
     info: {
-      handler(newValue, oldValue) {
+      handler() {
         if (this.contentEdited) {
           this.isSaveChange = true;
           console.log("edit");
@@ -36,10 +36,12 @@ export default {
     async getInfo() {
       this.loading = true;
       const action = `${this.$route.name}s/getInfo`;
-      try { await this.$store.dispatch(action, this.$route.params.id) }
+      try { 
+        await this.$store.dispatch(action, this.$route.params.id);
+      }
       finally {
-        this.loading = false
-        this.isSaveChange = false
+        this.loading = false;
+        this.isSaveChange = false;
       }
     },
     async putInfo() {
@@ -51,7 +53,7 @@ export default {
       }
       try { await this.$store.dispatch(action, body) }
       finally {
-        this.getInfo()
+        this.getInfo();
       }
     },
     async createNewInfo(value) {
@@ -59,15 +61,17 @@ export default {
       const action = `${this.$route.name}s/createInfo`;
       try { await this.$store.dispatch(action, value) }
       finally {
-        this.goToBack()
+        this.goToBack();
       }
     },
     async deleteInfo() {
       this.loading = true;
       const action = `${this.$route.name}s/deleteInfo`;
-      try { await this.$store.dispatch(action, this.$route.params.id) }
+      try { 
+        await this.$store.dispatch(action, this.$route.params.id) 
+      }
       finally {
-        this.goToBack()
+        this.goToBack();
       }
     },
     back() {
@@ -76,25 +80,40 @@ export default {
     textConditions(value) {
       switch (value) {
         case 'birthday':
-          return 'День рождения'
+          return 'День рождения';
         case 'date':
-          return 'Срок действия'
+          return 'Срок действия';
         case 'ordinalPurchase':
-          return 'Первая покупка'
+          return 'Первая покупка';
         case 'registration':
-          return 'Первая покупка'
+          return 'Первая покупка';
         default:
-          return ''
+          return '';
       }
     },
     clear() {
       if (this.$route.params.id === 'create') {
-        this.$store.commit(`${this.$route.name}s/clearNewInfo`)
+        this.$store.commit(`${this.$route.name}s/clearNewInfo`);
       } else {
-        this.getInfo()
+        this.getInfo();
       }
       this.contentEdited = false;
       this.isSaveChange = false;
+    },
+    remove() {
+      this.clear();
+      if (this.$route.params.id === 'create') {
+        this.goToBack();
+      } else {
+        this.deleteInfo();
+      }
+    },
+    save() {
+      console.log("save");
+      this.$route.params.id === 'create' ? this.createNewInfo(this.info) : this.putInfo();
+    },
+    goToBack() {
+      this.$router.push({ path: `/${this.$route.name}s` });
     },
   },
 }
