@@ -1,6 +1,6 @@
 <template>
   <div class="common-wrapper">
-    <section class="common" ref="main">
+    <section class="common">
       <div class="head-24-s title">Основное</div>
       <div class="row-container">
         <div class="input-wrapper id">
@@ -30,7 +30,7 @@
             icon="el-icon-edit"
             circle
             style="background-color: #292b33; color: white"
-            @click="dialogStatusVisible = true"
+            @click="$emit('openStatus')"
           />
         </div>
       </div>
@@ -44,7 +44,7 @@
             disabled
           />
         </div>
-        <el-button icon="el-icon-right" circle></el-button>
+        <el-button icon="el-icon-right" circle />
       </div>
       <div class="row-container">
         <div class="input-wrapper">
@@ -67,7 +67,7 @@
       </div>
       <div class="data-image">
         <div class="head-18-s">Галерея</div>
-        <div v-if="data.image" class="image-container">
+        <!-- <div v-if="data.image" class="image-container">
           <img class="image" :src="data.image" />
           <el-button
             type="danger"
@@ -75,11 +75,11 @@
             class="delete-image"
             size="mini"
             @click="data.image = ''"
-            >&#215;</el-button
           >
-        </div>
+            &#215;
+          </el-button>
+        </div> -->
         <el-upload
-          v-else
           action="#"
           list-type="picture-card"
           class="upload-image"
@@ -87,11 +87,11 @@
           :on-success="addImage"
           :before-upload="beforeImageUpload"
         >
-          <i slot="default" class="body-12-reg el-icon-camera"></i>
-          <span class="body-12-reg"
-            >Загрузить фото (файлы jpeg, png не больше 10 МБ. Разрешение 276px x
-            376px.)</span
-          >
+          <i slot="default" class="body-12-reg el-icon-camera" />
+          <span class="body-12-reg">
+            Загрузить фото (файлы jpeg, png не больше 10 МБ. Разрешение 276px x
+            376px.)
+          </span>
         </el-upload>
       </div>
       <div class="row-container">
@@ -114,6 +114,7 @@
             disabled
           />
         </div>
+        <el-button icon="el-icon-right" circle />
       </div>
       <div class="row-container">
         <div class="input-wrapper">
@@ -125,6 +126,7 @@
             disabled
           />
         </div>
+        <el-button icon="el-icon-right" circle />
       </div>
       <div class="row-container">
         <div class="input-wrapper">
@@ -147,16 +149,13 @@
             disabled
           />
         </div>
+        <el-button icon="el-icon-right" circle />
       </div>
 
-      <div class="row-container">
+      <!-- <div class="row-container">
         <div class="input-wrapper prise">
           <div class="body-14-reg sub-title">Базовая цена</div>
-          <el-input
-            v-model="data.price"
-            :value="data.price"
-            clearable
-          />
+          <el-input v-model="data.price" :value="data.price" clearable />
         </div>
         <div class="input-wrapper">
           <div class="body-14-reg sub-title">Цена со скидкой</div>
@@ -166,31 +165,22 @@
             clearable
           />
         </div>
-      </div>
-      {{ dialogStatusVisible }}
+      </div> -->
     </section>
   </div>
 </template>
 <script>
 export default {
-  data() {
-    return {
-      dialogStatusVisible: false,
-    }
-  },
   props: ["data"],
-  mounted() {
-    console.log(this.data);
-  },
   methods: {
     beforeImageUpload(file) {
-      this.addImage(file)
+      this.addImage(file);
       return true;
     },
     addImage(file) {
       this.imageUrl = URL.createObjectURL(file);
     },
-  }
+  },
 };
 </script>
 

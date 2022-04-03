@@ -12,10 +12,12 @@ import './assets/styles/common.scss'
 import PerfectScrollbar from 'vue2-perfect-scrollbar'
 import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
 import statusBtn from "@/components/status/status.vue"
+import toggleStatus from "@/components/modals/toggle-status/toggle-status.vue"
 
 Vue.config.productionTip = false
 moment.locale('ru')
 Vue.component('status-btn', statusBtn)
+Vue.component('toggle-status', toggleStatus)
 
 Vue.use(PerfectScrollbar)
 Vue.use(VeeValidate, vvParams)

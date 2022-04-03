@@ -88,13 +88,13 @@ export default {
       }
     },
     clear() {
-        if (this.$route.params.id === 'create' ) {
-          this.$store.commit(`${this.$route.name}s/clearNewInfo`)
-        } else {
-          this.getInfo()
-        }
-        this.contentEdited = false;
-        this.isSaveChange = false;
+      if (this.$route.params.id === 'create') {
+        this.$store.commit(`${this.$route.name}s/clearNewInfo`)
+      } else {
+        this.getInfo()
+      }
+      this.contentEdited = false;
+      this.isSaveChange = false;
     },
   },
 }

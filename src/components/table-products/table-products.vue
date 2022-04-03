@@ -1,77 +1,54 @@
 <template>
-  <div :class="{'remove': removeBtn}">
+  <div :class="{ remove: removeBtn }">
     <el-table
-        :data="data.list"
-        class="body-14-reg table-products"
-        style="width: 100%">
-      <el-table-column
-          prop="id"
-          label="ID"
-          width="41">
-      </el-table-column>
-      <el-table-column
-          prop="image"
-          label="Фото"
-          width="76">
+      :data="data.list"
+      class="body-14-reg table-products"
+      style="width: 100%"
+    >
+      <el-table-column prop="id" label="ID" width="41"> </el-table-column>
+      <el-table-column prop="mainImage" label="Фото" width="76">
         <template slot-scope="scope">
-          <img :src="scope.row.image" class="image">
+          <img :src="scope.row.mainImage" class="image" />
         </template>
       </el-table-column>
-      <el-table-column
-          prop="article"
-          label="Артикул"
-          width="82"
-      >
+      <el-table-column prop="vendorCode" label="Артикул" width="82">
       </el-table-column>
-      <el-table-column
-          prop="brand"
-          label="Бренд"
-          width="112">
+      <el-table-column prop="brandName" label="Бренд" width="82">
       </el-table-column>
-      <el-table-column
-          prop="name"
-          label="Название"
-      >
-      </el-table-column>
-      <el-table-column
-          prop="color"
-          label="Цвет"
-          width="104">
+      <el-table-column prop="name" label="Название"> </el-table-column>
+      <el-table-column prop="color" label="Цвет" width="134">
         <template slot-scope="scope">
           <span class="body-14-reg color">
-            <span class="color-circle" :style="`background-color: #${scope.row.color.color}`"></span>
-            {{ scope.row.color.title}}
+            <span
+              class="color-circle"
+              :style="`background-color: #${scope.row.color.color.hex}`"
+            ></span>
+            {{ scope.row.color.title }}
           </span>
         </template>
       </el-table-column>
-      <el-table-column
-          prop="status"
-          label="Статус"
-          class-name="status"
-      >
+      <el-table-column prop="status" label="Статус" class-name="status">
         <template slot-scope="scope">
           <status-btn
-              :status="scope.row.status"
-              type="visibility"
-              size="small"
+            :status="scope.row.status"
+            type="visibility"
+            size="small"
           />
         </template>
       </el-table-column>
-      <el-table-column
-          :width="removeBtn? 100 : 56"
-      >
+      <el-table-column :width="removeBtn ? 100 : 56">
         <template slot="header">
           <div style="text-align: right">
             <el-button
-                icon="el-icon-edit"
-                circle
-                style="background-color: #292B33; color: white"
+              icon="el-icon-edit"
+              circle
+              style="background-color: #292b33; color: white"
             ></el-button>
             <el-button
-                v-if="removeBtn"
-                icon="el-icon-close"
-                type="danger"
-                circle
+              v-if="removeBtn"
+              icon="el-icon-close"
+              type="danger"
+              circle
             ></el-button>
           </div>
         </template>
@@ -81,11 +58,12 @@
       </el-table-column>
     </el-table>
     <el-pagination
-        v-show="data.list.length > 10"
-        class="pagination"
-        background
-        layout="prev, pager, next"
-        :total="10">
+      v-show="data.list.length > 10"
+      class="pagination"
+      background
+      layout="prev, pager, next"
+      :total="10"
+    >
     </el-pagination>
   </div>
 </template>
@@ -96,22 +74,22 @@ export default {
   props: {
     data: {
       type: Object,
-      default: {}
+      default: {},
     },
     removeBtn: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-}
+};
 </script>
 
 <style lang="scss">
 .table-products {
-   td:first-child,
-   td:last-child,
-   th:first-child,
-   th:last-child {
+  td:first-child,
+  td:last-child,
+  th:first-child,
+  th:last-child {
     .cell {
       padding: 0 !important;
     }

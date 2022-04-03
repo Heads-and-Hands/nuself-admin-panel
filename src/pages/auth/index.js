@@ -2,8 +2,8 @@ export default {
   data() {
     return {
       form: {
-        login: 'superadmin',
-        password: 'bankai',
+        login: '',
+        password: '',
       },
       loading: false,
       rules: {
