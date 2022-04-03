@@ -35,9 +35,7 @@ export default ({
             state.color = data;
         },
         setColorList(state, data) {
-            console.log('setColorList', state.colorList, data)
             state.colorList = data;
-            console.log('setColorList2', state.colorList, data)
         },
         setSelectColorList(state, data) {
             state.selectColorList = data.list;
@@ -68,7 +66,7 @@ export default ({
         },
         async getInfo({ commit }, id) {
             let { data } = await Http.get(`/colors/${id}`);
-            console.log(data)
+            data.hex = `#${data.hex}`
             commit("setColor", data);
             let productColors = data.productColors.map(elem => elem.id)
             commit("setColorList", productColors);

@@ -44,13 +44,12 @@ export default {
                 });
             })
         },
-        async putInfo() {
+        async putInfo(value) {
             this.loading = true;
             const action = `colors/putInfo`;
-            Vue.set(this.info, "productColors", this.selectProductColor)
             const body = {
                 id: this.$route.params.id,
-                data: this.info
+                data: value
             }
             try { await this.$store.dispatch(action, body) }
             finally {
@@ -73,10 +72,9 @@ export default {
             // this.info.hex !== this.info.hex? this.isSaveChange = true : this.isSaveChange = false
         },
         save() {
-            console.log('save')
             Vue.set(this.info, "hex", this.info.hex.slice(1))
             Vue.set(this.info, "productColors", this.colorList)
-            this.$route.params.id === 'create' ?  this.createNewInfo(this.info) : this.putInfo()
+            this.$route.params.id === 'create' ?  this.createNewInfo(this.info) : this.putInfo(this.info)
             this.isSaveChange = false
         },
         remove() {
@@ -88,6 +86,7 @@ export default {
             }
         },
         saveColorList(value) {
+            console.log(value)
             this.$store.commit('colors/setColorList', value)
         }
     },

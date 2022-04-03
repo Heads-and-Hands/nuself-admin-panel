@@ -41,7 +41,7 @@
         </div>
       </el-col>
       <el-col>
-        <div class="sub-title body-14-reg">Цвета товаров</div>
+        <div class="sub-title body-14-reg">Цвета товаров </div>
         <el-select
             :value="colorList"
             @change="saveColorList"
