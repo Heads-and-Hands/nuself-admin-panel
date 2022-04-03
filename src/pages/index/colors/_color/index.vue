@@ -41,17 +41,17 @@
         </div>
       </el-col>
       <el-col>
-        <div class="sub-title body-14-reg">Цвета товаров {{ololo}}</div>
+        <div class="sub-title body-14-reg">Цвета товаров</div>
         <el-select
-            v-model="selectProductColor"
-            @input="ololo"
+            :value="colorList"
+            @change="saveColorList"
             multiple
             filterable
             default-first-option
             popper-class="body-14-reg"
             placeholder="Найти цвета товаров">
           <el-option
-              v-for="item in productsColorLists"
+               v-for="item in selectColorList"
               :key="item.id"
               :label="item.title"
               :value="item.id">
@@ -59,7 +59,7 @@
         </el-select>
       </el-col>
     </section>
-    <save-notification @clear="clear" remove change @save="save" @remove="remove"/>
+    <save-notification @clear="clear" remove change @save="save" @remove="deleteCompilation"/>
   </div>
 </template>
 

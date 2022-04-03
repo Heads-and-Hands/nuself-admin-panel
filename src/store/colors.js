@@ -5,12 +5,13 @@ export default ({
     state: {
         colors: null,
         color: null,
+        colorList: [], // список приходящих цветов в селект
         newColor: {
             title: '',
             hex: '',
-            productColorIds: ''
+            productColorIds: []
         },
-        productsColorList: null,
+        selectColorList: [], // лист цветов в выпадающем списке
     },
     getters: {
         list(state) {
@@ -21,7 +22,10 @@ export default ({
         },
         newInfo(state) {
             return state.newColor;
-        }
+        },
+        colorList(state) {
+            return state.colorList
+        },
     },
     mutations: {
         setColors(state, data) {
@@ -30,8 +34,13 @@ export default ({
         setColor(state, data) {
             state.color = data;
         },
-        setProductsColor(state, data) {
-            state.productsColorList = data;
+        setColorList(state, data) {
+            console.log('setColorList', state.colorList, data)
+            state.colorList = data;
+            console.log('setColorList2', state.colorList, data)
+        },
+        setSelectColorList(state, data) {
+            state.selectColorList = data.list;
         },
         clearNewInfo(state) {
             state.newPromocode = {
@@ -59,11 +68,14 @@ export default ({
         },
         async getInfo({ commit }, id) {
             let { data } = await Http.get(`/colors/${id}`);
+            console.log(data)
             commit("setColor", data);
+            let productColors = data.productColors.map(elem => elem.id)
+            commit("setColorList", productColors);
         },
         async getProductsColor({ commit, search }) {
             let { data } = await Http.post('/products/colors/search', search);
-            commit("setProductsColor", data);
+            commit("setSelectColorList", data);
         },
         async putInfo({ commit }, params) {
             console.log(params)

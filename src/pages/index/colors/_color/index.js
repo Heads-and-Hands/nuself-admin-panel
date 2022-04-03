@@ -8,46 +8,42 @@ export default {
     ],
     data() {
         return {
-            // info: {
-            //     id: '123',
-            //     title: 'orange',
-            //     hex: '#F47500',
-            //     image: '#',
-            //     productColors: [
-            //         {
-            //             id: 1,
-            //             title: 'какойто цвет'
-            //         },
-            //         {
-            //             id: 2,
-            //             title: 'какойто цвет'
-            //         },
-            //         {
-            //             id: 3,
-            //             title: 'какойто цвет'
-            //         },
-            //         {
-            //             id: 4,
-            //             title: 'какойто цвет'
-            //         },
-            //
-            //     ]
-            // },
             showPicker: false,
             isSaveChange: false,
             selectProductColor: [],
-            ololo: ''
         }
     },
     components: {
         saveNotification
     },
-    created: {
-        productsColorList() {
-            return this.$store.state.colors.productsColorList
-        }
+    computed: {
+        selectColorList() {
+            let colorList =  this.$route.params.id === 'create' ? [] : this.info.productColors
+            return [...this.$store.state.colors.selectColorList, ...colorList]
+        },
+        colorList() {
+            return this.$store.getters[`colors/colorList`]
+        },
+    },
+    created() {
+        this.getProductsColor()
     },
     methods: {
+        deleteCompilation() {
+            this.$confirm('Вы уверены, что хотите удалить выбранный фильтр?', 'Удалить фильтр?', {
+                confirmButtonText: 'Удалить',
+                cancelButtonText: 'Отмена',
+                customClass: 'delete-modal',
+                cancelButtonClass: 'button',
+                confirmButtonClass: 'button',
+            }).then(() => {
+                this.remove()
+                this.$message({
+                    type: 'success',
+                    message: 'Фильтр успешно удален'
+                });
+            })
+        },
         async putInfo() {
             this.loading = true;
             const action = `colors/putInfo`;
@@ -67,10 +63,7 @@ export default {
             const value = {
                 search: ''
             }
-            try { await this.$store.dispatch(action, value) }
-            finally {
-                this.getInfo()
-            }
+            await this.$store.dispatch(action, value)
         },
         goToBack() {
             this.$router.push({ path: `/colors` });
@@ -81,6 +74,8 @@ export default {
         },
         save() {
             console.log('save')
+            Vue.set(this.info, "hex", this.info.hex.slice(1))
+            Vue.set(this.info, "productColors", this.colorList)
             this.$route.params.id === 'create' ?  this.createNewInfo(this.info) : this.putInfo()
             this.isSaveChange = false
         },
@@ -92,8 +87,8 @@ export default {
                 this.deleteInfo()
             }
         },
-        ololo(value) {
-            console.log(value)//организовать добавление
+        saveColorList(value) {
+            this.$store.commit('colors/setColorList', value)
         }
     },
 }
