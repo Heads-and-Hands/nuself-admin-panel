@@ -24,15 +24,15 @@
       <el-col>
         <div class="sub-title body-14-reg">Значение</div>
         <el-input
-            :color="info.color"
-            v-model="info.color"
+            :color="info.hex"
+            v-model="info.hex"
             @focus="showPicker = true"
             clearable
         >
         </el-input>
         <div v-show="showPicker" class="block" @mouseleave="showPicker = false">
           <el-color-picker
-              v-model="info.color"
+              v-model="info.hex"
               popper-class="palette"
               class="color-picker"
               @mouseout.native="changeColor()"
@@ -41,17 +41,17 @@
         </div>
       </el-col>
       <el-col>
-        <div class="sub-title body-14-reg">Цвета товаров</div>
+        <div class="sub-title body-14-reg">Цвета товаров {{ololo}}</div>
         <el-select
-            v-model="selectProducColor"
+            v-model="selectProductColor"
+            @input="ololo"
             multiple
             filterable
-            allow-create
             default-first-option
             popper-class="body-14-reg"
             placeholder="Найти цвета товаров">
           <el-option
-              v-for="item in productColors"
+              v-for="item in productsColorLists"
               :key="item.id"
               :label="item.title"
               :value="item.id">
@@ -59,7 +59,7 @@
         </el-select>
       </el-col>
     </section>
-    <save-notification v-show="isSaveChange" @clear="clearAll()" change @save="save"/>
+    <save-notification @clear="clear" remove change @save="save" @remove="remove"/>
   </div>
 </template>
 

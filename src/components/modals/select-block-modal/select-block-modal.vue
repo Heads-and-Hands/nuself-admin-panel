@@ -57,31 +57,31 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .select-block-modal {
+  margin-top: 5vh !important;
+  border-radius: 12px !important;
+  height: 85vh;
+  padding-top: 48px;
+  .ps {
+    height: calc(85vh - 240px);
+    padding: 20px 48px;
+  }
   .el-dialog {
-    margin-top: 5vh !important;
-    border-radius: 12px !important;
-    height: 85vh;
-    padding-top: 48px;
 
-    .ps {
-      height: calc(70vh - 90px);
-      padding: 20px 48px;
-    }
 
     &__title {
       font-size: 24px;
       font-style: normal;
       font-weight: 600;
       line-height: 32px;
-      letter-spacing: 0em;
+      letter-spacing: 0;
       padding-left: 28px;
     }
 
     &__body {
       padding: 0 !important;
-      height: 70vh;
+      height: calc(85vh - 200px);
 
       .bottom-block {
         height: 90px;
@@ -93,6 +93,7 @@ export default {
       }
     }
   }
+
   .center-block {
     display: flex !important;
     flex-direction: column;

@@ -1,9 +1,9 @@
 <template>
   <div class="colors-page table-page">
-    <div class="head-32-s title">Цвета фильтров<span class="limit">{{ data ? data.length : 0 }}</span></div>
+    <div class="head-32-s title">Цвета фильтров <span class="limit">{{ list ? list.length : 0 }}</span></div>
     <section>
       <el-table
-          :data="data"
+          :data="list"
           style="width: 100%">
         <el-table-column
             prop="id"
@@ -11,12 +11,12 @@
             width="80">
         </el-table-column>
         <el-table-column
-            prop="color"
+            prop="hex"
             label="Цвет">
-          <template>
+          <template slot-scope="scope">
             <div class="row-color">
-              <el-badge is-dot class="item" />
-              <span>color</span>
+              <div :style="`background-color: #${scope.row.hex}`" class="item"></div>
+              <span>{{scope.row.title}}</span>
             </div>
           </template>
         </el-table-column>

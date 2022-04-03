@@ -12,23 +12,23 @@ export default {
             articleList: [
                 {
                     title: 'Подборка',
-                    type: 'text',
+                    type: 'compilation',
                 },
                 {
                     title: 'Баннер',
-                    type: 'carousel',
+                    type: 'bannerNoGoods',
                 },
                 {
                     title: 'Блок «Сообщество»',
-                    type: 'tile'
+                    type: 'communityBlock'
                 },
                 {
                     title: 'Материал',
-                    type: 'material'
+                    type: 'content'
                 },
                 {
                     title: 'Баннер с товарами',
-                    type: 'products'
+                    type: 'bannerWithGoods'
                 },
             ],
             dialogArticleVisible: false,

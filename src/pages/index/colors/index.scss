@@ -6,12 +6,12 @@
 
     .item {
       margin-right: 8px;
-    }
-
-    .item .el-badge__content.is-dot {
-      margin-top: 18px;
+      margin-top: 2px;
       width: 14px;
       height: 14px;
+      border-radius: 50%;
     }
   }
+
+
 }
