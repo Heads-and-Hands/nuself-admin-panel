@@ -11,6 +11,7 @@ export default {
             showPicker: false,
             isSaveChange: false,
             selectProductColor: [],
+            selectSearch: ''
         }
     },
     components: {
@@ -57,19 +58,20 @@ export default {
             }
         },
         async getProductsColor() {
+            console.log('getProductsColor')
             this.loading = true;
             const action = `colors/getProductsColor`;
             const value = {
-                search: ''
+                search: this.selectSearch
             }
             await this.$store.dispatch(action, value)
+            this.searchSelectValue()
         },
         goToBack() {
             this.$router.push({ path: `/colors` });
         },
         changeColor() {
             this.info.hex = document.querySelector(".color-picker .el-input__inner").value
-            // this.info.hex !== this.info.hex? this.isSaveChange = true : this.isSaveChange = false
         },
         save() {
             Vue.set(this.info, "hex", this.info.hex.slice(1))
@@ -87,8 +89,16 @@ export default {
             }
         },
         saveColorList(value) {
-            console.log(value)
             this.$store.commit('colors/setColorList', value)
+        },
+        searchSelectValue() {
+            let input = document.querySelector("div.select-color input")
+            input.addEventListener('input', (event) => {
+                if (this.selectSearch !== event.target.value) {
+                    this.selectSearch = event.target.value;
+                    this.getProductsColor()
+                }
+            })
         }
     },
 }

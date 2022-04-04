@@ -2,9 +2,9 @@
   <div class="separate-page color-page">
     <div class="page-title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
-      {{ info.title || 'Название цвета фильтра' }}
+      {{ info && info.title? info.title : 'Название цвета фильтра' }}
     </div>
-    <section class="page-container color-container">
+    <section v-if="info" class="page-container color-container">
       <div class="head-24-s title">
         Основное
       </div>
@@ -41,13 +41,14 @@
         </div>
       </el-col>
       <el-col>
-        <div class="sub-title body-14-reg">Цвета товаров </div>
+        <div class="sub-title body-14-reg">Цвета товаров</div>
         <el-select
             :value="colorList"
             @change="saveColorList"
             multiple
             filterable
             default-first-option
+            class="select-color"
             popper-class="body-14-reg"
             placeholder="Найти цвета товаров">
           <el-option
