@@ -2,7 +2,7 @@
   <div class="separate-page color-page">
     <div class="page-title head-32-s">
       <i class="el-icon-back" @click="goToBack"></i>
-      Цвет
+      {{ info.title || 'Название цвета фильтра' }}
     </div>
     <section class="page-container color-container">
       <div class="head-24-s title">
@@ -11,29 +11,28 @@
       <el-col>
         <div class="sub-title body-14-reg">ID</div>
         <el-input
-            v-model="data.id"
+            v-model="info.id"
             disabled>
         </el-input>
       </el-col>
       <el-col>
-        <div class="sub-title body-14-reg">Цвет</div>
+        <div class="sub-title body-14-reg">Название цвета фильтров</div>
         <el-input
-            v-model="data.title"
-            disabled>
+            v-model="info.title">
         </el-input>
       </el-col>
       <el-col>
         <div class="sub-title body-14-reg">Значение</div>
         <el-input
-            :color="data.color"
-            v-model="data.color"
+            :color="info.hex"
+            v-model="info.hex"
             @focus="showPicker = true"
             clearable
         >
         </el-input>
         <div v-show="showPicker" class="block" @mouseleave="showPicker = false">
           <el-color-picker
-              v-model="data.color"
+              v-model="info.hex"
               popper-class="palette"
               class="color-picker"
               @mouseout.native="changeColor()"
@@ -41,8 +40,26 @@
           </el-color-picker>
         </div>
       </el-col>
+      <el-col>
+        <div class="sub-title body-14-reg">Цвета товаров </div>
+        <el-select
+            :value="colorList"
+            @change="saveColorList"
+            multiple
+            filterable
+            default-first-option
+            popper-class="body-14-reg"
+            placeholder="Найти цвета товаров">
+          <el-option
+               v-for="item in selectColorList"
+              :key="item.id"
+              :label="item.title"
+              :value="item.id">
+          </el-option>
+        </el-select>
+      </el-col>
     </section>
-    <save-notification v-show="isSaveChange" @clear="clearAll()" change @save="save"/>
+    <save-notification @clear="clear" remove change @save="save" @remove="deleteCompilation"/>
   </div>
 </template>
 

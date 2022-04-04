@@ -1,6 +1,6 @@
 .color-page {
   .color-container {
-    height: 412px;
+    height: 500px;
     margin-top: 48px;
 
     .el-col {
@@ -11,6 +11,12 @@
         color: #919398;
         margin-bottom: 8px;
       }
+
+      .el-select {
+        width: 100%;
+        font-weight: 400;
+      }
+
     }
 
     .title {

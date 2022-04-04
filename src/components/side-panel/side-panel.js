@@ -24,7 +24,7 @@ export default {
           disabled: false,
         },
         {
-          title: "Цвета",
+          title: "Цвета фильтров",
           icon: "el-icon-brush",
           path: "colors",
           line: true,
@@ -82,7 +82,7 @@ export default {
         {
           title: "Скидки",
           icon: "el-icon-coin",
-          path: "sales",
+          path: "",
           line: false,
           disabled: true,
         },
